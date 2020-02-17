@@ -1,0 +1,14 @@
+{
+  "globals": {
+    "beforeEach": true,
+    "describe": true,
+    "go": true,
+    "it": true
+  },
+  "laxbreak": true,
+  "laxcomma": true,
+  "expr": true,
+  "node": true,
+  "undef": true,
+  "unused": "vars"
+}
