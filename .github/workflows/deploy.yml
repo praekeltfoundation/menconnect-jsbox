@@ -18,8 +18,8 @@ jobs:
       - name: Docker Build & Push
         uses: mr-smithers-excellent/docker-build-push@v2
         with:
-          image: menconnect-jsbox
+          image: praekeltfoundation/menconnect-jsbox
           tag: ${{ steps.get_version.outputs.TAG }}
-          registry: praekeltfoundation
+          registry: docker.io
           username: praekeltorgdeploy
           password: ${{ secrets.DOCKER_HUB_PASS }}
