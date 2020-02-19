@@ -22,4 +22,4 @@ jobs:
           tag: ${{ steps.get_version.outputs.TAG }}
           registry: docker.io
           username: praekeltorgdeploy
-          password: secrets.DOCKER_HUB_PASS
+          password: ${{ secrets.DOCKER_HUB_PASS }}
