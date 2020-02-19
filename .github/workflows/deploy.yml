@@ -20,6 +20,6 @@ jobs:
         with:
           image: menconnect-jsbox
           tag: ${{ steps.get_version.outputs.TAG }}
-          registry: docker.io
+          registry: praekeltfoundation
           username: praekeltorgdeploy
           password: ${{ secrets.DOCKER_HUB_PASS }}
