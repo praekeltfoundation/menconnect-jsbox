@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Get the version
         id: get_version
         run: |
@@ -19,6 +20,6 @@ jobs:
         with:
           image: menconnect-jsbox
           tag: ${{ steps.get_version.outputs.TAG }}
-          registry: hub.docker.com
+          registry: docker.io
           username: praekeltorgdeploy
           password: secrets.DOCKER_HUB_PASS
