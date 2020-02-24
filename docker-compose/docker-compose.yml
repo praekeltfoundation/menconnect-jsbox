@@ -1,0 +1,36 @@
+version: "3"
+services:
+  junebug:
+    image: praekeltfoundation/junebug:alpine
+    ports:
+      - "80:80"
+      - "9001:9001"
+    links:
+      - rabbitmq
+      - redis
+    environment:
+      - AMQP_HOST=rabbitmq
+      - AMQP_VHOST=/
+      - REDIS_HOST=redis
+    command: jb --channel 'telnet_addr:vumi.transports.telnet.AddressedTelnetServerTransport'
+    restart: always
+
+  ussd_registration:
+    build: ../
+    volumes:
+      - ./:/config
+    environment:
+      - AMQP_HOST=rabbitmq
+      - CONFIG_FILE=/config/ussd_registration.yaml
+    links:
+      - redis
+      - rabbitmq
+    restart: always
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:alpine
+    restart: always

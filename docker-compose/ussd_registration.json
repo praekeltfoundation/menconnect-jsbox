@@ -1,0 +1,15 @@
+{
+  "name": "menconnect-ussd",
+  "services": {
+    "rapidpro": {
+      "base_url": "https://dummyrapidpro.com",
+      "token": "your-token"
+    },
+    "whatsapp": {
+      "base_url": "https://dummywhatsapp.com",
+      "token": "your-token"
+    }
+  },
+  "registration_group_ids": ["registration-group-uuid"],
+  "flow_uuid": "registration-flow-uuid"
+}
