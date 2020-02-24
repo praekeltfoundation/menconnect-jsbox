@@ -1,0 +1,40 @@
+worker_name: jsbox_application
+transport_name: jsbox_ussd_registration
+javascript_file: go-app-ussd_registration.js
+sandbox_id: sandbox1
+executable: /usr/bin/node
+amqp_prefetch_count: 1
+
+app_context: "{require: function(m) { if (['moment', 'url', 'lodash', 'q', 'jed', 'vumigo_v02', 'go-jsbox-metrics-helper', 'seed-jsbox-utils'].indexOf(m) >= 0) return require(m); return null; }, Buffer: Buffer}"
+
+rlimits:
+  RLIMIT_DATA: [67108864, 67108864] # 64 MB
+  RLIMIT_STACK: [2097152, 2097152] # 2 MB
+  RLIMIT_AS: [1073741824, 1073741824] # 1024 MB
+
+sandbox:
+  config:
+    cls: vxsandbox.resources.config.FileConfigResource
+    keys:
+      config: /config/ussd_registration.json
+  http:
+    cls: vxsandbox.resources.http.HttpClientResource
+  kv:
+    cls: vxsandbox.resources.kv.RedisResource
+    redis_manager:
+      key_prefix: "vumi.jsbox.kv"
+      host: "redis"
+    keys_per_user: 550000
+  outbound:
+    cls: vxsandbox.resources.outbound.OutboundResource
+  metrics:
+    cls: vxsandbox.resources.metrics.MetricsResource
+    metrics_prefix: "mcza"
+
+# middleware configuration
+
+middleware:
+  - logging_mw: vumi.middleware.logging.LoggingMiddleware
+
+logging_mw:
+  log_level: debug
