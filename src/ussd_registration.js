@@ -6,7 +6,6 @@ go.app = (function() {
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
   var PaginatedState = vumigo.states.PaginatedState;
-  //var PaginatedChoiceState = vumigo.states.PaginatedChoiceState;
   var FreeText = vumigo.states.FreeText;
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
@@ -103,21 +102,42 @@ go.app = (function() {
         case "state_hiv":
           return $("What's your question?");
         case "state_treatment":
-          return $("What do you want to know?");
+          return $("What?");
         case "state_reminders":
-          return $("What would you like to do? ");
+          return $("What would you like to do?");
+        case "state_change_clinic_date":
+          return $("When is your next expected clinic date?" + 
+                  "\nReply with the full date in the format YYYY/MM/DD");
         case "state_habit_plan":
-          return $("Doing something every day is a habit");
+          return $("Doing something every day is a habit.\n\nBuild a treatment habit:" + 
+                  "\nAdd it to your daily schedule\n" + 
+                  "Tick it off\n" + 
+                  "Plan for changes\n" +
+                  "Give yourself time\n");
         case "state_profile":
           return $("What would you like to view?");
+        case "state_profile_view_info":
+          return $("Name:\n" +
+                    "Cell number:\n" +
+                      "Language:\n" +
+                        "Age:\n" +
+                          "Channel:\n" +
+                            "Estimated treatment start date");
+        case "state_profile_change_info":
+          return $("What would you like to change?");
+          case "state_change_name":
+              return $("What *name* would you like me to call you instead?");
         case "state_processing_info_menu":
           return $("Choose a question you're interested in:");
         case "state_share":
           return $("Do you want to receive an SMS that you can share with other men living with HIV?");
+        case "state_confirm_share":
+          return $("Thank you. You will receive an SMS with info that you can share with other men living with HIV.");
         case "state_resources":
           return $("Select a topic:");
         case "state_exit":
-          return $("It was great talking to you. If you ever want to know more about MenConnect and how to use it, dial *134*406#.\n\nChat soon!\nMo\nMenConnect");
+          return $("It was great talking to you. If you ever want to know more about MenConnect" + 
+                  " and how to use it, dial *134*406#.\n\nChat soon!\nMo\nMenConnect");
         case "state_what_is_hiv":
           return $("It's a virus that enters your body through blood / bodily fluids.\n" + 
                     "It attacks your CD4 cells that protect your body against disease."); 
@@ -135,7 +155,8 @@ go.app = (function() {
         case "state_status_known":
           return $("When were you first diagnosed positive?");
         case "state_exit_not_hiv":
-          return $("MenConnect sends you messages to help with your treatment.\n" + "It seems like you don't need treatment." + 
+          return $("MenConnect sends you messages to help with your treatment.\n" + 
+                  "It seems like you don't need treatment." + 
                   "If you sent the wrong answer, dial *134*406# to restart.");
         case "state_treatment_started":
           return $("Are you or have you been on ARV treatment?");
@@ -143,10 +164,45 @@ go.app = (function() {
           return $("When did you start taking ARV treatment?");
         case "state_still_on_treatment":
           return $("Are you still taking your treatment?");
-          case "state_viral_detect":
-              return $("Is your viral load undetectable?");
-          case "state_generic_error":
-              return $("Please try again. e.g. 1.");
+        case "state_viral_detect":
+          return $("Is your viral load undetectable?");
+        case "state_generic_error":
+          return $("Please try again. e.g. 1.");
+        case "state_how_treatment_works":
+          return $("Taking your meds daily stops HIV from making\nmore in your blood " +  
+                "so that your CD4 cells can get strong again.\n");
+        case "state_short_error":
+          return $("error");
+        case "state_treatment_frequency":
+          return $("Take your meds every day, at the same time." + 
+                "as prescribed by your nurse\n");
+        case "state_treatment_duration":
+          return $("You need to take your meds every day for the" + 
+                  "rest of your life to stay healthy.\n");
+        case "state_treatment_side_effect":
+          return $("Every person feels different after taking meds." + 
+                  "If it's making you unwell, speak to your nurse.\n");
+        case "state_treatment_availability":
+          return $("It is important that you take the meds that is prescribed" + 
+                  "to you by a nurse.\n");
+        case "state_skip_a_day":
+          return $("You can still take the meds within 6 hrs of usual time" +
+                  "Don't double your dose the next day if you missed a day.\n");
+        case "state_menconnect_info":
+          return $("We process your info to help you on your health journey." +
+                    " We collect name, age, cell number, language, channel, " + 
+                      "status, clinic dates, & survey answers.");
+        case "state_menconnect_info_need":
+          return $("We use your personal info to send you messages that are relevant" +
+                    " to the stage of your health journey. " + 
+                      "Your info helps the team improve the service.");
+        case "state_menconnect_info_visibility":
+          return $("Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, " +
+                    "Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners");
+        case "state_menconnect_info_duration":
+          return $("We hold your info while you're registered. " +
+                    "If you opt-out, we'll use your info for historical ," + 
+                      "research & statistical reasons with your consent.");
       }
     };
 
@@ -243,30 +299,25 @@ go.app = (function() {
 
     self.add('state_treatment', function(name){
       return new MenuState(name, {
-        question:get_content(name).context(),
-        error: $(
-          "TBC"
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_how_treatment_works", $("How does treatment work?")), 
-          new Choice("state_treatment_frequency", $("When should I take it?")),
-          new Choice("state_treatment_duration", $("How long must I take it?")),
-          new Choice("state_treatment_side_effect", $("How will it make me feel")),
+          new Choice("state_how_treatment_works", $("How treatment works?")), 
+          new Choice("state_treatment_frequency", $("When to take it?")),
+          new Choice("state_treatment_duration", $("How long to take it?")),
+          new Choice("state_treatment_side_effect", $("How will it make me feel?")),
           new Choice("state_treatment_availability", $("How do I get it?")),
-          new Choice("state_skipping_treatment", $("How happens if I skip a day?")),
-          new Choice("state_registered", $("Back to menu?"))        
+          new Choice("state_skip_a_day", $("Can I skip a day?")),
+          new Choice("state_registered", $("Back to menu"))        
         ]
       });
     });
 
     self.add('state_how_treatment_works', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Taking your meds daily stops HIV from making more in your blood" + 
-          "so that your CD4 cells can get strong again."),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -276,11 +327,8 @@ go.app = (function() {
 
     self.add('state_treatment_frequency', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Taking your meds daily stops HIV from making more in your blood" + 
-          "so that your CD4 cells can get strong again."),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -290,11 +338,8 @@ go.app = (function() {
 
     self.add('state_treatment_duration', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Taking your meds daily stops HIV from making more in your blood" + 
-          "so that your CD4 cells can get strong again."),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -304,11 +349,8 @@ go.app = (function() {
 
     self.add('state_treatment_side_effect', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Taking your meds daily stops HIV from making more in your blood" + 
-          "so that your CD4 cells can get strong again."),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -318,11 +360,8 @@ go.app = (function() {
 
     self.add('state_treatment_availability', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Taking your meds daily stops HIV from making more in your blood" + 
-          "so that your CD4 cells can get strong again."),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -330,12 +369,10 @@ go.app = (function() {
       });
     });
 
-    self.add('state_skipping_treatment', function(name){
+    self.add('state_skip_a_day', function(name){
       return new MenuState(name, {
         question: get_content(name).context(),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_treatment", $("Back"))          
@@ -346,13 +383,11 @@ go.app = (function() {
     self.add('state_reminders', function(name){
       return new MenuState(name, {
         question: get_content(name).context(),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_show_clinic_date", $("Show me my expected clinic date")),
-          new Choice("state_change_clinic_date", $("Change my clinic date")),
+          new Choice("state_show_clinic_date", $("Show my next expected clinic date")),
+          new Choice("state_change_clinic_date", $("Change my next clinic date")),
           new Choice("state_plan_clinic_visit", $("Plan for my clinic visit")),
           new Choice("state_registered", $("Back to menu"))        
         ]
@@ -362,9 +397,7 @@ go.app = (function() {
     self.add('state_show_clinic_date', function(name){
       return new MenuState(name, {
         question: get_content(name).context("What would you like to do?"),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_change_clinic_date", $("Change your next clinic date")),
@@ -376,15 +409,11 @@ go.app = (function() {
 
     self.add('state_change_clinic_date', function(name){
       return new FreeText(name, {
-        question: get_content(name).context("Reply with the full date in the format YYYY/MM/DD"),
-        check: function(content) {
-          if (go.utils.is_valid_date(content)){
-            return null;
-          } else {
-            return "";
-          }
-        },
-        next: 'state_valid_change_date_confirm_screen'
+        question: get_content(name).context(),
+        next: function(content) {
+            //self.im.user.set_answer("new_clinic_date", content);
+            return "state_date_display";
+        }
       });
     });
 
@@ -395,17 +424,17 @@ go.app = (function() {
       });
     });
 
-    self.add('state_valid_change_date_confirm_screen', function(name){
+    self.add('state_date_display', function(name){
+      var clinic_date = self.im.user.answers.state_change_clinic_date;
       return new MenuState(name, {
-        question: get_content(name).context("I'll send you reminders of your upcoming clinic" + 
-          "visits so that you don't forget." + 
-            "\n\nWhat would you like to do next?"),
-        error: $(
-          "TBC"  
-        ),
+        question: $("You entered {{clinic_date}}. " + 
+                  "I'll send you reminders of your upcoming clinic visits " + 
+                  "so that you don't forget." + 
+                  "\nWhat would you like to do next?").context({clinic_date: clinic_date}),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_registered", $("Back to menu")),
+          new Choice("state_reminders", $("Back to menu")),
           new Choice("state_exit", $("Exit"))     
         ]
       });
@@ -429,14 +458,8 @@ go.app = (function() {
 
     self.add('state_habit_plan', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Build a treatment habit:" + 
-          "\n-Add it to your daily schedule" + 
-            "\n-Tick it off" +
-              "\n-Plan for changes" +
-                "\n-Give yourself time"),
-        error: $(
-          "TBC"  
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_registered", $("Back")) 
@@ -447,115 +470,143 @@ go.app = (function() {
     self.add('state_profile', function(name){
       return new MenuState(name, {
         question: get_content(name).context(),
-        error: $(
-          "I can do quite a few things to help you on your health journey. I've organised them by topic." +
-            "\n\nReply with the *number* of the question you want to see the answer to, e.g. 1."  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_profile_view_info", $("See my info")),
           new Choice("state_profile_change_info", $("Change my info")),
-          new Choice("state_opt_out", $("Opt-out"))
+          new Choice("state_opt_out", $("Opt-out")),
+          new Choice("state_registered", $("Back to menu"))
         ]
       });
     });
 
     self.add('state_profile_view_info', function(name){
       return new MenuState(name, {
-        question: get_content(name).context("Name:" +
-          "\nCell number:" +
-            "\nLanguage:" +
-              "\nAge" +
-                "\nChannel" +
-                  "\nEstimated treatment start date"),
-        error: $(  
-          "TBC"
-        ),
+        question: get_content(name).context(),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_change_info", $("Reply *CHANGE* to change your info.")),
-          new Choice("state_profile", $("Reply *BACK* for your profile options.")),
-          new Choice("state_registered", $("Reply *MENU* for the main menu."))
+          new Choice("state_profile_change_info", $("Reply *CHANGE* to change your info.")),
+          new Choice("state_profile", $("Reply *BACK* for your profile options."))
         ]
       });
     });
 
-    self.add('state_change_info', function(name){
+    self.add('state_profile_change_info', function(name){
       return new MenuState(name, {
         question: get_content(name).context(),
-        error: $(  
-          "TBC"
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_change_name", $("Name.")),
+          new Choice("state_change_name", $("Name")),
           new Choice("state_change_number", $("Cell number")),
           new Choice("state_change_age", $("Age")),
-          new Choice("state_whatsapp_contact_check", $("Change from Whatsapp to SMS")),
-          new Choice("state_registered", $("Treatment start date"))
+          new Choice("state_whatsapp_contact_check", $("Change from SMS to Whatsapp")),
+          new Choice("state_registered", $("Treatment start date")),
+          new Choice ("state_profile", $("Back"))
         ]
       });
     });
 
     self.add('state_change_name', function(name){
       return new FreeText(name, {
-        question:get_content(name).context("What *name* would you like me to call you instead?"),
-        next: 'state_change_name_confirm'
+        question:get_content(name).context(),
+        next: function(content) {
+          //self.im.user.set_answer("preferred_name", content); //save preferred name
+          return "state_display_name";
+        }
       });
     });
 
-    self.add('state_change_name_confirm', function(name){
+    self.add('state_display_name', function(name){
+      var preferred_name = self.im.user.answers.state_change_name;
       return new MenuState(name, {
-        question: get_content(name).context("Is your name..."),
-        error: $(  
-          "TBC"
-        ),
+        question: $("Thanks, I'll call you {{preferred_name}}" + 
+                    "\n\nWhat do you want to do next?").context({preferred_name: preferred_name}), 
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_end_change_name", $("Yes")),
-          new Choice("state_change_name", $("No")),
+          new Choice("state_registered", $("Back to menu")),
+          new Choice("state_start", $("Exit")),
         ]
       });
     });
 
-    self.add('state_end_change_name', function(name){
-      return new EndState(name, {
-        next: "state_start",
-        text: "Thanks!" + 
-          "\n\nI'll call you @contactname from now on" + 
-            "\n\nReply *MENU* for the main menu."    
+    self.add('state_change_number', function(name){
+      return new FreeText(name, {
+        question: $("Please reply with the *new cell number* you would like to get" + 
+                    "your MenConnect messages on, e.g 0813547654"),
+        check: function(content) {
+          if(!utils.is_valid_msisdn(content, "ZA")){
+            return (
+                "Sorry that is not a real cellphone number. " + 
+                  "Please reply with the 10 digit number that you'd like " +
+                    "to get your MenConnect messages on."
+            );
+          }
+          if(utils.normalize_msisdn(content, "ZA") === "+27813547654") {
+            return (
+              "We're looking for your information. Please avoid entering " +
+              "the examples in the messages. Enter your details."
+            );
+          }
+          //We need to do a rapidpro contact check here
+        },
+        next: "state_display_number"
+      });
+    });
+
+    self.add('state_display_number', function(name){
+      var msisdn = self.im.user.answers.state_change_number;
+      return new MenuState(name, {
+        question: $("You have entered {{preferred_number}}" + 
+                    "as your new MenConnect number." + 
+                    "\n\nIs this correct?").context({msisdn: msisdn}), 
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_whatsapp_contact_check", $("Yes")),
+          new Choice("state_change_number", $("No, try again")),
+        ]
       });
     });
 
     self.add('state_change_age', function(name){
       return new ChoiceState(name, {
-        question: get_content(name).context("*How old are you really?*" +
+        question: $("*How old are you?*" +
           "\nSelect your age group:"),
         error: $(  
           "Sorry, please reply with the number that matches your answer, e.g. 1."
         ),
         accept_labels: true,
         choices: [
-          new Choice("state_change_name", $("<15")),
-          new Choice("state_change_number", $("15-19")),
-          new Choice("state_change_age", $("20-24")),
-          new Choice("state_change_SMS", $("25-29")),
-          new Choice("state_registered", $("30-34")),
-          new Choice("state_registered", $("35-39")),
-          new Choice("state_registered", $("40-44")),
-          new Choice("state_registered", $("45-49")),
-          new Choice("state_registered", $("50+"))
+          new Choice("<15", $("<15")),
+          new Choice("15-19", $("15-19")),
+          new Choice("20-24", $("20-24")),
+          new Choice("25-29", $("25-29")),
+          new Choice("30-34", $("30-34")),
+          new Choice("35-39", $("35-39")),
+          new Choice("40-44", $("40-44")),
+          new Choice("45-49", $("45-49")),
+          new Choice("50+", $("50+"))
         ],
         next: 'state_change_age_end'
       });
     });
 
     self.add('state_change_age_end', function(name){
-      return new EndState(name, {
-        next: "state_start",
-        text: "Thank you" + 
-          "\n\nYour age has been updated to..." + 
-            "\n\nReply *MENU* for the main menu."    
+      var age = self.im.user.answers.stage_change_age;
+      return new MenuState(name, {
+        question: $("Thank you" + 
+          "\n\nYour age has been updated to {{age}}" + 
+            "\n\nReply *MENU* for the main menu.").context({age: age}),
+        error: $("Please select 1 or 2"),
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Back to menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
       });
     });
 
@@ -566,100 +617,70 @@ go.app = (function() {
         question: get_content(name).context(),
         accept_labels: true,
         choices: [
-          new Choice("state_menconnect_info", $("What personal info does MenConnect collect?")),
+          new Choice("state_menconnect_info", $("What info does MenConnect collect?")),
           new Choice("state_menconnect_info_need", $("Why does MenConnect need my info?")),
           new Choice("state_menconnect_info_visibility", $("Who can see my info?")),
-          new Choice("state_menconnect_info_duration", $("How long does MenConnect keep my info?"))
+          new Choice("state_menconnect_info_duration", $("How  long is my info kept?"))
         ]
       });
     });
 
     self.add('state_menconnect_info', function(name){
-      return new PaginatedState(name, {
-        text: $("MenConnect collects the following info: \n" + 
-          "- The name you provide when you signup,\n" + 
-            "- Your age group,\n" + 
-              "- Your cell number,\n" + 
-                "- Language preference,\n" + 
-                  "- Channel preference,\n" + 
-                    "- Your status,\n" + 
-                      "- If you take treatment, and\n" + 
-                        "- Estimated clinic visit dates.\n\n" +
-                          "If you participate in any surveys on the platform," + 
-                            "MenConnect will also store your answers\n\n" + 
-                              "Reply *BACK* to read more about how your info is processed\n" + 
-                                "Reply *MENU* for the main menu."),
-        characters_per_page: 140,
-        more: $('More'),
-        back: $('Back'),
-        exit: $('Main Menu'),
-        next: ""
+      return new MenuState(name, {
+        question:get_content(name).contet(),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_processing_info_menu", $("Back"))
+        ]
       });
     });
 
     self.add('state_menconnect_info_need', function(name){
-      return new PaginatedState(name, {
-        text: $("*Why does MenConnect need my info?*" + 
-          "MenConnect uses your personal info to send you messages that are relevant" + 
-            "to the stage of your health journey. Your information also assists the" + 
-              "programme team to improve the messaging service.\n\n" + 
-                "Reply *BACK* to read more about how your into is processed.\n" + 
-                  "Reply *MENU* for the main menu"),
-        characters_per_page: 140,
-        more: $('More'),
-        back: $('Back'),
-        exit: $('Main Menu'),
-        next: ""
+      return new MenuState(name, {
+        question:get_content(name).contet(),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_processing_info_menu", $("Back"))
+        ]
       });
     });
 
     self.add('state_menconnect_info_visibility', function(name){
-      return new PaginatedState(name, {
-        text: $("*Who can see my info?*" + 
-          "Your data is protected. It's processed by MTN, Cell C," + 
-            "Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn," + 
-              "WhatsApp & MenStar partners.\n\n" + 
-                "Reply *BACK* to read more about how your into is processed.\n" + 
-                  "Reply *MENU* for the main menu"),
-        characters_per_page: 140,
-        more: $('More'),
-        back: $('Back'),
-        exit: $('Main Menu'),
-        next: ""
+      return new MenuState(name, {
+        question:get_content(name).contet(),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_processing_info_menu", $("Back"))
+        ]
       });
     });
 
     self.add('state_menconnect_info_duration', function(name){
-      return new PaginatedState(name, {
-        text: $("*How long does MenConnect keep my info?*" + 
-          "MenConnect holds your info while you're registered." + 
-            "If you opt-out, we'll use your info for historical," + 
-              "research & statistical reasons with your consent.\n\n" + 
-                "Reply *BACK* to read more about how your into is processed.\n" + 
-                  "Reply *MENU* for the main menu"),
-        characters_per_page: 140,
-        more: $('More'),
-        back: $('Back'),
-        exit: $('Main Menu'),
-        next: ""
+      return new MenuState(name, {
+        question:get_content(name).contet(),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_processing_info_menu", $("Back"))
+        ]
       });
     });
 
     self.add('state_share', function(name){
       return new MenuState(name, {
         question: get_content(name).context(),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_confirm_share", $("Yes")),
-          new Choice("state_exit", $("Back to menu"))
+          new Choice("state_registered", $("Back to menu"))
         ]
       });
     });
 
-    self.add('state_confirm_share"', function(name){
+    self.add("state_confirm_share", function(name){
       return new MenuState(name, {
-        question: $("Thank you. You will receive an SMS with info" + 
-          "that you can share with other men living with HIV."),
+        question: get_content(name).context(),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_registered", $("Back to Menu"))
@@ -942,7 +963,12 @@ go.app = (function() {
 
     self.states.add("state_generic_error", function(name) {
       return new EndState(name, {
-        next: "state_start",
+        text: get_content(name).context(),
+      });
+    });
+
+    self.states.add("state_short_error", function(name) {
+      return new EndState(name, {
         text: get_content(name).context(),
       });
     });
@@ -1055,7 +1081,7 @@ go.app = (function() {
             on_whatsapp: self.im.user.get_answer("on_whatsapp")
               ? "TRUE"
               : "FALSE",
-            source: "USSD registration2"
+            source: "USSD registration"
           }
         )
         .then(function() {

@@ -239,6 +239,336 @@ describe("ussd_registration app", function() {
         .run();
     });
   });
+  describe("state_treatment_menu", function() {
+    it("should show the treatment menu for registered users", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .check.interaction({
+          reply: [
+            "What?",
+            "1. How treatment works?",
+            "2. When to take it?",
+            "3. How long to take it?",
+            "4. How will it make me feel?",
+            "5. How do I get it?",
+            "6. Can I skip a day?",
+            "7. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("8")
+        .check.interaction({
+          state:"state_treatment",
+          reply: [
+            "error",
+            "1. How treatment works?",
+            "2. When to take it?",
+            "3. How long to take it?",
+            "4. How will it make me feel?",
+            "5. How do I get it?",
+            "6. Can I skip a day?",
+            "7. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the how does it work screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("1")
+        .check.interaction({
+          state:"state_how_treatment_works",
+          reply: [
+            "Taking your meds daily stops HIV from making", 
+            "more in your blood so that your CD4 cells can get strong again.",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the how does it work screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("2")
+        .check.interaction({
+          state:"state_treatment_frequency",
+          reply: [
+            "Take your meds every day, at the same time." + 
+            "as prescribed by your nurse",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the treatment frequency screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("2")
+        .check.interaction({
+          state:"state_treatment_frequency",
+          reply: [
+            "Take your meds every day, at the same time." + 
+            "as prescribed by your nurse",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+  it("should go to the treatment duration screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("3")
+      .check.interaction({
+        state:"state_treatment_duration",
+        reply: [
+          "You need to take your meds every day for the" + 
+          "rest of your life to stay healthy.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment side-effects screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("4")
+      .check.interaction({
+        state:"state_treatment_side_effect",
+        reply: [
+          "Every person feels different after taking meds." + 
+          "If it's making you unwell, speak to your nurse.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment availability screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("5")
+      .check.interaction({
+        state:"state_treatment_availability",
+        reply: [
+          "It is important that you take the meds that is prescribed" + 
+          "to you by a nurse.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment skip a day screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("6")
+      .check.interaction({
+        state:"state_skip_a_day",
+        reply: [
+          "You can still take the meds within 6 hrs of usual time" +
+          "Don't double your dose the next day if you missed a day.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_reminders", function() {
+  it("should show the reminders_menu", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .check.interaction({
+        reply: [
+          "What would you like to do?",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show an error for invalid choice", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .inputs("5")
+      .check.interaction({
+        state:"state_reminders",
+        reply: [
+          "Please try again. e.g. 1.",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  /* Figure out how to hit a rapidpro endpoint and show the clinic visit date */
+
+  it("should show the change clinic date screen", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .inputs("2")
+      .check.interaction({
+        state:"state_change_clinic_date",
+        reply: [
+          "When is your next expected clinic date?", 
+          "Reply with the full date in the format YYYY/MM/DD"
+        ].join("\n")
+      })
+      .run();
+  });
+  /*Validate date format here */
+
+  it("should show the date display screen", function() {
+    return tester
+      .setup.user.state("state_date_display")
+      .setup.user.answer("state_change_clinic_date", "2019-12-24")
+      .check.interaction({
+        reply: [
+          "You entered 2019-12-24. " + 
+          "I'll send you reminders of your upcoming clinic visits " + 
+          "so that you don't forget.",
+          "What would you like to do next?",
+          "1. Back to menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should return to the reminders menu", function() {
+    return tester.setup.user
+      .state("state_date_display")
+      .inputs("1")
+      .check.interaction({
+        state:"state_reminders",
+        reply: [
+          "What would you like to do?",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_habit_plan", function() {
+  it("should show the habit plan screen", function() {
+    return tester.setup.user
+      .state("state_habit_plan")
+      .check.interaction({
+        reply: [
+          "Doing something every day is a habit.",
+          "\nBuild a treatment habit:",
+          "Add it to your daily schedule",
+          "Tick it off",
+          "Plan for changes",
+          "Give yourself time",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_profile", function() {
+  it("should show the profile menu", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .check.interaction({
+        reply: [
+          "What would you like to view?",
+          "1. See my info",
+          "2. Change my info",
+          "3. Opt-out",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the profile screen", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .inputs("1")
+      .check.interaction({
+        state:"state_profile_view_info",
+        reply: [
+          "Name:",
+          "Cell number:",
+          "Language:",
+          "Age:",
+          "Channel:",
+          "Estimated treatment start date",
+          "1. Reply *CHANGE* to change your info.",
+          "2. Reply *BACK* for your profile options."
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should switch to the change profile screen", function() {
+    return tester.setup.user
+      .state("state_profile_view_info")
+      .inputs("1")
+      .check.interaction({
+        state:"state_profile_change_info",
+        reply: [
+          "What would you like to change?",
+                    "1. Name",
+                    "2. Cell number",
+                    "3. Age",
+                    "4. Change from SMS to Whatsapp",
+                    "5. Treatment start date",
+                    "6. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the new name the user entered", function() {
+    return tester
+      .setup.user.state("state_display_name")
+      .setup.user.answer("state_change_name", "Jonathan")
+      .check.interaction({
+        reply: [
+          "Thanks, I'll call you Jonathan",
+          "\nWhat do you want to do next?",
+          "1. Back to menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_share", function() {
+  it("should show the share menu", function() {
+    return tester.setup.user
+      .state("state_share")
+      .check.interaction({
+        reply: [
+          "Do you want to receive an SMS that you can share with other men living with HIV?",
+          "1. Yes",
+          "2. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the confirm share screen", function() {
+    return tester.setup.user
+      .state("state_share")
+      .inputs("1")
+      .check.interaction({
+        state:"state_confirm_share",
+        reply: [
+          "Thank you. You will receive an SMS with info " + 
+          "that you can share with other men living with HIV.",
+          "1. Back to Menu"
+        ].join("\n")
+      })
+      .run();
+  });
+});
   describe("state_info_consent", function() {
     it("should ask the user for consent to use their info", function() {
       return tester.setup.user
@@ -713,7 +1043,7 @@ describe("ussd_registration app", function() {
     });
     //DO A CONTACT CHECK HERE
   });
-  describe.skip("timeout testing", function() {
+  describe("timeout testing", function() {
     it("should go to state_timed_out", function() {
       return tester.setup.user
         .state("state_info_consent")
@@ -744,8 +1074,17 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state: "state_registered",
           reply: [
-            "Hello You are already registered for Menconnect"
-          ]
+            "What would you like to view?\n" +
+            "1. HIV",
+            "2. Treatment",
+            "3. Reminders",
+            "4. Habit Plan",
+            "5. My Profile",
+            "6. Processing my info",
+            "7. Share",
+            "8. Resources",
+            "9. Exit"
+          ].join("\n")
         })
         .run();
     });
@@ -791,7 +1130,7 @@ describe("ussd_registration app", function() {
         .run();
     });
   });
-  describe.skip("state_trigger_rapidpro_flow", function() {
+  describe("state_trigger_rapidpro_flow", function() {
     it("should start a flow with the correct metadata", function() {
       return tester
         .setup(function(api) {
@@ -846,7 +1185,7 @@ describe("ussd_registration app", function() {
         .run();
     });
   });
-  describe.skip("state_registration_complete", function() {
+  describe("state_registration_complete", function() {
     it("should show the correct message", function() {
       return (
         tester
