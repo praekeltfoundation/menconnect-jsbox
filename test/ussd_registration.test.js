@@ -55,7 +55,7 @@ describe("ussd_registration app", function() {
         .run();
     });
 
-    it("should got to already registered state", function() {
+    it("should go to already registered state", function() {
       return tester
         .setup(function(api) {
           api.http.fixtures.add(
@@ -76,15 +76,499 @@ describe("ussd_registration app", function() {
           api.http.fixtures.add(
             fixtures_rapidpro.get_contact({
               urn: "whatsapp:27123456789",
-              exists: true
+              exists: true,
             })
           );
         })
-        .check.user.state("state_info_consent")
+        .check.user.state("state_message_consent")
         .run();
     });
   });
+  describe("state_registered", function() {
+    it("should show the main menu for registered users", function() {
+      return tester.setup.user
+        .state("state_registered")
+        .check.interaction({
+          reply: [
+            "What would you like to view?",
+            "1. HIV",
+            "2. Treatment",
+            "3. Reminders",
+            "4. Habit Plan",
+            "5. My Profile",
+            "6. Processing my info",
+            "7. Share",
+            "8. Resources",
+            "9. Exit"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_registered")
+        .inputs("10")
+        .check.interaction({
+          state:"state_registered",
+          reply: [
+            "Please try again. e.g. 1.",
+            "1. HIV",
+            "2. Treatment",
+            "3. Reminders",
+            "4. Habit Plan",
+            "5. My Profile",
+            "6. Processing my info",
+            "7. Share",
+            "8. Resources",
+            "9. Exit"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the hiv menu", function() {
+      return tester.setup.user
+        .state("state_registered")
+        .inputs("1")
+        .check.interaction({
+          state:"state_hiv",
+          reply: [
+            "What's your question?",
+            "1. What is HIV?",
+            "2. What does HIV do to my body?",
+            "3. Is there a cure?",
+            "4. What is viral load?",
+            "5. What is low viral load?",
+            "6. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_hiv", function() {
+    it("should show the main menu for registered users", function() {
+      return tester.setup.user
+        .state("state_hiv")
+        .check.interaction({
+          reply: [
+            "What's your question?",
+            "1. What is HIV?",
+            "2. What does HIV do to my body?",
+            "3. Is there a cure?",
+            "4. What is viral load?",
+            "5. What is low viral load?",
+            "6. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_hiv")
+        .inputs("10")
+        .check.interaction({
+          state:"state_hiv",
+          reply: [
+            "Please try again. e.g. 1.",
+            "1. What is HIV?",
+            "2. What does HIV do to my body?",
+            "3. Is there a cure?",
+            "4. What is viral load?",
+            "5. What is low viral load?",
+            "6. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show what HIV is", function() {
+      return tester.setup.user
+        .state("state_hiv")
+        .inputs("1")
+        .check.interaction({
+          state:"state_what_is_hiv",
+          reply: [
+            "It's a virus that enters your body through blood / bodily fluids.",
+            "It attacks your CD4 cells that protect your body against disease.",
+            "1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_what_is_hiv", function() {
+    it("should show the main menu for registered users", function() {
+      return tester.setup.user
+        .state("state_what_is_hiv")
+        .check.interaction({
+          reply: [
+            "It's a virus that enters your body through blood / bodily fluids.",
+            "It attacks your CD4 cells that protect your body against disease.",
+            "1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_what_is_hiv")
+        .inputs("10")
+        .check.interaction({
+          state:"state_what_is_hiv",
+          reply: [
+            "Please try again. e.g. 1.",
+            "1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go back to the HIV menu", function() {
+      return tester.setup.user
+        .state("state_what_is_hiv")
+        .inputs("1")
+        .check.interaction({
+          state:"state_hiv",
+          reply: [
+            "What's your question?",
+            "1. What is HIV?",
+            "2. What does HIV do to my body?",
+            "3. Is there a cure?",
+            "4. What is viral load?",
+            "5. What is low viral load?",
+            "6. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_treatment_menu", function() {
+    it("should show the treatment menu for registered users", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .check.interaction({
+          reply: [
+            "What?",
+            "1. How treatment works?",
+            "2. When to take it?",
+            "3. How long to take it?",
+            "4. How will it make me feel?",
+            "5. How do I get it?",
+            "6. Can I skip a day?",
+            "7. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("8")
+        .check.interaction({
+          state:"state_treatment",
+          reply: [
+            "error",
+            "1. How treatment works?",
+            "2. When to take it?",
+            "3. How long to take it?",
+            "4. How will it make me feel?",
+            "5. How do I get it?",
+            "6. Can I skip a day?",
+            "7. Back to menu"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the how does it work screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("1")
+        .check.interaction({
+          state:"state_how_treatment_works",
+          reply: [
+            "Taking your meds daily stops HIV from making", 
+            "more in your blood so that your CD4 cells can get strong again.",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the how does it work screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("2")
+        .check.interaction({
+          state:"state_treatment_frequency",
+          reply: [
+            "Take your meds every day, at the same time." + 
+            "as prescribed by your nurse",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to the treatment frequency screen", function() {
+      return tester.setup.user
+        .state("state_treatment")
+        .inputs("2")
+        .check.interaction({
+          state:"state_treatment_frequency",
+          reply: [
+            "Take your meds every day, at the same time." + 
+            "as prescribed by your nurse",
+            "\n1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+  it("should go to the treatment duration screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("3")
+      .check.interaction({
+        state:"state_treatment_duration",
+        reply: [
+          "You need to take your meds every day for the" + 
+          "rest of your life to stay healthy.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment side-effects screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("4")
+      .check.interaction({
+        state:"state_treatment_side_effect",
+        reply: [
+          "Every person feels different after taking meds." + 
+          "If it's making you unwell, speak to your nurse.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment availability screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("5")
+      .check.interaction({
+        state:"state_treatment_availability",
+        reply: [
+          "It is important that you take the meds that is prescribed" + 
+          "to you by a nurse.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should go to treatment skip a day screen", function() {
+    return tester.setup.user
+      .state("state_treatment")
+      .inputs("6")
+      .check.interaction({
+        state:"state_skip_a_day",
+        reply: [
+          "You can still take the meds within 6 hrs of usual time" +
+          "Don't double your dose the next day if you missed a day.",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_reminders", function() {
+  it("should show the reminders_menu", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .check.interaction({
+        reply: [
+          "What would you like to do?",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show an error for invalid choice", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .inputs("5")
+      .check.interaction({
+        state:"state_reminders",
+        reply: [
+          "Please try again. e.g. 1.",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  /* Figure out how to hit a rapidpro endpoint and show the clinic visit date */
 
+  it("should show the change clinic date screen", function() {
+    return tester.setup.user
+      .state("state_reminders")
+      .inputs("2")
+      .check.interaction({
+        state:"state_change_clinic_date",
+        reply: [
+          "When is your next expected clinic date?", 
+          "Reply with the full date in the format YYYY/MM/DD"
+        ].join("\n")
+      })
+      .run();
+  });
+  /*Validate date format here */
+
+  it("should show the date display screen", function() {
+    return tester
+      .setup.user.state("state_date_display")
+      .setup.user.answer("state_change_clinic_date", "2019-12-24")
+      .check.interaction({
+        reply: [
+          "You entered 2019-12-24. " + 
+          "I'll send you reminders of your upcoming clinic visits " + 
+          "so that you don't forget.",
+          "What would you like to do next?",
+          "1. Back to menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should return to the reminders menu", function() {
+    return tester.setup.user
+      .state("state_date_display")
+      .inputs("1")
+      .check.interaction({
+        state:"state_reminders",
+        reply: [
+          "What would you like to do?",
+          "1. Show my next expected clinic date",
+          "2. Change my next clinic date",
+          "3. Plan for my clinic visit",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_habit_plan", function() {
+  it("should show the habit plan screen", function() {
+    return tester.setup.user
+      .state("state_habit_plan")
+      .check.interaction({
+        reply: [
+          "Doing something every day is a habit.",
+          "\nBuild a treatment habit:",
+          "Add it to your daily schedule",
+          "Tick it off",
+          "Plan for changes",
+          "Give yourself time",
+          "\n1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_profile", function() {
+  it("should show the profile menu", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .check.interaction({
+        reply: [
+          "What would you like to view?",
+          "1. See my info",
+          "2. Change my info",
+          "3. Opt-out",
+          "4. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the profile screen", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .inputs("1")
+      .check.interaction({
+        state:"state_profile_view_info",
+        reply: [
+          "Name:",
+          "Cell number:",
+          "Language:",
+          "Age:",
+          "Channel:",
+          "Estimated treatment start date",
+          "1. Reply *CHANGE* to change your info.",
+          "2. Reply *BACK* for your profile options."
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should switch to the change profile screen", function() {
+    return tester.setup.user
+      .state("state_profile_view_info")
+      .inputs("1")
+      .check.interaction({
+        state:"state_profile_change_info",
+        reply: [
+          "What would you like to change?",
+                    "1. Name",
+                    "2. Cell number",
+                    "3. Age",
+                    "4. Change from SMS to Whatsapp",
+                    "5. Treatment start date",
+                    "6. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the new name the user entered", function() {
+    return tester
+      .setup.user.state("state_display_name")
+      .setup.user.answer("state_change_name", "Jonathan")
+      .check.interaction({
+        reply: [
+          "Thanks, I'll call you Jonathan",
+          "\nWhat do you want to do next?",
+          "1. Back to menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+describe("state_share", function() {
+  it("should show the share menu", function() {
+    return tester.setup.user
+      .state("state_share")
+      .check.interaction({
+        reply: [
+          "Do you want to receive an SMS that you can share with other men living with HIV?",
+          "1. Yes",
+          "2. Back to menu"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the confirm share screen", function() {
+    return tester.setup.user
+      .state("state_share")
+      .inputs("1")
+      .check.interaction({
+        state:"state_confirm_share",
+        reply: [
+          "Thank you. You will receive an SMS with info " + 
+          "that you can share with other men living with HIV.",
+          "1. Back to Menu"
+        ].join("\n")
+      })
+      .run();
+  });
+});
   describe("state_info_consent", function() {
     it("should ask the user for consent to use their info", function() {
       return tester.setup.user
@@ -100,7 +584,6 @@ describe("ussd_registration app", function() {
         })
         .run();
     });
-
     it("should show an error if the user replies with an incorrect choice", function() {
       return tester.setup.user
         .state("state_info_consent")
@@ -150,8 +633,8 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state: "state_message_consent",
           reply: [
-            "Do you agree to receiving messages from MenConnect? This may include receiving messages on " +
-              "public holidays and weekends.",
+            "MenConnect supports men on their journey. I'll send you messages with info & tips." +
+              "Do you agree to receive?",
             "1. Yes",
             "2. No"
           ].join("\n")
@@ -165,8 +648,8 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state: "state_message_consent",
           reply: [
-            "Sorry, please reply with the number next to your answer. Do you agree to receiving messages " +
-              "from MenConnect?",
+            "Please try again. Reply with the number that matches your answer, e.g. 1." +
+              "\n\nDo you agree to receive messages?",
             "1. Yes",
             "2. No"
           ].join("\n")
@@ -180,23 +663,60 @@ describe("ussd_registration app", function() {
         .check.user.state("state_message_consent_denied")
         .run();
     });
+    it("should go to the age group page", function() {
+      return tester.setup.user
+        .state("state_message_consent")
+        .input("1")
+        .check.user.state("state_age_group")
+        .run();
+    });
   });
-  describe("state_message_consent_denied", function() {
-    it("should give the user an option to go back or exit", function() {
+  describe.skip("state_message_consent_denied", function() {
+    it("should tell the user to confirm that they want to decline consent", function() {
       return tester.setup.user
         .state("state_message_consent_denied")
-        .input({ session_event: "continue" })
         .check.interaction({
           state: "state_message_consent_denied",
           reply: [
-            "Unfortunately, without agreeing we can't send MenConnect to you. " +
-              "Do you want to agree to get messages from MenConnect?",
-            "1. Yes",
-            "2. No"
+              "No problem! If you change your mind and want to receive supportive messages " +
+              "in the future, dial *134*406# and I'll sign you up.",
+              "1. Next",
+              "2. Back"
           ].join("\n")
         })
         .run();
     });
+    it("should show the second page", function() {
+      return tester.setup.user
+        .state("state_message_consent_denied")
+        .input("1")
+        .check.interaction({
+            reply: [
+              "You've chosen to not receive menconnect messages." + 
+                "Reply *Yes* to confirm.",
+                "1. Previous",
+                "2. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+
+
+    it("should return to first paginated page", function() {
+      return tester.setup.user
+        .state("state_message_consent_denied")
+        .input("2")
+        .check.interaction({
+            reply: [
+              "You've chosen to not receive menconnect messages." + 
+                "Reply *Yes* to confirm.",
+                "1. Previous",
+                "2. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+
     it("should show the user an error if they enter an incorrect choice", function() {
       return tester.setup.user
         .state("state_message_consent_denied")
@@ -215,14 +735,14 @@ describe("ussd_registration app", function() {
     it("should go back if the user selects that option", function() {
       return tester.setup.user
         .state("state_message_consent_denied")
-        .input("1")
+        .input("2")
         .check.user.state("state_message_consent")
         .run();
     });
     it("should exit if the user selects that option", function() {
       return tester.setup.user
         .state("state_message_consent_denied")
-        .input("2")
+        .input("Yes")
         .check.interaction({
           state: "state_exit",
           reply:
@@ -230,6 +750,298 @@ describe("ussd_registration app", function() {
         })
         .run();
     });
+  });
+  describe("Age group", function() {
+    it("should show the correct message", function() {
+      return tester.setup.user
+        .state("state_age_group")
+        .inputs("10")
+        .check.interaction({
+          state: "state_age_group",
+          reply: [
+            "Please reply with the number that matches your answer." + 
+            "\n\nSelect your age group:",
+            "1. <15", 
+            "2. 15-19",
+            "3. 20-24",
+            "4. 25-29",
+            "5. 30-34",
+            "6. 35-39",
+            "7. 40-44",
+            "8. 45-49",
+            "9. 50+"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_age_group")
+        .inputs("10")
+        .check.interaction({
+          state: "state_age_group",
+          reply: [
+            "Please reply with the number that matches your answer." + 
+            "\n\nSelect your age group:",
+            "1. <15", 
+            "2. 15-19",
+            "3. 20-24",
+            "4. 25-29",
+            "5. 30-34",
+            "6. 35-39",
+            "7. 40-44",
+            "8. 45-49",
+            "9. 50+"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the next screen", function() {
+      return tester.setup.user
+        .state("state_age_group")
+        .inputs("9")
+        .check.user.state("state_status_known")
+        .run();
+    });
+  });
+  describe("status_known", function() {
+    it("should ask the user for their status known period", function() {
+      return tester.setup.user
+        .state("state_status_known")
+        .check.interaction({
+          reply: [
+            "When were you first diagnosed positive?",
+            "1. Today",
+            "2. Last week",
+            "3. <1 month",
+            "4. Last 3 months",
+            "5. 3-6 months",
+            "6. 6-12 months",
+            "7. > 1 year",
+            "8. not positive",
+            "9. not sure"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the treatment started screen", function() {
+      return tester.setup.user
+        .state("state_status_known")
+        .inputs("1")
+        .check.interaction({
+          state:"state_treatment_started",
+          reply: [
+            "Are you or have you been on ARV treatment?",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_treatment_started", function() {
+    it("should ask the user if they have been on treatment", function() {
+      return tester.setup.user
+        .state("state_treatment_started")
+        .check.interaction({
+          reply: [
+            "Are you or have you been on ARV treatment?",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_treatment_started")
+        .inputs("foo")
+        .check.interaction({
+          state:"state_treatment_started",
+          reply: [
+            "Please try again. Reply with the number that matches your answer, e.g. 1.",
+            "Are you or have you been on ARV treatment?",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the treatment started date screen", function() {
+      return tester.setup.user
+        .state("state_treatment_started")
+        .inputs("1")
+        .check.interaction({
+          state:"state_treatment_start_date",
+          reply: [
+            "When did you start taking ARV treatment?",
+            "1. Today",
+            "2. Last week",
+            "3. Last month",
+            "4. Last 3 months",
+            "5. 3-6 months",
+            "6. 6-12 months",
+            "7. >1 year"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_treatment_start_date", function() {
+    it("should ask the user for their ARV treatment started date", function() {
+      return tester.setup.user
+        .state("state_treatment_start_date")
+        .check.interaction({
+          reply: [
+            "When did you start taking ARV treatment?",
+            "1. Today",
+            "2. Last week",
+            "3. Last month",
+            "4. Last 3 months",
+            "5. 3-6 months",
+            "6. 6-12 months",
+            "7. >1 year"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_treatment_start_date")
+        .inputs("foo")
+        .check.interaction({
+          state:"state_treatment_start_date",
+          reply: [
+            "Please reply with number closest to when you started treatment:",
+            "1. Today",
+            "2. Last week",
+            "3. Last month",
+            "4. Last 3 months",
+            "5. 3-6 months",
+            "6. 6-12 months",
+            "7. >1 year"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the state still on treatment screen", function() {
+      return tester.setup.user
+        .state("state_treatment_start_date")
+        .inputs("1")
+        .check.interaction({
+          state:"state_still_on_treatment",
+          reply: [
+            "Are you still taking your treatment?",
+            "1. Yes",
+            "2. No",
+            "3. Mostly - sometimes I forget"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_still_on_treatment", function() {
+    it("should ask the user for their ARV treatment started date", function() {
+      return tester.setup.user
+        .state("state_still_on_treatment")
+        .check.interaction({
+          reply: [
+            "Are you still taking your treatment?",
+            "1. Yes",
+            "2. No",
+            "3. Mostly - sometimes I forget"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_still_on_treatment")
+        .inputs("4")
+        .check.interaction({
+          state:"state_still_on_treatment",
+          reply: [
+            "Please try again. Reply with the number that matches your answer, e.g. 1.",
+            "1. Yes",
+            "2. No",
+            "3. Mostly - sometimes I forget"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the viral detect screen", function() {
+      return tester.setup.user
+        .state("state_still_on_treatment")
+        .inputs("1")
+        .check.interaction({
+          state:"state_viral_detect",
+          reply: [
+            "Is your viral load undetectable?",
+            "1. Yes",
+            "2. No",
+            "3. I don't know"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_still_on_treatment", function() {
+    it("should ask the user for their viral load", function() {
+      return tester.setup.user
+        .state("state_viral_detect")
+        .check.interaction({
+          reply: [
+            "Is your viral load undetectable?",
+            "1. Yes",
+            "2. No",
+            "3. I don't know"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error for invalid choice", function() {
+      return tester.setup.user
+        .state("state_viral_detect")
+        .inputs("4")
+        .check.interaction({
+          state:"state_viral_detect",
+          reply: [
+            "Please try again. Reply with the number that matches your answer, e.g. 1.",
+            "Is your viral load undetectable?",
+            "1. Yes",
+            "2. No",
+            "3. I don't know"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the mo name state", function() {
+      return tester.setup.user
+        .state("state_viral_detect")
+        .inputs("1")
+        .check.interaction({
+          state:"state_name_mo",
+          reply: [
+            "One final question from me.",
+            "\nMy name is Mo. What's your name?"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
+  describe("state_name_mo", function() {
+    it("should ask the user for user name", function() {
+      return tester.setup.user
+        .state("state_name_mo")
+        .check.interaction({
+          reply: [
+            "One final question from me.",
+            "\nMy name is Mo. What's your name?"
+          ].join("\n")
+        })
+        .run();
+    });
+    //DO A CONTACT CHECK HERE
   });
   describe("timeout testing", function() {
     it("should go to state_timed_out", function() {
@@ -261,7 +1073,18 @@ describe("ussd_registration app", function() {
         .input({ session_event: "continue" })
         .check.interaction({
           state: "state_registered",
-          reply: "Hello You are already registered for Menconnect"
+          reply: [
+            "What would you like to view?\n" +
+            "1. HIV",
+            "2. Treatment",
+            "3. Reminders",
+            "4. Habit Plan",
+            "5. My Profile",
+            "6. Processing my info",
+            "7. Share",
+            "8. Resources",
+            "9. Exit"
+          ].join("\n")
         })
         .run();
     });
