@@ -5,7 +5,6 @@ go.app = (function() {
   var App = vumigo.App;
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
-  var PaginatedState = vumigo.states.PaginatedState;
   var FreeText = vumigo.states.FreeText;
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
@@ -151,7 +150,7 @@ go.app = (function() {
           return $("What is low viral load?\nA low viral load is a result of taking treatment every day.\n" +
                   "Eventually your viral load will be so low that it's undetectable.");
         case "state_age_group":
-          return $("What is your current age?\nSelect the age group:");
+          return $("What is your current age?\nSelect your age group:");
         case "state_status_known":
           return $("When were you first diagnosed positive?");
         case "state_exit_not_hiv":
@@ -574,7 +573,7 @@ go.app = (function() {
 
     self.add('state_change_age', function(name){
       return new ChoiceState(name, {
-        question: $("*How old are you?*" +
+        question: $("How old are you?" +
           "\nSelect your age group:"),
         error: $(  
           "Sorry, please reply with the number that matches your answer, e.g. 1."
@@ -596,7 +595,7 @@ go.app = (function() {
     });
 
     self.add('state_change_age_end', function(name){
-      var age = self.im.user.answers.stage_change_age;
+      var age = self.im.user.answers.state_change_age;
       return new MenuState(name, {
         question: $("Thank you" + 
           "\n\nYour age has been updated to {{age}}" + 
@@ -604,7 +603,7 @@ go.app = (function() {
         error: $("Please select 1 or 2"),
         accept_labels: true,
         choices: [
-          new Choice("state_registered", $("Back to menu")),
+          new Choice("state_registered", $("Menu")),
           new Choice("state_exit", $("Exit"))
         ]
       });
@@ -708,9 +707,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("Adcock Ingram Depression and Anxiety Helpline can help you" + 
           "if you are feeling depressed. Call 0800 7080 90"),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -722,9 +719,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("The South African Depression and Anxiety group can support you when" + 
           "you're feeling low. Dial 0800 4567 789 for their 24 hour helpline."),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -736,9 +731,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("The South African Depression and Anxiety group can support you when" + 
           "you're feeling low. Dial 0800 4567 789 for their emergency suicide helpline."),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -750,9 +743,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("Anonymous & confidential info, counselling and referrals to survivors," + 
           "witnesses and perpetrators of gender-based violence. Dial 0800 150 150."),
-        error: $(
-          "TBC"  
-        ),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -763,10 +754,8 @@ go.app = (function() {
     self.add('state_substance_abuse', function(name){
       return new MenuState(name, {
         question: $("The Substance Abuse Line offers support & guidance for people addicted to" + 
-          "drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"),
-        error: $(
-          "TBC"  
-        ),
+                      "drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -777,10 +766,8 @@ go.app = (function() {
     self.add('state_aids_helpline', function(name){
       return new MenuState(name, {
         question: $("The National HIV and AIDs Helpline is a toll free number that you can call" + 
-          "for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."),
-        error: $(
-          "TBC"  
-        ),
+                      "for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -791,10 +778,8 @@ go.app = (function() {
     self.add('state_covid19', function(name){
       return new MenuState(name, {
         question: $("For correct & up to date info on COVID-19, save the number +2760 0123 456" + 
-          "and send 'hi' or call the national COVID-19 hotline on 0800 029 999."),
-        error: $(
-          "TBC"  
-        ),
+                      "and send 'hi' or call the national COVID-19 hotline on 0800 029 999."),
+        error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
           new Choice("state_resources", $("Back to resources")) 
@@ -863,20 +848,12 @@ go.app = (function() {
     });
 
     self.add("state_message_consent_denied", function(name) {
-      return new PaginatedState(name, {
+      return new EndState(name, {
+        next: "state_start",
         text: $ ("No problem! " + 
           "If you change your mind and want to receive supportive messages in the future," + 
-            " dial *134*406# and I'll sign you up. You've chosen to not receive menconnect messages." + 
-              "Reply *Yes* to confirm."
+            " dial *134*406# and I'll sign you up."
         ),
-        characters_per_page: 160,
-        exit: $("Back"),
-        more: $("Next"),
-        back: $("Previous"),
-        next: function(choice) {
-          return choice.value === "Yes" ? "state_exit"
-                                        : "state_message_consent";
-        }
       });
     });
 

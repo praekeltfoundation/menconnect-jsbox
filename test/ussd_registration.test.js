@@ -525,7 +525,85 @@ describe("state_profile", function() {
         ].join("\n")
       })
       .run();
+    });
   });
+
+  describe("state_change_age", function() {
+    it("should show the age menu", function() {
+      return tester.setup.user
+        .state("state_change_age")
+        .check.interaction({
+          reply: [
+            "How old are you?",
+            "Select your age group:",
+            "1. <15",
+            "2. 15-19",
+            "3. 20-24",
+            "4. 25-29",
+            "5. 30-34",
+            "6. 35-39",
+            "7. 40-44",
+            "8. 45-49",
+            "9. 50+"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the erorr screen", function() {
+      return tester.setup.user
+        .state("state_change_age")
+        .inputs("10")
+        .check.interaction({
+          state:"state_change_age",
+          reply: [
+            "Sorry, please reply with the number that matches your answer, e.g. 1.",
+            "1. <15",
+            "2. 15-19",
+            "3. 20-24",
+            "4. 25-29",
+            "5. 30-34",
+            "6. 35-39",
+            "7. 40-44",
+            "8. 45-49",
+            "9. 50+"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the age group the user entered", function() {
+    return tester
+      .setup.user.state("state_change_age_end")
+      .setup.user.answer("state_change_age", "15-19")
+      .check.interaction({
+        reply: [
+          "Thank you\n",
+          "Your age has been updated to 15-19\n",
+          "Reply *MENU* for the main menu.",
+          "1. Menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+    it("should switch to the change profile screen", function() {
+      return tester.setup.user
+        .state("state_profile_view_info")
+        .inputs("1")
+        .check.interaction({
+          state:"state_profile_change_info",
+          reply: [
+            "What would you like to change?",
+                      "1. Name",
+                      "2. Cell number",
+                      "3. Age",
+                      "4. Change from SMS to Whatsapp",
+                      "5. Treatment start date",
+                      "6. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+
   it("should show the new name the user entered", function() {
     return tester
       .setup.user.state("state_display_name")
@@ -671,82 +749,68 @@ describe("state_share", function() {
         .run();
     });
   });
-  describe.skip("state_message_consent_denied", function() {
-    it("should tell the user to confirm that they want to decline consent", function() {
+  describe("state_message_consent", function() {
+    it("should show the consent screen", function() {
       return tester.setup.user
-        .state("state_message_consent_denied")
+        .state("state_message_consent")
         .check.interaction({
-          state: "state_message_consent_denied",
           reply: [
-              "No problem! If you change your mind and want to receive supportive messages " +
-              "in the future, dial *134*406# and I'll sign you up.",
-              "1. Next",
-              "2. Back"
-          ].join("\n")
-        })
-        .run();
-    });
-    it("should show the second page", function() {
-      return tester.setup.user
-        .state("state_message_consent_denied")
-        .input("1")
-        .check.interaction({
-            reply: [
-              "You've chosen to not receive menconnect messages." + 
-                "Reply *Yes* to confirm.",
-                "1. Previous",
-                "2. Back"
-          ].join("\n")
-        })
-        .run();
-    });
-
-
-    it("should return to first paginated page", function() {
-      return tester.setup.user
-        .state("state_message_consent_denied")
-        .input("2")
-        .check.interaction({
-            reply: [
-              "You've chosen to not receive menconnect messages." + 
-                "Reply *Yes* to confirm.",
-                "1. Previous",
-                "2. Back"
-          ].join("\n")
-        })
-        .run();
-    });
-
-    it("should show the user an error if they enter an incorrect choice", function() {
-      return tester.setup.user
-        .state("state_message_consent_denied")
-        .input("foo")
-        .check.interaction({
-          state: "state_message_consent_denied",
-          reply: [
-            "Sorry, please reply with the number next to your answer. You've chosen not to receive " +
-              "MenConnect messages and so cannot complete registration.",
+            "MenConnect supports men on their journey. I'll send you messages with info & tips." + 
+            "Do you agree to receive?",
             "1. Yes",
             "2. No"
           ].join("\n")
         })
         .run();
     });
-    it("should go back if the user selects that option", function() {
+    it("should show the age category screen", function() {
       return tester.setup.user
-        .state("state_message_consent_denied")
-        .input("2")
-        .check.user.state("state_message_consent")
+        .state("state_message_consent")
+        .input("1")
+        .check.interaction({
+          state: "state_age_group",
+            reply: [
+              "What is your current age?",
+              "Select your age group:",
+              "1. <15", 
+              "2. 15-19",
+              "3. 20-24",
+              "4. 25-29",
+              "5. 30-34",
+              "6. 35-39",
+              "7. 40-44",
+              "8. 45-49",
+              "9. 50+"
+          ].join("\n")
+        })
         .run();
     });
-    it("should exit if the user selects that option", function() {
+    it("should show the consent declined screen", function() {
       return tester.setup.user
-        .state("state_message_consent_denied")
-        .input("Yes")
+        .state("state_message_consent")
+        .input("2")
         .check.interaction({
-          state: "state_exit",
-          reply:
-            "Thank you for considering MenConnect. We respect your decision. Have a lovely day."
+          state: "state_message_consent_denied",
+            reply: [
+              "No problem! " + 
+              "If you change your mind and want to receive supportive messages in the future," + 
+                " dial *134*406# and I'll sign you up."
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show an error screen", function() {
+      return tester.setup.user
+        .state("state_message_consent")
+        .input("foo")
+        .check.interaction({
+          state: "state_message_consent",
+            reply: [
+              "Please try again. Reply with the number that matches your answer, e.g. 1.\n",
+              "Do you agree to receive messages?",
+              "1. Yes",
+              "2. No"
+          ].join("\n")
         })
         .run();
     });
