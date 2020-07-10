@@ -12,6 +12,7 @@ describe("ussd_registration app", function() {
     app = new go.app.GoMenConnect();
     tester = new AppTester(app);
     tester.setup.config.app({
+      testing_today: "2014-04-04T07:07:07",
       services: {
         rapidpro: {
           base_url: "https://rapidpro",
@@ -939,10 +940,10 @@ describe("state_share", function() {
           state:"state_treatment_start_date",
           reply: [
             "When did you start taking ARV treatment?",
-            "1. Today",
-            "2. Last week",
-            "3. Last month",
-            "4. Last 3 months",
+            "1. today",
+            "2. <1 week",
+            "3. <1 month",
+            "4. <3 months",
             "5. 3-6 months",
             "6. 6-12 months",
             "7. >1 year"
@@ -958,10 +959,10 @@ describe("state_share", function() {
         .check.interaction({
           reply: [
             "When did you start taking ARV treatment?",
-            "1. Today",
-            "2. Last week",
-            "3. Last month",
-            "4. Last 3 months",
+            "1. today",
+            "2. <1 week",
+            "3. <1 month",
+            "4. <3 months",
             "5. 3-6 months",
             "6. 6-12 months",
             "7. >1 year"
@@ -977,10 +978,10 @@ describe("state_share", function() {
           state:"state_treatment_start_date",
           reply: [
             "Please reply with number closest to when you started treatment:",
-            "1. Today",
-            "2. Last week",
-            "3. Last month",
-            "4. Last 3 months",
+            "1. today",
+            "2. <1 week",
+            "3. <1 month",
+            "4. <3 months",
             "5. 3-6 months",
             "6. 6-12 months",
             "7. >1 year"
@@ -1197,6 +1198,17 @@ describe("state_share", function() {
   describe("state_trigger_rapidpro_flow", function() {
     it("should start a flow with the correct metadata", function() {
       return tester
+        .setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answers({
+          state_message_consent: "yes",
+          state_age_group: "<15",
+          state_status_known: "<3 months",
+          state_still_on_treatment: "yes",
+          state_treatment_started: "yes",
+          state_treatment_start_date: "<1 month",
+          state_viral_detect: "yes",
+          state_name_mo: "Jerry"
+        })
         .setup(function(api) {
           api.http.fixtures.add(
             fixtures_rapidpro.start_flow(
@@ -1204,13 +1216,25 @@ describe("state_share", function() {
               null,
               "whatsapp:27123456789",
               {
-                on_whatsapp: "TRUE",
-                source: "USSD registration"
+                "on_whatsapp":"true",
+                "consent":"true",
+                "source":"USSD registration",
+                "timestamp":"2014-04-04T07:07:07Z",
+                "registered_by":"+27123456789",
+                "mha":6,
+                "swt":7,
+                "agegroup":"<15",
+                "status_known_period":"<3 months",
+                "treatment_adherent":"yes",
+                "treatment_initiated":"yes",
+                "treatment_start_period":"<1 month",
+                "viral_load_undetectable":"yes",
+                "name":"Jerry"
               }
             )
           );
         })
-        .setup.user.state("state_trigger_rapidpro_flow")
+        //.setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answer("on_whatsapp", true)
         .input({ session_event: "continue" })
         .check.user.state("state_registration_complete")
@@ -1218,6 +1242,17 @@ describe("state_share", function() {
     });
     it("should retry in the case of HTTP failures", function() {
       return tester
+        .setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answers({
+          state_message_consent: "yes",
+          state_age_group: "<15",
+          state_status_known: "<3 months",
+          state_still_on_treatment: "yes",
+          state_treatment_started: "yes",
+          state_treatment_start_date: "<1 month",
+          state_viral_detect: "yes",
+          state_name_mo: "Jerry"
+        })
         .setup(function(api) {
           api.http.fixtures.add(
             fixtures_rapidpro.start_flow(
@@ -1225,8 +1260,20 @@ describe("state_share", function() {
               null,
               "whatsapp:27123456789",
               {
-                on_whatsapp: "FALSE",
-                source: "USSD registration"
+                "on_whatsapp":"false",
+                "consent":"true",
+                "source":"USSD registration",
+                "timestamp":"2014-04-04T07:07:07Z",
+                "registered_by":"+27123456789",
+                "mha":6,
+                "swt":1,
+                "agegroup":"<15",
+                "status_known_period":"<3 months",
+                "treatment_adherent":"yes",
+                "treatment_initiated":"yes",
+                "treatment_start_period":"<1 month",
+                "viral_load_undetectable":"yes",
+                "name":"Jerry"
               },
               true
             )
@@ -1253,6 +1300,17 @@ describe("state_share", function() {
     it("should show the correct message", function() {
       return (
         tester
+        .setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answers({
+          state_message_consent: "yes",
+          state_age_group: "<15",
+          state_status_known: "<3 months",
+          state_still_on_treatment: "yes",
+          state_treatment_started: "yes",
+          state_treatment_start_date: "<1 month",
+          state_viral_detect: "yes",
+          state_name_mo: "Jerry"
+        })
           .setup(function(api) {
             api.http.fixtures.add(
               fixtures_whatsapp.exists({
@@ -1266,8 +1324,20 @@ describe("state_share", function() {
                 null,
                 "whatsapp:27123456789",
                 {
-                  on_whatsapp: "TRUE",
-                  source: "USSD registration"
+                  "on_whatsapp":"true",
+                  "consent":"true",
+                  "source":"USSD registration",
+                  "timestamp":"2014-04-04T07:07:07Z",
+                  "registered_by":"+27123456789",
+                  "mha":6,
+                  "swt":7,
+                  "agegroup":"<15",
+                  "status_known_period":"<3 months",
+                  "treatment_adherent":"yes",
+                  "treatment_initiated":"yes",
+                  "treatment_start_period":"<1 month",
+                  "viral_load_undetectable":"yes",
+                  "name":"Jerry"
                 }
               )
             );

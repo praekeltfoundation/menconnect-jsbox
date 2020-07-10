@@ -152,6 +152,7 @@ go.app = (function() {
   var vumigo = require("vumigo_v02");
   var utils = require("seed-jsbox-utils").utils;
   var App = vumigo.App;
+  var moment = require("moment");
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
   var FreeText = vumigo.states.FreeText;
@@ -199,7 +200,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("Welcome back. Please select an option:"),
         choices: [
-          new Choice(creator_opts.name, $("Continue signing up for messages")),
+          new Choice(creator_opts.name, $("Sign up for messages")),
           new Choice("state_start", $("Main menu"))
         ]
       });
@@ -1123,10 +1124,10 @@ go.app = (function() {
         ),
         accept_labels: true,
         choices: [
-          new Choice("Today", $("Today")),
-          new Choice("Last week", $("Last week")),
-          new Choice("Last month", $("Last month")),
-          new Choice("Last 3 months", $("Last 3 months")),
+          new Choice("Today", $("today")),
+          new Choice("Last week", $("<1 week")),
+          new Choice("Last month", $("<1 month")),
+          new Choice("Last 3 months", $("<3 months")),
           new Choice("3-6 months", $("3-6 months")),
           new Choice("6-12 months", $("6-12 months")),
           new Choice(">1 year", $(">1 year"))        
@@ -1198,18 +1199,27 @@ go.app = (function() {
 
     self.add("state_trigger_rapidpro_flow", function(name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var data = {
+        on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
+        consent: self.im.user.get_answer("state_message_consent") === "yes" ? "true" : "false",
+        source: "USSD registration",
+        timestamp: new moment.utc(self.im.config.testing_today).format(),
+        registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),
+        mha: 6,
+        swt: self.im.user.get_answer("on_whatsapp") ? 7 : 1,
+        agegroup: self.im.user.get_answer("state_age_group"),
+        status_known_period: self.im.user.get_answer("state_status_known"),
+        treatment_adherent: self.im.user.get_answer("state_still_on_treatment"),
+        treatment_initiated: self.im.user.get_answer("state_treatment_started"),
+        treatment_start_period: self.im.user.get_answer("state_treatment_start_date"),
+        viral_load_undetectable: self.im.user.get_answer("state_viral_detect"),
+        name: self.im.user.get_answer("state_name_mo")
+      };
       return self.rapidpro
         .start_flow(
           self.im.config.flow_uuid,
           null,
-          "whatsapp:" + _.trim(msisdn, "+"),
-          {
-            on_whatsapp: self.im.user.get_answer("on_whatsapp")
-              ? "TRUE"
-              : "FALSE",
-            source: "USSD registration"
-          }
-        )
+          "whatsapp:" + _.trim(msisdn, "+"), data)
         .then(function() {
           return self.states.create("state_registration_complete");
         })
