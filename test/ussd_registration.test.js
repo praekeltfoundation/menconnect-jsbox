@@ -246,11 +246,11 @@ describe("ussd_registration app", function() {
         .state("state_treatment")
         .check.interaction({
           reply: [
-            "What?",
-            "1. How treatment works?",
+            "What do you want to know?",
+            "1. Treatment?",
             "2. When to take it?",
             "3. How long to take it?",
-            "4. How will it make me feel?",
+            "4. Side effects?",
             "5. How do I get it?",
             "6. Can I skip a day?",
             "7. Back to menu"
@@ -266,10 +266,10 @@ describe("ussd_registration app", function() {
           state:"state_treatment",
           reply: [
             "error",
-            "1. How treatment works?",
+            "1. Treatment?",
             "2. When to take it?",
             "3. How long to take it?",
-            "4. How will it make me feel?",
+            "4. Side effects?",
             "5. How do I get it?",
             "6. Can I skip a day?",
             "7. Back to menu"
@@ -879,7 +879,7 @@ describe("state_share", function() {
             "1. Today",
             "2. Last week",
             "3. <1 month",
-            "4. Last 3 months",
+            "4. <3 months",
             "5. 3-6 months",
             "6. 6-12 months",
             "7. > 1 year",
@@ -1218,6 +1218,7 @@ describe("state_share", function() {
               {
                 "on_whatsapp":"true",
                 "consent":"true",
+                "language": "en",
                 "source":"USSD registration",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
@@ -1262,6 +1263,7 @@ describe("state_share", function() {
               {
                 "on_whatsapp":"false",
                 "consent":"true",
+                language: "en",
                 "source":"USSD registration",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
@@ -1326,6 +1328,7 @@ describe("state_share", function() {
                 {
                   "on_whatsapp":"true",
                   "consent":"true",
+                  language: "en",
                   "source":"USSD registration",
                   "timestamp":"2014-04-04T07:07:07Z",
                   "registered_by":"+27123456789",

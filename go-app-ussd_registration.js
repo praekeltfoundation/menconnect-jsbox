@@ -11,8 +11,8 @@ go.RapidPro = function() {
         self.json_api = json_api;
         self.base_url = base_url;
         self.auth_token = auth_token;
-        self.json_api.defaults.headers.Authorization = ['Token ' + self.auth_token];
-        self.json_api.defaults.headers['User-Agent'] = ['NDoH-JSBox/RapidPro'];
+        self.json_api.defaults.headers.Authorization = ["Token " + self.auth_token];
+        self.json_api.defaults.headers["User-Agent"] = ["Jsbox/MenConnect-Registration"];
 
         self.get_contact = function(filters) {
             filters = filters || {};
@@ -200,7 +200,7 @@ go.app = (function() {
       return new MenuState(name, {
         question: $("Welcome back. Please select an option:"),
         choices: [
-          new Choice(creator_opts.name, $("Sign up for messages")),
+          new Choice(creator_opts.name, $("Continue signing up for messages")),
           new Choice("state_start", $("Main menu"))
         ]
       });
@@ -251,7 +251,7 @@ go.app = (function() {
         case "state_hiv":
           return $("What's your question?");
         case "state_treatment":
-          return $("What?");
+          return $("What do you want to know?");
         case "state_reminders":
           return $("What would you like to do?");
         case "state_change_clinic_date":
@@ -452,10 +452,10 @@ go.app = (function() {
         error: get_content("state_short_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_how_treatment_works", $("How treatment works?")), 
+          new Choice("state_how_treatment_works", $("Treatment?")), 
           new Choice("state_treatment_frequency", $("When to take it?")),
           new Choice("state_treatment_duration", $("How long to take it?")),
-          new Choice("state_treatment_side_effect", $("How will it make me feel?")),
+          new Choice("state_treatment_side_effect", $("Side effects?")),
           new Choice("state_treatment_availability", $("How do I get it?")),
           new Choice("state_skip_a_day", $("Can I skip a day?")),
           new Choice("state_registered", $("Back to menu"))        
@@ -1049,7 +1049,7 @@ go.app = (function() {
           new Choice("today", $("Today")),
           new Choice("last week", $("Last week")),
           new Choice("last month", $("<1 month")),
-          new Choice("last 3 months", $("Last 3 months")),
+          new Choice("last 3 months", $("<3 months")),
           new Choice("3-6 months", $("3-6 months")),
           new Choice("6-12 months", $("6-12 months")),
           new Choice("more than 1 year", $("> 1 year")),
@@ -1198,10 +1198,11 @@ go.app = (function() {
     });
 
     self.add("state_trigger_rapidpro_flow", function(name, opts) {
-      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      var data = {
+        var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+        var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
         consent: self.im.user.get_answer("state_message_consent") === "yes" ? "true" : "false",
+        language: "en",
         source: "USSD registration",
         timestamp: new moment.utc(self.im.config.testing_today).format(),
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),
