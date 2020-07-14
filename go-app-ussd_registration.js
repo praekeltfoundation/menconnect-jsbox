@@ -1047,14 +1047,14 @@ go.app = (function() {
         accept_labels: true,
         choices: [
           new Choice("today", $("Today")),
-          new Choice("last week", $("Last week")),
-          new Choice("last month", $("<1 month")),
-          new Choice("last 3 months", $("<3 months")),
+          new Choice("<1 week", $("Last week")),
+          new Choice("<1 month", $("<1 month")),
+          new Choice("<3 months", $("<3 months")),
           new Choice("3-6 months", $("3-6 months")),
           new Choice("6-12 months", $("6-12 months")),
-          new Choice("more than 1 year", $("> 1 year")),
+          new Choice(">1 year", $("> 1 year")),
           new Choice("not positive", $("not positive")),
-          new Choice("do not know", $("not sure"))          
+          new Choice("idk", $("not sure"))          
         ],
         back: $("Back"),
         more: $("Next"),
@@ -1124,10 +1124,10 @@ go.app = (function() {
         ),
         accept_labels: true,
         choices: [
-          new Choice("Today", $("today")),
-          new Choice("Last week", $("<1 week")),
-          new Choice("Last month", $("<1 month")),
-          new Choice("Last 3 months", $("<3 months")),
+          new Choice("today", $("today")),
+          new Choice("<1 week", $("<1 week")),
+          new Choice("<1 month", $("<1 month")),
+          new Choice("<3 months", $("<3 months")),
           new Choice("3-6 months", $("3-6 months")),
           new Choice("6-12 months", $("6-12 months")),
           new Choice(">1 year", $(">1 year"))        
