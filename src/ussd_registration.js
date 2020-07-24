@@ -6,7 +6,6 @@ go.app = (function() {
   var moment = require("moment");
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
-  //var PaginatedState = vumigo.states.PaginatedState;
   var FreeText = vumigo.states.FreeText;
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
