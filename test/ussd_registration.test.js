@@ -24,7 +24,14 @@ describe("ussd_registration app", function() {
         }
       },
       registration_group_ids: ["id-1"],
-      flow_uuid: "rapidpro-flow-uuid"
+      flow_uuid: "rapidpro-flow-uuid",
+      msisdn_change_flow_id: "msisdn-change-flow-id",
+      change_agegroup_flow_id: "change-agegroup-flow-id",
+      change_name_flow_id: "change-name-flow-id",
+      change_treatment_start_date_flow_id: "change-treatment-start-date-flow-id",
+      sms_switch_flow_id: "sms-switch-flow-id",
+      whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
+      change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id"
     });
   });
 
@@ -253,7 +260,7 @@ describe("ussd_registration app", function() {
             "4. Side effects?",
             "5. How do I get it?",
             "6. Can I skip a day?",
-            "7. Back to menu"
+            "7. Back"
           ].join("\n")
         })
         .run();
@@ -272,7 +279,7 @@ describe("ussd_registration app", function() {
             "4. Side effects?",
             "5. How do I get it?",
             "6. Can I skip a day?",
-            "7. Back to menu"
+            "7. Back"
           ].join("\n")
         })
         .run();
@@ -284,8 +291,8 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state:"state_how_treatment_works",
           reply: [
-            "Taking your meds daily stops HIV from making", 
-            "more in your blood so that your CD4 cells can get strong again.",
+            "Taking your meds daily stops HIV from making more in your blood " +  
+            "so that your CD4 cells can get strong again.",
             "\n1. Back"
           ].join("\n")
         })
@@ -326,7 +333,7 @@ describe("ussd_registration app", function() {
       .check.interaction({
         state:"state_treatment_duration",
         reply: [
-          "You need to take your meds every day for the" + 
+          "You need to take your meds every day for the " + 
           "rest of your life to stay healthy.",
           "\n1. Back"
         ].join("\n")
@@ -354,7 +361,7 @@ describe("ussd_registration app", function() {
       .check.interaction({
         state:"state_treatment_availability",
         reply: [
-          "It is important that you take the meds that is prescribed" + 
+          "It is important that you take the meds that is prescribed " + 
           "to you by a nurse.",
           "\n1. Back"
         ].join("\n")
@@ -414,10 +421,10 @@ describe("state_reminders", function() {
       .state("state_reminders")
       .inputs("2")
       .check.interaction({
-        state:"state_change_clinic_date",
+        state:"state_new_clinic_date",
         reply: [
           "When is your next expected clinic date?", 
-          "Reply with the full date in the format YYYY/MM/DD"
+          "Reply with the full date in the format YYYY-MM-DD"
         ].join("\n")
       })
       .run();
@@ -426,32 +433,49 @@ describe("state_reminders", function() {
 
   it("should show the date display screen", function() {
     return tester
-      .setup.user.state("state_date_display")
-      .setup.user.answer("state_change_clinic_date", "2019-12-24")
+      .setup.user.state("state_clinic_date_display")
+      .setup.user.answer("state_new_clinic_date", "2019-12-24")
       .check.interaction({
         reply: [
           "You entered 2019-12-24. " + 
           "I'll send you reminders of your upcoming clinic visits " + 
           "so that you don't forget.",
-          "What would you like to do next?",
-          "1. Back to menu",
-          "2. Exit"
+          "1. Confirm",
+          "2. Back"
         ].join("\n")
       })
       .run();
   });
-  it("should return to the reminders menu", function() {
-    return tester.setup.user
-      .state("state_date_display")
-      .inputs("1")
+  it("should show the clinic confirm screen on valid input", function() {
+    return tester
+      .setup.user.state("state_new_clinic_date")
+      .input("2019-02-25")
+      .check.user.state("state_clinic_date_display")
+      .run();
+  });
+    
+  it("should submit the new clinic date", function() {
+    return tester
+      .setup.user.state("state_clinic_date_display")
+      .setup.user.answers({
+        state_new_clinic_date: "2019-02-27"
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "change-next-clinic-visit-flow-id", null, "whatsapp:27123456789", {
+              "clinic_date": "2019-02-27"
+            })
+        );
+      })
+      .input("1")
       .check.interaction({
-        state:"state_reminders",
+        state: "state_change_clinic_date_success",
         reply: [
-          "What would you like to do?",
-          "1. Show my next expected clinic date",
-          "2. Change my next clinic date",
-          "3. Plan for my clinic visit",
-          "4. Back to menu"
+          "Your next clinic visit has been " + 
+          "changed to 2019-02-27",
+          "1. Back",
+          "2. Exit"
         ].join("\n")
       })
       .run();
@@ -490,49 +514,174 @@ describe("state_profile", function() {
       })
       .run();
   });
-  it("should show the profile screen", function() {
-    return tester.setup.user
-      .state("state_profile")
-      .inputs("1")
-      .check.interaction({
-        state:"state_profile_view_info",
-        reply: [
-          "Name:",
-          "Cell number:",
-          "Language:",
-          "Age:",
-          "Channel:",
-          "Estimated treatment start date",
-          "1. Reply *CHANGE* to change your info.",
-          "2. Reply *BACK* for your profile options."
-        ].join("\n")
-      })
-      .run();
-  });
-  it("should switch to the change profile screen", function() {
-    return tester.setup.user
-      .state("state_profile_view_info")
-      .inputs("1")
-      .check.interaction({
-        state:"state_profile_change_info",
-        reply: [
-          "What would you like to change?",
-                    "1. Name",
-                    "2. Cell number",
-                    "3. Age",
-                    "4. Change from SMS to Whatsapp",
-                    "5. Treatment start date",
-                    "6. Back"
-        ].join("\n")
-      })
-      .run();
+});
+describe("state_profile_view_info", function() {
+    it("should handle missing contact fields", function() {
+      return tester
+        .setup.user.state("state_profile_view_info")
+        .setup.user.answer("contact", {
+          language: null,
+          fields: {
+            name: null,
+            preferred_channel: null,
+            agegroup: null,
+            treatment_start_period: null
+          }
+        })
+        .check.interaction({
+          reply: [
+            "Name: None",
+            "Cell number: 0123456789",
+            "Channel: None",
+            "Age: None",
+            "Estimated treatment start date: None",
+            "1. Change info",
+            "2. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should display contact data page 1", function() {
+      return tester
+        .setup.user.state("state_profile_view_info")
+        .setup.user.answer("contact", {
+          language: "en",
+          fields: {
+            name: "Chima",
+            preferred_channel: "WhatsApp",
+            agegroup: "15-19",
+            treatment_start_period: "<3 months"
+          }
+        })
+        .check.interaction({
+          reply: [
+            "Name: Chima",
+            "Cell number: 0123456789",
+            "Channel: WhatsApp",
+            "Age: 15-19",
+            "Estimated treatment start date: <3 months",
+            "1. Change info",
+            "2. Back"
+          ].join("\n")
+        })
+        .run();
     });
   });
-
-  describe("state_change_age", function() {
+describe("state_new_name", function () {
+    it("should ask for a new name", function() {
+      return tester
+        .setup.user.state("state_new_name")
+        .check.interaction({
+          reply:
+          "What name would you like me to call you instead?"
+        })
+      .run();
+    });
+    it("should submit the new name", function() {
+      return tester
+        .setup.user.state("state_new_name_display")
+        .setup.user.answers({
+          state_new_name: "Jeff"
+        })
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.start_flow(
+              "change-name-flow-id", null, "whatsapp:27123456789", {
+                "new_name": "Jeff"
+              })
+          );
+        })
+        .input("1")
+        .check.interaction({
+          state: "state_change_name_success",
+          reply: [
+            "Thanks. I'll call you Jeff\n",
+            "What would you like to do next?",
+            "1. Back to main menu",
+            "2. Exit"
+          ].join("\n")
+        })
+        .check(function(api) {
+          assert.equal(api.http.requests.length, 1);
+          assert.equal(
+            api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+          );
+        })
+        .run();
+    });
+  });
+describe("state_target_msisdn", function(){
+    it("should ask the user for the new msisdn", function() {
+      return tester
+        .setup.user.state("state_target_msisdn")
+        .check.interaction({
+          reply:
+          "Please reply with the *new cell number* you would like to get " + 
+                    "your MenConnect messages on, e.g 0813547654"
+        })
+        .run();
+    });
+    it("should display an error on invalid input", function() {
+      return tester
+        .setup.user.state("state_target_msisdn")
+        .input("A")
+        .check.interaction({
+          reply:
+          "Sorry that is not a real cellphone number. " + 
+          "Please reply with the 10 digit number that you'd like " +
+            "to get your MenConnect messages on."
+        })
+        .run();
+    });
+    it("should display an error if the user uses the example msisdn", function() {
+      return tester
+        .setup.user.state("state_target_msisdn")
+        .input("0813547654")
+        .check.interaction({
+          reply:
+            "We're looking for your information. Please avoid entering " +
+              "the examples in the messages. Enter your details."
+        })
+        .run();
+    });
+    it("should go to state_active_subscription if the msisdn is registered", function () {
+      return tester
+        .setup.user.state("state_target_msisdn")
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.get_contact({
+              urn: "whatsapp:27820001001", 
+              exists: true,
+              fields: {
+                consent: "true"
+              }
+            })
+          );
+        })
+      .input("0820001001")
+      .check.user.state("state_active_subscription")
+      .run();
+  });
+  it("should go to state_display_number if the MSISDN is not registered", function () {
+    return tester
+      .setup.user.state("state_target_msisdn")
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.get_contact({
+            urn: "whatsapp:27820001001",
+            exists: false,
+          })
+        );
+      })
+      .input("0820001001")
+      .check.user.state("state_display_number")
+      .run();
+  });
+}); 
+describe("state_new_age", function() {
     it("should show the age menu", function() {
       return tester.setup.user
-        .state("state_change_age")
+        .state("state_new_age")
         .check.interaction({
           reply: [
             "How old are you?",
@@ -552,10 +701,10 @@ describe("state_profile", function() {
     });
     it("should show the erorr screen", function() {
       return tester.setup.user
-        .state("state_change_age")
+        .state("state_new_age")
         .inputs("10")
         .check.interaction({
-          state:"state_change_age",
+          state:"state_new_age",
           reply: [
             "Sorry, please reply with the number that matches your answer, e.g. 1.",
             "1. <15",
@@ -571,44 +720,55 @@ describe("state_profile", function() {
         })
         .run();
     });
+    it("should submit the change", function() {
+      return tester
+        .setup.user.state("state_age_display")
+        .setup.user.answers({
+          state_new_age: "15-19"
+        })
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.start_flow(
+              "change-agegroup-flow-id", null, "whatsapp:27123456789", {
+                "agegroup": "15-19"
+              })
+          );
+        })
+        .input("1")
+        .check.interaction({
+          state: "state_change_age_success",
+          reply: [
+            "Thank you. Your age has been changed to 15-19\n",
+            "1. Back to main menu",
+            "2. Exit"
+          ].join("\n")
+        })
+        .check(function(api) {
+          assert.equal(api.http.requests.length, 1);
+          assert.equal(
+            api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+          );
+        })
+        .run();
+    });
     it("should show the age group the user entered", function() {
     return tester
-      .setup.user.state("state_change_age_end")
-      .setup.user.answer("state_change_age", "15-19")
+      .setup.user.state("state_change_age_success")
+      .setup.user.answer("state_new_age", "15-19")
       .check.interaction({
         reply: [
-          "Thank you\n",
-          "Your age has been updated to 15-19\n",
-          "Reply *MENU* for the main menu.",
-          "1. Menu",
+          "Thank you. Your age has been changed to 15-19\n",
+          "1. Back to main menu",
           "2. Exit"
         ].join("\n")
       })
       .run();
   });
-    it("should switch to the change profile screen", function() {
-      return tester.setup.user
-        .state("state_profile_view_info")
-        .inputs("1")
-        .check.interaction({
-          state:"state_profile_change_info",
-          reply: [
-            "What would you like to change?",
-                      "1. Name",
-                      "2. Cell number",
-                      "3. Age",
-                      "4. Change from SMS to Whatsapp",
-                      "5. Treatment start date",
-                      "6. Back"
-          ].join("\n")
-        })
-        .run();
-    });
-
+  
   it("should show the new name the user entered", function() {
     return tester
       .setup.user.state("state_display_name")
-      .setup.user.answer("state_change_name", "Jonathan")
+      .setup.user.answer("state_new_name", "Jonathan")
       .check.interaction({
         reply: [
           "Thanks, I'll call you Jonathan",
@@ -620,6 +780,119 @@ describe("state_profile", function() {
       .run();
   });
 });
+describe("state_channel_switch_confirm", function() {
+  it("should ask the user if they want to switch channels", function() {
+    return tester
+      .setup.user.state("state_channel_switch_confirm")
+      .setup.user.answer("contact", {fields: {preferred_channel: "SMS"}})
+      .check.interaction({
+        reply: [
+          "Are you sure you want to get your MenConnect messages on WhatsApp?",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the user an error on invalid input", function() {
+    return tester
+      .setup.user.state("state_channel_switch_confirm")
+      .setup.user.answer("contact", {fields: {preferred_channel: "SMS"}})
+      .input("A")
+      .check.interaction({
+        reply: [
+          "Sorry we don't recognise that reply. Please enter the number next to " +
+          "your answer.",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should submit the channel switch if they choose yes", function() {
+    return tester
+      .setup.user.state("state_channel_switch_confirm")
+      .setup.user.answer("contact", {fields: {preferred_channel: "SMS"}})
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "whatsapp-switch-flow-id", null, "whatsapp:27123456789"
+          )
+        );
+      })
+      .input("1")
+      .check.interaction({
+        reply: [
+          "Okay. I'll send you MenConnect messages on WhatsApp." + 
+          "To move back to WhatsApp, reply *WA* or dial *134*406#.",
+          "1. Back",
+          "2. Exit"
+        ].join("\n"),
+        state: "state_channel_switch_success"
+        })
+        .check(function(api) {
+        assert.equal(api.http.requests.length, 1);
+        assert.equal(
+        api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+        );
+      })
+      .run();
+  });
+});
+describe("state_new_treatment_start_date", function() {
+  it("should ask for a new treatment start date", function() {
+    return tester
+      .setup.user.state("state_new_treatment_start_date")
+      .check.interaction({
+        reply: [
+        "When did you start taking ARV treatment? " + 
+        "Choose the closest option.\n",
+        "1. today",
+        "2. <1 week",
+        "3. <1 month",
+        "4. <3 months",
+        "5. 3-6 months",
+        "6. 6-12 months",
+        "7. >1 year"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should submit the new treatment_start_date", function() {
+    return tester
+      .setup.user.state("state_new_treatment_date_display")
+      .setup.user.answers({
+        state_new_treatment_start_date: "2020-05-20"
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "change-treatment-start-date-flow-id", null, "whatsapp:27123456789", {
+              "treatment_start_period": "2020-05-20"
+            })
+        );
+      })
+  
+    .input("1")
+    .check.interaction({
+      state: "state_change_treatment_start_date_success",
+      reply: [
+        "Thank you. Your treatment start date has " + 
+        "been changed to 2020-05-20",
+        "1. Back to main menu",
+        "2. Exit"
+      ].join("\n")
+    })
+    .check(function(api) {
+      assert.equal(api.http.requests.length, 1);
+      assert.equal(
+        api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+      );
+    })
+    .run();
+  });
+});
+
 describe("state_share", function() {
   it("should show the share menu", function() {
     return tester.setup.user
@@ -1353,7 +1626,9 @@ describe("state_share", function() {
           .check.interaction({
             state: "state_registration_complete",
             reply:
-              "You're done! This number 0123456789 will get helpful messages from MenConnect"
+            "You're done! You will get info & tips on 0123456789 to support you on your journey on " + 
+            "WhatsApp. " + 
+            "Thanks for signing up to MenConnect!"
           })
           .run()
       );

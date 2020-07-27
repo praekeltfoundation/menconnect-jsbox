@@ -181,6 +181,24 @@ go.app = (function() {
       );
     };
 
+    self.contact_current_channel = function(contact) {
+      // Returns the current channel of the contact
+      if(_.toUpper(_.get(contact, "fields.preferred_channel", "")) === "WHATSAPP") {
+          return $("WhatsApp");
+      } else {
+          return $("SMS");
+      }
+  };
+
+  self.contact_alternative_channel = function(contact) {
+      // Returns the alternative channel of the contact
+      if(_.toUpper(_.get(contact, "fields.preferred_channel", "")) === "WHATSAPP") {
+          return $("SMS");
+      } else {
+          return $("WhatsApp");
+      }
+  };
+
     self.contact_in_group = function(contact, groups) {
       var contact_groupids = _.map(_.get(contact, "groups", []), "uuid");
       return _.intersection(contact_groupids, groups).length > 0;
@@ -254,9 +272,9 @@ go.app = (function() {
           return $("What do you want to know?");
         case "state_reminders":
           return $("What would you like to do?");
-        case "state_change_clinic_date":
+        case "state_new_clinic_date":
           return $("When is your next expected clinic date?" + 
-                  "\nReply with the full date in the format YYYY/MM/DD");
+                  "\nReply with the full date in the format YYYY-MM-DD");
         case "state_habit_plan":
           return $("Doing something every day is a habit.\n\nBuild a treatment habit:" + 
                   "\nAdd it to your daily schedule\n" + 
@@ -265,17 +283,10 @@ go.app = (function() {
                   "Give yourself time\n");
         case "state_profile":
           return $("What would you like to view?");
-        case "state_profile_view_info":
-          return $("Name:\n" +
-                    "Cell number:\n" +
-                      "Language:\n" +
-                        "Age:\n" +
-                          "Channel:\n" +
-                            "Estimated treatment start date");
         case "state_profile_change_info":
           return $("What would you like to change?");
-          case "state_change_name":
-              return $("What *name* would you like me to call you instead?");
+          case "state_new_name":
+              return $("What name would you like me to call you instead?");
         case "state_processing_info_menu":
           return $("Choose a question you're interested in:");
         case "state_share":
@@ -318,7 +329,7 @@ go.app = (function() {
         case "state_generic_error":
           return $("Please try again. e.g. 1.");
         case "state_how_treatment_works":
-          return $("Taking your meds daily stops HIV from making\nmore in your blood " +  
+          return $("Taking your meds daily stops HIV from making more in your blood " +  
                 "so that your CD4 cells can get strong again.\n");
         case "state_short_error":
           return $("error");
@@ -326,13 +337,13 @@ go.app = (function() {
           return $("Take your meds every day, at the same time." + 
                 "as prescribed by your nurse\n");
         case "state_treatment_duration":
-          return $("You need to take your meds every day for the" + 
+          return $("You need to take your meds every day for the " + 
                   "rest of your life to stay healthy.\n");
         case "state_treatment_side_effect":
           return $("Every person feels different after taking meds." + 
                   "If it's making you unwell, speak to your nurse.\n");
         case "state_treatment_availability":
-          return $("It is important that you take the meds that is prescribed" + 
+          return $("It is important that you take the meds that is prescribed " + 
                   "to you by a nurse.\n");
         case "state_skip_a_day":
           return $("You can still take the meds within 6 hrs of usual time" +
@@ -458,7 +469,7 @@ go.app = (function() {
           new Choice("state_treatment_side_effect", $("Side effects?")),
           new Choice("state_treatment_availability", $("How do I get it?")),
           new Choice("state_skip_a_day", $("Can I skip a day?")),
-          new Choice("state_registered", $("Back to menu"))        
+          new Choice("state_registered", $("Back"))        
         ]
       });
     });
@@ -536,7 +547,7 @@ go.app = (function() {
         accept_labels: true,
         choices: [
           new Choice("state_show_clinic_date", $("Show my next expected clinic date")),
-          new Choice("state_change_clinic_date", $("Change my next clinic date")),
+          new Choice("state_new_clinic_date", $("Change my next clinic date")),
           new Choice("state_plan_clinic_visit", $("Plan for my clinic visit")),
           new Choice("state_registered", $("Back to menu"))        
         ]
@@ -544,25 +555,37 @@ go.app = (function() {
     });
 
     self.add('state_show_clinic_date', function(name){
+      var contact = self.im.user.answers.contact;
+      var text = $([
+        "next_clinic_visit: {{next_clinic_visit}}"
+      ].join("\n")).context({
+        next_clinic_visit:
+            _.get(contact, "fields.next_clinic_visit", $("None")),
+      });
       return new MenuState(name, {
-        question: get_content(name).context("What would you like to do?"),
+        question: text,
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_change_clinic_date", $("Change your next clinic date")),
+          new Choice("state_new_clinic_date", $("Change your next clinic date")),
           new Choice("state_registered", $("Back to menu")),
           new Choice("state_exit", $("exit"))      
         ]
       });
     });
 
-    self.add('state_change_clinic_date', function(name){
+    self.add('state_new_clinic_date', function(name){
       return new FreeText(name, {
         question: get_content(name).context(),
-        next: function(content) {
-            //self.im.user.set_answer("new_clinic_date", content);
-            return "state_date_display";
-        }
+        check: function(content) {
+          var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+          if(!match){
+            return $(
+              "Sorry, I don’t recognise that date. Please try again.");
+          }
+        },
+        //error: "Sorry, I don’t recognise that date. Please try again.",
+        next: "state_clinic_date_display"
       });
     });
 
@@ -573,18 +596,55 @@ go.app = (function() {
       });
     });
 
-    self.add('state_date_display', function(name){
-      var clinic_date = self.im.user.answers.state_change_clinic_date;
+    self.add("state_clinic_date_display", function(name){
+      var clinic_date = self.im.user.answers.state_new_clinic_date;
       return new MenuState(name, {
         question: $("You entered {{clinic_date}}. " + 
                   "I'll send you reminders of your upcoming clinic visits " + 
-                  "so that you don't forget." + 
-                  "\nWhat would you like to do next?").context({clinic_date: clinic_date}),
+                  "so that you don't forget.").context({clinic_date: clinic_date}),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_reminders", $("Back to menu")),
-          new Choice("state_exit", $("Exit"))     
+          new Choice("state_change_clinic_date", $("Confirm")),
+          new Choice("state_reminders", $("Back"))    
+        ]
+      });
+    });
+
+    self.add("state_change_clinic_date", function(name, opts) {
+        var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+        var answers = self.im.user.answers;
+        var clinic_date = answers.state_new_clinic_date;
+        return self.rapidpro
+          .start_flow(
+            self.im.config.change_next_clinic_visit_flow_id, null, 
+            "whatsapp:" + _.trim(msisdn, "+"), {
+            clinic_date: clinic_date
+            })
+          .then(function() {
+            return self.states.create("state_change_clinic_date_success");
+          }).catch(function(e) {
+            // Go to error state after 3 failed HTTP request
+            opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+            if(opts.http_error_count === 3) {
+              self.im.log.error(e.message);
+              return self.states.create("__error__", {return_state: name});
+            }
+            return self.states.create(name, opts);
+          });
+    });
+
+    self.add("state_change_clinic_date_success", function(name) {
+      var answers = self.im.user.answers;
+      var clinic_date = answers.state_new_clinic_date;
+      return new MenuState(name, {
+        question: $("Your next clinic visit has been " + 
+        "changed to {{clinic_date}}").context({clinic_date: clinic_date}),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_reminders", $("Back")),
+          new Choice("state_exit", $("Exit"))
         ]
       });
     });
@@ -592,9 +652,9 @@ go.app = (function() {
     self.add('state_plan_clinic_visit', function(name){
       return new MenuState(name, {
         question: $("Tip 1: Set a reminder in your phone" + 
-          "/nTip2: Tell someone you're going" + 
-            "/nTip 3: Plan your trip" + 
-              "/nTip 4: Prepare questions for your nurse"),
+          "\nTip2: Tell someone you're going" + 
+            "\nTip 3: Plan your trip" + 
+              "\nTip 4: Prepare questions for your nurse"),
         error: $(
           "TBC"  
         ),
@@ -631,45 +691,258 @@ go.app = (function() {
     });
 
     self.add('state_profile_view_info', function(name){
+      var contact = self.im.user.answers.contact;
+      var text = $([
+        "Name: {{name}}",
+        "Cell number: {{msisdn}}",
+        "Channel: {{channel}}",
+        "Age: {{agegroup}}",
+        "Estimated treatment start date: {{treatment_start_period}}"
+      ].join("\n")).context({
+        name: _.get(contact, "fields.name") || $("None"),
+        msisdn: utils.readable_msisdn(self.im.user.addr, "27"),
+        channel: _.get(contact, "fields.preferred_channel") || $('None'),
+        agegroup: _.get(contact, "fields.agegroup") || $("None"),
+        treatment_start_period: _.get(contact, "fields.treatment_start_period") || $("None")
+      });
+      
       return new MenuState(name, {
-        question: get_content(name).context(),
-        error: get_content("state_generic_error").context(),
-        accept_labels: true,
+        question:text,
         choices: [
-          new Choice("state_profile_change_info", $("Reply *CHANGE* to change your info.")),
-          new Choice("state_profile", $("Reply *BACK* for your profile options."))
+          new Choice("state_profile_change_info", $("Change info")),
+          new Choice("state_profile", $("Back"))
         ]
       });
-    });
+    }); 
 
     self.add('state_profile_change_info', function(name){
+      var contact = self.im.user.answers.contact;
       return new MenuState(name, {
         question: get_content(name).context(),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_change_name", $("Name")),
-          new Choice("state_change_number", $("Cell number")),
-          new Choice("state_change_age", $("Age")),
-          new Choice("state_whatsapp_contact_check", $("Change from SMS to Whatsapp")),
-          new Choice("state_registered", $("Treatment start date")),
+          new Choice("state_new_name", $("Name")),
+          new Choice("state_target_msisdn", $("Cell number")),
+          new Choice("state_new_age", $("Age")),
+          new Choice("state_channel_switch_confirm", 
+          $("Change from {{current_channel}} to {{alternative_channel}").context({
+            current_channel: self.contact_current_channel(contact),
+            alternative_channel: self.contact_alternative_channel(contact),
+          })),
+          new Choice("state_new_treatment_start_date", $("Treatment start date")),
           new Choice ("state_profile", $("Back"))
         ]
       });
     });
 
-    self.add('state_change_name', function(name){
+    self.add("state_new_name", function(name){
       return new FreeText(name, {
         question:get_content(name).context(),
         next: function(content) {
-          //self.im.user.set_answer("preferred_name", content); //save preferred name
-          return "state_display_name";
+          return "state_new_name_display";
         }
       });
     });
 
+    self.add("state_new_name_display", function(name) {
+      var new_name = self.im.user.answers.state_new_name;
+      return new MenuState(name, {
+        question: $("You entered {{name}}").context({name: new_name}),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_change_name", $("confirm")),
+          new Choice("state_profile_change_info", $("Back"))
+        ]
+      });
+    });
+
+    self.add("state_change_name", function(name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var answers = self.im.user.answers;
+      var new_name = answers.state_new_name;
+      return self.rapidpro
+        .start_flow(
+          self.im.config.change_name_flow_id, null,
+          "whatsapp:" + _.trim(msisdn, "+"), {
+            new_name: new_name
+          }
+        ).then(function() {
+          return self.states.create("state_change_name_success");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+        });
+    });
+
+    self.add("state_change_name_success", function(name) {
+      var answers = self.im.user.answers;
+      var new_name = answers.state_new_name;
+      return new MenuState(name, {
+        question: $("Thanks. I'll call you {{name}}" +
+        "\n\nWhat would you like to do next?").context({name:new_name}),
+        
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Back to main menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });
+    
+    self.add("state_channel_switch_confirm", function(name) {
+      var contact = self.im.user.answers.contact;
+      return new MenuState(name, {
+        question: $("Are you sure you want to get your MenConnect messages on " +
+        "{{alternative_channel}}?"
+        ).context({
+          alternative_channel: self.contact_alternative_channel(contact)
+        }),
+        choices: [
+          new Choice("state_channel_switch", $("Yes")),
+          new Choice("state_no_channel_switch", $("No")),
+        ],
+        error: $("Sorry we don't recognise that reply. Please enter the number next to " +
+        "your answer.")
+      });
+    });
+
+    self.add("state_no_channel_switch", function(name) {
+      var contact = self.im.user.answers.contact;
+      return new MenuState(name, {
+        question: $(
+        "You'll keep getting your messages on {{channel}}. If you change your mind, " +
+        "dial *134*406#. What would you like to do?"
+        ).context({channel: self.contact_current_channel(contact)}),
+        choices: [
+          new Choice("state_start", $("Back to main menu")),
+          new Choice("state_exit", $("Exit"))
+        ], 
+        error: get_content("state_generic_error").context(),
+      });
+    });
+
+    self.add("state_channel_switch", function(name, opts) {
+      var contact = self.im.user.answers.contact, flow_uuid;
+      if(_.toUpper(_.get(contact, "fields.preferred_channel")) === "WHATSAPP") {
+        flow_uuid = self.im.config.sms_switch_flow_id;
+      } else {
+        flow_uuid = self.im.config.whatsapp_switch_flow_id;
+      }
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+
+      return self.rapidpro
+          .start_flow(flow_uuid, null, "whatsapp:" + _.trim(msisdn, "+"))
+          .then(function() {
+              return self.states.create("state_channel_switch_success");
+          }).catch(function(e) {
+              // Go to error state after 3 failed HTTP requests
+              opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+              if(opts.http_error_count === 3) {
+                self.im.log.error(e.message);
+                return self.states.create("__error__", {return_state: name});
+              }
+              return self.states.create(name, opts);
+          });
+    });
+
+    self.add("state_channel_switch_success", function(name) {
+      var contact = self.im.user.answers.contact;
+      return new MenuState(name, {
+        question: $(
+          "Okay. I'll send you MenConnect messages on {{channel}}." +
+           "To move back to WhatsApp, reply *WA* or dial *134*406#."
+        ).context({
+            channel: self.contact_alternative_channel(contact)
+        }),
+        choices: [
+          new Choice("state_profile", $("Back")),
+          new Choice("state_exit", $("Exit"))
+        ],
+        error: $(
+            "Sorry we don't recognise that reply. Please enter the number next to your " +
+            "answer."
+        )
+      });
+    });
+
+    self.add("state_enter_origin_msisdn", function(name) {
+      return new FreeText(name, {
+        question: $(
+          "Please enter the cell number you currently get MenConnect messages on, "+
+          "e.g 0813547654"
+        ),
+        check: function(content) {
+          if(!utils.is_valid_msisdn(content, "ZA")){
+            return (
+                "Sorry that is not a real cellphone number. " + 
+                  "Please reply with the 10 digit number that you'd like " +
+                    "to get your MenConnect messages on."
+            );
+          }
+          if(utils.normalize_msisdn(content, "ZA") === "+27813547654") {
+            return (
+              "We're looking for your information. Please avoid entering " +
+              "the examples in the messages. Enter your details."
+            );
+          }
+        },
+        next: "state_check_origin_contact"
+      });
+    });
+
+    self.add("state_check_origin_contact", function(name, opts) {
+      var msisdn = utils.normalize_msisdn(
+          self.im.user.answers.state_enter_origin_msisdn, "ZA"
+      );
+      return self.rapidpro
+        .get_contact({urn: "whatsapp:" + _.trim(msisdn, "+")})
+        .then(function(contact) {
+          var consent =
+          _.toUpper(_.get(contact, "fields.consent")) === "True";
+          if(
+            (consent)
+          ){
+            self.im.user.answers.origin_contact = contact;
+          }
+          else {
+            return self.states.create("state_origin_no_subscriptions");
+          }
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+              self.im.log.error(e.message);
+              return self.states.create("__error__");
+          }
+          return self.states.create(name, opts);
+      });
+    });
+
+    self.add("state_origin_no_subscriptions", function(name) {
+      return new MenuState(name, {
+          question: $(
+              "Sorry, MenConnect doesn't recognise {{msisdn}}. Made a mistake?"
+          ).context({msisdn: self.im.user.answers.state_enter_origin_msisdn}),
+          choices: [
+              new Choice("state_enter_origin_msisdn", $("Try again")),
+              new Choice("state_exit", $("Exit"))
+          ],
+          error: $(
+              "Sorry we don't recognise that reply. Please enter the number next to your " +
+              "answer."
+          )
+      });
+  });
+
     self.add('state_display_name', function(name){
-      var preferred_name = self.im.user.answers.state_change_name;
+      var preferred_name = self.im.user.answers.state_new_name;
       return new MenuState(name, {
         question: $("Thanks, I'll call you {{preferred_name}}" + 
                     "\n\nWhat do you want to do next?").context({preferred_name: preferred_name}), 
@@ -682,9 +955,9 @@ go.app = (function() {
       });
     });
 
-    self.add('state_change_number', function(name){
+    self.add('state_target_msisdn', function(name){
       return new FreeText(name, {
-        question: $("Please reply with the *new cell number* you would like to get" + 
+        question: $("Please reply with the *new cell number* you would like to get " + 
                     "your MenConnect messages on, e.g 0813547654"),
         check: function(content) {
           if(!utils.is_valid_msisdn(content, "ZA")){
@@ -702,26 +975,117 @@ go.app = (function() {
           }
           //We need to do a rapidpro contact check here
         },
-        next: "state_display_number"
+        next: "state_msisdn_change_get_contact"
+      });
+    });
+
+    self.add("state_msisdn_change_get_contact", function(name, opts) {
+      // Fetches the contact from RapidPro, and delegates to the correct state
+      var msisdn = utils.normalize_msisdn(
+        _.get(self.im.user.answers, "state_target_msisdn"), "ZA"
+      );
+
+      return self.rapidpro.get_contact({urn: "whatsapp:" + _.trim(msisdn, "+")})
+        .then(function(contact) {
+          var consent = _.toUpper(_.get(contact, "fields.consent")) === "TRUE";
+          if(consent) {
+            return self.states.create("state_active_subscription");
+          } else {
+            return self.states.create("state_display_number");
+          }
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+        });
+    });
+
+    self.add("state_active_subscription", function(name) {
+      return new MenuState(name, {
+        question: $(
+          "Sorry, the cell number you entered already gets MC msgs. To manage it, " +
+                    "dial *134*406# from that number. What would you like to do?"
+        ),
+        choices:[
+          new Choice("state_start", $("Back")),
+          new Choice("state_exit", $("Exit"))
+        ],
+        error: $(
+          "Sorry we don't recognise that reply. Please enter the number next to your " +
+          "answer."
+        )
       });
     });
 
     self.add('state_display_number', function(name){
-      var msisdn = self.im.user.answers.state_change_number;
+      var msisdn = self.im.user.answers.state_target_msisdn;
       return new MenuState(name, {
-        question: $("You have entered {{preferred_number}}" + 
+        question: $("You have entered {{msisdn}}" + 
                     "as your new MenConnect number." + 
                     "\n\nIs this correct?").context({msisdn: msisdn}), 
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_whatsapp_contact_check", $("Yes")),
-          new Choice("state_change_number", $("No, try again")),
+          new Choice("state_change_msisdn", $("Yes")),
+          new Choice("state_target_msisdn", $("No, try again")),
         ]
       });
     });
 
-    self.add('state_change_age', function(name){
+    self.add("state_change_msisdn", function(name, opts) {
+      var new_msisdn = utils.normalize_msisdn(
+        self.im.user.answers.state_target_msisdn, "ZA"
+      );
+      var old_msisdn = utils.normalize_msisdn(
+        self.im.user.answers.state_enter_origin_msisdn, "ZA"
+      );
+      return self.rapidpro
+        .start_flow(
+          self.im.config.msisdn_change_flow_id, null, "whatsapp:" + _.trim(new_msisdn, "+"), {
+            new_msisdn: new_msisdn,
+            old_msisdn: old_msisdn,
+            contact_uuid: self.im.user.answers.origin_contact.uuid,
+            source: "POPI USSD"
+          }
+        )
+        .then(function() {
+          return self.states.create("state_change_msisdn_success");
+      }).catch(function(e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+              self.im.log.error(e.message);
+              return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+      });
+    });
+
+    self.add("state_change_msisdn_success", function(name) {
+      var new_msisdn = utils.readable_msisdn(
+          _.defaultTo(self.im.user.answers.state_target_msisdn, self.im.user.addr), "27"
+      );
+      return new MenuState(name, {
+          question: $(
+              "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. Ignore it " +
+              "to continue getting msgs on the old cell no. What would you like to do?"
+          ).context({msisdn: new_msisdn}),
+          error: $(
+              "Sorry we don't recognise that reply. Please enter the number next to your " +
+              "answer."
+          ),
+          choices: [
+              new Choice("state_start", $("Back")),
+              new Choice("state_exit", $("Exit"))
+          ]
+      });
+  });
+
+    self.add('state_new_age', function(name){
       return new ChoiceState(name, {
         question: $("How old are you?" +
           "\nSelect your age group:"),
@@ -740,26 +1104,134 @@ go.app = (function() {
           new Choice("45-49", $("45-49")),
           new Choice("50+", $("50+"))
         ],
-        next: 'state_change_age_end'
+        next: 'state_age_display'
       });
     });
 
-    self.add('state_change_age_end', function(name){
-      var age = self.im.user.answers.state_change_age;
+    self.add("state_age_display", function(name){
+      var age = self.im.user.answers.state_new_age;
       return new MenuState(name, {
-        question: $("Thank you" + 
-          "\n\nYour age has been updated to {{age}}" + 
-            "\n\nReply *MENU* for the main menu.").context({age: age}),
+        question: $("Your age group will be updated to {{age}}").context({age: age}),
         error: $("Please select 1 or 2"),
         accept_labels: true,
         choices: [
-          new Choice("state_registered", $("Menu")),
-          new Choice("state_exit", $("Exit"))
+          new Choice("state_change_age", $("confirm")),
+          new Choice("state_profile_change_info", $("Back"))
         ]
       });
     });
 
-    //Add change treatment start date here
+    self.add("state_change_age", function(name, opts){
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var answers = self.im.user.answers;
+      var agegroup = answers.state_new_age;
+      
+      return self.rapidpro
+        .start_flow(
+          self.im.config.change_agegroup_flow_id, null,
+          "whatsapp:" + _.trim(msisdn, "+"), {
+            agegroup: agegroup
+          }
+        ).then(function() {
+          return self.states.create("state_change_age_success");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1; 
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+        });
+    });
+
+    self.add("state_change_age_success", function(name) {
+      var answers = self.im.user.answers;
+      var agegroup = answers.state_new_age;
+      return new MenuState(name, {
+        question: $("Thank you. Your age has been " + 
+        "changed to {{agegroup}}\n").context({agegroup: agegroup}),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Back to main menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });    
+
+    self.add("state_new_treatment_start_date", function(name) {
+      return new ChoiceState(name, {
+        question:$("When did you start taking ARV treatment? " + 
+        "Choose the closest option.\n"),
+        error: $(
+          "Please reply with number closest to when you started treatment:"
+        ),
+        accept_labels: true,
+        choices: [
+          new Choice("today", $("today")),
+          new Choice("<1 week", $("<1 week")),
+          new Choice("<1 month", $("<1 month")),
+          new Choice("<3 months", $("<3 months")),
+          new Choice("3-6 months", $("3-6 months")),
+          new Choice("6-12 months", $("6-12 months")),
+          new Choice(">1 year", $(">1 year"))
+        ],
+        next: "state_new_treatment_date_display"
+      });
+    });
+
+    self.add("state_new_treatment_date_display", function(name) {
+      var treatment_start_date = self.im.user.answers.state_new_treatment_start_date;
+      return new MenuState(name, {
+        question: $("Your new treatment start date will be updated to " +
+        "{{treatment_start_date}}").context({treatment_start_date: treatment_start_date}),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_change_treatment_start_date", $("Confirm")),
+          new Choice("state_profile_change_info", $("Back"))
+        ]
+      });
+    });
+
+    self.add("state_change_treatment_start_date", function(name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var answers = self.im.user.answers;
+      var treatment_start_period = answers.state_new_treatment_start_date;
+      return self.rapidpro
+        .start_flow(
+          self.im.config.change_treatment_start_date_flow_id, null,
+          "whatsapp:" + _.trim(msisdn, "+"), {
+            treatment_start_period: treatment_start_period
+          }
+        ).then(function() {
+          return self.states.create("state_change_treatment_start_date_success");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1; 
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+        });
+    });
+
+    self.add("state_change_treatment_start_date_success", function(name) {
+      var answers = self.im.user.answers;
+      var treatment_start_period = answers.state_new_treatment_start_date;
+      return new MenuState(name, {
+        question: $("Thank you. Your treatment start date has " + 
+        "been changed to {{treatment_start_period}}").context({treatment_start_period: treatment_start_period}),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Back to main menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });
 
     self.add('state_processing_info_menu', function(name){
       return new MenuState(name, {
@@ -839,6 +1311,7 @@ go.app = (function() {
 
     self.add('state_resources', function(name){
       return new MenuState(name, {
+        question: get_content(name).context(),
         accept_labels: true,
         choices: [
           new Choice("state_depression", $("Depression")),
@@ -855,7 +1328,7 @@ go.app = (function() {
 
     self.add('state_depression', function(name){
       return new MenuState(name, {
-        question: $("Adcock Ingram Depression and Anxiety Helpline can help you" + 
+        question: $("Adcock Ingram Depression and Anxiety Helpline can help you " + 
           "if you are feeling depressed. Call 0800 7080 90"),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
@@ -867,7 +1340,7 @@ go.app = (function() {
 
     self.add('state_mental_health', function(name){
       return new MenuState(name, {
-        question: $("The South African Depression and Anxiety group can support you when" + 
+        question: $("The South African Depression and Anxiety group can support you when " + 
           "you're feeling low. Dial 0800 4567 789 for their 24 hour helpline."),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
@@ -903,7 +1376,7 @@ go.app = (function() {
 
     self.add('state_substance_abuse', function(name){
       return new MenuState(name, {
-        question: $("The Substance Abuse Line offers support & guidance for people addicted to" + 
+        question: $("The Substance Abuse Line offers support & guidance for people addicted to " + 
                       "drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
@@ -915,7 +1388,7 @@ go.app = (function() {
 
     self.add('state_aids_helpline', function(name){
       return new MenuState(name, {
-        question: $("The National HIV and AIDs Helpline is a toll free number that you can call" + 
+        question: $("The National HIV and AIDs Helpline is a toll free number that you can call " + 
                       "for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
@@ -927,7 +1400,7 @@ go.app = (function() {
 
     self.add('state_covid19', function(name){
       return new MenuState(name, {
-        question: $("For correct & up to date info on COVID-19, save the number +2760 0123 456" + 
+        question: $("For correct & up to date info on COVID-19, save the number +2760 0123 456 " + 
                       "and send 'hi' or call the national COVID-19 hotline on 0800 029 999."),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
@@ -1245,7 +1718,9 @@ go.app = (function() {
       return new EndState(name, {
         next: "state_start",
         text: $(
-          "You're done! This number {{ msisdn }} will get helpful messages from MenConnect"
+          "You're done! You will get info & tips on {{msisdn}} to support you on your journey on " + 
+          "WhatsApp. " + 
+          "Thanks for signing up to MenConnect!"
         ).context({ msisdn: msisdn })
       });
     });
