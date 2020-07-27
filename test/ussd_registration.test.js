@@ -514,46 +514,8 @@ describe("state_profile", function() {
       })
       .run();
   });
-  /*it("should show the profile screen", function() {
-    return tester.setup.user
-      .state("state_profile")
-      .inputs("1")
-      .check.interaction({
-        state:"state_profile_view_info",
-        reply: [
-          "Name:",
-          "Cell number:",
-          "Language:",
-          "Age:",
-          "Channel:",
-          "Estimated treatment start date",
-          "1. Change info",
-          "2. Back"
-        ].join("\n")
-      })
-      .run();
-  }); */
-  /* it("should switch to the change profile screen", function() {
-    return tester.setup.user
-      .state("state_profile_view_info")
-      .inputs("1")
-      .check.interaction({
-        state:"state_profile_change_info",
-        reply: [
-          "What would you like to change?",
-                    "1. Name",
-                    "2. Cell number",
-                    "3. Age",
-                    "4. Change from SMS to Whatsapp",
-                    "5. Treatment start date",
-                    "6. Back"
-        ].join("\n")
-      })
-      .run();
-    }); */
-  });
-
-  describe("state_profile_view_info", function() {
+});
+describe("state_profile_view_info", function() {
     it("should handle missing contact fields", function() {
       return tester
         .setup.user.state("state_profile_view_info")
@@ -605,7 +567,7 @@ describe("state_profile", function() {
         .run();
     });
   });
-  describe("state_new_name", function () {
+describe("state_new_name", function () {
     it("should ask for a new name", function() {
       return tester
         .setup.user.state("state_new_name")
@@ -648,7 +610,7 @@ describe("state_profile", function() {
         .run();
     });
   });
-  describe("state_target_msisdn", function(){
+describe("state_target_msisdn", function(){
     it("should ask the user for the new msisdn", function() {
       return tester
         .setup.user.state("state_target_msisdn")
@@ -716,7 +678,7 @@ describe("state_profile", function() {
       .run();
   });
 }); 
-  describe("state_new_age", function() {
+describe("state_new_age", function() {
     it("should show the age menu", function() {
       return tester.setup.user
         .state("state_new_age")
