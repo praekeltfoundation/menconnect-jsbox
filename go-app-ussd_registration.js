@@ -580,10 +580,10 @@ go.app = (function() {
       return new FreeText(name, {
         question: get_content(name).context(),
         check: function(content) {
-          var givendate = content;
-          givendate = new Date(givendate);
+          var givendate = new Date(content);
           var today = new Date();
           today.setHours(0,0,0,0);
+          //Set a timestamp 400 days forward. We want to reject clinic dates that are more than 400 days from today
           var timestamp = new Date().getTime() + (400 * 24 * 60 * 60 * 1000);
           var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
           if(!match){
@@ -599,7 +599,6 @@ go.app = (function() {
             );
           }
         },
-        //error: "Sorry, I don’t recognise that date. Please try again.",
         next: "state_clinic_date_display"
       });
     });
