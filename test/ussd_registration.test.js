@@ -26,12 +26,13 @@ describe("ussd_registration app", function() {
       registration_group_ids: ["id-1"],
       flow_uuid: "rapidpro-flow-uuid",
       msisdn_change_flow_id: "msisdn-change-flow-id",
-      change_agegroup_flow_id: "change-agegroup-flow-id",
+      change_age_group_flow_id: "change-age_group-flow-id",
       change_name_flow_id: "change-name-flow-id",
       change_treatment_start_date_flow_id: "change-treatment-start-date-flow-id",
       sms_switch_flow_id: "sms-switch-flow-id",
       whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
-      change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id"
+      change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id",
+      send_sms_flow_id: "send-sms-flow-id"
     });
   });
 
@@ -146,7 +147,7 @@ describe("ussd_registration app", function() {
             "3. Is there a cure?",
             "4. What is viral load?",
             "5. What is low viral load?",
-            "6. Back to menu"
+            "6. Back"
           ].join("\n")
         })
         .run();
@@ -164,7 +165,7 @@ describe("ussd_registration app", function() {
             "3. Is there a cure?",
             "4. What is viral load?",
             "5. What is low viral load?",
-            "6. Back to menu"
+            "6. Back"
           ].join("\n")
         })
         .run();
@@ -182,7 +183,7 @@ describe("ussd_registration app", function() {
             "3. Is there a cure?",
             "4. What is viral load?",
             "5. What is low viral load?",
-            "6. Back to menu"
+            "6. Back"
           ].join("\n")
         })
         .run();
@@ -194,8 +195,23 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state:"state_what_is_hiv",
           reply: [
-            "It's a virus that enters your body through blood / bodily fluids.",
+            "It's a virus that enters your body through blood / bodily fluids. ",
             "It attacks your CD4 cells that protect your body against disease.",
+            "1. Back"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show what HIV does to my body", function() {
+      return tester.setup.user
+        .state("state_hiv")
+        .inputs("2")
+        .check.interaction({
+          state:"state_hiv_body",
+          reply: [
+            "What does HIV do to my body?. \n" +
+            "HIV enters your body & makes more. " + 
+            "It attacks your soldiers so you can't fight off common infections.",
             "1. Back"
           ].join("\n")
         })
@@ -208,7 +224,7 @@ describe("ussd_registration app", function() {
         .state("state_what_is_hiv")
         .check.interaction({
           reply: [
-            "It's a virus that enters your body through blood / bodily fluids.",
+            "It's a virus that enters your body through blood / bodily fluids. ",
             "It attacks your CD4 cells that protect your body against disease.",
             "1. Back"
           ].join("\n")
@@ -241,7 +257,7 @@ describe("ussd_registration app", function() {
             "3. Is there a cure?",
             "4. What is viral load?",
             "5. What is low viral load?",
-            "6. Back to menu"
+            "6. Back"
           ].join("\n")
         })
         .run();
@@ -254,7 +270,7 @@ describe("ussd_registration app", function() {
         .check.interaction({
           reply: [
             "What do you want to know?",
-            "1. Treatment?",
+            "1. How it works?",
             "2. When to take it?",
             "3. How long to take it?",
             "4. Side effects?",
@@ -273,7 +289,7 @@ describe("ussd_registration app", function() {
           state:"state_treatment",
           reply: [
             "error",
-            "1. Treatment?",
+            "1. How it works?",
             "2. When to take it?",
             "3. How long to take it?",
             "4. Side effects?",
@@ -305,7 +321,7 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state:"state_treatment_frequency",
           reply: [
-            "Take your meds every day, at the same time." + 
+            "Take your meds every day, at the same time " + 
             "as prescribed by your nurse",
             "\n1. Back"
           ].join("\n")
@@ -319,7 +335,7 @@ describe("ussd_registration app", function() {
         .check.interaction({
           state:"state_treatment_frequency",
           reply: [
-            "Take your meds every day, at the same time." + 
+            "Take your meds every day, at the same time " + 
             "as prescribed by your nurse",
             "\n1. Back"
           ].join("\n")
@@ -375,7 +391,7 @@ describe("ussd_registration app", function() {
       .check.interaction({
         state:"state_skip_a_day",
         reply: [
-          "You can still take the meds within 6 hrs of usual time" +
+          "You can still take the meds within 6 hrs of usual time. " +
           "Don't double your dose the next day if you missed a day.",
           "\n1. Back"
         ].join("\n")
@@ -434,10 +450,10 @@ describe("state_reminders", function() {
   it("should show the date display screen", function() {
     return tester
       .setup.user.state("state_clinic_date_display")
-      .setup.user.answer("state_new_clinic_date", "2019-12-24")
+      .setup.user.answer("state_new_clinic_date", "2020-08-24")
       .check.interaction({
         reply: [
-          "You entered 2019-12-24. " + 
+          "You entered 2020-08-24. " + 
           "I'll send you reminders of your upcoming clinic visits " + 
           "so that you don't forget.",
           "1. Confirm",
@@ -449,8 +465,23 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2019-02-25")
+      .input("2020-08-24")
       .check.user.state("state_clinic_date_display")
+      .run();
+  });
+  it("should return errors for invalid input", function() {
+    return tester
+      .setup.user.state("state_new_clinic_date")
+      .input("2020-08-24")
+      .check.interaction({
+        reply:[
+          "You entered 2020-08-24. " + 
+          "I'll send you reminders of your upcoming clinic visits " + 
+          "so that you don't forget.",
+          "1. Confirm",
+          "2. Back"
+        ].join("\n")
+      })
       .run();
   });
     
@@ -458,13 +489,13 @@ describe("state_reminders", function() {
     return tester
       .setup.user.state("state_clinic_date_display")
       .setup.user.answers({
-        state_new_clinic_date: "2019-02-27"
+        state_new_clinic_date: "2020-08-24"
       })
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
             "change-next-clinic-visit-flow-id", null, "whatsapp:27123456789", {
-              "clinic_date": "2019-02-27"
+              "clinic_date": "2020-08-24"
             })
         );
       })
@@ -473,7 +504,7 @@ describe("state_reminders", function() {
         state: "state_change_clinic_date_success",
         reply: [
           "Your next clinic visit has been " + 
-          "changed to 2019-02-27",
+          "changed to 2020-08-24",
           "1. Back",
           "2. Exit"
         ].join("\n")
@@ -524,7 +555,7 @@ describe("state_profile_view_info", function() {
           fields: {
             name: null,
             preferred_channel: null,
-            agegroup: null,
+            age_group: null,
             treatment_start_period: null
           }
         })
@@ -549,7 +580,7 @@ describe("state_profile_view_info", function() {
           fields: {
             name: "Chima",
             preferred_channel: "WhatsApp",
-            agegroup: "15-19",
+            age_group: "15-19",
             treatment_start_period: "<3 months"
           }
         })
@@ -729,8 +760,8 @@ describe("state_new_age", function() {
         .setup(function(api) {
           api.http.fixtures.add(
             fixtures_rapidpro.start_flow(
-              "change-agegroup-flow-id", null, "whatsapp:27123456789", {
-                "agegroup": "15-19"
+              "change-age_group-flow-id", null, "whatsapp:27123456789", {
+                "age_group": "15-19"
               })
           );
         })
@@ -893,6 +924,38 @@ describe("state_new_treatment_start_date", function() {
   });
 });
 
+describe("state_processing_info_menu", function() {
+  it("should show the processing my info menu", function() {
+    return tester.setup.user
+      .state("state_processing_info_menu")
+      .check.interaction({
+        reply: [
+          "Choose a question:",
+          "1. What info does MenConnect collect?",
+          "2. Why does MenConnect need my info?",
+          "3. Who can see my info?",
+          "4. How long is my info kept?"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("should show the confirm share screen", function() {
+    return tester.setup.user
+      .state("state_processing_info_menu")
+      .inputs("1")
+      .check.interaction({
+        state:"state_menconnect_info",
+        reply: [
+          "We process your info to help you on your health journey. " + 
+          "We collect name, age, cell number, language, channel, status, clinic dates, " + 
+          "& survey answers.",
+          "1. Back"
+        ].join("\n")
+      })
+      .run();
+  });
+});
+
 describe("state_share", function() {
   it("should show the share menu", function() {
     return tester.setup.user
@@ -906,15 +969,21 @@ describe("state_share", function() {
       })
       .run();
   });
-  it("should show the confirm share screen", function() {
-    return tester.setup.user
-      .state("state_share")
-      .inputs("1")
+  it("should start the message send flow", function() {
+    return tester
+      .setup.user.state("state_share")
+      .setup(function(api) { 
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "send-sms-flow-id", null, "whatsapp:27123456789")
+        );
+      })
+      .input("1")
       .check.interaction({
-        state:"state_confirm_share",
+        state: "state_confirm_share",
         reply: [
-          "Thank you. You will receive an SMS with info " + 
-          "that you can share with other men living with HIV.",
+          "Thank you. You will receive an SMS with info that you can share with " + 
+          "other men living with HIV.",
           "1. Back to Menu"
         ].join("\n")
       })
@@ -1497,7 +1566,7 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":7,
-                "agegroup":"<15",
+                "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent":"yes",
                 "treatment_initiated":"yes",
@@ -1542,7 +1611,7 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":1,
-                "agegroup":"<15",
+                "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent":"yes",
                 "treatment_initiated":"yes",
@@ -1607,7 +1676,7 @@ describe("state_share", function() {
                   "registered_by":"+27123456789",
                   "mha":6,
                   "swt":7,
-                  "agegroup":"<15",
+                  "age_group":"<15",
                   "status_known_period":"<3 months",
                   "treatment_adherent":"yes",
                   "treatment_initiated":"yes",
