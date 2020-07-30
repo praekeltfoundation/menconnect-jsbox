@@ -1552,7 +1552,7 @@ go.app = (function() {
       return new ChoiceState(name, {
         question:get_content(name).context(),
         error: $(
-          "Please reply with number closest to when you started treatment:"
+          "Please reply with number closest to when you started treatment: "
         ),
         accept_labels: true,
         choices: [

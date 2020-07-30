@@ -1358,7 +1358,7 @@ describe("state_share", function() {
         .check.interaction({
           state:"state_treatment_start_date",
           reply: [
-            "Please reply with number closest to when you started treatment:",
+            "Please reply with number closest to when you started treatment: ",
             "1. today",
             "2. <1 week",
             "3. <1 month",
