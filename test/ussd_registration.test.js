@@ -708,6 +708,45 @@ describe("state_target_msisdn", function(){
       .check.user.state("state_display_number")
       .run();
   });
+  it("should trigger the number change if they select yes", function() {
+    return tester
+      .setup.user.state("state_display_number")
+      .setup.user.answers({
+        state_target_msisdn: "0820001001",
+        contact: {uuid: "contact-uuid"}
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "msisdn-change-flow-id", null, "whatsapp:27820001001", {
+              new_msisdn: "+27820001001",
+              old_msisdn: "+27123456789",
+              contact_uuid: "contact-uuid",
+              source: "POPI USSD"
+            }
+          )
+        );
+      })
+      .input("1")
+      .check.user.state("state_change_msisdn_success")
+      .run();
+  });
+});
+describe("state_change_msisdn_success", function() {
+  it("should tell the user the number change succeeded", function() {
+    return tester
+      .setup.user.state("state_change_msisdn_success")
+      .setup.user.answer("state_target_msisdn", "0820001001")
+      .check.interaction({
+        reply: [
+          "Thanks! We sent a msg to 0820001001. Follow the instructions. ",
+          "What would you like to do?",
+          "1. Back",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
 });
 describe("state_new_age", function() {
     it("should show the age menu", function() {

@@ -886,75 +886,6 @@ go.app = (function() {
       });
     });
 
-    self.add("state_enter_origin_msisdn", function(name) {
-      return new FreeText(name, {
-        question: $(
-          "Please enter the cell number you currently get MenConnect messages on, "+
-          "e.g 0813547654"
-        ),
-        check: function(content) {
-          if(!utils.is_valid_msisdn(content, "ZA")){
-            return (
-                "Sorry that is not a real cellphone number. " +
-                  "Please reply with the 10 digit number that you'd like " +
-                    "to get your MenConnect messages on."
-            );
-          }
-          if(utils.normalize_msisdn(content, "ZA") === "+27813547654") {
-            return (
-              "We're looking for your information. Please avoid entering " +
-              "the examples in the messages. Enter your details."
-            );
-          }
-        },
-        next: "state_check_origin_contact"
-      });
-    });
-
-    self.add("state_check_origin_contact", function(name, opts) {
-      var msisdn = utils.normalize_msisdn(
-          self.im.user.answers.state_enter_origin_msisdn, "ZA"
-      );
-      return self.rapidpro
-        .get_contact({urn: "whatsapp:" + _.trim(msisdn, "+")})
-        .then(function(contact) {
-          var consent =
-          _.toUpper(_.get(contact, "fields.consent")) === "True";
-          if(
-            (consent)
-          ){
-            self.im.user.answers.origin_contact = contact;
-          }
-          else {
-            return self.states.create("state_origin_no_subscriptions");
-          }
-        }).catch(function(e) {
-          // Go to error state after 3 failed HTTP requests
-          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
-          if(opts.http_error_count === 3) {
-              self.im.log.error(e.message);
-              return self.states.create("__error__");
-          }
-          return self.states.create(name, opts);
-      });
-    });
-
-    self.add("state_origin_no_subscriptions", function(name) {
-      return new MenuState(name, {
-          question: $(
-              "Sorry, MenConnect doesn't recognise {{msisdn}}. Made a mistake?"
-          ).context({msisdn: self.im.user.answers.state_enter_origin_msisdn}),
-          choices: [
-              new Choice("state_enter_origin_msisdn", $("Try again")),
-              new Choice("state_exit", $("Exit"))
-          ],
-          error: $(
-              "Sorry we don't recognise that reply. Please enter the number next to your " +
-              "answer."
-          )
-      });
-  });
-
     self.add('state_display_name', function(name){
       var preferred_name = self.im.user.answers.state_new_name;
       return new MenuState(name, {
@@ -1054,15 +985,12 @@ go.app = (function() {
       var new_msisdn = utils.normalize_msisdn(
         self.im.user.answers.state_target_msisdn, "ZA"
       );
-      var old_msisdn = utils.normalize_msisdn(
-        self.im.user.answers.state_enter_origin_msisdn, "ZA"
-      );
       return self.rapidpro
         .start_flow(
           self.im.config.msisdn_change_flow_id, null, "whatsapp:" + _.trim(new_msisdn, "+"), {
             new_msisdn: new_msisdn,
-            old_msisdn: old_msisdn,
-            contact_uuid: self.im.user.answers.origin_contact.uuid,
+            old_msisdn: utils.normalize_msisdn(self.im.user.addr, "ZA"),
+            contact_uuid: self.im.user.answers.contact.uuid,
             source: "POPI USSD"
           }
         )
@@ -1085,8 +1013,8 @@ go.app = (function() {
       );
       return new MenuState(name, {
           question: $(
-              "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. Ignore it " +
-              "to continue getting msgs on the old cell no. What would you like to do?"
+              "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. " +
+              "\nWhat would you like to do?"
           ).context({msisdn: new_msisdn}),
           error: $(
               "Sorry we don't recognise that reply. Please enter the number next to your " +
@@ -1566,7 +1494,7 @@ go.app = (function() {
         options_per_page: null,
         characters_per_page: 160,
         next: function(choice) {
-          if (choice.value === "not positive" || choice.value === "do not know") {
+          if (choice.value === "not positive" || choice.value === "idk") {
             return "state_exit_not_hiv";
           } else {
             return "state_treatment_started";
@@ -1579,7 +1507,7 @@ go.app = (function() {
     self.states.add("state_exit_not_hiv", function(name) {
       return new EndState(name, {
         next: "state_start",
-        text: get_content(name).context("It seems like you don't need treatment." +
+        text: get_content(name).context("It seems like you don't need treatment. " +
           "If you sent the wrong answer, dial *134*406# to restart."),
       });
     });
@@ -1606,18 +1534,17 @@ go.app = (function() {
     });
 
     self.add('state_treatment_started', function(name){
-      return new ChoiceState(name, {
+      return new MenuState(name, {
         question:get_content(name).context(),
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1.\n" +
-            "Are you or have you been on ARV treatment?"
+            "Are you or have you been on ARV treatment?"   
         ),
         accept_labels: true,
         choices: [
-          new Choice("Yes", $("Yes")),
-          new Choice("No", $("No"))
-        ],
-        next: 'state_treatment_start_date'
+          new Choice("state_treatment_start_date", $("Yes")),
+          new Choice("state_viral_detect", $("No"))         
+        ]
       });
     });
 
