@@ -1741,5 +1741,66 @@ describe("state_share", function() {
           .run()
       );
     });
+    it("should show the correct message if SMS", function() {
+      return (
+        tester
+        .setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answers({
+          state_message_consent: "yes",
+          state_age_group: "<15",
+          state_status_known: "<3 months",
+          state_still_on_treatment: "yes",
+          state_treatment_started: "yes",
+          state_treatment_start_date: "<1 month",
+          state_viral_detect: "yes",
+          state_name_mo: "Jerry",
+          on_whatsapp: false
+        })
+          .setup(function(api) {
+            api.http.fixtures.add(
+              fixtures_whatsapp.not_exists({
+                address: "+27123456789",
+                wait: true
+              })
+            );
+            api.http.fixtures.add(
+              fixtures_rapidpro.start_flow(
+                "rapidpro-flow-uuid",
+                null,
+                "whatsapp:27123456789",
+                {
+                  "on_whatsapp":"false",
+                  "consent":"true",
+                  language: "en",
+                  "source":"USSD registration",
+                  "timestamp":"2014-04-04T07:07:07Z",
+                  "registered_by":"+27123456789",
+                  "mha":6,
+                  "swt":1,
+                  "age_group":"<15",
+                  "status_known_period":"<3 months",
+                  "treatment_adherent":"yes",
+                  "treatment_initiated":"yes",
+                  "treatment_start_period":"<1 month",
+                  "viral_load_undetectable":"yes",
+                  "name":"Jerry"
+                }
+              )
+            );
+          })
+          // For some reason, if we start the test on state_registration_complete, it skips to state_start,
+          // so we need to start it before
+          .setup.user.state("state_whatsapp_contact_check")
+          .input({ session_event: "continue" })
+          .check.interaction({
+            state: "state_registration_complete",
+            reply:
+            "You're done! You will get info & tips on 0123456789 to support you on your journey on " +
+            "SMS. " +
+            "Thanks for signing up to MenConnect!"
+          })
+          .run()
+      );
+    });
   });
 });
