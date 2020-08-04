@@ -1389,12 +1389,12 @@ go.app = (function() {
         question:get_content(name).context(),
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1.\n" +
-            "Are you or have you been on ARV treatment?"   
+            "Are you or have you been on ARV treatment?"
         ),
         accept_labels: true,
         choices: [
           new Choice("state_treatment_start_date", $("Yes")),
-          new Choice("state_viral_detect", $("No"))         
+          new Choice("state_viral_detect", $("No"))
         ]
       });
     });
@@ -1525,13 +1525,14 @@ go.app = (function() {
         utils.normalize_msisdn(self.im.user.addr, "ZA"),
         "27"
       );
+      var channel = self.im.user.get_answer("on_whatsapp") ? "WhatsApp" : "SMS";
       return new EndState(name, {
         next: "state_start",
         text: $(
           "You're done! You will get info & tips on {{msisdn}} to support you on your journey on " +
-          "WhatsApp. " +
+          "{{channel}}. " +
           "Thanks for signing up to MenConnect!"
-        ).context({ msisdn: msisdn })
+        ).context({ msisdn: msisdn, channel: channel })
       });
     });
 
