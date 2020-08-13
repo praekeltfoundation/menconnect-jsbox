@@ -1330,6 +1330,7 @@ describe("state_share", function() {
             "7. >1 year"
           ].join("\n")
         })
+        .check.user.answer("state_treatment_started", "Yes")
         .run();
     });
   });
@@ -1607,7 +1608,51 @@ describe("state_share", function() {
                 "swt":7,
                 "age_group":"<15",
                 "status_known_period":"<3 months",
-                "treatment_adherent":"yes",
+                "treatment_adherent": "yes",
+                "treatment_initiated":"yes",
+                "treatment_start_period":"<1 month",
+                "viral_load_undetectable":"yes",
+                "name":"Jerry"
+              }
+            )
+          );
+        })
+        //.setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answer("on_whatsapp", true)
+        .input({ session_event: "continue" })
+        .check.user.state("state_registration_complete")
+        .run();
+    });
+    it("should start a flow with the correct metadata for empty values", function() {
+      return tester
+        .setup.user.state("state_trigger_rapidpro_flow")
+        .setup.user.answers({
+          state_message_consent: "yes",
+          state_age_group: "<15",
+          state_status_known: "<3 months",
+          state_treatment_started: "yes",
+          state_treatment_start_date: "<1 month",
+          state_viral_detect: "yes",
+          state_name_mo: "Jerry"
+        })
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.start_flow(
+              "rapidpro-flow-uuid",
+              null,
+              "whatsapp:27123456789",
+              {
+                "on_whatsapp":"true",
+                "consent":"true",
+                "language": "en",
+                "source":"USSD registration",
+                "timestamp":"2014-04-04T07:07:07Z",
+                "registered_by":"+27123456789",
+                "mha":6,
+                "swt":7,
+                "age_group":"<15",
+                "status_known_period":"<3 months",
+                "treatment_adherent": "No",
                 "treatment_initiated":"yes",
                 "treatment_start_period":"<1 month",
                 "viral_load_undetectable":"yes",
