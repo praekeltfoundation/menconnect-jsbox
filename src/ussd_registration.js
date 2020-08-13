@@ -1385,7 +1385,7 @@ go.app = (function() {
     });
 
     self.add('state_treatment_started', function(name){
-      return new MenuState(name, {
+      return new ChoiceState(name, {
         question:get_content(name).context(),
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1.\n" +
@@ -1393,9 +1393,17 @@ go.app = (function() {
         ),
         accept_labels: true,
         choices: [
-          new Choice("state_treatment_start_date", $("Yes")),
-          new Choice("state_viral_detect", $("No"))
-        ]
+          new Choice("Yes", $("Yes")),
+          new Choice("No", $("No"))
+        ],
+        next: function(content) {
+          if (content.value == "Yes") {
+            return "state_treatment_start_date";
+          }
+          else {
+            return "state_viral_detect";
+          }
+        }
       });
     });
 
@@ -1493,7 +1501,7 @@ go.app = (function() {
         swt: self.im.user.get_answer("on_whatsapp") ? 7 : 1,
         age_group: self.im.user.get_answer("state_age_group"),
         status_known_period: self.im.user.get_answer("state_status_known"),
-        treatment_adherent: self.im.user.get_answer("state_still_on_treatment"),
+        treatment_adherent: self.im.user.get_answer("state_still_on_treatment") || "No",
         treatment_initiated: self.im.user.get_answer("state_treatment_started"),
         treatment_start_period: self.im.user.get_answer("state_treatment_start_date"),
         viral_load_undetectable: self.im.user.get_answer("state_viral_detect"),
