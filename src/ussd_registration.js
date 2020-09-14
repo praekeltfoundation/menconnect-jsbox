@@ -30,6 +30,21 @@ go.app = (function() {
         self.im.config.services.whatsapp.base_url,
         self.im.config.services.whatsapp.token
       );
+
+      self.env = self.im.config.env;
+      self.metric_prefix = [self.env, self.im.config.name].join('.');
+            
+      self.im.on('state:enter', function(e) {
+          return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
+      });
+
+      var mh = new MetricsHelper(self.im);
+      mh
+          // Total sum of users for each state for app
+          // <env>.ussd_clinic_rapidpro.sum.unique_users last metric, 
+          // and a <env>.ussd_clinic_rapidpro.sum.unique_users.transient sum metric
+          .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.')) 
+      ;
     };
 
     self.contact_current_channel = function(contact) {
