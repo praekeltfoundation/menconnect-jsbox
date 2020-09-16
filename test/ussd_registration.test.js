@@ -13,6 +13,8 @@ describe("ussd_registration app", function() {
     tester = new AppTester(app);
     tester.setup.config.app({
       testing_today: "2014-04-04T07:07:07",
+      metric_store: 'test_metric_store',
+      env: 'test',
       services: {
         rapidpro: {
           base_url: "https://rapidpro",
@@ -33,6 +35,9 @@ describe("ussd_registration app", function() {
       whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
       change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id",
       send_sms_flow_id: "send-sms-flow-id"
+    })
+    .setup(function(api) {
+      api.metrics.stores = {'test_metric_store': {}};
     });
   });
 
@@ -76,6 +81,10 @@ describe("ussd_registration app", function() {
           );
         })
         .check.user.state("state_registered")
+        .check(function(api) {
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_registered'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
 
@@ -90,6 +99,11 @@ describe("ussd_registration app", function() {
           );
         })
         .check.user.state("state_message_consent")
+        .check(function(api) {
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['test.test_app.sum.unique_users.transient'], {agg: 'sum', values: [1]});
+          assert.deepEqual(metrics['enter.state_message_consent'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -465,17 +479,17 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2020-08-24")
+      .input("2020-10-24")
       .check.user.state("state_clinic_date_display")
       .run();
   });
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2020-08-24")
+      .input("2020-10-24")
       .check.interaction({
         reply:[
-          "You entered 2020-08-24. " +
+          "You entered 2020-10-24. " +
           "I'll send you reminders of your upcoming clinic visits " +
           "so that you don't forget.",
           "1. Confirm",
@@ -1843,6 +1857,11 @@ describe("state_share", function() {
             "You're done! You will get info & tips on 0123456789 to support you on your journey on " +
             "SMS. " +
             "Thanks for signing up to MenConnect!"
+          })
+          .check(function(api) {
+            var metrics = api.metrics.stores.test_metric_store;
+            assert.deepEqual(metrics['enter.state_registration_complete'], {agg: 'sum', values: [1]});
+
           })
           .run()
       );
