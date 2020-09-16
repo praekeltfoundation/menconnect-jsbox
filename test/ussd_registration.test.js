@@ -59,8 +59,6 @@ describe("ussd_registration app", function() {
             "Sorry, something went wrong. We have been notified. Please try again later"
         })
         .check(function(api) {
-          //var metrics = api.metrics.stores.test_metric_store;
-          //assert.deepEqual(metrics['enter.state_start'], {agg: 'sum', values: [1]});
           assert.equal(api.http.requests.length, 3);
           api.http.requests.forEach(function(request) {
             assert.equal(request.url, "https://rapidpro/api/v2/contacts.json");
