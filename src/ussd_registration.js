@@ -10,6 +10,7 @@ go.app = (function() {
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
+  var MetricsHelper = require('go-jsbox-metrics-helper');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
