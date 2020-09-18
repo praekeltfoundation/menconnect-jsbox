@@ -59,6 +59,8 @@ describe("ussd_registration app", function() {
             "Sorry, something went wrong. We have been notified. Please try again later"
         })
         .check(function(api) {
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.__error__'], {agg: 'sum', values: [1]});
           assert.equal(api.http.requests.length, 3);
           api.http.requests.forEach(function(request) {
             assert.equal(request.url, "https://rapidpro/api/v2/contacts.json");
@@ -164,6 +166,10 @@ describe("ussd_registration app", function() {
             "6. Back"
           ].join("\n")
         })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_hiv'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -199,8 +205,7 @@ describe("ussd_registration app", function() {
             "5. What is low viral load?",
             "6. Back"
           ].join("\n")
-        })
-        .run();
+        });
     });
     it("should show what HIV is", function() {
       return tester.setup.user
@@ -228,6 +233,10 @@ describe("ussd_registration app", function() {
             "It attacks your soldiers so you can't fight off common infections.",
             "1. Back"
           ].join("\n")
+        })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_hiv_body'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -326,19 +335,9 @@ describe("ussd_registration app", function() {
             "\n1. Back"
           ].join("\n")
         })
-        .run();
-    });
-    it("should go to the how does it work screen", function() {
-      return tester.setup.user
-        .state("state_treatment")
-        .inputs("2")
-        .check.interaction({
-          state:"state_treatment_frequency",
-          reply: [
-            "Take your meds every day, at the same time " +
-            "as prescribed by your nurse",
-            "\n1. Back"
-          ].join("\n")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_how_treatment_works'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -354,6 +353,10 @@ describe("ussd_registration app", function() {
             "\n1. Back"
           ].join("\n")
         })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_treatment_frequency'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   it("should go to the treatment duration screen", function() {
@@ -367,6 +370,10 @@ describe("ussd_registration app", function() {
           "rest of your life to stay healthy.",
           "\n1. Back"
         ].join("\n")
+      })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_treatment_duration'], {agg: 'sum', values: [1]});
       })
       .run();
   });
@@ -382,6 +389,10 @@ describe("ussd_registration app", function() {
           "\n1. Back"
         ].join("\n")
       })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_treatment_side_effect'], {agg: 'sum', values: [1]});
+      })
       .run();
   });
   it("should go to treatment availability screen", function() {
@@ -396,6 +407,10 @@ describe("ussd_registration app", function() {
           "\n1. Back"
         ].join("\n")
       })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_treatment_availability'], {agg: 'sum', values: [1]});
+      })
       .run();
   });
   it("should go to treatment skip a day screen", function() {
@@ -409,6 +424,10 @@ describe("ussd_registration app", function() {
           "Don't double your dose the next day if you missed a day.",
           "\n1. Back"
         ].join("\n")
+      })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_skip_a_day'], {agg: 'sum', values: [1]});
       })
       .run();
   });
@@ -457,6 +476,10 @@ describe("state_reminders", function() {
           "Reply with the full date in the format YYYY-MM-DD"
         ].join("\n")
       })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_new_clinic_date'], {agg: 'sum', values: [1]});
+      })
       .run();
   });
   /*Validate date format here */
@@ -481,6 +504,10 @@ describe("state_reminders", function() {
       .setup.user.state("state_new_clinic_date")
       .input("2020-10-24")
       .check.user.state("state_clinic_date_display")
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_clinic_date_display'], {agg: 'sum', values: [1]});
+      })
       .run();
   });
   it("should return errors for invalid input", function() {
@@ -522,6 +549,10 @@ describe("state_reminders", function() {
           "1. Back",
           "2. Exit"
         ].join("\n")
+      })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_change_clinic_date_success'], {agg: 'sum', values: [1]});
       })
       .run();
   });
@@ -647,6 +678,8 @@ describe("state_new_name", function () {
           ].join("\n")
         })
         .check(function(api) {
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_change_name_success'], {agg: 'sum', values: [1]});
           assert.equal(api.http.requests.length, 1);
           assert.equal(
             api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
@@ -743,6 +776,10 @@ describe("state_target_msisdn", function(){
       })
       .input("1")
       .check.user.state("state_change_msisdn_success")
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_change_msisdn_success'], {agg: 'sum', values: [1]});
+      })
       .run();
   });
 });
@@ -968,6 +1005,8 @@ describe("state_new_treatment_start_date", function() {
       ].join("\n")
     })
     .check(function(api) {
+      var metrics = api.metrics.stores.test_metric_store;
+      assert.deepEqual(metrics['enter.state_change_treatment_start_date_success'], {agg: 'sum', values: [1]});
       assert.equal(api.http.requests.length, 1);
       assert.equal(
         api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
@@ -1079,6 +1118,10 @@ describe("state_share", function() {
         .setup.user.answer("contact", { fields: { info_consent: "TRUE" } })
         .input({ session_event: "continue" })
         .check.user.state("state_message_consent")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_message_consent'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
 
@@ -1135,6 +1178,10 @@ describe("state_share", function() {
         .state("state_message_consent")
         .input("2")
         .check.user.state("state_message_consent_denied")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_message_consent_denied'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
     it("should go to the age group page", function() {
@@ -1142,6 +1189,10 @@ describe("state_share", function() {
         .state("state_message_consent")
         .input("1")
         .check.user.state("state_age_group")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_age_group'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -1192,6 +1243,10 @@ describe("state_share", function() {
               "If you change your mind and want to receive supportive messages in the future," +
                 " dial *134*406# and I'll sign you up."
           ].join("\n")
+        })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_message_consent_denied'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1261,6 +1316,10 @@ describe("state_share", function() {
         .state("state_age_group")
         .inputs("9")
         .check.user.state("state_status_known")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_status_known'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -1295,6 +1354,10 @@ describe("state_share", function() {
             "1. Yes",
             "2. No"
           ].join("\n")
+        })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_treatment_started'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1345,6 +1408,10 @@ describe("state_share", function() {
           ].join("\n")
         })
         .check.user.answer("state_treatment_started", "Yes")
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_treatment_start_date'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -1398,6 +1465,10 @@ describe("state_share", function() {
             "3. Mostly - sometimes I forget"
           ].join("\n")
         })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_still_on_treatment'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -1443,6 +1514,10 @@ describe("state_share", function() {
             "3. I don't know"
           ].join("\n")
         })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_viral_detect'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
   });
@@ -1486,6 +1561,10 @@ describe("state_share", function() {
             "One final question from me.",
             "\nMy name is Mo. What's your name?"
           ].join("\n")
+        })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_name_mo'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1631,7 +1710,6 @@ describe("state_share", function() {
             )
           );
         })
-        //.setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answer("on_whatsapp", true)
         .input({ session_event: "continue" })
         .check.user.state("state_registration_complete")
@@ -1796,6 +1874,10 @@ describe("state_share", function() {
             "You're done! You will get info & tips on 0123456789 to support you on your journey on " +
             "WhatsApp. " +
             "Thanks for signing up to MenConnect!"
+          })
+          .check(function(api){
+            var metrics = api.metrics.stores.test_metric_store;
+            assert.deepEqual(metrics['enter.state_registration_complete'], {agg: 'sum', values: [1]});
           })
           .run()
       );
