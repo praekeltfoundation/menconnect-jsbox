@@ -5,7 +5,6 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 COPY package.json /app/package.json
 WORKDIR /app
 RUN npm install --production
-RUN npm install --save @google-cloud/bigquery
 
 # Workaround for sandboxed application losing context - manually install the
 # *dependencies* globally.
