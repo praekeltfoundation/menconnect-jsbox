@@ -11,7 +11,7 @@ go.app = (function() {
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
   var MetricsHelper = require('go-jsbox-metrics-helper');
-  var BigQuery = require('@google-cloud/bigquery');
+  var {BigQuery} = require('@google-cloud/bigquery');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
