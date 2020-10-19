@@ -11,7 +11,7 @@ go.app = (function() {
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
   var MetricsHelper = require('go-jsbox-metrics-helper');
-  const {BigQuery} = require('@google-cloud/bigquery');
+  var BigQuery = require('@google-cloud/bigquery');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
@@ -52,12 +52,11 @@ go.app = (function() {
     };
 
     self.write_status_to_bigquery = async function(name, row){
-      const datasetId = 'wassup-165700:menconnet_redis';
-      const tableId = 'wassup-165700:menconnet_redis.status';
-      // const row = [{name: 'Tom', age: 30}, {name: 'Jane', age: 32}];
+      var datasetId = 'wassup-165700:menconnet_redis';
+      var tableId = 'wassup-165700:menconnet_redis.status';
 
       // Create a client
-      const bigqueryClient = new BigQuery(
+      var bigqueryClient = new BigQuery(
           {
               credentials: {
                 client_email: self.im.config.services.bigquery.client_email,
