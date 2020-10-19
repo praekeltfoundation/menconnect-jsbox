@@ -51,7 +51,7 @@ go.app = (function() {
 
     };
 
-    self.write_status_to_bigquery = async function(name, row){
+    self.write_status_to_bigquery = async function f(row){
       var datasetId = 'wassup-165700:menconnet_redis';
       var tableId = 'wassup-165700:menconnet_redis.status';
 
@@ -71,7 +71,7 @@ go.app = (function() {
         .table(tableId)
         .insert(row);
         console.log('Inserted row');
-    }
+    };
 
     self.contact_current_channel = function(contact) {
       // Returns the current channel of the contact
