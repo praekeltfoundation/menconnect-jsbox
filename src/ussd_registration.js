@@ -11,6 +11,7 @@ go.app = (function() {
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
   var MetricsHelper = require('go-jsbox-metrics-helper');
+  const {BigQuery} = require('@google-cloud/bigquery');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
@@ -34,18 +35,43 @@ go.app = (function() {
 
       self.env = self.im.config.env;
       self.metric_prefix = [self.env, self.im.config.name].join('.');
-            
+
       self.im.on('state:enter', function(e) {
+          self.write_status_to_bigquery([{status: e.state.name, amount: 1}]);
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
       });
 
       var mh = new MetricsHelper(self.im);
       mh
           // Total sum of users for each state for app
-          // <env>.ussd_clinic_rapidpro.sum.unique_users last metric, 
+          // <env>.ussd_clinic_rapidpro.sum.unique_users last metric,
           // and a <env>.ussd_clinic_rapidpro.sum.unique_users.transient sum metric
-          .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.')) 
+          .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.'))
       ;
+
+    };
+
+    self.write_status_to_bigquery = async function(row){
+      const datasetId = 'wassup-165700:menconnet_redis';
+      const tableId = 'wassup-165700:menconnet_redis.status';
+      // const row = [{name: 'Tom', age: 30}, {name: 'Jane', age: 32}];
+
+      // Create a client
+      const bigqueryClient = new BigQuery(
+          {
+              credentials: {
+                client_email: self.im.config.services.bigquery.client_email,
+                private_key: self.im.config.services.bigquery.private_key
+              }
+          }
+      );
+
+      // Insert data into a table
+      await bigqueryClient
+        .dataset(datasetId)
+        .table(tableId)
+        .insert(row);
+        console.log(`Inserted row`);
     };
 
     self.contact_current_channel = function(contact) {
