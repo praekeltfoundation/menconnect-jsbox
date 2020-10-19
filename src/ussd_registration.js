@@ -68,7 +68,7 @@ go.app = (function() {
       // Insert data into a table
       bigqueryClient.dataset(datasetId).table(tableId).insert(row);
       console.log('Inserted row');
-    }
+    };
 
     self.contact_current_channel = function(contact) {
       // Returns the current channel of the contact
