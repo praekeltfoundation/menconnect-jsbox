@@ -5,7 +5,7 @@ sandbox_id: sandbox1
 executable: /usr/bin/node
 amqp_prefetch_count: 1
 
-app_context: "{require: function(m) { if (['moment', 'url', 'lodash', 'q', 'jed', 'vumigo_v02', 'go-jsbox-metrics-helper', 'seed-jsbox-utils'].indexOf(m) >= 0) return require(m); return null; }, Buffer: Buffer}"
+app_context: "{require: function(m) { if (['moment', 'url', 'lodash', 'q', 'jed', 'vumigo_v02', 'go-jsbox-metrics-helper', '@google-cloud/bigquery', 'seed-jsbox-utils'].indexOf(m) >= 0) return require(m); return null; }, Buffer: Buffer}"
 
 rlimits:
   RLIMIT_DATA: [67108864, 67108864] # 64 MB
