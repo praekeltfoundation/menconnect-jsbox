@@ -51,7 +51,7 @@ go.app = (function() {
 
     };
 
-    self.write_status_to_bigquery = async function(row){
+    self.write_status_to_bigquery = async function(name, row){
       const datasetId = 'wassup-165700:menconnet_redis';
       const tableId = 'wassup-165700:menconnet_redis.status';
       // const row = [{name: 'Tom', age: 30}, {name: 'Jane', age: 32}];
@@ -71,8 +71,8 @@ go.app = (function() {
         .dataset(datasetId)
         .table(tableId)
         .insert(row);
-        console.log(`Inserted row`);
-    };
+        console.log('Inserted row');
+    }
 
     self.contact_current_channel = function(contact) {
       // Returns the current channel of the contact
