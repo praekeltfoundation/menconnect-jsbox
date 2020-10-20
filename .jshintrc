@@ -10,6 +10,5 @@
   "expr": true,
   "node": true,
   "undef": true,
-  "unused": "vars",
-  "esversion": 6
+  "unused": "vars"
 }
