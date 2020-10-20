@@ -35,7 +35,7 @@ sandbox:
 
 middleware:
   - logging_mw: vumi.middleware.logging.LoggingMiddleware
-  -unidecode_mw: vumi_unidecode_middleware.UnidecodeMiddleware
+  - unidecode_mw: vumi_unidecode_middleware.UnidecodeMiddleware
 
 
 logging_mw:
