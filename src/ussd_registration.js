@@ -37,6 +37,7 @@ go.app = (function() {
       self.metric_prefix = [self.env, self.im.config.name].join('.');
 
       self.im.on('state:enter', function(e) {
+          console.log("About to call write to BQ function");
           self.write_status_to_bigquery([{status: e.state.name, amount: 1}]);
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
       });
