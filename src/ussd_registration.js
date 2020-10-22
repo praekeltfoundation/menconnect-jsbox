@@ -43,15 +43,14 @@ go.app = (function() {
               if (self.im.config.env === "test"){
                 return null;
               }
-              const row = [{status: e.state.name, amount: 1}];
+              const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
               self.im.log("inside BQ");
-              const datasetId = 'wassup-165700:menconnet_redis';
-              const tableId = 'wassup-165700:menconnet_redis.status';
-
+              const datasetId = 'menconnet_redis';
+              const tableId = 'status';
               // Create a client
               const bigqueryClient = new BigQuery(
                   {
-                      project_id: self.im.config.services.bigquery.project_id,
+                      projectId: self.im.config.services.bigquery.project_id,
                       credentials: {
                         client_email: self.im.config.services.bigquery.client_email,
                         private_key: self.im.config.services.bigquery.private_key
