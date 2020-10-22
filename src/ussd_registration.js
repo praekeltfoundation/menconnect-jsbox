@@ -35,28 +35,25 @@ go.app = (function() {
 
       self.env = self.im.config.env;
       self.metric_prefix = [self.env, self.im.config.name].join('.');
+      async function insertRowsAsStream(row) {
+        const bigqueryClient = new BigQuery({
+            projectId: self.im.config.services.bigquery.project_id,
+            credentials: {
+              client_email: self.im.config.services.bigquery.client_email,
+              private_key: self.im.config.services.bigquery.private_key
+            }
+        });
 
-
+        // Insert data into a table
+        await bigqueryClient
+          .dataset("menconnet_redis")
+          .table("status")
+          .insert(row);
+      }
       self.im.on('state:enter', function(e) {
-        if (self.env === "qa"){
-          const row = [{message_id: null, chat_id: null, status: "codie", inserted_at: null, updated_at: null, amount: 1}];
-          const datasetId = "menconnet_redis";
-          const tableId = "status";
-          const bigqueryClient = new BigQuery(
-              {
-                  projectId: self.im.config.services.bigquery.project_id,
-                  credentials: {
-                    client_email: self.im.config.services.bigquery.client_email,
-                    private_key: self.im.config.services.bigquery.private_key
-                  }
-              }
-          );
-          // Insert data into a table
-          return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
-        }
-        else {
-          return null;
-        }
+        const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
+        insertRowsAsStream(row);
+        return "sent to bigquery";
       });
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
