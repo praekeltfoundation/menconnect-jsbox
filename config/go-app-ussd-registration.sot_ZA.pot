@@ -1,0 +1,997 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-10-20 12:10:+0000\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Language-Team: sotho <LL@li.org>\n"
+"Language: zu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+
+#: ./go-app-ussd_registration.js:203 ./go-app-ussd_registration.js:214
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: ./go-app-ussd_registration.js:205 ./go-app-ussd_registration.js:212
+msgid "SMS"
+msgstr "SMS"
+
+#: ./go-app-ussd_registration.js:235
+msgid "Welcome back. Please select an option:"
+msgstr "Rea u amohela hape. Ka kopo khetha khetho:"
+
+#: ./go-app-ussd_registration.js:237
+msgid "Continue signing up for messages"
+msgstr "Tsoela pele ho ingolisa bakeng sa melaetsa"
+
+#: ./go-app-ussd_registration.js:238
+msgid "Lenaneo le ka sehloohong"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:284
+msgid ""
+"One final question from me.\n"
+"\n"
+"My name is Mo. What's your name?"
+msgstr ""
+"Potso e le nngwe ya bofelo ho tswa ho nna.\n"
+"\n"
+"Lebitso la ka ke Mo. Lebitso la hao o mang?"
+
+#: ./go-app-ussd_registration.js:286
+msgid "What's your question?"
+msgstr "Potso ya hao ke efe?"
+
+#: ./go-app-ussd_registration.js:288
+msgid "What do you want to know?"
+msgstr "O batla ho tseba eng?"
+
+#: ./go-app-ussd_registration.js:290
+msgid "What would you like to do?"
+msgstr "O batla ho etsang?"
+
+#: ./go-app-ussd_registration.js:292
+msgid ""
+"When is your next expected clinic date?\n"
+"Reply with the full date in the format YYYY-MM-DD"
+msgstr ""
+"Letsatsi la hao la tleliniki le latelang ke mang?\n"
+"Araba ka letsatsi le feletseng ka sebopeho sa YYYY/MM/DD."
+
+#: ./go-app-ussd_registration.js:295
+msgid ""
+"Doing something every day is a habit.\n"
+"\n"
+"Build a treatment habit:\n"
+"Add it to your daily schedule\n"
+"Tick it off\n"
+"Plan for changes\n"
+"Give yourself time\n"
+msgstr ""
+"Ho etsa ntho kamehla ke tlwaelo.\n"
+"\n"
+"Aha tlwaelo ya kalafo:\n"
+"E eketse tlhophisong ya hao ya kamehla\n"
+"E tshwaye\n"
+"Rerela diphetoho\n"
+"Iphe nako\n"
+
+#: ./go-app-ussd_registration.js:301 ./go-app-ussd_registration.js:389
+msgid "What would you like to view?"
+msgstr "O lakatsa ho shebang?"
+
+#: ./go-app-ussd_registration.js:303
+msgid "What would you like to change?"
+msgstr "O lakatsa ho fetola eng?"
+
+#: ./go-app-ussd_registration.js:305
+msgid "What name would you like me to call you instead?"
+msgstr "O batla hore ke o bitse ka lebitso lefe?"
+
+#: ./go-app-ussd_registration.js:307
+msgid "Choose a question:"
+msgstr "Kgetha potso:"
+
+#: ./go-app-ussd_registration.js:309
+msgid ""
+"Do you want to receive an SMS that you can share with other men living with "
+"HIV?"
+msgstr ""
+"Na o batla ho fumana SMS eo o tla e arolelana le banna ba bang ba nang le HIV?"
+
+#: ./go-app-ussd_registration.js:311
+msgid ""
+"Thank you. You will receive an SMS with info that you can share with other "
+"men living with HIV."
+msgstr ""
+"Ke a leboha. O tla fumana SMS e nang le lesedi leo o ka le arolelanang le banna ba bang ba nang le HIV."
+
+#: ./go-app-ussd_registration.js:313
+msgid "Select a topic:"
+msgstr "Kgetha taba:"
+
+#: ./go-app-ussd_registration.js:315
+msgid ""
+"It was great talking to you. If you ever want to know more about MenConnect "
+"and how to use it, dial *134*406#.\n"
+"\n"
+"Chat soon!\n"
+"Mo\n"
+"MenConnect"
+msgstr ""
+"Ho bile monate ho bua le wena. Haeba o batla ho tseba haholwanyane ka MenConnect "
+"le ho e sebedisa, daela *134*406#.\n"
+"\n"
+"Re tla bua hape!\n"
+"Mo\n"
+"MenConnect"
+
+#: ./go-app-ussd_registration.js:318
+msgid ""
+"It's a virus that enters your body through blood / bodily fluids. \n"
+"It attacks your CD4 cells that protect your body against disease."
+msgstr ""
+"Ke vaerase e kenang mmeleng wa hao ka madi / mekedikedi ya mmele. \n"
+"E hlasela disele tsa hao tsa CD4 tse sireletsang mmele wa hao kgahlanong le mafu."
+
+#: ./go-app-ussd_registration.js:321
+msgid ""
+"What does HIV do to my body?. \n"
+"HIV enters your body & makes more. It attacks your soldiers so you can't "
+"fight off common infections."
+msgstr ""
+"HIV e etsang mmeleng wa ka? \n"
+"HIV e kena mmeleng wa hao le ho ikatisa. E hlasela masole "
+"a hao hore o se kgone ho lwantsha ditshwaetso."
+
+#: ./go-app-ussd_registration.js:325
+msgid ""
+"Is there a cure?\n"
+"There is currently no cure for HIV. But taking ARVs every day can keep you "
+"healthy."
+msgstr ""
+"Na pheko e teng?\n"
+"Ha ho pheko bakeng sa HIV hajwale. Empa ho nwa di-ARV kamehla "
+"ho ka o boloka o phetse."
+
+#: ./go-app-ussd_registration.js:327
+msgid ""
+"What is viral load?\n"
+"Viral load is the amount of virus in your blood. The higher your viral "
+"load, the sicker you may be."
+msgstr ""
+"Loutu ya vaerase ke eng?\n"
+"Loutu ya vaerase ke bongata ba vaerase e mading a hao. Ha loutu ya vaerase ya hao e phahame, "
+"o kula haholo."
+
+#: ./go-app-ussd_registration.js:329
+msgid ""
+"What is low viral load?\n"
+"A low viral load is a result of taking treatment every day.\n"
+"Eventually your viral load will be so low that it's undetectable."
+msgstr ""
+"Loutu ya vaerase e tlase keng?\n"
+"Loutu e tlase ke baka la ho sebedisa kalafo kamehla.\n"
+"Qetellong loutu ya vaerase e tla ba tlase hoo e sa fumaneheng."
+
+#: ./go-app-ussd_registration.js:332
+msgid ""
+"What is your current age?\n"
+"Select your age group:"
+msgstr ""
+"Dilemo tsa hao hajwale ke dife?  \n"
+"Kgetha sehlopha sa dilemo:"
+
+#: ./go-app-ussd_registration.js:334
+msgid "When were you first diagnosed positive?"
+msgstr "O fumane neng ho re o HIV+?"
+
+#: ./go-app-ussd_registration.js:336
+msgid ""
+"MenConnect sends you messages to help with your treatment.\n"
+"It seems like you don't need treatment.If you sent the wrong answer, dial "
+"*134*406# to restart."
+msgstr ""
+"MenConnect eo romela melaetsa e o thusang ka kalafo ya hao.\n"
+"Ho bonahala o sa hloke kalafo. Haeba o romela karabo e fosahetseng, daela "
+"*134*406# ho qala botjha."
+
+#: ./go-app-ussd_registration.js:340
+msgid "Are you or have you been on ARV treatment?"
+msgstr "Na o bile kapa o kalafong ya ARV?"
+
+#: ./go-app-ussd_registration.js:342
+msgid "When did you start taking ARV treatment?"
+msgstr "Waqala nini ukwelashwa ngama-ARV?"
+
+#: ./go-app-ussd_registration.js:344
+msgid "Are you still taking your treatment?"
+msgstr "Na o bile kapa o kalafong ya ARV?"
+
+#: ./go-app-ussd_registration.js:346
+msgid "Is your viral load undetectable?"
+msgstr "Na loutu ya hao ya vaerase ha e fumanehe?"
+
+#: ./go-app-ussd_registration.js:348
+msgid "Please try again. e.g. 1."
+msgstr "Ka kopo leka hape. mohl. 1."
+
+#: ./go-app-ussd_registration.js:350
+msgid ""
+"Taking your meds daily stops HIV from making more in your blood so that "
+"your CD4 cells can get strong again.\n"
+msgstr ""
+"Ho nwa meriana kamehla ho thibela HIV ho ikatisa mading a hao hore disele "
+"tsa hao tsa CD4 di be matla hape.\n"
+
+#: ./go-app-ussd_registration.js:353
+msgid "error"
+msgstr "Phoso"
+
+#: ./go-app-ussd_registration.js:355
+msgid "Take your meds every day, at the same time as prescribed by your nurse\n"
+msgstr "Enwa meriana ya hao kamehla, ka nako e tshwanang, jwalo ka ha o hlaloseditswe ke mooki.\n"
+
+#: ./go-app-ussd_registration.js:358
+msgid ""
+"You need to take your meds every day for the rest of your life to stay "
+"healthy.\n"
+msgstr ""
+"O hloka ho nwa meriana ya hao kamehla bophelo "
+"bohle ba hao ho dula o le matla o phetse hantle.\n"
+
+#: ./go-app-ussd_registration.js:361
+msgid ""
+"Every person feels different after taking meds.If it's making you unwell, "
+"speak to your nurse.\n"
+msgstr ""
+"Motho e mong le e mong o ikutlwa ka tsela e fapaneng kamora meriana. "
+"Ha o sa ikutlwe hantle, bua le mooki.\n"
+
+#: ./go-app-ussd_registration.js:364
+msgid ""
+"It is important that you take the meds that is prescribed to you by a "
+"nurse.\n"
+msgstr ""
+"Ho bohlokwa ho nwa meriana ya hao ka moo "
+"o laetsweng ke mooki.\n"
+
+#: ./go-app-ussd_registration.js:367
+msgid ""
+"You can still take the meds within 6 hrs of usual time. Don't double your "
+"dose the next day if you missed a day.\n"
+msgstr ""
+"O ka sebedisa meriana horeng tse 6 kamora nako ya tlwaelo. "
+"Se ka pheta tekanyetso kamoso haeba o tlotse letsatsi.\n"
+
+#: ./go-app-ussd_registration.js:370
+msgid ""
+"We process your info to help you on your health journey. We collect name, "
+"age, cell number, language, channel, status, clinic dates, & survey answers."
+msgstr ""
+"Re sebetsa lesedi ho o thusa leetong la bophelo. Re bokella lebitso, "
+"dilemo, nomoro ya sele, puo, kanale, boemo, matsatsi a tleliniki, le dipotso."
+
+#: ./go-app-ussd_registration.js:374
+msgid ""
+"We use your personal info to send you messages that are relevant to the "
+"stage of your health journey. Your info helps the team improve the service."
+msgstr ""
+"Re sebedisa lesedi la botho ho o romela melaetsa e lokelang mohato wa leeto la bophelo bo botle. "
+"Lesedi le thusa sehlopha ho ntlafatsa tshebeletso."
+
+#: ./go-app-ussd_registration.js:378
+msgid ""
+"Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, "
+"Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners"
+msgstr ""
+"Lesedi la hao le sireleditswe. Le sebetswa ke MTN, Cell C, Telkom, Vodacom, "
+"Praekelt, Genesis, Jembi, Turn, WhatsApp le balekane"
+
+#: ./go-app-ussd_registration.js:381
+msgid ""
+"We hold your info while you're registered. If you opt-out, we'll use your "
+"info for historical ,research & statistical reasons with your consent."
+msgstr ""
+"Re tshwara lesedi la hao ha o ngodisitswe. Ha o tswa, re tla sebedisa lesedi la hao ka mabaka a nalane, "
+"patlisiso le dipalopalo ka tumello ya hao."
+
+#: ./go-app-ussd_registration.js:395
+msgid "HIV"
+msgstr "HIV"
+
+#: ./go-app-ussd_registration.js:396
+msgid "Treatment"
+msgstr "Kalafo"
+
+#: ./go-app-ussd_registration.js:397
+msgid "Reminders"
+msgstr "Dikgopotso"
+
+#: ./go-app-ussd_registration.js:398
+msgid "Habit Plan"
+msgstr "Morero wa Tlwaelo"
+
+#: ./go-app-ussd_registration.js:399
+msgid "My Profile"
+msgstr "Porofaele Ya Ka"
+
+#: ./go-app-ussd_registration.js:400
+msgid "Processing my info"
+msgstr "Ho lokisa lesedi la ka"
+
+#: ./go-app-ussd_registration.js:401
+msgid "Share"
+msgstr "Ho arolelana"
+
+#: ./go-app-ussd_registration.js:402
+msgid "Resources"
+msgstr "Dirisose"
+
+#: ./go-app-ussd_registration.js:403 ./go-app-ussd_registration.js:590 ./go-app-ussd_registration.js:677 ./go-app-ussd_registration.js:824 ./go-app-ussd_registration.js:855 ./go-app-ussd_registration.js:896 ./go-app-ussd_registration.js:914 ./go-app-ussd_registration.js:976 ./go-app-ussd_registration.js:1041 ./go-app-ussd_registration.js:1116 ./go-app-ussd_registration.js:1189
+msgid "Exit"
+msgstr "Etswa"
+
+#: ./go-app-ussd_registration.js:413
+msgid "What is HIV?"
+msgstr "HIV ke eng?"
+
+#: ./go-app-ussd_registration.js:414
+msgid "What does HIV do to my body?"
+msgstr "HIV e etsang mmeleng?"
+
+#: ./go-app-ussd_registration.js:415
+msgid "Is there a cure?"
+msgstr "Na e na le pheko?"
+
+#: ./go-app-ussd_registration.js:416
+msgid "What is viral load?"
+msgstr "Loutu ya vaerase ke eng?"
+
+#: ./go-app-ussd_registration.js:417
+msgid "What is low viral load?"
+msgstr "Loutu ya vaerase e tlase keng?"
+
+#: ./go-app-ussd_registration.js:418 ./go-app-ussd_registration.js:429 ./go-app-ussd_registration.js:440 ./go-app-ussd_registration.js:490 ./go-app-ussd_registration.js:501 ./go-app-ussd_registration.js:512 ./go-app-ussd_registration.js:523 ./go-app-ussd_registration.js:534 ./go-app-ussd_registration.js:545 ./go-app-ussd_registration.js:556 ./go-app-ussd_registration.js:639 ./go-app-ussd_registration.js:676 ./go-app-ussd_registration.js:704 ./go-app-ussd_registration.js:743 ./go-app-ussd_registration.js:764 ./go-app-ussd_registration.js:786 ./go-app-ussd_registration.js:895 ./go-app-ussd_registration.js:975 ./go-app-ussd_registration.js:1040 ./go-app-ussd_registration.js:1077 ./go-app-ussd_registration.js:1151 ./go-app-ussd_registration.js:1212 ./go-app-ussd_registration.js:1222 ./go-app-ussd_registration.js:1232 ./go-app-ussd_registration.js:1242 ./go-app-ussd_registration.js:1508
+msgid "Back"
+msgstr "Morao"
+
+#: ./go-app-ussd_registration.js:451 ./go-app-ussd_registration.js:462 ./go-app-ussd_registration.js:473
+msgid "Back to HIV questions"
+msgstr "Morao potsong tsa HIV"
+
+#: ./go-app-ussd_registration.js:484
+msgid "How it works?"
+msgstr "E sebetsa jwang?"
+
+#: ./go-app-ussd_registration.js:485
+msgid "When to take it?"
+msgstr "Ke e nwa neng?"
+
+#: ./go-app-ussd_registration.js:486
+msgid "How long to take it?"
+msgstr "Ke e nwa nako e kae?"
+
+#: ./go-app-ussd_registration.js:487
+msgid "Side effects?"
+msgstr "Ditlamorao?"
+
+#: ./go-app-ussd_registration.js:488
+msgid "How do I get it?"
+msgstr "Ke e fumana jwang?"
+
+#: ./go-app-ussd_registration.js:489
+msgid "Can I skip a day?"
+msgstr "Na nka tlola letsatsi?"
+
+#: ./go-app-ussd_registration.js:567
+msgid "Show my next expected clinic date"
+msgstr "Bontsha letsatsi le latelang la tleliniki"
+
+#: ./go-app-ussd_registration.js:568
+msgid "Change my next clinic date"
+msgstr "Fetola letsatsi la tleliniki"
+
+#: ./go-app-ussd_registration.js:569
+msgid "Plan for my clinic visit"
+msgstr "Rerela ketelo ya ka ya tlelliniki"
+
+#: ./go-app-ussd_registration.js:570 ./go-app-ussd_registration.js:589 ./go-app-ussd_registration.js:693 ./go-app-ussd_registration.js:718 ./go-app-ussd_registration.js:913 ./go-app-ussd_registration.js:1254 ./go-app-ussd_registration.js:1300
+msgid "Back to menu"
+msgstr "Morao ho menyu"
+
+#: ./go-app-ussd_registration.js:577
+msgid ""
+"Based on what you told me, I think your next clinic visit is "
+"{{next_clinic_visit}}"
+msgstr ""
+"Ho latela seo o ntjwetsang, ke nahana ketelo e latelang ebe "
+"{{next_clinic_visit}}"
+
+#: ./go-app-ussd_registration.js:581 ./go-app-ussd_registration.js:732 ./go-app-ussd_registration.js:734 ./go-app-ussd_registration.js:735 ./go-app-ussd_registration.js:736
+msgid "None"
+msgstr "Haho lea mong"
+
+#: ./go-app-ussd_registration.js:588
+msgid "Change your next clinic date"
+msgstr "Fetola letsatsi la hau le latelang la tleliniki"
+
+#: ./go-app-ussd_registration.js:606
+msgid "Sorry, I don’t recognise that date. Please try again."
+msgstr "Uxolo, angiluboni lolo suku. Ngicela bohlokoa hape."
+
+#: ./go-app-ussd_registration.js:610
+msgid ""
+"Hmm, that seems a bit far away. You should at least be going to the clinic "
+"every 2 months. Please try again."
+msgstr ""
+"Hmm, hoo ho bonahala ho le hole haholo. U lokela hore bonyane u ee tleleniking "
+"likhoeli tse ling le tse ling tse 2. Ka kopo leka hape."
+
+#: ./go-app-ussd_registration.js:613
+msgid "Oops, that day has already passed. Please try again."
+msgstr "Oops, letsatsi leo le se le fetile. Ka kopo leka hape."
+
+#: ./go-app-ussd_registration.js:632
+msgid ""
+"You entered {{clinic_date}}. I'll send you reminders of your upcoming "
+"clinic visits so that you don't forget."
+msgstr ""
+"U kentse {{clinic_date}}. Ke tla u romella likhopotso tsa se tlang "
+"ho etela tleliniking hore o se lebale."
+
+#: ./go-app-ussd_registration.js:638 ./go-app-ussd_registration.js:1150
+msgid "Confirm"
+msgstr "Netefatsa"
+
+#: ./go-app-ussd_registration.js:671
+msgid "Your next clinic visit has been changed to {{clinic_date}}"
+msgstr "Ketelo ea hau e latelang ea tleliniki e fetotsoe ho {{clinic_date}}"
+
+#: ./go-app-ussd_registration.js:684
+msgid ""
+"Tip 1: Set a reminder in your phone\n"
+"Tip2: Tell someone you're going\n"
+"Tip 3: Plan your trip\n"
+"Tip 4: Prepare questions for your nurse"
+msgstr ""
+"Keletso 1: Seta kgopotso founung\n"
+"Keletso 2: Jwetsa motho ha o tsamaya\n"
+"Keletso 3: Rera leeto la hao\n"
+"Keletso 4: Lokisa dipotso tsa mooki"
+
+#: ./go-app-ussd_registration.js:688
+msgid "TBC"
+msgstr "TBC"
+
+#: ./go-app-ussd_registration.js:715
+msgid "See my info"
+msgstr "Ho sheba lesedi la ka"
+
+#: ./go-app-ussd_registration.js:716
+msgid "Change my info"
+msgstr "Ho fetola lesedi la ka"
+
+#: ./go-app-ussd_registration.js:717
+msgid "Opt-out"
+msgstr "Ho tswa"
+
+#: ./go-app-ussd_registration.js:725
+msgid ""
+"Name: {{name}}\n"
+"Cell number: {{msisdn}}\n"
+"Channel: {{channel}}\n"
+"Age: {{age_group}}\n"
+"Estimated treatment start date: {{treatment_start_period}}"
+msgstr ""
+"Lebitso:: {{name}}\n"
+"Nomoro ya selefounu: {{msisdn}}\n"
+"Kanale: {{channel}}\n"
+"Dilemo: {{age_group}}\n"
+"Letsatsi la qalo ya kalafo: {{treatment_start_period}}"
+
+#: ./go-app-ussd_registration.js:742
+msgid "Change info"
+msgstr "Ho sheba lesedi la ka"
+
+#: ./go-app-ussd_registration.js:755
+msgid "Name"
+msgstr "Lebitso"
+
+#: ./go-app-ussd_registration.js:756
+msgid "Cell number"
+msgstr "Nomoro ya sele"
+
+#: ./go-app-ussd_registration.js:757
+msgid "Age"
+msgstr "Dilemo"
+
+#: ./go-app-ussd_registration.js:759
+msgid "Change from {{current_channel}} to {{alternative_channel}}"
+msgstr "Fetola ho tloha ho {{current_channel}} ho ya ho {{alternative_channel}}"
+
+#: ./go-app-ussd_registration.js:763
+msgid "Treatment start date"
+msgstr "Letsatsi la qalo ya kalafo"
+
+#: ./go-app-ussd_registration.js:781
+msgid "You entered {{name}}"
+msgstr "U kentse {{name}}"
+
+#: ./go-app-ussd_registration.js:785 ./go-app-ussd_registration.js:1076
+msgid "confirm"
+msgstr "Netefatsa"
+
+#: ./go-app-ussd_registration.js:818
+msgid ""
+"Thanks. I'll call you {{name}}\n"
+"\n"
+"What would you like to do next?"
+msgstr ""
+"Ke a leboha! Ke tla o bitsa {{name}}\n"
+"\n"
+"O batla o etsang hape?"
+
+#: ./go-app-ussd_registration.js:823 ./go-app-ussd_registration.js:854 ./go-app-ussd_registration.js:1115 ./go-app-ussd_registration.js:1188
+msgid "Back to main menu"
+msgstr "Buyela kumenyu enkulu"
+
+#: ./go-app-ussd_registration.js:832
+msgid ""
+"Are you sure you want to get your MenConnect messages on "
+"{{alternative_channel}}?"
+msgstr ""
+"Na o batla ho fumana melaetsa ya MenConnect ho "
+"{{alternative_channel}}?"
+
+#: ./go-app-ussd_registration.js:838 ./go-app-ussd_registration.js:994 ./go-app-ussd_registration.js:1253 ./go-app-ussd_registration.js:1417 ./go-app-ussd_registration.js:1443 ./go-app-ussd_registration.js:1561 ./go-app-ussd_registration.js:1603 ./go-app-ussd_registration.js:1620
+msgid "Yes"
+msgstr "Yes"
+
+#: ./go-app-ussd_registration.js:839 ./go-app-ussd_registration.js:1418 ./go-app-ussd_registration.js:1444 ./go-app-ussd_registration.js:1562 ./go-app-ussd_registration.js:1604 ./go-app-ussd_registration.js:1621
+msgid "No"
+msgstr "No"
+
+#: ./go-app-ussd_registration.js:841 ./go-app-ussd_registration.js:898 ./go-app-ussd_registration.js:978 ./go-app-ussd_registration.js:1035
+msgid ""
+"Sorry we don't recognise that reply. Please enter the number next to your "
+"answer."
+msgstr ""
+"Re maswabi ha re tsebe karabo eo. Ka kopo kenya "
+"nomoro pela karabo ea hau."
+
+#: ./go-app-ussd_registration.js:849
+msgid ""
+"You'll keep getting your messages on {{channel}}. If you change your mind, "
+"dial *134*406#. What would you like to do?"
+msgstr ""
+"U tla lula u romella melaetsa ea hau {{channel}}. Haeba o fetola mohopolo, "
+"letsetsa * 134 * 406 #. O ka rata ho etsa eng?"
+
+#: ./go-app-ussd_registration.js:888
+msgid ""
+"Okay. I'll send you MenConnect messages on {{channel}}.To move back to "
+"WhatsApp, reply *WA* or dial *134*406#."
+msgstr ""
+"Ke tla o romela melaetsa ya MenConnect ho {{channel}} ho tloha jwale. "
+"Ho ya morao ho SMS, araba SMS kapa eya ho MENYU ho fetola dintlha tsa hao."
+
+#: ./go-app-ussd_registration.js:908
+msgid ""
+"Thanks, I'll call you {{preferred_name}}\n"
+"\n"
+"What do you want to do next?"
+msgstr ""
+"Ke a leboha! Ke tla o bitsa {{preferred_name}}\n"
+"\n"
+"O batla o etsang hape?"
+
+#: ./go-app-ussd_registration.js:921
+msgid ""
+"Please reply with the *new cell number* you would like to get your "
+"MenConnect messages on, e.g 0813547654"
+msgstr ""
+"Ka kopo araba ka nomoro ya sele e ntjha eo o batlang ho fumana melaetsa ya hao ya MenConnect "
+"ho yona, j.k. 0813547654."
+
+#: ./go-app-ussd_registration.js:970
+msgid ""
+"Sorry, the cell number you entered already gets MC msgs. To manage it, dial "
+"*134*406# from that number. What would you like to do?"
+msgstr ""
+"Ke maswabi, nomoro ya sele eo o e kentseng e se ntse e le teng e fumana melaetsa ya MenConnect. "
+"Ho e laola, sheba MENYU ho tswa nomorong eo."
+
+#: ./go-app-ussd_registration.js:988
+msgid ""
+"You have entered {{msisdn}}as your new MenConnect number.\n"
+"\n"
+"Is this correct?"
+msgstr ""
+"O kentse {{msisdn}} e le nomoro ya hao e ntjha ya MenConnect.\n"
+"\n"
+"Na e nepahetse?"
+
+#: ./go-app-ussd_registration.js:995
+msgid "No, try again"
+msgstr "Che, leka hape"
+
+#: ./go-app-ussd_registration.js:1031
+msgid ""
+"Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \n"
+"What would you like to do?"
+msgstr ""
+"Ke a leboha! Re romela molaetsa ho +27 00 000 0000. Latela ditaelo ho fetola nomoro. \n"
+"Ho tswela pele ho fumana melaetsa nomorong ya kgale, iphapanyetse molaetsa"
+
+#: ./go-app-ussd_registration.js:1048
+msgid ""
+"How old are you?\n"
+"Select your age group:"
+msgstr ""
+"O dilemo di kae?\n"
+"Kgetha sehlopha sa dilemo tsa hao:"
+
+#: ./go-app-ussd_registration.js:1050
+msgid "Sorry, please reply with the number that matches your answer, e.g. 1."
+msgstr "Ka kopo leka hape. mohl. 1."
+
+#: ./go-app-ussd_registration.js:1055 ./go-app-ussd_registration.js:1477
+msgid "<15"
+msgstr "<15"
+
+#: ./go-app-ussd_registration.js:1056 ./go-app-ussd_registration.js:1478
+msgid "15-19"
+msgstr "15-19"
+
+#: ./go-app-ussd_registration.js:1057 ./go-app-ussd_registration.js:1479
+msgid "20-24"
+msgstr "20-24"
+
+#: ./go-app-ussd_registration.js:1058 ./go-app-ussd_registration.js:1480
+msgid "25-29"
+msgstr "25-29"
+
+#: ./go-app-ussd_registration.js:1059 ./go-app-ussd_registration.js:1481
+msgid "30-34"
+msgstr "30-34"
+
+#: ./go-app-ussd_registration.js:1060 ./go-app-ussd_registration.js:1482
+msgid "35-39"
+msgstr "35-39"
+
+#: ./go-app-ussd_registration.js:1061 ./go-app-ussd_registration.js:1483
+msgid "40-44"
+msgstr "40-44"
+
+#: ./go-app-ussd_registration.js:1062 ./go-app-ussd_registration.js:1484
+msgid "45-49"
+msgstr "45-49"
+
+#: ./go-app-ussd_registration.js:1063 ./go-app-ussd_registration.js:1485
+msgid "50+"
+msgstr "50+"
+
+#: ./go-app-ussd_registration.js:1072
+msgid "Your age group will be updated to {{age}}"
+msgstr "Lilemo tsa hau li tla ntlafatsoa ho {{age}}"
+
+#: ./go-app-ussd_registration.js:1073
+msgid "Please select 1 or 2"
+msgstr "Ka kopo khetha 1 kapa 2"
+
+#: ./go-app-ussd_registration.js:1110
+msgid "Thank you. Your age has been changed to {{age_group}}\n"
+msgstr "Kea leboha. Lilemo tsa hau li fetotsoe ho {{age_group}}\n"
+
+#: ./go-app-ussd_registration.js:1123
+msgid "When did you start taking ARV treatment? Choose the closest option.\n"
+msgstr "O qadile ho nwa kalafo ya di-ARV neng? Khetha khetho e haufi.\n"
+
+#: ./go-app-ussd_registration.js:1125
+msgid "Please reply with number closest to when you started treatment:"
+msgstr "Ka kopo araba ka nomoro e haufi haholo ha o qala kalafo:"
+
+#: ./go-app-ussd_registration.js:1130 ./go-app-ussd_registration.js:1583
+msgid "today"
+msgstr "Kajeno"
+
+#: ./go-app-ussd_registration.js:1131 ./go-app-ussd_registration.js:1584
+msgid "<1 week"
+msgstr "<Beke e 1"
+
+#: ./go-app-ussd_registration.js:1132 ./go-app-ussd_registration.js:1500 ./go-app-ussd_registration.js:1585
+msgid "<1 month"
+msgstr "<Kgwedi e 1"
+
+#: ./go-app-ussd_registration.js:1133 ./go-app-ussd_registration.js:1501 ./go-app-ussd_registration.js:1586
+msgid "<3 months"
+msgstr "<Kgwedi tse 3"
+
+#: ./go-app-ussd_registration.js:1134 ./go-app-ussd_registration.js:1502 ./go-app-ussd_registration.js:1587
+msgid "3-6 months"
+msgstr "Kgwedi tse 3-6"
+
+#: ./go-app-ussd_registration.js:1135 ./go-app-ussd_registration.js:1503 ./go-app-ussd_registration.js:1588
+msgid "6-12 months"
+msgstr "Kgwedi tse 6-12"
+
+#: ./go-app-ussd_registration.js:1136 ./go-app-ussd_registration.js:1589
+msgid ">1 year"
+msgstr ">Selemo se 1"
+
+#: ./go-app-ussd_registration.js:1145
+msgid "Your new treatment start date will be updated to {{treatment_start_date}}"
+msgstr "Letsatsi la hau le lecha la ho qala kalafo le tla ntlafatsoa ho {{treatment_start_date}}"
+
+#: ./go-app-ussd_registration.js:1183
+msgid ""
+"Thank you. Your treatment start date has been changed to "
+"{{treatment_start_period}}"
+msgstr ""
+"Kea leboha. Letsatsi la hau la ho qala kalafo le fetotsoe ho "
+"{{treatment_start_period}}"
+
+#: ./go-app-ussd_registration.js:1199
+msgid "What info does MenConnect collect?"
+msgstr "MenConnect e boloka sedi lefe?"
+
+#: ./go-app-ussd_registration.js:1200
+msgid "Why does MenConnect need my info?"
+msgstr "Hobaneng MenConnect e hloka sedi?"
+
+#: ./go-app-ussd_registration.js:1201
+msgid "Who can see my info?"
+msgstr "Ke mang ya bonang sedi laka?"
+
+#: ./go-app-ussd_registration.js:1202
+msgid "How long is my info kept?"
+msgstr "Sedi le bolokwa nako e kae?"
+
+#: ./go-app-ussd_registration.js:1283
+msgid "Back to Menu"
+msgstr "Morao ho menyu"
+
+#: ./go-app-ussd_registration.js:1293
+msgid "Depression"
+msgstr "Tetebelo maikutlong"
+
+#: ./go-app-ussd_registration.js:1294
+msgid "Mental health"
+msgstr "Kelello"
+
+#: ./go-app-ussd_registration.js:1295
+msgid "Suicide"
+msgstr "Ho ipolaya"
+
+#: ./go-app-ussd_registration.js:1296
+msgid "Gender based violence"
+msgstr "Dikgoka tsa bong"
+
+#: ./go-app-ussd_registration.js:1297
+msgid "Substance abuse"
+msgstr "Tshebediso-dithethefatsi "
+
+#: ./go-app-ussd_registration.js:1298
+msgid "Aids helpline"
+msgstr "Mohala wa AIDS"
+
+#: ./go-app-ussd_registration.js:1299
+msgid "COVID-19"
+msgstr "COVID-19"
+
+#: ./go-app-ussd_registration.js:1307
+msgid ""
+"Adcock Ingram Depression and Anxiety Helpline can help you if you are "
+"feeling depressed. Call 0800 7080 90"
+msgstr ""
+"Mohala wa Adcock Ingram wa Tetebelo Maikutlong le Tshabo o ka o thusa haeba "
+"o ikutlwa o tetebetse maikutlo. "
+
+#: ./go-app-ussd_registration.js:1312 ./go-app-ussd_registration.js:1324 ./go-app-ussd_registration.js:1336 ./go-app-ussd_registration.js:1348 ./go-app-ussd_registration.js:1360 ./go-app-ussd_registration.js:1372 ./go-app-ussd_registration.js:1384
+msgid "Back to resources"
+msgstr "Morao ho dirisose"
+
+#: ./go-app-ussd_registration.js:1319
+msgid ""
+"The South African Depression and Anxiety group can support you when you're "
+"feeling low. Dial 0800 4567 789 for their 24 hour helpline."
+msgstr ""
+"Sehlopha sa South African Depression and Anxiety se o tshehetsa ha o wele moya. "
+"Daela 0800 4567 789 bakeng sa mohala wa bona dihora tse 24."
+
+#: ./go-app-ussd_registration.js:1331
+msgid ""
+"The South African Depression and Anxiety group can support you whenyou're "
+"feeling low. Dial 0800 4567 789 for their emergency suicide helpline."
+msgstr ""
+"Sehlopha sa South African Depression and Anxiety se o tshehetsa ha o wele moya. "
+"Daela 0800 4567 789 bakeng sa mohala wa thuso wa ho se ipolaye."
+
+#: ./go-app-ussd_registration.js:1343
+msgid ""
+"Anonymous & confidential info, counselling and referrals to "
+"survivors,witnesses and perpetrators of gender-based violence. Dial 0800 "
+"150 150."
+msgstr ""
+"Lesedi le sa faneng mabitso la sephiri, dikeletso le diphetiso ho diphofu, "
+"dipaki le bahlohleletsi ba dikgoka tsa bong. Daela 0800 150 150."
+
+#: ./go-app-ussd_registration.js:1355
+msgid ""
+"The Substance Abuse Line offers support & guidance for people addicted to "
+"drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"
+msgstr ""
+"Mohala wa Tshebediso-Mpe ya Dithethefatsi o tshehetsa le ho tataisa makgoba a tahi le dithethefatsi "
+"le malapa. Daela 0800 12 13 14 kapa SMS ho 32312"
+
+#: ./go-app-ussd_registration.js:1367
+msgid ""
+"The National HIV and AIDs Helpline is a toll free number that you can call "
+"for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."
+msgstr ""
+"Mohala wa National HIV and AIDS o letsetswa mahala ho fumana dikeletso tsa sephiri ntle "
+"le mabitso. Letsetsa 0800 012 322 o thuswe dihora tse 24."
+
+#: ./go-app-ussd_registration.js:1379
+msgid ""
+"For correct & up to date info on COVID-19, save the number +2760 0123 456 "
+"and send 'hi' or call the national COVID-19 hotline on 0800 029 999."
+msgstr ""
+"Bakeng sa lesedi le kgemang le dinako ka COVID-19, boloka nomoro ya +2760 0123 456 "
+"mme o romele 'hi' kapa letsetsa mohala wa naha wa COVID-19 ho 0800 029 999"
+
+#: ./go-app-ussd_registration.js:1409
+msgid ""
+"MenConnect needs to process your personal info to send you relevant "
+"messages. Do you agree?"
+msgstr ""
+"Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho lwezempilo. "
+"Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+
+#: ./go-app-ussd_registration.js:1412
+msgid "Sorry, please reply with the number next to your answer. Do you agree?"
+msgstr "Uxolo, ngicela uphendule ngenombolo eseduze kwempendulo yakho. Ingabe uyavuma?"
+
+#: ./go-app-ussd_registration.js:1433
+msgid ""
+"MenConnect supports men on their journey. I'll send you messages with info "
+"& tips.Do you agree to receive?"
+msgstr ""
+"MenConnect supports men on their journey. I'll send you messages with info "
+"& tips.Do you agree to receive?"
+
+#: ./go-app-ussd_registration.js:1437
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"\n"
+"Do you agree to receive messages?"
+msgstr ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"\n"
+"Do you agree to receive messages?"
+
+#: ./go-app-ussd_registration.js:1452
+msgid ""
+"No problem! If you change your mind and want to receive supportive messages "
+"in the future, dial *134*406# and I'll sign you up."
+msgstr ""
+"No problem! If you change your mind and want to receive supportive messages "
+"in the future, dial *134*406# and I'll sign you up."
+
+#: ./go-app-ussd_registration.js:1462
+msgid ""
+"Please reply with the number that matches your answer.\n"
+"\n"
+"Select your age group:"
+msgstr ""
+"Phendula ngenombolo ehambisana nempendulo yakho.\n"
+"\n"
+"Kgetha sehlopha sa dilemo tsa hao:"
+
+#: ./go-app-ussd_registration.js:1494
+msgid "Please reply with the number that matches your answer, eg .1."
+msgstr "Ka kopo araba ka nomoro e lumellanang le karabo ea hau, mohlala .1."
+
+#: ./go-app-ussd_registration.js:1498
+msgid "Today"
+msgstr "Kajeno"
+
+#: ./go-app-ussd_registration.js:1499
+msgid "Last week"
+msgstr "Beke e fetileng"
+
+#: ./go-app-ussd_registration.js:1504
+msgid "> 1 year"
+msgstr "> Selemo se 1"
+
+#: ./go-app-ussd_registration.js:1505
+msgid "not positive"
+msgstr "Ha ho HIV"
+
+#: ./go-app-ussd_registration.js:1506
+msgid "not sure"
+msgstr "Haho bonnete"
+
+#: ./go-app-ussd_registration.js:1509
+msgid "Next"
+msgstr "E 'ngoe"
+
+#: ./go-app-ussd_registration.js:1534
+msgid ""
+"Thank you for considering MenConnect. We respect your decision. Have a "
+"lovely day."
+msgstr ""
+"Thank you for considering MenConnect. We respect your decision. Have a "
+"lovely day."
+
+#: ./go-app-ussd_registration.js:1555
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"Are you or have you been on ARV treatment?"
+msgstr ""
+"Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1.\n"
+"Na o bile kapa o kalafong ya ARV?"
+
+#: ./go-app-ussd_registration.js:1578
+msgid "Please reply with number closest to when you started treatment: "
+msgstr "Araba ka nomoro e haufiufi le qalo ya kalafo ya hao:"
+
+#: ./go-app-ussd_registration.js:1598
+msgid "Please try again. Reply with the number that matches your answer, e.g. 1."
+msgstr "Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1."
+
+#: ./go-app-ussd_registration.js:1605
+msgid "Mostly - sometimes I forget"
+msgstr "Boholo – nako e nngwe ke a lebala"
+
+#: ./go-app-ussd_registration.js:1614
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"Is your viral load undetectable?"
+msgstr ""
+"Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1.\n"
+"Na loutu ya hao ya vaerase ha e fumanehe?"
+
+#: ./go-app-ussd_registration.js:1622
+msgid "I don't know"
+msgstr "Ha ke tsebe"
+
+#: ./go-app-ussd_registration.js:1704
+msgid ""
+"You're done! You will get info & tips on {{msisdn}} to support you on your "
+"journey on {{channel}}. Thanks for signing up to MenConnect!"
+msgstr ""
+"O qetile! O tla fumana lesedi le dikeletso ho o tshehetsa leetong la hao ka "
+"{{channel}}. Ke o leboha ha o saenetse ho kenela MenConnect!"
+
+#: ./go-app-ussd_registration.js:1716
+msgid "Sorry, something went wrong. We have been notified. Please try again later"
+msgstr "Tsoarelo, ho bile le phoso. Re tsebisitsoe. Ka kopo leka hape hamorao"
+
+#: ./go-app-ussd_registration.js:1717
+msgid "What language would you like to receive messages in?"
+msgstr "What language would you like to receive messages in?"
+
+#: ./go-app-ussd_registration.js:1718
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1\n"
+"\n"
+"What language would you like to receive messages in?"
+msgstr ""
+"Please try again. Reply with the number that matches your answer, e.g. 1\n"
+"\n"
+"What language would you like to receive messages in?"
+
+#: ./go-app-ussd_registration.js:1719
+msgid "English"
+msgstr "English"
+
+#: ./go-app-ussd_registration.js:1720
+msgid "Zulu"
+msgstr "Zulu"
+
+#: ./go-app-ussd_registration.js:1721
+msgid "Sesotho"
+msgstr "Sesotho"

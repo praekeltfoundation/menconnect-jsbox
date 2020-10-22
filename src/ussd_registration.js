@@ -179,6 +179,8 @@ go.app = (function() {
         case "state_low_viral_load":
           return $("What is low viral load?\nA low viral load is a result of taking treatment every day.\n" +
                   "Eventually your viral load will be so low that it's undetectable.");
+        case "state_language":
+          return $("What language would you like to receive messages in?");
         case "state_age_group":
           return $("What is your current age?\nSelect your age group:");
         case "state_status_known":
@@ -1291,9 +1293,29 @@ go.app = (function() {
         ),
         accept_labels: true,
         choices: [
-          new Choice("state_age_group", $("Yes")),
+          new Choice("state_language", $("Yes")),
           new Choice("state_message_consent_denied", $("No"))
         ]
+      });
+    });
+
+    self.add("state_language", function(name) {
+      return new ChoiceState(name, {
+        question:get_content(name).context(),
+        error: $(
+          "Please try again. Reply with the number that matches your answer, e.g. 1" +
+            "\n\nWhat language would you like to receive messages in?",
+            "1. English", 
+            "2. Zulu",
+            "3. Sesotho"
+        ),
+        accept_labels: true,
+        choices: [
+          new Choice("eng", $("English")),
+          new Choice("zul", $("Zulu")),
+          new Choice("sot", $("Sesotho"))
+        ],
+        next: 'state_age_group'
       });
     });
 
@@ -1509,7 +1531,7 @@ go.app = (function() {
         var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
         consent: self.im.user.get_answer("state_message_consent") === "yes" ? "true" : "false",
-        language: "en",
+        language: self.im.user.get_answer("state_language"),
         source: "USSD registration",
         timestamp: new moment.utc(self.im.config.testing_today).format(),
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),

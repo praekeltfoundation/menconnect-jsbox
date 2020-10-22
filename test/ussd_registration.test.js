@@ -1184,14 +1184,14 @@ describe("state_share", function() {
         })
         .run();
     });
-    it("should go to the age group page", function() {
+    it("should go to the language page", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("1")
-        .check.user.state("state_age_group")
+        .check.user.state("state_language")
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_age_group'], {agg: 'sum', values: [1]});
+          assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1210,24 +1210,17 @@ describe("state_share", function() {
         })
         .run();
     });
-    it("should show the age category screen", function() {
+    it("should show the language screen", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("1")
         .check.interaction({
-          state: "state_age_group",
+          state: "state_language",
             reply: [
-              "What is your current age?",
-              "Select your age group:",
-              "1. <15",
-              "2. 15-19",
-              "3. 20-24",
-              "4. 25-29",
-              "5. 30-34",
-              "6. 35-39",
-              "7. 40-44",
-              "8. 45-49",
-              "9. 50+"
+              "What language would you like to receive messages in?",
+              "1. English",
+              "2. Zulu",
+              "3. Sesotho"
           ].join("\n")
         })
         .run();
@@ -1676,6 +1669,7 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
+          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
@@ -1693,7 +1687,7 @@ describe("state_share", function() {
               {
                 "on_whatsapp":"true",
                 "consent":"true",
-                "language": "en",
+                "language": "eng",
                 "source":"USSD registration",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
@@ -1720,6 +1714,7 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
+          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_treatment_started: "yes",
@@ -1736,7 +1731,7 @@ describe("state_share", function() {
               {
                 "on_whatsapp":"true",
                 "consent":"true",
-                "language": "en",
+                "language": "eng",
                 "source":"USSD registration",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
@@ -1764,6 +1759,7 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
+          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
@@ -1781,7 +1777,7 @@ describe("state_share", function() {
               {
                 "on_whatsapp":"false",
                 "consent":"true",
-                language: "en",
+                "language": "eng",
                 "source":"USSD registration",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
@@ -1823,6 +1819,7 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
+          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
@@ -1846,7 +1843,7 @@ describe("state_share", function() {
                 {
                   "on_whatsapp":"true",
                   "consent":"true",
-                  language: "en",
+                  "language": "eng",
                   "source":"USSD registration",
                   "timestamp":"2014-04-04T07:07:07Z",
                   "registered_by":"+27123456789",
@@ -1888,6 +1885,7 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
+          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
@@ -1912,7 +1910,7 @@ describe("state_share", function() {
                 {
                   "on_whatsapp":"false",
                   "consent":"true",
-                  language: "en",
+                  "language": "eng",
                   "source":"USSD registration",
                   "timestamp":"2014-04-04T07:07:07Z",
                   "registered_by":"+27123456789",
