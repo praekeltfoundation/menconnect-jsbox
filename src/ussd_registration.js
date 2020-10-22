@@ -40,6 +40,9 @@ go.app = (function() {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1)
           .then(
             function(){
+              if (self.im.config.env === "test"){
+                return null;
+              }
               const row = [{status: e.state.name, amount: 1}];
               self.im.log("inside BQ");
               const datasetId = 'wassup-165700:menconnet_redis';
@@ -57,7 +60,7 @@ go.app = (function() {
               self.im.log("Created BQ client and about to write");
               // Insert data into a table
               return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
-            };
+            }
           );
       });
 

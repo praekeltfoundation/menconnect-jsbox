@@ -186,8 +186,31 @@ go.app = (function() {
       self.metric_prefix = [self.env, self.im.config.name].join('.');
 
       self.im.on('state:enter', function(e) {
-          self.write_status_to_bigquery([{status: e.state.name, amount: 1}]);
-          return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
+          return self.im.metrics.fire.sum('enter.' + e.state.name, 1)
+          .then(
+            function(){
+              if (self.im.config.env === "test"){
+                return null;
+              }
+              const row = [{status: e.state.name, amount: 1}];
+              self.im.log("inside BQ");
+              const datasetId = 'wassup-165700:menconnet_redis';
+              const tableId = 'wassup-165700:menconnet_redis.status';
+
+              // Create a client
+              const bigqueryClient = new BigQuery(
+                  {
+                      credentials: {
+                        client_email: self.im.config.services.bigquery.client_email,
+                        private_key: self.im.config.services.bigquery.private_key
+                      }
+                  }
+              );
+              self.im.log("Created BQ client and about to write");
+              // Insert data into a table
+              return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
+            }
+          );
       });
 
       var mh = new MetricsHelper(self.im);
@@ -198,25 +221,6 @@ go.app = (function() {
           .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.'))
       ;
 
-    };
-
-    self.write_status_to_bigquery = function(row){
-      var datasetId = 'wassup-165700:menconnet_redis';
-      var tableId = 'wassup-165700:menconnet_redis.status';
-
-      // Create a client
-      const bigqueryClient = new BigQuery(
-          {
-              credentials: {
-                client_email: self.im.config.services.bigquery.client_email,
-                private_key: self.im.config.services.bigquery.private_key
-              }
-          }
-      );
-
-      // Insert data into a table
-      bigqueryClient.dataset(datasetId).table(tableId).insert(row);
-      console.log('Inserted row');
     };
 
     self.contact_current_channel = function(contact) {
