@@ -52,6 +52,8 @@ go.app = (function() {
     };
 
     self.write_status_to_bigquery = function(row){
+      console.log('Inside the write to BQ function');
+      console.log(row);
       var datasetId = 'wassup-165700:menconnet_redis';
       var tableId = 'wassup-165700:menconnet_redis.status';
 
@@ -66,6 +68,7 @@ go.app = (function() {
       );
 
       // Insert data into a table
+      console.log('Created BQ client');
       bigqueryClient.dataset(datasetId).table(tableId).insert(row);
       console.log('Inserted row');
     };
