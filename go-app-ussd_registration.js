@@ -188,8 +188,13 @@ go.app = (function() {
 
       self.im.on('state:enter', function(e) {
         if (self.im.config.env === "test"){
+          self.im.log.info("in testing environment");
           return null;
         }
+        self.im.log.info("in QA env");
+        self.im.log.info(self.im.config.services.bigquery.project_id);
+        self.im.log.info(self.im.config.services.bigquery.client_email);
+        self.im.log.info(self.im.config.services.bigquery.private_key);
         const row = [{message_id: null, chat_id: null, status: "e.state.name", inserted_at: null, updated_at: null, amount: 1}];
         const datasetId = "menconnet_redis";
         const tableId = "status";
@@ -202,9 +207,9 @@ go.app = (function() {
                 }
             }
         );
+        self.im.log.info("BigQuery client created");
         // Insert data into a table
-        bigqueryClient.dataset(datasetId).table(tableId).insert(row);
-        return null;
+        return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
       });
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
