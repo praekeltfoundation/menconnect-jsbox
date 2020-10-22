@@ -160,6 +160,7 @@ go.app = (function() {
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
   var MetricsHelper = require('go-jsbox-metrics-helper');
+  const {BigQuery} = require('@google-cloud/bigquery');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
@@ -189,7 +190,6 @@ go.app = (function() {
         if (self.im.config.env === "test"){
           return null;
         }
-        const {BigQuery} = require('@google-cloud/bigquery');
         const row = [{message_id: null, chat_id: null, status: "e.state.name", inserted_at: null, updated_at: null, amount: 1}];
         const datasetId = "menconnet_redis";
         const tableId = "status";
@@ -203,7 +203,8 @@ go.app = (function() {
             }
         );
         // Insert data into a table
-        return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
+        bigqueryClient.dataset(datasetId).table(tableId).insert(row);
+        return null;
       });
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);

@@ -55,7 +55,7 @@ go.app = (function() {
         );
         // Insert data into a table
         bigqueryClient.dataset(datasetId).table(tableId).insert(row);
-        return null
+        return null;
       });
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
