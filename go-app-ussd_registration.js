@@ -192,9 +192,9 @@ go.app = (function() {
           return null;
         }
         self.im.log.info("in QA env");
-        self.im.error.info(self.im.config.services.bigquery.project_id);
-        self.im.error.info(self.im.config.services.bigquery.client_email);
-        self.im.error.info(self.im.config.services.bigquery.private_key);
+        self.im.log.error(self.im.config.services.bigquery.project_id);
+        self.im.log.error(self.im.config.services.bigquery.client_email);
+        self.im.log.error(self.im.config.services.bigquery.private_key);
         const row = [{message_id: null, chat_id: null, status: "e.state.name", inserted_at: null, updated_at: null, amount: 1}];
         const datasetId = "menconnet_redis";
         const tableId = "status";
