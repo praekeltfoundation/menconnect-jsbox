@@ -39,7 +39,7 @@ go.app = (function() {
 
       self.im.on('state:enter', function(e) {
         if (self.env === "qa"){
-          const row = [{message_id: null, chat_id: null, status: "e.state.name", inserted_at: null, updated_at: null, amount: 1}];
+          const row = [{message_id: null, chat_id: null, status: "codie", inserted_at: null, updated_at: null, amount: 1}];
           const datasetId = "menconnet_redis";
           const tableId = "status";
           const bigqueryClient = new BigQuery(
@@ -54,7 +54,9 @@ go.app = (function() {
           // Insert data into a table
           return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
         }
-        return null;
+        else {
+          return null;
+        }
       });
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
