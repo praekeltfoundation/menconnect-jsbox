@@ -1,4 +1,4 @@
-FROM praekeltfoundation/vxsandbox:node_4.x
+FROM praekeltfoundation/vxsandbox:node_12.x
 MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 
 # Install nodejs dependencies
