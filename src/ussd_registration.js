@@ -51,6 +51,7 @@ go.app = (function() {
               // Create a client
               const bigqueryClient = new BigQuery(
                   {
+                      project_id: self.im.config.services.bigquery.project_id,
                       credentials: {
                         client_email: self.im.config.services.bigquery.client_email,
                         private_key: self.im.config.services.bigquery.private_key
