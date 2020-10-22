@@ -41,7 +41,7 @@ go.app = (function() {
           return null;
         }
         const {BigQuery} = require('@google-cloud/bigquery');
-        const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
+        const row = [{message_id: null, chat_id: null, status: "e.state.name", inserted_at: null, updated_at: null, amount: 1}];
         const datasetId = 'menconnet_redis';
         const tableId = 'status';
         // Create a client
