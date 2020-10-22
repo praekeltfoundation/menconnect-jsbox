@@ -23,6 +23,10 @@ describe("ussd_registration app", function() {
         whatsapp: {
           base_url: "https://whatsapp.example.org",
           token: "api-token"
+        },
+        bigquery: {
+          client_email: 'test@example.org',
+          private_key: 'ohsoprivatekey'
         }
       },
       registration_group_ids: ["id-1"],
