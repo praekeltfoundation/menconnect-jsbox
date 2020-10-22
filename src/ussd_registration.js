@@ -36,32 +36,31 @@ go.app = (function() {
       self.env = self.im.config.env;
       self.metric_prefix = [self.env, self.im.config.name].join('.');
 
+
       self.im.on('state:enter', function(e) {
-          return self.im.metrics.fire.sum('enter.' + e.state.name, 1)
-          .then(
-            function(){
-              if (self.im.config.env === "test"){
-                return null;
-              }
-              const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
-              self.im.log("inside BQ");
-              const datasetId = 'menconnet_redis';
-              const tableId = 'status';
-              // Create a client
-              const bigqueryClient = new BigQuery(
-                  {
-                      projectId: self.im.config.services.bigquery.project_id,
-                      credentials: {
-                        client_email: self.im.config.services.bigquery.client_email,
-                        private_key: self.im.config.services.bigquery.private_key
-                      }
-                  }
-              );
-              self.im.log("Created BQ client and about to write");
-              // Insert data into a table
-              return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
+        if (self.im.config.env === "test"){
+          return null;
+        }
+        const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
+        self.im.log("inside BQ");
+        const datasetId = 'menconnet_redis';
+        const tableId = 'status';
+        // Create a client
+        const bigqueryClient = new BigQuery(
+            {
+                projectId: self.im.config.services.bigquery.project_id,
+                credentials: {
+                  client_email: self.im.config.services.bigquery.client_email,
+                  private_key: self.im.config.services.bigquery.private_key
+                }
             }
-          );
+        );
+        self.im.log("Created BQ client and about to write");
+        // Insert data into a table
+        return bigqueryClient.dataset(datasetId).table(tableId).insert(row);
+      });
+      self.im.on('state:enter', function(e) {
+          return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
       });
 
       var mh = new MetricsHelper(self.im);
