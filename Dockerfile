@@ -3,6 +3,8 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 
 # Install nodejs dependencies
 COPY package.json /app/package.json
+COPY config/go-app-ussd-registration.sot_ZA.json /app/
+COPY config/go-app-ussd-registration.zul_ZA.json /app/
 WORKDIR /app
 RUN npm install --production
 
@@ -13,5 +15,6 @@ RUN mv ./node_modules /usr/local/lib/
 
 # Copy in the app Javascript
 COPY go-*.js /app/
+COPY config /app/config
 
 RUN pip install raven==3.5.2

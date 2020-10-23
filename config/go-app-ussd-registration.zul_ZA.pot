@@ -1,0 +1,998 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-10-20 12:10:+0000\n"
+"Project-Id-Version: \n"
+"Language-Team: zulu\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Chima\n"
+
+#: ./go-app-ussd_registration.js:203 ./go-app-ussd_registration.js:214
+msgid "WhatsApp"
+msgstr "Whatsapp"
+
+#: ./go-app-ussd_registration.js:205 ./go-app-ussd_registration.js:212
+msgid "SMS"
+msgstr "SMS"
+
+#: ./go-app-ussd_registration.js:235
+msgid "Welcome back. Please select an option:"
+msgstr "Siyakwamukela. Sicela ukhethe inketho:"
+
+#: ./go-app-ussd_registration.js:237
+msgid "Continue signing up for messages"
+msgstr "Qhubeka ubhalisele imilayezo"
+
+#: ./go-app-ussd_registration.js:238
+msgid "Main menu"
+msgstr "Imenyu enkulu"
+
+#: ./go-app-ussd_registration.js:284
+msgid ""
+"One final question from me.\n"
+"\n"
+"My name is Mo. What's your name?"
+msgstr ""
+"Umbuzo wokugcina enginawo.\n"
+"\n"
+"Igama lami ngingu-Mo. Wena ungubani?"
+
+#: ./go-app-ussd_registration.js:286
+msgid "What's your question?"
+msgstr "Uthini umbuzo wakho?"
+
+#: ./go-app-ussd_registration.js:288
+msgid "What do you want to know?"
+msgstr "Yini ofuna ukuyazi?"
+
+#: ./go-app-ussd_registration.js:290
+msgid "What would you like to do?"
+msgstr "Yini ongathanda ukuyenza?"
+
+#: ./go-app-ussd_registration.js:292
+msgid ""
+"When is your next expected clinic date?\n"
+"Reply with the full date in the format YYYY-MM-DD"
+msgstr ""
+"Lunini usuku olulandelayo lwase-clinic?\n"
+"Phendula ngosuku oluphelelele kanje YYYY/MM/DD"
+
+#: ./go-app-ussd_registration.js:295
+msgid ""
+"Doing something every day is a habit.\n"
+"\n"
+"Build a treatment habit:\n"
+"Add it to your daily schedule\n"
+"Tick it off\n"
+"Plan for changes\n"
+"Give yourself time\n"
+msgstr ""
+"Ukwenza okuthile nsuku zonke kuwumkhuba.\n"
+"\n"
+"Yakha umkhuba wamaphilisi:\n"
+"Ufake ohlelweni nsuku zonke\n"
+"Thikha\n"
+"Hlelela izinguquko\n"
+"Zinike isikhathi\n"
+
+#: ./go-app-ussd_registration.js:301 ./go-app-ussd_registration.js:389
+msgid "What would you like to view?"
+msgstr "Yini ongathanda ukuyibuka?"
+
+#: ./go-app-ussd_registration.js:303
+msgid "What would you like to change?"
+msgstr "Yini ongathanda ukuyishintsha?"
+
+#: ./go-app-ussd_registration.js:305
+msgid "What name would you like me to call you instead?"
+msgstr "Ungathanda ngikubize ngaliphi igama?"
+
+#: ./go-app-ussd_registration.js:307
+msgid "Choose a question:"
+msgstr "Khetha umbuzo:"
+
+#: ./go-app-ussd_registration.js:309
+msgid ""
+"Do you want to receive an SMS that you can share with other men living with "
+"HIV?"
+msgstr ""
+"Ufuna ukuthola i-SMS ongayithumela kwamanye amadoda ane-HIV"
+
+#: ./go-app-ussd_registration.js:311
+msgid ""
+"Thank you. You will receive an SMS with info that you can share with other "
+"men living with HIV."
+msgstr ""
+"Ngiyabonga. Uzothola i-SMS enolwazi ongaluthumela kwamanye amadoda ane-HIV."
+
+#: ./go-app-ussd_registration.js:313
+msgid "Select a topic:"
+msgstr "Khetha isihloko:"
+
+#: ./go-app-ussd_registration.js:315
+msgid ""
+"It was great talking to you. If you ever want to know more about MenConnect "
+"and how to use it, dial *134*406#.\n"
+"\n"
+"Chat soon!\n"
+"Mo\n"
+"MenConnect"
+msgstr ""
+"Kube kuhle ukuxoxa nawe. Uma ufuna ukwazi kabanzi nge-MenConnect "
+"nokuthi isetshenziswa kanjani, dayela *134*406#.\n"
+"\n"
+"Sizoxoxa maduze!\n"
+"Mo\n"
+"MenConnect"
+
+#: ./go-app-ussd_registration.js:318
+msgid ""
+"It's a virus that enters your body through blood / bodily fluids. \n"
+"It attacks your CD4 cells that protect your body against disease."
+msgstr ""
+"Yigciwane elingena emzimbeni wakho ngegazi / ngoketshezi lomzimba. \n"
+"Lihlasela amaseli e-CD4 avikela umzimba ezifweni."
+
+#: ./go-app-ussd_registration.js:321
+msgid ""
+"What does HIV do to my body?. \n"
+"HIV enters your body & makes more. It attacks your soldiers so you can't "
+"fight off common infections."
+msgstr ""
+"I-HIV yenzani emzimbeni wami? \n"
+"I-HIV ingena emzimbeni wakho futhi iziphindaphinde. Ihlasela amasosha akho "
+"ukuze ungakwazi ukulwa nezifo ezivamile."
+
+#: ./go-app-ussd_registration.js:325
+msgid ""
+"Is there a cure?\n"
+"There is currently no cure for HIV. But taking ARVs every day can keep you "
+"healthy."
+msgstr ""
+"Likhona ikhambi?\n"
+"Okwamanje alikho ikhambi le-HIV. Kodwa ukuphuza ama-ARV nsuku zonke "
+"kungakugcina unempilo."
+
+#: ./go-app-ussd_registration.js:327
+msgid ""
+"What is viral load?\n"
+"Viral load is the amount of virus in your blood. The higher your viral "
+"load, the sicker you may be."
+msgstr ""
+"What is viral load?\n"
+"Viral load is the amount of virus in your blood. The higher your viral "
+"load, the sicker you may be."
+
+#: ./go-app-ussd_registration.js:329
+msgid ""
+"What is low viral load?\n"
+"A low viral load is a result of taking treatment every day.\n"
+"Eventually your viral load will be so low that it's undetectable."
+msgstr ""
+"Yini i-viral load ephansi?\n"
+"I-viral load ephansi idalwa wokuphuza amaphilisi nsuku zonke.\n"
+"Ngokuhamba kwesikhathi i-viral load izoba phansi ingabonakali."
+
+#: ./go-app-ussd_registration.js:332
+msgid ""
+"What is your current age?\n"
+"Select your age group:"
+msgstr ""
+"Umdala kangakanani njengamanje? \n"
+"Khetha iqembu lakho lobudala:"
+
+#: ./go-app-ussd_registration.js:334
+msgid "When were you first diagnosed positive?"
+msgstr "Kwatholwa nini ukuthi unegciwane?"
+
+#: ./go-app-ussd_registration.js:336
+msgid ""
+"MenConnect sends you messages to help with your treatment.\n"
+"It seems like you don't need treatment.If you sent the wrong answer, dial "
+"*134*406# to restart."
+msgstr ""
+"I-MenConnect ikuthumelela imiyalezo yokukusiza ngokwelashwa.\n"
+"Ubonakala ungawadingi amaphilisi. Uma uthumele impendulo eyiphutha, dayela "
+"*134*406# ukuqala futhi"
+
+#: ./go-app-ussd_registration.js:340
+msgid "Are you or have you been on ARV treatment?"
+msgstr "Ingabe uthola noma wake wathola ukwelashwa ngama-ARV?"
+
+#: ./go-app-ussd_registration.js:342
+msgid "When did you start taking ARV treatment?"
+msgstr "Waqala nini ukwelashwa ngama-ARV?"
+
+#: ./go-app-ussd_registration.js:344
+msgid "Are you still taking your treatment?"
+msgstr "Ingabe usawaphuza amaphilisi akho?"
+
+#: ./go-app-ussd_registration.js:346
+msgid "Is your viral load undetectable?"
+msgstr "Ingabe i-viral load yakho ayibonakali?"
+
+#: ./go-app-ussd_registration.js:348
+msgid "Please try again. e.g. 1."
+msgstr "Ngicela uzame futhi. isb. 1."
+
+#: ./go-app-ussd_registration.js:350
+msgid ""
+"Taking your meds daily stops HIV from making more in your blood so that "
+"your CD4 cells can get strong again.\n"
+msgstr ""
+"Ukuphuza amaphilisi nsuku zonke kuvimba i-HIV ingaziphindaphindi egazini ukuze "
+"amaseli akho e-CD4 abe namandla futhi.\n"
+
+#: ./go-app-ussd_registration.js:353
+msgid "error"
+msgstr "Iphutha"
+
+#: ./go-app-ussd_registration.js:355
+msgid "Take your meds every day, at the same time as prescribed by your nurse\n"
+msgstr "Phuza amaphilisi akho nsuku zonke, ngesikhathi esifanayo, njengoba uyalelwe ngunesi.\n"
+
+#: ./go-app-ussd_registration.js:358
+msgid ""
+"You need to take your meds every day for the rest of your life to stay "
+"healthy.\n"
+msgstr ""
+"Kufanele uwaphuze nsuku zonke ukuphila konke ukuze "
+"uhlale unamandla futhi uphilile.\n"
+
+#: ./go-app-ussd_registration.js:361
+msgid ""
+"Every person feels different after taking meds.If it's making you unwell, "
+"speak to your nurse.\n"
+msgstr ""
+"Wonke umuntu uzizwa ngendlela ehlukile ngemuva kokuphuza amaphilisi. "
+"Uma ekugulisa, xoxa nonesi.\n"
+
+#: ./go-app-ussd_registration.js:364
+msgid ""
+"It is important that you take the meds that is prescribed to you by a "
+"nurse.\n"
+msgstr ""
+"Kubalulekile ukuthi uphuze amaphilisi ngendlela oyalelwe "
+"ngayo ngunesi.\n"
+
+#: ./go-app-ussd_registration.js:367
+msgid ""
+"You can still take the meds within 6 hrs of usual time. Don't double your "
+"dose the next day if you missed a day.\n"
+msgstr ""
+"Usengaphuza amaphilisi engakapheli amahora angu-6 esikhathi esivamile. "
+"Ungawaphindi kabili ngakusasa uma uphuthelwe usuku.\n"
+
+#: ./go-app-ussd_registration.js:370
+msgid ""
+"We process your info to help you on your health journey. We collect name, "
+"age, cell number, language, channel, status, clinic dates, & survey answers."
+msgstr ""
+"Sicaza ulwazi ukukusiza ngohambo lwezempilo. Siqoqa igama, "
+"ubudala, iselula, ulimi, ishaneli, isimo, izinsuku zase-clinic nezimpendulo zenhlolovo."
+
+#: ./go-app-ussd_registration.js:374
+msgid ""
+"We use your personal info to send you messages that are relevant to the "
+"stage of your health journey. Your info helps the team improve the service."
+msgstr ""
+"Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho "
+"lwezempilo. Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+
+#: ./go-app-ussd_registration.js:378
+msgid ""
+"Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, "
+"Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners"
+msgstr ""
+"Ulwazi lwakho luvikelwe. Lucutshungulwa yi-MTN, Cell C, Telkom, Vodacom, "
+"Praekelt, Genesis, Jembi, Turn, WhatsApp nozakwethu be-MenStar."
+
+#: ./go-app-ussd_registration.js:381
+msgid ""
+"We hold your info while you're registered. If you opt-out, we'll use your "
+"info for historical ,research & statistical reasons with your consent."
+msgstr ""
+"Sigcina ulwazi lwakho uma usabhalisile. Uma uphuma emiyalezweni, sizosebenzisa "
+"ulwazi lwakho ngezizathu zomlando, zocwaningo nezibalo uma uvuma."
+
+#: ./go-app-ussd_registration.js:395
+msgid "HIV"
+msgstr "HIV"
+
+#: ./go-app-ussd_registration.js:396
+msgid "Treatment"
+msgstr "Amaphilisi"
+
+#: ./go-app-ussd_registration.js:397
+msgid "Reminders"
+msgstr "Izikhumbuzo"
+
+#: ./go-app-ussd_registration.js:398
+msgid "Habit Plan"
+msgstr "Uhlelo Lwemikhuba"
+
+#: ./go-app-ussd_registration.js:399
+msgid "My Profile"
+msgstr "Iphrofayela Yami"
+
+#: ./go-app-ussd_registration.js:400
+msgid "Processing my info"
+msgstr "Ukucubungula ulwazi lwami"
+
+#: ./go-app-ussd_registration.js:401
+msgid "Share"
+msgstr "Ukwabelana"
+
+#: ./go-app-ussd_registration.js:402
+msgid "Resources"
+msgstr "Izisetshenziswa"
+
+#: ./go-app-ussd_registration.js:403 ./go-app-ussd_registration.js:590 ./go-app-ussd_registration.js:677 ./go-app-ussd_registration.js:824 ./go-app-ussd_registration.js:855 ./go-app-ussd_registration.js:896 ./go-app-ussd_registration.js:914 ./go-app-ussd_registration.js:976 ./go-app-ussd_registration.js:1041 ./go-app-ussd_registration.js:1116 ./go-app-ussd_registration.js:1189
+msgid "Exit"
+msgstr "Phuma"
+
+#: ./go-app-ussd_registration.js:413
+msgid "What is HIV?"
+msgstr "Yini i-HIV?"
+
+#: ./go-app-ussd_registration.js:414
+msgid "What does HIV do to my body?"
+msgstr "I-HIV yenzani emzimbeni wami?"
+
+#: ./go-app-ussd_registration.js:415
+msgid "Is there a cure?"
+msgstr "Likhona ikhambi?"
+
+#: ./go-app-ussd_registration.js:416
+msgid "What is viral load?"
+msgstr "Yini i-viral load?"
+
+#: ./go-app-ussd_registration.js:417
+msgid "What is low viral load?"
+msgstr "Yini i-viral load ephansi?"
+
+#: ./go-app-ussd_registration.js:418 ./go-app-ussd_registration.js:429 ./go-app-ussd_registration.js:440 ./go-app-ussd_registration.js:490 ./go-app-ussd_registration.js:501 ./go-app-ussd_registration.js:512 ./go-app-ussd_registration.js:523 ./go-app-ussd_registration.js:534 ./go-app-ussd_registration.js:545 ./go-app-ussd_registration.js:556 ./go-app-ussd_registration.js:639 ./go-app-ussd_registration.js:676 ./go-app-ussd_registration.js:704 ./go-app-ussd_registration.js:743 ./go-app-ussd_registration.js:764 ./go-app-ussd_registration.js:786 ./go-app-ussd_registration.js:895 ./go-app-ussd_registration.js:975 ./go-app-ussd_registration.js:1040 ./go-app-ussd_registration.js:1077 ./go-app-ussd_registration.js:1151 ./go-app-ussd_registration.js:1212 ./go-app-ussd_registration.js:1222 ./go-app-ussd_registration.js:1232 ./go-app-ussd_registration.js:1242 ./go-app-ussd_registration.js:1508
+msgid "Back"
+msgstr "Emuva"
+
+#: ./go-app-ussd_registration.js:451 ./go-app-ussd_registration.js:462 ./go-app-ussd_registration.js:473
+msgid "Back to HIV questions"
+msgstr "Buyela emibuzweni ye-HIV"
+
+#: ./go-app-ussd_registration.js:484
+msgid "How it works?"
+msgstr "Isebenza kanjani?"
+
+#: ./go-app-ussd_registration.js:485
+msgid "When to take it?"
+msgstr "Ngiyiphuza nini?"
+
+#: ./go-app-ussd_registration.js:486
+msgid "How long to take it?"
+msgstr "Ngiyiphuza isikhathi esingakanani?"
+
+#: ./go-app-ussd_registration.js:487
+msgid "Side effects?"
+msgstr "Imithelela engemihle?"
+
+#: ./go-app-ussd_registration.js:488
+msgid "How do I get it?"
+msgstr "Ngiyithola kanjani?"
+
+#: ./go-app-ussd_registration.js:489
+msgid "Can I skip a day?"
+msgstr "Ngingalweqa usuku?"
+
+#: ./go-app-ussd_registration.js:567
+msgid "Show my next expected clinic date"
+msgstr "Bonisa usuku oluzayo lwase-clinic"
+
+#: ./go-app-ussd_registration.js:568
+msgid "Change my next clinic date"
+msgstr "Shintsha usuku lwase-clinic"
+
+#: ./go-app-ussd_registration.js:569
+msgid "Plan for my clinic visit"
+msgstr "Hlela ukuvakasha okuzayo"
+
+#: ./go-app-ussd_registration.js:570 ./go-app-ussd_registration.js:589 ./go-app-ussd_registration.js:693 ./go-app-ussd_registration.js:718 ./go-app-ussd_registration.js:913 ./go-app-ussd_registration.js:1254 ./go-app-ussd_registration.js:1300
+msgid "Back to menu"
+msgstr "Buyela kumenyu"
+
+#: ./go-app-ussd_registration.js:577
+msgid ""
+"Based on what you told me, I think your next clinic visit is "
+"{{next_clinic_visit}}"
+msgstr ""
+"Ngokwalokho ongitshele khona, ukuya e-clinic okulandelayo kungo- "
+"{{next_clinic_visit}}"
+
+#: ./go-app-ussd_registration.js:581 ./go-app-ussd_registration.js:732 ./go-app-ussd_registration.js:734 ./go-app-ussd_registration.js:735 ./go-app-ussd_registration.js:736
+msgid "None"
+msgstr "Akekho"
+
+#: ./go-app-ussd_registration.js:588
+msgid "Change your next clinic date"
+msgstr "Ukushintsha usuku lwase-clinic"
+
+#: ./go-app-ussd_registration.js:606
+msgid "Sorry, I don’t recognise that date. Please try again."
+msgstr "Uxolo, angiluboni lolo suku. Ngicela uzame futhi."
+
+#: ./go-app-ussd_registration.js:610
+msgid ""
+"Hmm, that seems a bit far away. You should at least be going to the clinic "
+"every 2 months. Please try again."
+msgstr ""
+"Hmm, lokho kubonakala kukude kakhulu. Kufanele okungenani uye emtholampilo "
+"njalo ezinyangeni ezi-2. Ngicela uzame futhi."
+
+#: ./go-app-ussd_registration.js:613
+msgid "Oops, that day has already passed. Please try again."
+msgstr "Hawu, lolo suku seludlulile. Ngicela uzame futhi."
+
+#: ./go-app-ussd_registration.js:632
+msgid ""
+"You entered {{clinic_date}}. I'll send you reminders of your upcoming "
+"clinic visits so that you don't forget."
+msgstr ""
+"Ungenile {{clinic_date}}. Ngizokuthumelela izikhumbuzo zokuvakasha kwakho emtholampilo "
+"okuzayo ukuze ungakhohlwa."
+
+#: ./go-app-ussd_registration.js:638 ./go-app-ussd_registration.js:1150
+msgid "Confirm"
+msgstr "Qinisekisa"
+
+#: ./go-app-ussd_registration.js:671
+msgid "Your next clinic visit has been changed to {{clinic_date}}"
+msgstr "Ukuvakasha kwakho okulandelayo emtholampilo kushintshelwe ku {{clinic_date}}"
+
+#: ./go-app-ussd_registration.js:684
+msgid ""
+"Tip 1: Set a reminder in your phone\n"
+"Tip2: Tell someone you're going\n"
+"Tip 3: Plan your trip\n"
+"Tip 4: Prepare questions for your nurse"
+msgstr ""
+"Ithiphu 1: Setha isikhumbuzo efonini\n"
+"Ithiphu 2: Tshela othile ukuthi uyahamba\n"
+"Ithiphu 3: Hlela uhambo\n"
+"Ithiphu 4: Lungisa imibuzo kanesi"
+
+#: ./go-app-ussd_registration.js:688
+msgid "TBC"
+msgstr "TBC"
+
+#: ./go-app-ussd_registration.js:715
+msgid "See my info"
+msgstr "Ukubona ulwazi lwami"
+
+#: ./go-app-ussd_registration.js:716
+msgid "Change my info"
+msgstr "Ukushintsha ulwazi lwami"
+
+#: ./go-app-ussd_registration.js:717
+msgid "Opt-out"
+msgstr "Ukuphuma emiyalezweni"
+
+#: ./go-app-ussd_registration.js:725
+msgid ""
+"Name: {{name}}\n"
+"Cell number: {{msisdn}}\n"
+"Channel: {{channel}}\n"
+"Age: {{age_group}}\n"
+"Estimated treatment start date: {{treatment_start_period}}"
+msgstr ""
+"Igama: {{name}}\n"
+"Iselula: {{msisdn}}\n"
+"Ishaneli: {{channel}}\n"
+"Ubudala: {{age_group}}\n"
+"Usuku lokuqala amaphilisi: {{treatment_start_period}}"
+
+#: ./go-app-ussd_registration.js:742
+msgid "Change info"
+msgstr "Ukushintsha ulwazi lwami"
+
+#: ./go-app-ussd_registration.js:755
+msgid "Name"
+msgstr "Igama"
+
+#: ./go-app-ussd_registration.js:756
+msgid "Cell number"
+msgstr "Iselula"
+
+#: ./go-app-ussd_registration.js:757
+msgid "Age"
+msgstr "Ubudala"
+
+#: ./go-app-ussd_registration.js:759
+msgid "Change from {{current_channel}} to {{alternative_channel}}"
+msgstr "Shintsha ama-{{current_channel}} uye ku-{{alternative_channel}}"
+
+#: ./go-app-ussd_registration.js:763
+msgid "Treatment start date"
+msgstr "Usuku lokuqala amaphilisi"
+
+#: ./go-app-ussd_registration.js:781
+msgid "You entered {{name}}"
+msgstr "Ungenile {{name}}"
+
+#: ./go-app-ussd_registration.js:785 ./go-app-ussd_registration.js:1076
+msgid "confirm"
+msgstr "Qinisekisa"
+
+#: ./go-app-ussd_registration.js:818
+msgid ""
+"Thanks. I'll call you {{name}}\n"
+"\n"
+"What would you like to do next?"
+msgstr ""
+"Ngiyabonga ngizokubiza ngo-{{name}}\n"
+"\n"
+"Yini enye ofuna ukuyenza?"
+
+#: ./go-app-ussd_registration.js:823 ./go-app-ussd_registration.js:854 ./go-app-ussd_registration.js:1115 ./go-app-ussd_registration.js:1188
+msgid "Back to main menu"
+msgstr "Buyela kumenyu enkulu"
+
+#: ./go-app-ussd_registration.js:832
+msgid ""
+"Are you sure you want to get your MenConnect messages on "
+"{{alternative_channel}}?"
+msgstr ""
+"Ufuna ukuthola imiyalezo yakho ye-MenConnect ku-"
+"{{alternative_channel}}?"
+
+#: ./go-app-ussd_registration.js:838 ./go-app-ussd_registration.js:994 ./go-app-ussd_registration.js:1253 ./go-app-ussd_registration.js:1417 ./go-app-ussd_registration.js:1443 ./go-app-ussd_registration.js:1561 ./go-app-ussd_registration.js:1603 ./go-app-ussd_registration.js:1620
+msgid "Yes"
+msgstr "Yes"
+
+#: ./go-app-ussd_registration.js:839 ./go-app-ussd_registration.js:1418 ./go-app-ussd_registration.js:1444 ./go-app-ussd_registration.js:1562 ./go-app-ussd_registration.js:1604 ./go-app-ussd_registration.js:1621
+msgid "No"
+msgstr "No"
+
+#: ./go-app-ussd_registration.js:841 ./go-app-ussd_registration.js:898 ./go-app-ussd_registration.js:978 ./go-app-ussd_registration.js:1035
+msgid ""
+"Sorry we don't recognise that reply. Please enter the number next to your "
+"answer."
+msgstr ""
+"Uxolo asiyiboni leyo mpendulo. Sicela ufake inombolo "
+"eduze kwempendulo yakho."
+
+#: ./go-app-ussd_registration.js:849
+msgid ""
+"You'll keep getting your messages on {{channel}}. If you change your mind, "
+"dial *134*406#. What would you like to do?"
+msgstr ""
+"Uzoqhubeka nokuthola imilayezo yakho-{{channel}}. Uma ushintsha umqondo, "
+"shayela u- * 134 * 406 #. Yini ongathanda ukuyenza?"
+
+#: ./go-app-ussd_registration.js:888
+msgid ""
+"Okay. I'll send you MenConnect messages on {{channel}}.To move back to "
+"WhatsApp, reply *WA* or dial *134*406#."
+msgstr ""
+"Ngizokuthumelela imiyalezo ye-MenConnect ku-{{channel}} kusukela manje. "
+"Ukubuyela kuma-SMS, phendula ngo-SMS noma uye KUMENYU ukushintsha imininingwane yakho."
+
+#: ./go-app-ussd_registration.js:908
+msgid ""
+"Thanks, I'll call you {{preferred_name}}\n"
+"\n"
+"What do you want to do next?"
+msgstr ""
+"Ngiyabonga ngizokubiza ngo-{{preferred_name}}\n"
+"\n"
+"Yini enye ofuna ukuyenza?"
+
+#: ./go-app-ussd_registration.js:921
+msgid ""
+"Please reply with the *new cell number* you would like to get your "
+"MenConnect messages on, e.g 0813547654"
+msgstr ""
+"Ngicela uphendule ngenombolo entsha ongathanda ukuthola kuyo imiyalezo ye-MenConnect "
+"isb., 0813547654."
+
+#: ./go-app-ussd_registration.js:970
+msgid ""
+"Sorry, the cell number you entered already gets MC msgs. To manage it, dial "
+"*134*406# from that number. What would you like to do?"
+msgstr ""
+"Uxolo, inombolo yeselula oyifakile ithunyelwa imiyalezo ye-MenConnect kakade. "
+"Ukuze uyiphathe, buka IMENYU kuleyo nombolo."
+
+#: ./go-app-ussd_registration.js:988
+msgid ""
+"You have entered {{msisdn}}as your new MenConnect number.\n"
+"\n"
+"Is this correct?"
+msgstr ""
+"Ufake ukuthi {{msisdn}} njengenombolo yakho entsha ye-MenConnect.\n"
+"\n"
+"Kunjalo?"
+
+#: ./go-app-ussd_registration.js:995
+msgid "No, try again"
+msgstr "Cha, zama futhi"
+
+#: ./go-app-ussd_registration.js:1031
+msgid ""
+"Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \n"
+"What would you like to do?"
+msgstr ""
+"Ngiyabonga! Sithumele umyalezo ku-{{msisdn}}. Landela imiyalelo ukushintsha inombolo. \n"
+"kuze uqhubeke uthole imiyalezo enombolweni endala, ziba lo myalezo"
+
+#: ./go-app-ussd_registration.js:1048
+msgid ""
+"How old are you?\n"
+"Select your age group:"
+msgstr ""
+"Uneminyaka emingaki ubudala?\n"
+"Khetha iqembu lobudala bakho:"
+
+#: ./go-app-ussd_registration.js:1050
+msgid "Sorry, please reply with the number that matches your answer, e.g. 1."
+msgstr "Uxolo, angiqondi. Ngicela uphendule ngenombolo ehambisana nempendulo yakho, isb., 1."
+
+#: ./go-app-ussd_registration.js:1055 ./go-app-ussd_registration.js:1477
+msgid "<15"
+msgstr "<15"
+
+#: ./go-app-ussd_registration.js:1056 ./go-app-ussd_registration.js:1478
+msgid "15-19"
+msgstr "15-19"
+
+#: ./go-app-ussd_registration.js:1057 ./go-app-ussd_registration.js:1479
+msgid "20-24"
+msgstr "20-24"
+
+#: ./go-app-ussd_registration.js:1058 ./go-app-ussd_registration.js:1480
+msgid "25-29"
+msgstr "25-29"
+
+#: ./go-app-ussd_registration.js:1059 ./go-app-ussd_registration.js:1481
+msgid "30-34"
+msgstr "30-34"
+
+#: ./go-app-ussd_registration.js:1060 ./go-app-ussd_registration.js:1482
+msgid "35-39"
+msgstr "35-39"
+
+#: ./go-app-ussd_registration.js:1061 ./go-app-ussd_registration.js:1483
+msgid "40-44"
+msgstr "40-44"
+
+#: ./go-app-ussd_registration.js:1062 ./go-app-ussd_registration.js:1484
+msgid "45-49"
+msgstr "45-49"
+
+#: ./go-app-ussd_registration.js:1063 ./go-app-ussd_registration.js:1485
+msgid "50+"
+msgstr "50+"
+
+#: ./go-app-ussd_registration.js:1072
+msgid "Your age group will be updated to {{age}}"
+msgstr "Iqembu lakho leminyaka yobudala lizobuyekezelwa ku-{{age}}"
+
+#: ./go-app-ussd_registration.js:1073
+msgid "Please select 1 or 2"
+msgstr "Sicela ukhethe u-1 noma u-2"
+
+#: ./go-app-ussd_registration.js:1110
+msgid "Thank you. Your age has been changed to {{age_group}}\n"
+msgstr "Ngiyabonga. Iminyaka yakho ishintshelwe ku-{{age_group}}\n"
+
+#: ./go-app-ussd_registration.js:1123
+msgid "When did you start taking ARV treatment? Choose the closest option.\n"
+msgstr "Waqala nini ukwelashwa ngama-ARV? Khetha inketho esiseduzane.\n"
+
+#: ./go-app-ussd_registration.js:1125
+msgid "Please reply with number closest to when you started treatment:"
+msgstr "Phendula ngenombolo esondele ekuqaleni kokwelashwa:"
+
+#: ./go-app-ussd_registration.js:1130 ./go-app-ussd_registration.js:1583
+msgid "today"
+msgstr "Namuhla"
+
+#: ./go-app-ussd_registration.js:1131 ./go-app-ussd_registration.js:1584
+msgid "<1 week"
+msgstr "<1 iviki"
+
+#: ./go-app-ussd_registration.js:1132 ./go-app-ussd_registration.js:1500 ./go-app-ussd_registration.js:1585
+msgid "<1 month"
+msgstr "<1 inyanga"
+
+#: ./go-app-ussd_registration.js:1133 ./go-app-ussd_registration.js:1501 ./go-app-ussd_registration.js:1586
+msgid "<3 months"
+msgstr "<3 izinyanga"
+
+#: ./go-app-ussd_registration.js:1134 ./go-app-ussd_registration.js:1502 ./go-app-ussd_registration.js:1587
+msgid "3-6 months"
+msgstr "3-6 izinyanga"
+
+#: ./go-app-ussd_registration.js:1135 ./go-app-ussd_registration.js:1503 ./go-app-ussd_registration.js:1588
+msgid "6-12 months"
+msgstr "6-12 izinyanga"
+
+#: ./go-app-ussd_registration.js:1136 ./go-app-ussd_registration.js:1589
+msgid ">1 year"
+msgstr ">1 unyaka"
+
+#: ./go-app-ussd_registration.js:1145
+msgid "Your new treatment start date will be updated to {{treatment_start_date}}"
+msgstr "Idethi yakho yokuqala yokwelashwa izobuyekezelwa ku-{{treatment_start_date}}"
+
+#: ./go-app-ussd_registration.js:1183
+msgid ""
+"Thank you. Your treatment start date has been changed to "
+"{{treatment_start_period}}"
+msgstr ""
+"TNgiyabonga. Usuku lwakho lokuqala ukwelashwa selushintshelwe ku-"
+"{{treatment_start_period}}"
+
+#: ./go-app-ussd_registration.js:1199
+msgid "What info does MenConnect collect?"
+msgstr "I-MenConnect iqongelela luphi ulwazi?"
+
+#: ./go-app-ussd_registration.js:1200
+msgid "Why does MenConnect need my info?"
+msgstr "I-MenConnect iludingelani ulwazi lwami?"
+
+#: ./go-app-ussd_registration.js:1201
+msgid "Who can see my info?"
+msgstr "Ubani ongabona ulwazi lwami?"
+
+#: ./go-app-ussd_registration.js:1202
+msgid "How long is my info kept?"
+msgstr "Ulwazi lwami lugcinwa isikhathi eside kangakanani?"
+
+#: ./go-app-ussd_registration.js:1283
+msgid "Back to Menu"
+msgstr "Emuva"
+
+#: ./go-app-ussd_registration.js:1293
+msgid "Depression"
+msgstr "Ingcindezi"
+
+#: ./go-app-ussd_registration.js:1294
+msgid "Mental health"
+msgstr "Impilo yengqondo"
+
+#: ./go-app-ussd_registration.js:1295
+msgid "Suicide"
+msgstr "Ukuzibulala"
+
+#: ./go-app-ussd_registration.js:1296
+msgid "Gender based violence"
+msgstr "Udlame lobulili"
+
+#: ./go-app-ussd_registration.js:1297
+msgid "Substance abuse"
+msgstr "Ukudla izidakamizwa"
+
+#: ./go-app-ussd_registration.js:1298
+msgid "Aids helpline"
+msgstr "Usizo lwe-AIDS"
+
+#: ./go-app-ussd_registration.js:1299
+msgid "COVID-19"
+msgstr "I-COVID-19"
+
+#: ./go-app-ussd_registration.js:1307
+msgid ""
+"Adcock Ingram Depression and Anxiety Helpline can help you if you are "
+"feeling depressed. Call 0800 7080 90"
+msgstr ""
+"I-Adcock Ingram Depression and Anxiety Helpline ingakusiza "
+"uma unengcindezi. Shayela ku-0800 7080 90"
+
+#: ./go-app-ussd_registration.js:1312 ./go-app-ussd_registration.js:1324 ./go-app-ussd_registration.js:1336 ./go-app-ussd_registration.js:1348 ./go-app-ussd_registration.js:1360 ./go-app-ussd_registration.js:1372 ./go-app-ussd_registration.js:1384
+msgid "Back to resources"
+msgstr "Buyela ezihlokweni"
+
+#: ./go-app-ussd_registration.js:1319
+msgid ""
+"The South African Depression and Anxiety group can support you when you're "
+"feeling low. Dial 0800 4567 789 for their 24 hour helpline."
+msgstr ""
+"Iqembu le-South African Depression and Anxiety likusiza uma udikibele. "
+"Dayela u-0800 4567 789 ukuthola ucingo lwabo lwamahora angu-24."
+
+#: ./go-app-ussd_registration.js:1331
+msgid ""
+"The South African Depression and Anxiety group can support you whenyou're "
+"feeling low. Dial 0800 4567 789 for their emergency suicide helpline."
+msgstr ""
+"Iqembu le-South African Depression and Anxiety liyakweseka uma udikibele. "
+"Dayela u-0800 4567 789 ukuthola ucingo losizo lokuzibulala oluphuthumayo."
+
+#: ./go-app-ussd_registration.js:1343
+msgid ""
+"Anonymous & confidential info, counselling and referrals to "
+"survivors,witnesses and perpetrators of gender-based violence. Dial 0800 "
+"150 150."
+msgstr ""
+"Ulwazi olungavezi igama noluyimfihlo, ukwelulekwa nokuthunyelwa kwabasindile, "
+"ofakazi nababhebhezeli bodlame lobulili. Dayela 0800 150 150"
+
+#: ./go-app-ussd_registration.js:1355
+msgid ""
+"The Substance Abuse Line offers support & guidance for people addicted to "
+"drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"
+msgstr ""
+"I-Substance Abuse Line inikeza ukwesekwa nesiqondiso kubantu abadla izidakamizwa nemindeni yabo. "
+"Dayela 0800 12 13 14 noma u-32312 nge-SMS"
+
+#: ./go-app-ussd_registration.js:1367
+msgid ""
+"The National HIV and AIDs Helpline is a toll free number that you can call "
+"for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."
+msgstr ""
+"I-Substance Abuse Line inikeza ukwesekwa nesiqondiso kubantu abadla izidakamizwa nemindeni yabo. "
+"Dayela 0800 12 13 14 noma u-32312 nge-SMS."
+
+#: ./go-app-ussd_registration.js:1379
+msgid ""
+"For correct & up to date info on COVID-19, save the number +2760 0123 456 "
+"and send 'hi' or call the national COVID-19 hotline on 0800 029 999."
+msgstr ""
+"Iqiniso nezakamuva nge-COVID-19, londoloza inombolo +2760 0123 456, "
+"thumela u-'hi' noma ushayele inombolo ye-COVID-19 kazwelonke ku-0800 029 999."
+
+#: ./go-app-ussd_registration.js:1409
+msgid ""
+"MenConnect needs to process your personal info to send you relevant "
+"messages. Do you agree?"
+msgstr ""
+"Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho lwezempilo. "
+"Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+
+#: ./go-app-ussd_registration.js:1412
+msgid "Sorry, please reply with the number next to your answer. Do you agree?"
+msgstr "Uxolo, ngicela uphendule ngenombolo eseduze kwempendulo yakho. Ingabe uyavuma?"
+
+#: ./go-app-ussd_registration.js:1433
+msgid ""
+"MenConnect supports men on their journey. I'll send you messages with info "
+"& tips.Do you agree to receive?"
+msgstr ""
+"MenConnect supports men on their journey. I'll send you messages with info "
+"& tips.Do you agree to receive?"
+
+#: ./go-app-ussd_registration.js:1437
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"\n"
+"Do you agree to receive messages?"
+msgstr ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"\n"
+"Do you agree to receive messages?"
+
+#: ./go-app-ussd_registration.js:1452
+msgid ""
+"No problem! If you change your mind and want to receive supportive messages "
+"in the future, dial *134*406# and I'll sign you up."
+msgstr ""
+"No problem! If you change your mind and want to receive supportive messages "
+"in the future, dial *134*406# and I'll sign you up."
+
+#: ./go-app-ussd_registration.js:1462
+msgid ""
+"Please reply with the number that matches your answer.\n"
+"\n"
+"Select your age group:"
+msgstr ""
+"Phendula ngenombolo ehambisana nempendulo yakho.\n"
+"\n"
+"Khetha iqembu lakho lobudala:"
+
+#: ./go-app-ussd_registration.js:1494
+msgid "Please reply with the number that matches your answer, eg .1."
+msgstr "Phendula ngenombolo ehambisana nempendulo yakho., isib .1."
+
+#: ./go-app-ussd_registration.js:1498
+msgid "Today"
+msgstr "Namuhla"
+
+#: ./go-app-ussd_registration.js:1499
+msgid "Last week"
+msgstr "Ngeviki elidlule"
+
+#: ./go-app-ussd_registration.js:1504
+msgid "> 1 year"
+msgstr "> 1 unyaka"
+
+#: ./go-app-ussd_registration.js:1505
+msgid "not positive"
+msgstr "anginagciwane"
+
+#: ./go-app-ussd_registration.js:1506
+msgid "not sure"
+msgstr "angiqiniseki"
+
+#: ./go-app-ussd_registration.js:1509
+msgid "Next"
+msgstr "Olandelayo"
+
+#: ./go-app-ussd_registration.js:1534
+msgid ""
+"Thank you for considering MenConnect. We respect your decision. Have a "
+"lovely day."
+msgstr ""
+"Thank you for considering MenConnect. We respect your decision. Have a "
+"lovely day."
+
+#: ./go-app-ussd_registration.js:1555
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"Are you or have you been on ARV treatment?"
+msgstr ""
+"Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1.\n"
+"Ingabe uthola noma wake wathola ukwelashwa ngama-ARV?"
+
+#: ./go-app-ussd_registration.js:1578
+msgid "Please reply with number closest to when you started treatment: "
+msgstr "Uyacelwa ukuthi uphendule ngenombolo esondele kakhulu lapho uqale ukwelashwa: "
+
+#: ./go-app-ussd_registration.js:1598
+msgid "Please try again. Reply with the number that matches your answer, e.g. 1."
+msgstr "Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1."
+
+#: ./go-app-ussd_registration.js:1605
+msgid "Mostly - sometimes I forget"
+msgstr "Ngokuvamile – kokunye ngiyakhohlwa"
+
+#: ./go-app-ussd_registration.js:1614
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1.\n"
+"Is your viral load undetectable?"
+msgstr ""
+"Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1.\n"
+"Ingabe i-viral load yakho ayibonakali?"
+
+#: ./go-app-ussd_registration.js:1622
+msgid "I don't know"
+msgstr "Angazi"
+
+#: ./go-app-ussd_registration.js:1704
+msgid ""
+"You're done! You will get info & tips on {{msisdn}} to support you on your "
+"journey on {{channel}}. Thanks for signing up to MenConnect!"
+msgstr ""
+"Usuqedile! Uzothola ulwazi namathiphu okukweseka ohambweni lwakho "
+"nge-{{channel}}. Siyabonga ngokubhalisela i-MenConnect!"
+
+#: ./go-app-ussd_registration.js:1716
+msgid "Sorry, something went wrong. We have been notified. Please try again later"
+msgstr "Uxolo, kukhona okungahmabnga kahle. Sazisiwe. Sicela uzame futhi emuva kwesikhathi"
+
+#: ./go-app-ussd_registration.js:1717
+msgid "What language would you like to receive messages in?"
+msgstr "What language would you like to receive messages in?"
+
+#: ./go-app-ussd_registration.js:1718
+msgid ""
+"Please try again. Reply with the number that matches your answer, e.g. 1\n"
+"\n"
+"What language would you like to receive messages in?"
+msgstr ""
+"Please try again. Reply with the number that matches your answer, e.g. 1\n"
+"\n"
+"What language would you like to receive messages in?"
+
+#: ./go-app-ussd_registration.js:1719
+msgid "English"
+msgstr "English"
+
+#: ./go-app-ussd_registration.js:1720
+msgid "Zulu"
+msgstr "Zulu"
+
+#: ./go-app-ussd_registration.js:1721
+msgid "Sesotho"
+msgstr "Sesotho"

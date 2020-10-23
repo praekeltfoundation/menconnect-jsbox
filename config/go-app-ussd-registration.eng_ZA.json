@@ -1,0 +1,724 @@
+{
+    "": {
+        "pot-creation-date": "2020-10-23 04:13:+0000",
+        "project-id-version": "PACKAGE VERSION",
+        "language-team": "LANGUAGE <LL@li.org>",
+        "language": "",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=utf-8",
+        "content-transfer-encoding": "8bit",
+        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE"
+    },
+    "WhatsApp": [
+        null,
+        ""
+    ],
+    "SMS": [
+        null,
+        ""
+    ],
+    "Welcome back. Please select an option:": [
+        null,
+        ""
+    ],
+    "Continue signing up for messages": [
+        null,
+        ""
+    ],
+    "Main menu": [
+        null,
+        ""
+    ],
+    "One final question from me.\n\nMy name is Mo. What's your name?": [
+        null,
+        ""
+    ],
+    "What's your question?": [
+        null,
+        ""
+    ],
+    "What do you want to know?": [
+        null,
+        ""
+    ],
+    "What would you like to do?": [
+        null,
+        ""
+    ],
+    "When is your next expected clinic date?\nReply with the full date in the format YYYY-MM-DD": [
+        null,
+        ""
+    ],
+    "Doing something every day is a habit.\n\nBuild a treatment habit:\nAdd it to your daily schedule\nTick it off\nPlan for changes\nGive yourself time\n": [
+        null,
+        ""
+    ],
+    "What would you like to view?": [
+        null,
+        ""
+    ],
+    "What would you like to change?": [
+        null,
+        ""
+    ],
+    "What name would you like me to call you instead?": [
+        null,
+        ""
+    ],
+    "Choose a question:": [
+        null,
+        ""
+    ],
+    "Do you want to receive an SMS that you can share with other men living with HIV?": [
+        null,
+        ""
+    ],
+    "Thank you. You will receive an SMS with info that you can share with other men living with HIV.": [
+        null,
+        ""
+    ],
+    "Select a topic:": [
+        null,
+        ""
+    ],
+    "It was great talking to you. If you ever want to know more about MenConnect and how to use it, dial *134*406#.\n\nChat soon!\nMo\nMenConnect": [
+        null,
+        ""
+    ],
+    "It's a virus that enters your body through blood / bodily fluids. \nIt attacks your CD4 cells that protect your body against disease.": [
+        null,
+        ""
+    ],
+    "What does HIV do to my body?. \nHIV enters your body & makes more. It attacks your soldiers so you can't fight off common infections.": [
+        null,
+        ""
+    ],
+    "Is there a cure?\nThere is currently no cure for HIV. But taking ARVs every day can keep you healthy.": [
+        null,
+        ""
+    ],
+    "What is viral load?\nViral load is the amount of virus in your blood. The higher your viral load, the sicker you may be.": [
+        null,
+        ""
+    ],
+    "What is low viral load?\nA low viral load is a result of taking treatment every day.\nEventually your viral load will be so low that it's undetectable.": [
+        null,
+        ""
+    ],
+    "What language would you like to receive messages in?": [
+        null,
+        ""
+    ],
+    "What is your current age?\nSelect your age group:": [
+        null,
+        ""
+    ],
+    "When were you first diagnosed positive?": [
+        null,
+        ""
+    ],
+    "MenConnect sends you messages to help with your treatment.\nIt seems like you don't need treatment.If you sent the wrong answer, dial *134*406# to restart.": [
+        null,
+        ""
+    ],
+    "Are you or have you been on ARV treatment?": [
+        null,
+        ""
+    ],
+    "When did you start taking ARV treatment?": [
+        null,
+        ""
+    ],
+    "Are you still taking your treatment?": [
+        null,
+        ""
+    ],
+    "Is your viral load undetectable?": [
+        null,
+        ""
+    ],
+    "Please try again. e.g. 1.": [
+        null,
+        ""
+    ],
+    "Taking your meds daily stops HIV from making more in your blood so that your CD4 cells can get strong again.\n": [
+        null,
+        ""
+    ],
+    "error": [
+        null,
+        ""
+    ],
+    "Take your meds every day, at the same time as prescribed by your nurse\n": [
+        null,
+        ""
+    ],
+    "You need to take your meds every day for the rest of your life to stay healthy.\n": [
+        null,
+        ""
+    ],
+    "Every person feels different after taking meds.If it's making you unwell, speak to your nurse.\n": [
+        null,
+        ""
+    ],
+    "It is important that you take the meds that is prescribed to you by a nurse.\n": [
+        null,
+        ""
+    ],
+    "You can still take the meds within 6 hrs of usual time. Don't double your dose the next day if you missed a day.\n": [
+        null,
+        ""
+    ],
+    "We process your info to help you on your health journey. We collect name, age, cell number, language, channel, status, clinic dates, & survey answers.": [
+        null,
+        ""
+    ],
+    "We use your personal info to send you messages that are relevant to the stage of your health journey. Your info helps the team improve the service.": [
+        null,
+        ""
+    ],
+    "Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners": [
+        null,
+        ""
+    ],
+    "We hold your info while you're registered. If you opt-out, we'll use your info for historical ,research & statistical reasons with your consent.": [
+        null,
+        ""
+    ],
+    "HIV": [
+        null,
+        ""
+    ],
+    "Treatment": [
+        null,
+        ""
+    ],
+    "Reminders": [
+        null,
+        ""
+    ],
+    "Habit Plan": [
+        null,
+        ""
+    ],
+    "My Profile": [
+        null,
+        ""
+    ],
+    "Processing my info": [
+        null,
+        ""
+    ],
+    "Share": [
+        null,
+        ""
+    ],
+    "Resources": [
+        null,
+        ""
+    ],
+    "Exit": [
+        null,
+        ""
+    ],
+    "What is HIV?": [
+        null,
+        ""
+    ],
+    "What does HIV do to my body?": [
+        null,
+        ""
+    ],
+    "Is there a cure?": [
+        null,
+        ""
+    ],
+    "What is viral load?": [
+        null,
+        ""
+    ],
+    "What is low viral load?": [
+        null,
+        ""
+    ],
+    "Back": [
+        null,
+        ""
+    ],
+    "Back to HIV questions": [
+        null,
+        ""
+    ],
+    "How it works?": [
+        null,
+        ""
+    ],
+    "When to take it?": [
+        null,
+        ""
+    ],
+    "How long to take it?": [
+        null,
+        ""
+    ],
+    "Side effects?": [
+        null,
+        ""
+    ],
+    "How do I get it?": [
+        null,
+        ""
+    ],
+    "Can I skip a day?": [
+        null,
+        ""
+    ],
+    "Show my next expected clinic date": [
+        null,
+        ""
+    ],
+    "Change my next clinic date": [
+        null,
+        ""
+    ],
+    "Plan for my clinic visit": [
+        null,
+        ""
+    ],
+    "Back to menu": [
+        null,
+        ""
+    ],
+    "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}": [
+        null,
+        ""
+    ],
+    "None": [
+        null,
+        ""
+    ],
+    "Change your next clinic date": [
+        null,
+        ""
+    ],
+    "Sorry, I don’t recognise that date. Please try again.": [
+        null,
+        ""
+    ],
+    "Hmm, that seems a bit far away. You should at least be going to the clinic every 2 months. Please try again.": [
+        null,
+        ""
+    ],
+    "Oops, that day has already passed. Please try again.": [
+        null,
+        ""
+    ],
+    "You entered {{clinic_date}}. I'll send you reminders of your upcoming clinic visits so that you don't forget.": [
+        null,
+        ""
+    ],
+    "Confirm": [
+        null,
+        ""
+    ],
+    "Your next clinic visit has been changed to {{clinic_date}}": [
+        null,
+        ""
+    ],
+    "Tip 1: Set a reminder in your phone\nTip2: Tell someone you're going\nTip 3: Plan your trip\nTip 4: Prepare questions for your nurse": [
+        null,
+        ""
+    ],
+    "TBC": [
+        null,
+        ""
+    ],
+    "See my info": [
+        null,
+        ""
+    ],
+    "Change my info": [
+        null,
+        ""
+    ],
+    "Opt-out": [
+        null,
+        ""
+    ],
+    "Name: {{name}}\nCell number: {{msisdn}}\nChannel: {{channel}}\nAge: {{age_group}}\nEstimated treatment start date: {{treatment_start_period}}": [
+        null,
+        ""
+    ],
+    "Change info": [
+        null,
+        ""
+    ],
+    "Name": [
+        null,
+        ""
+    ],
+    "Cell number": [
+        null,
+        ""
+    ],
+    "Age": [
+        null,
+        ""
+    ],
+    "Change from {{current_channel}} to {{alternative_channel}}": [
+        null,
+        ""
+    ],
+    "Treatment start date": [
+        null,
+        ""
+    ],
+    "You entered {{name}}": [
+        null,
+        ""
+    ],
+    "confirm": [
+        null,
+        ""
+    ],
+    "Thanks. I'll call you {{name}}\n\nWhat would you like to do next?": [
+        null,
+        ""
+    ],
+    "Back to main menu": [
+        null,
+        ""
+    ],
+    "Are you sure you want to get your MenConnect messages on {{alternative_channel}}?": [
+        null,
+        ""
+    ],
+    "Yes": [
+        null,
+        ""
+    ],
+    "No": [
+        null,
+        ""
+    ],
+    "Sorry we don't recognise that reply. Please enter the number next to your answer.": [
+        null,
+        ""
+    ],
+    "You'll keep getting your messages on {{channel}}. If you change your mind, dial *134*406#. What would you like to do?": [
+        null,
+        ""
+    ],
+    "Okay. I'll send you MenConnect messages on {{channel}}.To move back to WhatsApp, reply *WA* or dial *134*406#.": [
+        null,
+        ""
+    ],
+    "Thanks, I'll call you {{preferred_name}}\n\nWhat do you want to do next?": [
+        null,
+        ""
+    ],
+    "Please reply with the *new cell number* you would like to get your MenConnect messages on, e.g 0813547654": [
+        null,
+        ""
+    ],
+    "Sorry, the cell number you entered already gets MC msgs. To manage it, dial *134*406# from that number. What would you like to do?": [
+        null,
+        ""
+    ],
+    "You have entered {{msisdn}}as your new MenConnect number.\n\nIs this correct?": [
+        null,
+        ""
+    ],
+    "No, try again": [
+        null,
+        ""
+    ],
+    "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \nWhat would you like to do?": [
+        null,
+        ""
+    ],
+    "How old are you?\nSelect your age group:": [
+        null,
+        ""
+    ],
+    "Sorry, please reply with the number that matches your answer, e.g. 1.": [
+        null,
+        ""
+    ],
+    "<15": [
+        null,
+        ""
+    ],
+    "15-19": [
+        null,
+        ""
+    ],
+    "20-24": [
+        null,
+        ""
+    ],
+    "25-29": [
+        null,
+        ""
+    ],
+    "30-34": [
+        null,
+        ""
+    ],
+    "35-39": [
+        null,
+        ""
+    ],
+    "40-44": [
+        null,
+        ""
+    ],
+    "45-49": [
+        null,
+        ""
+    ],
+    "50+": [
+        null,
+        ""
+    ],
+    "Your age group will be updated to {{age}}": [
+        null,
+        ""
+    ],
+    "Please select 1 or 2": [
+        null,
+        ""
+    ],
+    "Thank you. Your age has been changed to {{age_group}}\n": [
+        null,
+        ""
+    ],
+    "When did you start taking ARV treatment? Choose the closest option.\n": [
+        null,
+        ""
+    ],
+    "Please reply with number closest to when you started treatment:": [
+        null,
+        ""
+    ],
+    "today": [
+        null,
+        ""
+    ],
+    "<1 week": [
+        null,
+        ""
+    ],
+    "<1 month": [
+        null,
+        ""
+    ],
+    "<3 months": [
+        null,
+        ""
+    ],
+    "3-6 months": [
+        null,
+        ""
+    ],
+    "6-12 months": [
+        null,
+        ""
+    ],
+    ">1 year": [
+        null,
+        ""
+    ],
+    "Your new treatment start date will be updated to {{treatment_start_date}}": [
+        null,
+        ""
+    ],
+    "Thank you. Your treatment start date has been changed to {{treatment_start_period}}": [
+        null,
+        ""
+    ],
+    "What info does MenConnect collect?": [
+        null,
+        ""
+    ],
+    "Why does MenConnect need my info?": [
+        null,
+        ""
+    ],
+    "Who can see my info?": [
+        null,
+        ""
+    ],
+    "How long is my info kept?": [
+        null,
+        ""
+    ],
+    "Back to Menu": [
+        null,
+        ""
+    ],
+    "Depression": [
+        null,
+        ""
+    ],
+    "Mental health": [
+        null,
+        ""
+    ],
+    "Suicide": [
+        null,
+        ""
+    ],
+    "Gender based violence": [
+        null,
+        ""
+    ],
+    "Substance abuse": [
+        null,
+        ""
+    ],
+    "Aids helpline": [
+        null,
+        ""
+    ],
+    "COVID-19": [
+        null,
+        ""
+    ],
+    "Adcock Ingram Depression and Anxiety Helpline can help you if you are feeling depressed. Call 0800 7080 90": [
+        null,
+        ""
+    ],
+    "Back to resources": [
+        null,
+        ""
+    ],
+    "The South African Depression and Anxiety group can support you when you're feeling low. Dial 0800 4567 789 for their 24 hour helpline.": [
+        null,
+        ""
+    ],
+    "The South African Depression and Anxiety group can support you whenyou're feeling low. Dial 0800 4567 789 for their emergency suicide helpline.": [
+        null,
+        ""
+    ],
+    "Anonymous & confidential info, counselling and referrals to survivors,witnesses and perpetrators of gender-based violence. Dial 0800 150 150.": [
+        null,
+        ""
+    ],
+    "The Substance Abuse Line offers support & guidance for people addicted to drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312": [
+        null,
+        ""
+    ],
+    "The National HIV and AIDs Helpline is a toll free number that you can call for anonymous and confidential advice. Call 0800 012 322 for 24 hour help.": [
+        null,
+        ""
+    ],
+    "For correct & up to date info on COVID-19, save the number +2760 0123 456 and send 'hi' or call the national COVID-19 hotline on 0800 029 999.": [
+        null,
+        ""
+    ],
+    "MenConnect needs to process your personal info to send you relevant messages. Do you agree?": [
+        null,
+        ""
+    ],
+    "Sorry, please reply with the number next to your answer. Do you agree?": [
+        null,
+        ""
+    ],
+    "MenConnect supports men on their journey. I'll send you messages with info & tips.Do you agree to receive?": [
+        null,
+        ""
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?": [
+        null,
+        ""
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
+        null,
+        ""
+    ],
+    "English": [
+        null,
+        ""
+    ],
+    "Zulu": [
+        null,
+        ""
+    ],
+    "Sesotho": [
+        null,
+        ""
+    ],
+    "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up.": [
+        null,
+        ""
+    ],
+    "Please reply with the number that matches your answer.\n\nSelect your age group:": [
+        null,
+        ""
+    ],
+    "Please reply with the number that matches your answer, eg .1.": [
+        null,
+        ""
+    ],
+    "Today": [
+        null,
+        ""
+    ],
+    "Last week": [
+        null,
+        ""
+    ],
+    "> 1 year": [
+        null,
+        ""
+    ],
+    "not positive": [
+        null,
+        ""
+    ],
+    "not sure": [
+        null,
+        ""
+    ],
+    "Next": [
+        null,
+        ""
+    ],
+    "Thank you for considering MenConnect. We respect your decision. Have a lovely day.": [
+        null,
+        ""
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nAre you or have you been on ARV treatment?": [
+        null,
+        ""
+    ],
+    "Please reply with number closest to when you started treatment: ": [
+        null,
+        ""
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.": [
+        null,
+        ""
+    ],
+    "Mostly - sometimes I forget": [
+        null,
+        ""
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nIs your viral load undetectable?": [
+        null,
+        ""
+    ],
+    "I don't know": [
+        null,
+        ""
+    ],
+    "You're done! You will get info & tips on {{msisdn}} to support you on your journey on {{channel}}. Thanks for signing up to MenConnect!": [
+        null,
+        ""
+    ],
+    "Sorry, something went wrong. We have been notified. Please try again later": [
+        null,
+        ""
+    ]
+}
