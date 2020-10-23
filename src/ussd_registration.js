@@ -35,7 +35,9 @@ go.app = (function() {
 
       self.env = self.im.config.env;
       self.metric_prefix = [self.env, self.im.config.name].join('.');
+
       async function insertRowsAsStream(row) {
+        await self.im.log.info("about to create the bigquery client");
         const bigqueryClient = new BigQuery({
             projectId: self.im.config.services.bigquery.project_id,
             credentials: {
@@ -43,18 +45,21 @@ go.app = (function() {
               private_key: self.im.config.services.bigquery.private_key
             }
         });
-
+        await self.im.log.info("created the bigquery client");
         // Insert data into a table
         await bigqueryClient
           .dataset("menconnet_redis")
           .table("status")
           .insert(row);
+        await self.im.log.info("sent to BQ");
       }
+
       self.im.on('state:enter', function(e) {
         const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
         insertRowsAsStream(row);
         return "sent to bigquery";
       });
+
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
       });
