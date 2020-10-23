@@ -6,6 +6,7 @@ go.app = (function() {
   var moment = require("moment");
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
+  var LanguageState = vumigo.states.LanguageChoice;
   var FreeText = vumigo.states.FreeText;
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
@@ -1300,7 +1301,7 @@ go.app = (function() {
     });
 
     self.add("state_language", function(name) {
-      return new ChoiceState(name, {
+      return new LanguageState(name, {
         question:get_content(name).context(),
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1" +

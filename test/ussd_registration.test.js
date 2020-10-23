@@ -1223,6 +1223,10 @@ describe("state_share", function() {
               "3. Sesotho"
           ].join("\n")
         })
+        .check(function(api){
+          var metrics = api.metrics.stores.test_metric_store;
+          assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
+        })
         .run();
     });
     it("should show the consent declined screen", function() {
@@ -1256,6 +1260,28 @@ describe("state_share", function() {
               "2. No"
           ].join("\n")
         })
+        .run();
+    });
+  });
+  describe("state_language", function() {
+    it("should should ask the users language", function() {
+      return tester.setup.user
+        .state("state_language")
+        .check.interaction({
+          reply: [
+            "What language would you like to receive messages in?",
+            "1. English",
+            "2. Zulu",
+            "3. Sesotho"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should change the language", function() {
+      return tester.setup.user
+        .state("state_language")
+        .input("3")
+        .check.user.lang("sot")
         .run();
     });
   });

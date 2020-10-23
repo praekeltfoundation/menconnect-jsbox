@@ -1,0 +1,725 @@
+{
+    "": {
+        "pot-creation-date": "2020-10-20 12:10:+0000",
+        "project-id-version": "PACKAGE VERSION",
+        "language-team": "sotho",
+        "language": "zu",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=utf-8",
+        "content-transfer-encoding": "8bit",
+        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+        "last-translator": "Chima"
+    },
+    "WhatsApp": [
+        null,
+        "WhatsApp"
+    ],
+    "SMS": [
+        null,
+        "SMS"
+    ],
+    "Welcome back. Please select an option:": [
+        null,
+        "Rea u amohela hape. Ka kopo khetha khetho:"
+    ],
+    "Continue signing up for messages": [
+        null,
+        "Tsoela pele ho ingolisa bakeng sa melaetsa"
+    ],
+    "Lenaneo le ka sehloohong": [
+        null,
+        ""
+    ],
+    "One final question from me.\n\nMy name is Mo. What's your name?": [
+        null,
+        "Potso e le nngwe ya bofelo ho tswa ho nna.\n\nLebitso la ka ke Mo. Lebitso la hao o mang?"
+    ],
+    "What's your question?": [
+        null,
+        "Potso ya hao ke efe?"
+    ],
+    "What do you want to know?": [
+        null,
+        "O batla ho tseba eng?"
+    ],
+    "What would you like to do?": [
+        null,
+        "O batla ho etsang?"
+    ],
+    "When is your next expected clinic date?\nReply with the full date in the format YYYY-MM-DD": [
+        null,
+        "Letsatsi la hao la tleliniki le latelang ke mang?\nAraba ka letsatsi le feletseng ka sebopeho sa YYYY/MM/DD."
+    ],
+    "Doing something every day is a habit.\n\nBuild a treatment habit:\nAdd it to your daily schedule\nTick it off\nPlan for changes\nGive yourself time\n": [
+        null,
+        "Ho etsa ntho kamehla ke tlwaelo.\n\nAha tlwaelo ya kalafo:\nE eketse tlhophisong ya hao ya kamehla\nE tshwaye\nRerela diphetoho\nIphe nako\n"
+    ],
+    "What would you like to view?": [
+        null,
+        "O lakatsa ho shebang?"
+    ],
+    "What would you like to change?": [
+        null,
+        "O lakatsa ho fetola eng?"
+    ],
+    "What name would you like me to call you instead?": [
+        null,
+        "O batla hore ke o bitse ka lebitso lefe?"
+    ],
+    "Choose a question:": [
+        null,
+        "Kgetha potso:"
+    ],
+    "Do you want to receive an SMS that you can share with other men living with HIV?": [
+        null,
+        "Na o batla ho fumana SMS eo o tla e arolelana le banna ba bang ba nang le HIV?"
+    ],
+    "Thank you. You will receive an SMS with info that you can share with other men living with HIV.": [
+        null,
+        "Ke a leboha. O tla fumana SMS e nang le lesedi leo o ka le arolelanang le banna ba bang ba nang le HIV."
+    ],
+    "Select a topic:": [
+        null,
+        "Kgetha taba:"
+    ],
+    "It was great talking to you. If you ever want to know more about MenConnect and how to use it, dial *134*406#.\n\nChat soon!\nMo\nMenConnect": [
+        null,
+        "Ho bile monate ho bua le wena. Haeba o batla ho tseba haholwanyane ka MenConnect le ho e sebedisa, daela *134*406#.\n\nRe tla bua hape!\nMo\nMenConnect"
+    ],
+    "It's a virus that enters your body through blood / bodily fluids. \nIt attacks your CD4 cells that protect your body against disease.": [
+        null,
+        "Ke vaerase e kenang mmeleng wa hao ka madi / mekedikedi ya mmele. \nE hlasela disele tsa hao tsa CD4 tse sireletsang mmele wa hao kgahlanong le mafu."
+    ],
+    "What does HIV do to my body?. \nHIV enters your body & makes more. It attacks your soldiers so you can't fight off common infections.": [
+        null,
+        "HIV e etsang mmeleng wa ka? \nHIV e kena mmeleng wa hao le ho ikatisa. E hlasela masole a hao hore o se kgone ho lwantsha ditshwaetso."
+    ],
+    "Is there a cure?\nThere is currently no cure for HIV. But taking ARVs every day can keep you healthy.": [
+        null,
+        "Na pheko e teng?\nHa ho pheko bakeng sa HIV hajwale. Empa ho nwa di-ARV kamehla ho ka o boloka o phetse."
+    ],
+    "What is viral load?\nViral load is the amount of virus in your blood. The higher your viral load, the sicker you may be.": [
+        null,
+        "Loutu ya vaerase ke eng?\nLoutu ya vaerase ke bongata ba vaerase e mading a hao. Ha loutu ya vaerase ya hao e phahame, o kula haholo."
+    ],
+    "What is low viral load?\nA low viral load is a result of taking treatment every day.\nEventually your viral load will be so low that it's undetectable.": [
+        null,
+        "Loutu ya vaerase e tlase keng?\nLoutu e tlase ke baka la ho sebedisa kalafo kamehla.\nQetellong loutu ya vaerase e tla ba tlase hoo e sa fumaneheng."
+    ],
+    "What is your current age?\nSelect your age group:": [
+        null,
+        "Dilemo tsa hao hajwale ke dife?  \nKgetha sehlopha sa dilemo:"
+    ],
+    "When were you first diagnosed positive?": [
+        null,
+        "O fumane neng ho re o HIV+?"
+    ],
+    "MenConnect sends you messages to help with your treatment.\nIt seems like you don't need treatment.If you sent the wrong answer, dial *134*406# to restart.": [
+        null,
+        "MenConnect eo romela melaetsa e o thusang ka kalafo ya hao.\nHo bonahala o sa hloke kalafo. Haeba o romela karabo e fosahetseng, daela *134*406# ho qala botjha."
+    ],
+    "Are you or have you been on ARV treatment?": [
+        null,
+        "Na o bile kapa o kalafong ya ARV?"
+    ],
+    "When did you start taking ARV treatment?": [
+        null,
+        "Waqala nini ukwelashwa ngama-ARV?"
+    ],
+    "Are you still taking your treatment?": [
+        null,
+        "Na o bile kapa o kalafong ya ARV?"
+    ],
+    "Is your viral load undetectable?": [
+        null,
+        "Na loutu ya hao ya vaerase ha e fumanehe?"
+    ],
+    "Please try again. e.g. 1.": [
+        null,
+        "Ka kopo leka hape. mohl. 1."
+    ],
+    "Taking your meds daily stops HIV from making more in your blood so that your CD4 cells can get strong again.\n": [
+        null,
+        "Ho nwa meriana kamehla ho thibela HIV ho ikatisa mading a hao hore disele tsa hao tsa CD4 di be matla hape.\n"
+    ],
+    "error": [
+        null,
+        "Phoso"
+    ],
+    "Take your meds every day, at the same time as prescribed by your nurse\n": [
+        null,
+        "Enwa meriana ya hao kamehla, ka nako e tshwanang, jwalo ka ha o hlaloseditswe ke mooki.\n"
+    ],
+    "You need to take your meds every day for the rest of your life to stay healthy.\n": [
+        null,
+        "O hloka ho nwa meriana ya hao kamehla bophelo bohle ba hao ho dula o le matla o phetse hantle.\n"
+    ],
+    "Every person feels different after taking meds.If it's making you unwell, speak to your nurse.\n": [
+        null,
+        "Motho e mong le e mong o ikutlwa ka tsela e fapaneng kamora meriana. Ha o sa ikutlwe hantle, bua le mooki.\n"
+    ],
+    "It is important that you take the meds that is prescribed to you by a nurse.\n": [
+        null,
+        "Ho bohlokwa ho nwa meriana ya hao ka moo o laetsweng ke mooki.\n"
+    ],
+    "You can still take the meds within 6 hrs of usual time. Don't double your dose the next day if you missed a day.\n": [
+        null,
+        "O ka sebedisa meriana horeng tse 6 kamora nako ya tlwaelo. Se ka pheta tekanyetso kamoso haeba o tlotse letsatsi.\n"
+    ],
+    "We process your info to help you on your health journey. We collect name, age, cell number, language, channel, status, clinic dates, & survey answers.": [
+        null,
+        "Re sebetsa lesedi ho o thusa leetong la bophelo. Re bokella lebitso, dilemo, nomoro ya sele, puo, kanale, boemo, matsatsi a tleliniki, le dipotso."
+    ],
+    "We use your personal info to send you messages that are relevant to the stage of your health journey. Your info helps the team improve the service.": [
+        null,
+        "Re sebedisa lesedi la botho ho o romela melaetsa e lokelang mohato wa leeto la bophelo bo botle. Lesedi le thusa sehlopha ho ntlafatsa tshebeletso."
+    ],
+    "Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners": [
+        null,
+        "Lesedi la hao le sireleditswe. Le sebetswa ke MTN, Cell C, Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn, WhatsApp le balekane"
+    ],
+    "We hold your info while you're registered. If you opt-out, we'll use your info for historical ,research & statistical reasons with your consent.": [
+        null,
+        "Re tshwara lesedi la hao ha o ngodisitswe. Ha o tswa, re tla sebedisa lesedi la hao ka mabaka a nalane, patlisiso le dipalopalo ka tumello ya hao."
+    ],
+    "HIV": [
+        null,
+        "HIV"
+    ],
+    "Treatment": [
+        null,
+        "Kalafo"
+    ],
+    "Reminders": [
+        null,
+        "Dikgopotso"
+    ],
+    "Habit Plan": [
+        null,
+        "Morero wa Tlwaelo"
+    ],
+    "My Profile": [
+        null,
+        "Porofaele Ya Ka"
+    ],
+    "Processing my info": [
+        null,
+        "Ho lokisa lesedi la ka"
+    ],
+    "Share": [
+        null,
+        "Ho arolelana"
+    ],
+    "Resources": [
+        null,
+        "Dirisose"
+    ],
+    "Exit": [
+        null,
+        "Etswa"
+    ],
+    "What is HIV?": [
+        null,
+        "HIV ke eng?"
+    ],
+    "What does HIV do to my body?": [
+        null,
+        "HIV e etsang mmeleng?"
+    ],
+    "Is there a cure?": [
+        null,
+        "Na e na le pheko?"
+    ],
+    "What is viral load?": [
+        null,
+        "Loutu ya vaerase ke eng?"
+    ],
+    "What is low viral load?": [
+        null,
+        "Loutu ya vaerase e tlase keng?"
+    ],
+    "Back": [
+        null,
+        "Morao"
+    ],
+    "Back to HIV questions": [
+        null,
+        "Morao potsong tsa HIV"
+    ],
+    "How it works?": [
+        null,
+        "E sebetsa jwang?"
+    ],
+    "When to take it?": [
+        null,
+        "Ke e nwa neng?"
+    ],
+    "How long to take it?": [
+        null,
+        "Ke e nwa nako e kae?"
+    ],
+    "Side effects?": [
+        null,
+        "Ditlamorao?"
+    ],
+    "How do I get it?": [
+        null,
+        "Ke e fumana jwang?"
+    ],
+    "Can I skip a day?": [
+        null,
+        "Na nka tlola letsatsi?"
+    ],
+    "Show my next expected clinic date": [
+        null,
+        "Bontsha letsatsi le latelang la tleliniki"
+    ],
+    "Change my next clinic date": [
+        null,
+        "Fetola letsatsi la tleliniki"
+    ],
+    "Plan for my clinic visit": [
+        null,
+        "Rerela ketelo ya ka ya tlelliniki"
+    ],
+    "Back to menu": [
+        null,
+        "Morao ho menyu"
+    ],
+    "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}": [
+        null,
+        "Ho latela seo o ntjwetsang, ke nahana ketelo e latelang ebe {{next_clinic_visit}}"
+    ],
+    "None": [
+        null,
+        "Haho lea mong"
+    ],
+    "Change your next clinic date": [
+        null,
+        "Fetola letsatsi la hau le latelang la tleliniki"
+    ],
+    "Sorry, I don’t recognise that date. Please try again.": [
+        null,
+        "Uxolo, angiluboni lolo suku. Ngicela bohlokoa hape."
+    ],
+    "Hmm, that seems a bit far away. You should at least be going to the clinic every 2 months. Please try again.": [
+        null,
+        "Hmm, hoo ho bonahala ho le hole haholo. U lokela hore bonyane u ee tleleniking likhoeli tse ling le tse ling tse 2. Ka kopo leka hape."
+    ],
+    "Oops, that day has already passed. Please try again.": [
+        null,
+        "Oops, letsatsi leo le se le fetile. Ka kopo leka hape."
+    ],
+    "You entered {{clinic_date}}. I'll send you reminders of your upcoming clinic visits so that you don't forget.": [
+        null,
+        "U kentse {{clinic_date}}. Ke tla u romella likhopotso tsa se tlang ho etela tleliniking hore o se lebale."
+    ],
+    "Confirm": [
+        null,
+        "Netefatsa"
+    ],
+    "Your next clinic visit has been changed to {{clinic_date}}": [
+        null,
+        "Ketelo ea hau e latelang ea tleliniki e fetotsoe ho {{clinic_date}}"
+    ],
+    "Tip 1: Set a reminder in your phone\nTip2: Tell someone you're going\nTip 3: Plan your trip\nTip 4: Prepare questions for your nurse": [
+        null,
+        "Keletso 1: Seta kgopotso founung\nKeletso 2: Jwetsa motho ha o tsamaya\nKeletso 3: Rera leeto la hao\nKeletso 4: Lokisa dipotso tsa mooki"
+    ],
+    "TBC": [
+        null,
+        "TBC"
+    ],
+    "See my info": [
+        null,
+        "Ho sheba lesedi la ka"
+    ],
+    "Change my info": [
+        null,
+        "Ho fetola lesedi la ka"
+    ],
+    "Opt-out": [
+        null,
+        "Ho tswa"
+    ],
+    "Name: {{name}}\nCell number: {{msisdn}}\nChannel: {{channel}}\nAge: {{age_group}}\nEstimated treatment start date: {{treatment_start_period}}": [
+        null,
+        "Lebitso:: {{name}}\nNomoro ya selefounu: {{msisdn}}\nKanale: {{channel}}\nDilemo: {{age_group}}\nLetsatsi la qalo ya kalafo: {{treatment_start_period}}"
+    ],
+    "Change info": [
+        null,
+        "Ho sheba lesedi la ka"
+    ],
+    "Name": [
+        null,
+        "Lebitso"
+    ],
+    "Cell number": [
+        null,
+        "Nomoro ya sele"
+    ],
+    "Age": [
+        null,
+        "Dilemo"
+    ],
+    "Change from {{current_channel}} to {{alternative_channel}}": [
+        null,
+        "Fetola ho tloha ho {{current_channel}} ho ya ho {{alternative_channel}}"
+    ],
+    "Treatment start date": [
+        null,
+        "Letsatsi la qalo ya kalafo"
+    ],
+    "You entered {{name}}": [
+        null,
+        "U kentse {{name}}"
+    ],
+    "confirm": [
+        null,
+        "Netefatsa"
+    ],
+    "Thanks. I'll call you {{name}}\n\nWhat would you like to do next?": [
+        null,
+        "Ke a leboha! Ke tla o bitsa {{name}}\n\nO batla o etsang hape?"
+    ],
+    "Back to main menu": [
+        null,
+        "Buyela kumenyu enkulu"
+    ],
+    "Are you sure you want to get your MenConnect messages on {{alternative_channel}}?": [
+        null,
+        "Na o batla ho fumana melaetsa ya MenConnect ho {{alternative_channel}}?"
+    ],
+    "Yes": [
+        null,
+        "Yes"
+    ],
+    "No": [
+        null,
+        "No"
+    ],
+    "Sorry we don't recognise that reply. Please enter the number next to your answer.": [
+        null,
+        "Re maswabi ha re tsebe karabo eo. Ka kopo kenya nomoro pela karabo ea hau."
+    ],
+    "You'll keep getting your messages on {{channel}}. If you change your mind, dial *134*406#. What would you like to do?": [
+        null,
+        "U tla lula u romella melaetsa ea hau {{channel}}. Haeba o fetola mohopolo, letsetsa * 134 * 406 #. O ka rata ho etsa eng?"
+    ],
+    "Okay. I'll send you MenConnect messages on {{channel}}.To move back to WhatsApp, reply *WA* or dial *134*406#.": [
+        null,
+        "Ke tla o romela melaetsa ya MenConnect ho {{channel}} ho tloha jwale. Ho ya morao ho SMS, araba SMS kapa eya ho MENYU ho fetola dintlha tsa hao."
+    ],
+    "Thanks, I'll call you {{preferred_name}}\n\nWhat do you want to do next?": [
+        null,
+        "Ke a leboha! Ke tla o bitsa {{preferred_name}}\n\nO batla o etsang hape?"
+    ],
+    "Please reply with the *new cell number* you would like to get your MenConnect messages on, e.g 0813547654": [
+        null,
+        "Ka kopo araba ka nomoro ya sele e ntjha eo o batlang ho fumana melaetsa ya hao ya MenConnect ho yona, j.k. 0813547654."
+    ],
+    "Sorry, the cell number you entered already gets MC msgs. To manage it, dial *134*406# from that number. What would you like to do?": [
+        null,
+        "Ke maswabi, nomoro ya sele eo o e kentseng e se ntse e le teng e fumana melaetsa ya MenConnect. Ho e laola, sheba MENYU ho tswa nomorong eo."
+    ],
+    "You have entered {{msisdn}}as your new MenConnect number.\n\nIs this correct?": [
+        null,
+        "O kentse {{msisdn}} e le nomoro ya hao e ntjha ya MenConnect.\n\nNa e nepahetse?"
+    ],
+    "No, try again": [
+        null,
+        "Che, leka hape"
+    ],
+    "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \nWhat would you like to do?": [
+        null,
+        "Ke a leboha! Re romela molaetsa ho +27 00 000 0000. Latela ditaelo ho fetola nomoro. \nHo tswela pele ho fumana melaetsa nomorong ya kgale, iphapanyetse molaetsa"
+    ],
+    "How old are you?\nSelect your age group:": [
+        null,
+        "O dilemo di kae?\nKgetha sehlopha sa dilemo tsa hao:"
+    ],
+    "Sorry, please reply with the number that matches your answer, e.g. 1.": [
+        null,
+        "Ka kopo leka hape. mohl. 1."
+    ],
+    "<15": [
+        null,
+        "<15"
+    ],
+    "15-19": [
+        null,
+        "15-19"
+    ],
+    "20-24": [
+        null,
+        "20-24"
+    ],
+    "25-29": [
+        null,
+        "25-29"
+    ],
+    "30-34": [
+        null,
+        "30-34"
+    ],
+    "35-39": [
+        null,
+        "35-39"
+    ],
+    "40-44": [
+        null,
+        "40-44"
+    ],
+    "45-49": [
+        null,
+        "45-49"
+    ],
+    "50+": [
+        null,
+        "50+"
+    ],
+    "Your age group will be updated to {{age}}": [
+        null,
+        "Lilemo tsa hau li tla ntlafatsoa ho {{age}}"
+    ],
+    "Please select 1 or 2": [
+        null,
+        "Ka kopo khetha 1 kapa 2"
+    ],
+    "Thank you. Your age has been changed to {{age_group}}\n": [
+        null,
+        "Kea leboha. Lilemo tsa hau li fetotsoe ho {{age_group}}\n"
+    ],
+    "When did you start taking ARV treatment? Choose the closest option.\n": [
+        null,
+        "O qadile ho nwa kalafo ya di-ARV neng? Khetha khetho e haufi.\n"
+    ],
+    "Please reply with number closest to when you started treatment:": [
+        null,
+        "Ka kopo araba ka nomoro e haufi haholo ha o qala kalafo:"
+    ],
+    "today": [
+        null,
+        "Kajeno"
+    ],
+    "<1 week": [
+        null,
+        "<Beke e 1"
+    ],
+    "<1 month": [
+        null,
+        "<Kgwedi e 1"
+    ],
+    "<3 months": [
+        null,
+        "<Kgwedi tse 3"
+    ],
+    "3-6 months": [
+        null,
+        "Kgwedi tse 3-6"
+    ],
+    "6-12 months": [
+        null,
+        "Kgwedi tse 6-12"
+    ],
+    ">1 year": [
+        null,
+        ">Selemo se 1"
+    ],
+    "Your new treatment start date will be updated to {{treatment_start_date}}": [
+        null,
+        "Letsatsi la hau le lecha la ho qala kalafo le tla ntlafatsoa ho {{treatment_start_date}}"
+    ],
+    "Thank you. Your treatment start date has been changed to {{treatment_start_period}}": [
+        null,
+        "Kea leboha. Letsatsi la hau la ho qala kalafo le fetotsoe ho {{treatment_start_period}}"
+    ],
+    "What info does MenConnect collect?": [
+        null,
+        "MenConnect e boloka sedi lefe?"
+    ],
+    "Why does MenConnect need my info?": [
+        null,
+        "Hobaneng MenConnect e hloka sedi?"
+    ],
+    "Who can see my info?": [
+        null,
+        "Ke mang ya bonang sedi laka?"
+    ],
+    "How long is my info kept?": [
+        null,
+        "Sedi le bolokwa nako e kae?"
+    ],
+    "Back to Menu": [
+        null,
+        "Morao ho menyu"
+    ],
+    "Depression": [
+        null,
+        "Tetebelo maikutlong"
+    ],
+    "Mental health": [
+        null,
+        "Kelello"
+    ],
+    "Suicide": [
+        null,
+        "Ho ipolaya"
+    ],
+    "Gender based violence": [
+        null,
+        "Dikgoka tsa bong"
+    ],
+    "Substance abuse": [
+        null,
+        "Tshebediso-dithethefatsi "
+    ],
+    "Aids helpline": [
+        null,
+        "Mohala wa AIDS"
+    ],
+    "COVID-19": [
+        null,
+        "COVID-19"
+    ],
+    "Adcock Ingram Depression and Anxiety Helpline can help you if you are feeling depressed. Call 0800 7080 90": [
+        null,
+        "Mohala wa Adcock Ingram wa Tetebelo Maikutlong le Tshabo o ka o thusa haeba o ikutlwa o tetebetse maikutlo. "
+    ],
+    "Back to resources": [
+        null,
+        "Morao ho dirisose"
+    ],
+    "The South African Depression and Anxiety group can support you when you're feeling low. Dial 0800 4567 789 for their 24 hour helpline.": [
+        null,
+        "Sehlopha sa South African Depression and Anxiety se o tshehetsa ha o wele moya. Daela 0800 4567 789 bakeng sa mohala wa bona dihora tse 24."
+    ],
+    "The South African Depression and Anxiety group can support you whenyou're feeling low. Dial 0800 4567 789 for their emergency suicide helpline.": [
+        null,
+        "Sehlopha sa South African Depression and Anxiety se o tshehetsa ha o wele moya. Daela 0800 4567 789 bakeng sa mohala wa thuso wa ho se ipolaye."
+    ],
+    "Anonymous & confidential info, counselling and referrals to survivors,witnesses and perpetrators of gender-based violence. Dial 0800 150 150.": [
+        null,
+        "Lesedi le sa faneng mabitso la sephiri, dikeletso le diphetiso ho diphofu, dipaki le bahlohleletsi ba dikgoka tsa bong. Daela 0800 150 150."
+    ],
+    "The Substance Abuse Line offers support & guidance for people addicted to drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312": [
+        null,
+        "Mohala wa Tshebediso-Mpe ya Dithethefatsi o tshehetsa le ho tataisa makgoba a tahi le dithethefatsi le malapa. Daela 0800 12 13 14 kapa SMS ho 32312"
+    ],
+    "The National HIV and AIDs Helpline is a toll free number that you can call for anonymous and confidential advice. Call 0800 012 322 for 24 hour help.": [
+        null,
+        "Mohala wa National HIV and AIDS o letsetswa mahala ho fumana dikeletso tsa sephiri ntle le mabitso. Letsetsa 0800 012 322 o thuswe dihora tse 24."
+    ],
+    "For correct & up to date info on COVID-19, save the number +2760 0123 456 and send 'hi' or call the national COVID-19 hotline on 0800 029 999.": [
+        null,
+        "Bakeng sa lesedi le kgemang le dinako ka COVID-19, boloka nomoro ya +2760 0123 456 mme o romele 'hi' kapa letsetsa mohala wa naha wa COVID-19 ho 0800 029 999"
+    ],
+    "MenConnect needs to process your personal info to send you relevant messages. Do you agree?": [
+        null,
+        "Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho lwezempilo. Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+    ],
+    "Sorry, please reply with the number next to your answer. Do you agree?": [
+        null,
+        "Uxolo, ngicela uphendule ngenombolo eseduze kwempendulo yakho. Ingabe uyavuma?"
+    ],
+    "MenConnect supports men on their journey. I'll send you messages with info & tips.Do you agree to receive?": [
+        null,
+        "MenConnect supports men on their journey. I'll send you messages with info & tips.Do you agree to receive?"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?"
+    ],
+    "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up.": [
+        null,
+        "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up."
+    ],
+    "Please reply with the number that matches your answer.\n\nSelect your age group:": [
+        null,
+        "Phendula ngenombolo ehambisana nempendulo yakho.\n\nKgetha sehlopha sa dilemo tsa hao:"
+    ],
+    "Please reply with the number that matches your answer, eg .1.": [
+        null,
+        "Ka kopo araba ka nomoro e lumellanang le karabo ea hau, mohlala .1."
+    ],
+    "Today": [
+        null,
+        "Kajeno"
+    ],
+    "Last week": [
+        null,
+        "Beke e fetileng"
+    ],
+    "> 1 year": [
+        null,
+        "> Selemo se 1"
+    ],
+    "not positive": [
+        null,
+        "Ha ho HIV"
+    ],
+    "not sure": [
+        null,
+        "Haho bonnete"
+    ],
+    "Next": [
+        null,
+        "E 'ngoe"
+    ],
+    "Thank you for considering MenConnect. We respect your decision. Have a lovely day.": [
+        null,
+        "Thank you for considering MenConnect. We respect your decision. Have a lovely day."
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nAre you or have you been on ARV treatment?": [
+        null,
+        "Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1.\nNa o bile kapa o kalafong ya ARV?"
+    ],
+    "Please reply with number closest to when you started treatment: ": [
+        null,
+        "Araba ka nomoro e haufiufi le qalo ya kalafo ya hao:"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.": [
+        null,
+        "Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1."
+    ],
+    "Mostly - sometimes I forget": [
+        null,
+        "Boholo – nako e nngwe ke a lebala"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nIs your viral load undetectable?": [
+        null,
+        "Ka kopo leka hape. Araba ka nomoro e lumellanang le karabo ea hau, mohl. 1.\nNa loutu ya hao ya vaerase ha e fumanehe?"
+    ],
+    "I don't know": [
+        null,
+        "Ha ke tsebe"
+    ],
+    "You're done! You will get info & tips on {{msisdn}} to support you on your journey on {{channel}}. Thanks for signing up to MenConnect!": [
+        null,
+        "O qetile! O tla fumana lesedi le dikeletso ho o tshehetsa leetong la hao ka {{channel}}. Ke o leboha ha o saenetse ho kenela MenConnect!"
+    ],
+    "Sorry, something went wrong. We have been notified. Please try again later": [
+        null,
+        "Tsoarelo, ho bile le phoso. Re tsebisitsoe. Ka kopo leka hape hamorao"
+    ],
+    "What language would you like to receive messages in?": [
+        null,
+        "What language would you like to receive messages in?"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
+    ],
+    "English": [
+        null,
+        "English"
+    ],
+    "Zulu": [
+        null,
+        "Zulu"
+    ],
+    "Sesotho": [
+        null,
+        "Sesotho"
+    ]
+}

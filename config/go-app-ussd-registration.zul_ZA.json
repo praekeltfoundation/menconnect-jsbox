@@ -1,0 +1,725 @@
+{
+    "": {
+        "pot-creation-date": "2020-10-20 12:10:+0000",
+        "project-id-version": "",
+        "language-team": "zulu",
+        "language": "",
+        "mime-version": "1.0",
+        "content-type": "text/plain; charset=utf-8",
+        "content-transfer-encoding": "8bit",
+        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+        "last-translator": "Chima"
+    },
+    "WhatsApp": [
+        null,
+        "Whatsapp"
+    ],
+    "SMS": [
+        null,
+        "SMS"
+    ],
+    "Welcome back. Please select an option:": [
+        null,
+        "Siyakwamukela. Sicela ukhethe inketho:"
+    ],
+    "Continue signing up for messages": [
+        null,
+        "Qhubeka ubhalisele imilayezo"
+    ],
+    "Main menu": [
+        null,
+        "Imenyu enkulu"
+    ],
+    "One final question from me.\n\nMy name is Mo. What's your name?": [
+        null,
+        "Umbuzo wokugcina enginawo.\n\nIgama lami ngingu-Mo. Wena ungubani?"
+    ],
+    "What's your question?": [
+        null,
+        "Uthini umbuzo wakho?"
+    ],
+    "What do you want to know?": [
+        null,
+        "Yini ofuna ukuyazi?"
+    ],
+    "What would you like to do?": [
+        null,
+        "Yini ongathanda ukuyenza?"
+    ],
+    "When is your next expected clinic date?\nReply with the full date in the format YYYY-MM-DD": [
+        null,
+        "Lunini usuku olulandelayo lwase-clinic?\nPhendula ngosuku oluphelelele kanje YYYY/MM/DD"
+    ],
+    "Doing something every day is a habit.\n\nBuild a treatment habit:\nAdd it to your daily schedule\nTick it off\nPlan for changes\nGive yourself time\n": [
+        null,
+        "Ukwenza okuthile nsuku zonke kuwumkhuba.\n\nYakha umkhuba wamaphilisi:\nUfake ohlelweni nsuku zonke\nThikha\nHlelela izinguquko\nZinike isikhathi\n"
+    ],
+    "What would you like to view?": [
+        null,
+        "Yini ongathanda ukuyibuka?"
+    ],
+    "What would you like to change?": [
+        null,
+        "Yini ongathanda ukuyishintsha?"
+    ],
+    "What name would you like me to call you instead?": [
+        null,
+        "Ungathanda ngikubize ngaliphi igama?"
+    ],
+    "Choose a question:": [
+        null,
+        "Khetha umbuzo:"
+    ],
+    "Do you want to receive an SMS that you can share with other men living with HIV?": [
+        null,
+        "Ufuna ukuthola i-SMS ongayithumela kwamanye amadoda ane-HIV"
+    ],
+    "Thank you. You will receive an SMS with info that you can share with other men living with HIV.": [
+        null,
+        "Ngiyabonga. Uzothola i-SMS enolwazi ongaluthumela kwamanye amadoda ane-HIV."
+    ],
+    "Select a topic:": [
+        null,
+        "Khetha isihloko:"
+    ],
+    "It was great talking to you. If you ever want to know more about MenConnect and how to use it, dial *134*406#.\n\nChat soon!\nMo\nMenConnect": [
+        null,
+        "Kube kuhle ukuxoxa nawe. Uma ufuna ukwazi kabanzi nge-MenConnect nokuthi isetshenziswa kanjani, dayela *134*406#.\n\nSizoxoxa maduze!\nMo\nMenConnect"
+    ],
+    "It's a virus that enters your body through blood / bodily fluids. \nIt attacks your CD4 cells that protect your body against disease.": [
+        null,
+        "Yigciwane elingena emzimbeni wakho ngegazi / ngoketshezi lomzimba. \nLihlasela amaseli e-CD4 avikela umzimba ezifweni."
+    ],
+    "What does HIV do to my body?. \nHIV enters your body & makes more. It attacks your soldiers so you can't fight off common infections.": [
+        null,
+        "I-HIV yenzani emzimbeni wami? \nI-HIV ingena emzimbeni wakho futhi iziphindaphinde. Ihlasela amasosha akho ukuze ungakwazi ukulwa nezifo ezivamile."
+    ],
+    "Is there a cure?\nThere is currently no cure for HIV. But taking ARVs every day can keep you healthy.": [
+        null,
+        "Likhona ikhambi?\nOkwamanje alikho ikhambi le-HIV. Kodwa ukuphuza ama-ARV nsuku zonke kungakugcina unempilo."
+    ],
+    "What is viral load?\nViral load is the amount of virus in your blood. The higher your viral load, the sicker you may be.": [
+        null,
+        "What is viral load?\nViral load is the amount of virus in your blood. The higher your viral load, the sicker you may be."
+    ],
+    "What is low viral load?\nA low viral load is a result of taking treatment every day.\nEventually your viral load will be so low that it's undetectable.": [
+        null,
+        "Yini i-viral load ephansi?\nI-viral load ephansi idalwa wokuphuza amaphilisi nsuku zonke.\nNgokuhamba kwesikhathi i-viral load izoba phansi ingabonakali."
+    ],
+    "What is your current age?\nSelect your age group:": [
+        null,
+        "Umdala kangakanani njengamanje? \nKhetha iqembu lakho lobudala:"
+    ],
+    "When were you first diagnosed positive?": [
+        null,
+        "Kwatholwa nini ukuthi unegciwane?"
+    ],
+    "MenConnect sends you messages to help with your treatment.\nIt seems like you don't need treatment.If you sent the wrong answer, dial *134*406# to restart.": [
+        null,
+        "I-MenConnect ikuthumelela imiyalezo yokukusiza ngokwelashwa.\nUbonakala ungawadingi amaphilisi. Uma uthumele impendulo eyiphutha, dayela *134*406# ukuqala futhi"
+    ],
+    "Are you or have you been on ARV treatment?": [
+        null,
+        "Ingabe uthola noma wake wathola ukwelashwa ngama-ARV?"
+    ],
+    "When did you start taking ARV treatment?": [
+        null,
+        "Waqala nini ukwelashwa ngama-ARV?"
+    ],
+    "Are you still taking your treatment?": [
+        null,
+        "Ingabe usawaphuza amaphilisi akho?"
+    ],
+    "Is your viral load undetectable?": [
+        null,
+        "Ingabe i-viral load yakho ayibonakali?"
+    ],
+    "Please try again. e.g. 1.": [
+        null,
+        "Ngicela uzame futhi. isb. 1."
+    ],
+    "Taking your meds daily stops HIV from making more in your blood so that your CD4 cells can get strong again.\n": [
+        null,
+        "Ukuphuza amaphilisi nsuku zonke kuvimba i-HIV ingaziphindaphindi egazini ukuze amaseli akho e-CD4 abe namandla futhi.\n"
+    ],
+    "error": [
+        null,
+        "Iphutha"
+    ],
+    "Take your meds every day, at the same time as prescribed by your nurse\n": [
+        null,
+        "Phuza amaphilisi akho nsuku zonke, ngesikhathi esifanayo, njengoba uyalelwe ngunesi.\n"
+    ],
+    "You need to take your meds every day for the rest of your life to stay healthy.\n": [
+        null,
+        "Kufanele uwaphuze nsuku zonke ukuphila konke ukuze uhlale unamandla futhi uphilile.\n"
+    ],
+    "Every person feels different after taking meds.If it's making you unwell, speak to your nurse.\n": [
+        null,
+        "Wonke umuntu uzizwa ngendlela ehlukile ngemuva kokuphuza amaphilisi. Uma ekugulisa, xoxa nonesi.\n"
+    ],
+    "It is important that you take the meds that is prescribed to you by a nurse.\n": [
+        null,
+        "Kubalulekile ukuthi uphuze amaphilisi ngendlela oyalelwe ngayo ngunesi.\n"
+    ],
+    "You can still take the meds within 6 hrs of usual time. Don't double your dose the next day if you missed a day.\n": [
+        null,
+        "Usengaphuza amaphilisi engakapheli amahora angu-6 esikhathi esivamile. Ungawaphindi kabili ngakusasa uma uphuthelwe usuku.\n"
+    ],
+    "We process your info to help you on your health journey. We collect name, age, cell number, language, channel, status, clinic dates, & survey answers.": [
+        null,
+        "Sicaza ulwazi ukukusiza ngohambo lwezempilo. Siqoqa igama, ubudala, iselula, ulimi, ishaneli, isimo, izinsuku zase-clinic nezimpendulo zenhlolovo."
+    ],
+    "We use your personal info to send you messages that are relevant to the stage of your health journey. Your info helps the team improve the service.": [
+        null,
+        "Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho lwezempilo. Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+    ],
+    "Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners": [
+        null,
+        "Ulwazi lwakho luvikelwe. Lucutshungulwa yi-MTN, Cell C, Telkom, Vodacom, Praekelt, Genesis, Jembi, Turn, WhatsApp nozakwethu be-MenStar."
+    ],
+    "We hold your info while you're registered. If you opt-out, we'll use your info for historical ,research & statistical reasons with your consent.": [
+        null,
+        "Sigcina ulwazi lwakho uma usabhalisile. Uma uphuma emiyalezweni, sizosebenzisa ulwazi lwakho ngezizathu zomlando, zocwaningo nezibalo uma uvuma."
+    ],
+    "HIV": [
+        null,
+        "HIV"
+    ],
+    "Treatment": [
+        null,
+        "Amaphilisi"
+    ],
+    "Reminders": [
+        null,
+        "Izikhumbuzo"
+    ],
+    "Habit Plan": [
+        null,
+        "Uhlelo Lwemikhuba"
+    ],
+    "My Profile": [
+        null,
+        "Iphrofayela Yami"
+    ],
+    "Processing my info": [
+        null,
+        "Ukucubungula ulwazi lwami"
+    ],
+    "Share": [
+        null,
+        "Ukwabelana"
+    ],
+    "Resources": [
+        null,
+        "Izisetshenziswa"
+    ],
+    "Exit": [
+        null,
+        "Phuma"
+    ],
+    "What is HIV?": [
+        null,
+        "Yini i-HIV?"
+    ],
+    "What does HIV do to my body?": [
+        null,
+        "I-HIV yenzani emzimbeni wami?"
+    ],
+    "Is there a cure?": [
+        null,
+        "Likhona ikhambi?"
+    ],
+    "What is viral load?": [
+        null,
+        "Yini i-viral load?"
+    ],
+    "What is low viral load?": [
+        null,
+        "Yini i-viral load ephansi?"
+    ],
+    "Back": [
+        null,
+        "Emuva"
+    ],
+    "Back to HIV questions": [
+        null,
+        "Buyela emibuzweni ye-HIV"
+    ],
+    "How it works?": [
+        null,
+        "Isebenza kanjani?"
+    ],
+    "When to take it?": [
+        null,
+        "Ngiyiphuza nini?"
+    ],
+    "How long to take it?": [
+        null,
+        "Ngiyiphuza isikhathi esingakanani?"
+    ],
+    "Side effects?": [
+        null,
+        "Imithelela engemihle?"
+    ],
+    "How do I get it?": [
+        null,
+        "Ngiyithola kanjani?"
+    ],
+    "Can I skip a day?": [
+        null,
+        "Ngingalweqa usuku?"
+    ],
+    "Show my next expected clinic date": [
+        null,
+        "Bonisa usuku oluzayo lwase-clinic"
+    ],
+    "Change my next clinic date": [
+        null,
+        "Shintsha usuku lwase-clinic"
+    ],
+    "Plan for my clinic visit": [
+        null,
+        "Hlela ukuvakasha okuzayo"
+    ],
+    "Back to menu": [
+        null,
+        "Buyela kumenyu"
+    ],
+    "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}": [
+        null,
+        "Ngokwalokho ongitshele khona, ukuya e-clinic okulandelayo kungo- {{next_clinic_visit}}"
+    ],
+    "None": [
+        null,
+        "Akekho"
+    ],
+    "Change your next clinic date": [
+        null,
+        "Ukushintsha usuku lwase-clinic"
+    ],
+    "Sorry, I don’t recognise that date. Please try again.": [
+        null,
+        "Uxolo, angiluboni lolo suku. Ngicela uzame futhi."
+    ],
+    "Hmm, that seems a bit far away. You should at least be going to the clinic every 2 months. Please try again.": [
+        null,
+        "Hmm, lokho kubonakala kukude kakhulu. Kufanele okungenani uye emtholampilo njalo ezinyangeni ezi-2. Ngicela uzame futhi."
+    ],
+    "Oops, that day has already passed. Please try again.": [
+        null,
+        "Hawu, lolo suku seludlulile. Ngicela uzame futhi."
+    ],
+    "You entered {{clinic_date}}. I'll send you reminders of your upcoming clinic visits so that you don't forget.": [
+        null,
+        "Ungenile {{clinic_date}}. Ngizokuthumelela izikhumbuzo zokuvakasha kwakho emtholampilo okuzayo ukuze ungakhohlwa."
+    ],
+    "Confirm": [
+        null,
+        "Qinisekisa"
+    ],
+    "Your next clinic visit has been changed to {{clinic_date}}": [
+        null,
+        "Ukuvakasha kwakho okulandelayo emtholampilo kushintshelwe ku {{clinic_date}}"
+    ],
+    "Tip 1: Set a reminder in your phone\nTip2: Tell someone you're going\nTip 3: Plan your trip\nTip 4: Prepare questions for your nurse": [
+        null,
+        "Ithiphu 1: Setha isikhumbuzo efonini\nIthiphu 2: Tshela othile ukuthi uyahamba\nIthiphu 3: Hlela uhambo\nIthiphu 4: Lungisa imibuzo kanesi"
+    ],
+    "TBC": [
+        null,
+        "TBC"
+    ],
+    "See my info": [
+        null,
+        "Ukubona ulwazi lwami"
+    ],
+    "Change my info": [
+        null,
+        "Ukushintsha ulwazi lwami"
+    ],
+    "Opt-out": [
+        null,
+        "Ukuphuma emiyalezweni"
+    ],
+    "Name: {{name}}\nCell number: {{msisdn}}\nChannel: {{channel}}\nAge: {{age_group}}\nEstimated treatment start date: {{treatment_start_period}}": [
+        null,
+        "Igama: {{name}}\nIselula: {{msisdn}}\nIshaneli: {{channel}}\nUbudala: {{age_group}}\nUsuku lokuqala amaphilisi: {{treatment_start_period}}"
+    ],
+    "Change info": [
+        null,
+        "Ukushintsha ulwazi lwami"
+    ],
+    "Name": [
+        null,
+        "Igama"
+    ],
+    "Cell number": [
+        null,
+        "Iselula"
+    ],
+    "Age": [
+        null,
+        "Ubudala"
+    ],
+    "Change from {{current_channel}} to {{alternative_channel}}": [
+        null,
+        "Shintsha ama-{{current_channel}} uye ku-{{alternative_channel}}"
+    ],
+    "Treatment start date": [
+        null,
+        "Usuku lokuqala amaphilisi"
+    ],
+    "You entered {{name}}": [
+        null,
+        "Ungenile {{name}}"
+    ],
+    "confirm": [
+        null,
+        "Qinisekisa"
+    ],
+    "Thanks. I'll call you {{name}}\n\nWhat would you like to do next?": [
+        null,
+        "Ngiyabonga ngizokubiza ngo-{{name}}\n\nYini enye ofuna ukuyenza?"
+    ],
+    "Back to main menu": [
+        null,
+        "Buyela kumenyu enkulu"
+    ],
+    "Are you sure you want to get your MenConnect messages on {{alternative_channel}}?": [
+        null,
+        "Ufuna ukuthola imiyalezo yakho ye-MenConnect ku-{{alternative_channel}}?"
+    ],
+    "Yes": [
+        null,
+        "Yes"
+    ],
+    "No": [
+        null,
+        "No"
+    ],
+    "Sorry we don't recognise that reply. Please enter the number next to your answer.": [
+        null,
+        "Uxolo asiyiboni leyo mpendulo. Sicela ufake inombolo eduze kwempendulo yakho."
+    ],
+    "You'll keep getting your messages on {{channel}}. If you change your mind, dial *134*406#. What would you like to do?": [
+        null,
+        "Uzoqhubeka nokuthola imilayezo yakho-{{channel}}. Uma ushintsha umqondo, shayela u- * 134 * 406 #. Yini ongathanda ukuyenza?"
+    ],
+    "Okay. I'll send you MenConnect messages on {{channel}}.To move back to WhatsApp, reply *WA* or dial *134*406#.": [
+        null,
+        "Ngizokuthumelela imiyalezo ye-MenConnect ku-{{channel}} kusukela manje. Ukubuyela kuma-SMS, phendula ngo-SMS noma uye KUMENYU ukushintsha imininingwane yakho."
+    ],
+    "Thanks, I'll call you {{preferred_name}}\n\nWhat do you want to do next?": [
+        null,
+        "Ngiyabonga ngizokubiza ngo-{{preferred_name}}\n\nYini enye ofuna ukuyenza?"
+    ],
+    "Please reply with the *new cell number* you would like to get your MenConnect messages on, e.g 0813547654": [
+        null,
+        "Ngicela uphendule ngenombolo entsha ongathanda ukuthola kuyo imiyalezo ye-MenConnect isb., 0813547654."
+    ],
+    "Sorry, the cell number you entered already gets MC msgs. To manage it, dial *134*406# from that number. What would you like to do?": [
+        null,
+        "Uxolo, inombolo yeselula oyifakile ithunyelwa imiyalezo ye-MenConnect kakade. Ukuze uyiphathe, buka IMENYU kuleyo nombolo."
+    ],
+    "You have entered {{msisdn}}as your new MenConnect number.\n\nIs this correct?": [
+        null,
+        "Ufake ukuthi {{msisdn}} njengenombolo yakho entsha ye-MenConnect.\n\nKunjalo?"
+    ],
+    "No, try again": [
+        null,
+        "Cha, zama futhi"
+    ],
+    "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \nWhat would you like to do?": [
+        null,
+        "Ngiyabonga! Sithumele umyalezo ku-{{msisdn}}. Landela imiyalelo ukushintsha inombolo. \nkuze uqhubeke uthole imiyalezo enombolweni endala, ziba lo myalezo"
+    ],
+    "How old are you?\nSelect your age group:": [
+        null,
+        "Uneminyaka emingaki ubudala?\nKhetha iqembu lobudala bakho:"
+    ],
+    "Sorry, please reply with the number that matches your answer, e.g. 1.": [
+        null,
+        "Uxolo, angiqondi. Ngicela uphendule ngenombolo ehambisana nempendulo yakho, isb., 1."
+    ],
+    "<15": [
+        null,
+        "<15"
+    ],
+    "15-19": [
+        null,
+        "15-19"
+    ],
+    "20-24": [
+        null,
+        "20-24"
+    ],
+    "25-29": [
+        null,
+        "25-29"
+    ],
+    "30-34": [
+        null,
+        "30-34"
+    ],
+    "35-39": [
+        null,
+        "35-39"
+    ],
+    "40-44": [
+        null,
+        "40-44"
+    ],
+    "45-49": [
+        null,
+        "45-49"
+    ],
+    "50+": [
+        null,
+        "50+"
+    ],
+    "Your age group will be updated to {{age}}": [
+        null,
+        "Iqembu lakho leminyaka yobudala lizobuyekezelwa ku-{{age}}"
+    ],
+    "Please select 1 or 2": [
+        null,
+        "Sicela ukhethe u-1 noma u-2"
+    ],
+    "Thank you. Your age has been changed to {{age_group}}\n": [
+        null,
+        "Ngiyabonga. Iminyaka yakho ishintshelwe ku-{{age_group}}\n"
+    ],
+    "When did you start taking ARV treatment? Choose the closest option.\n": [
+        null,
+        "Waqala nini ukwelashwa ngama-ARV? Khetha inketho esiseduzane.\n"
+    ],
+    "Please reply with number closest to when you started treatment:": [
+        null,
+        "Phendula ngenombolo esondele ekuqaleni kokwelashwa:"
+    ],
+    "today": [
+        null,
+        "Namuhla"
+    ],
+    "<1 week": [
+        null,
+        "<1 iviki"
+    ],
+    "<1 month": [
+        null,
+        "<1 inyanga"
+    ],
+    "<3 months": [
+        null,
+        "<3 izinyanga"
+    ],
+    "3-6 months": [
+        null,
+        "3-6 izinyanga"
+    ],
+    "6-12 months": [
+        null,
+        "6-12 izinyanga"
+    ],
+    ">1 year": [
+        null,
+        ">1 unyaka"
+    ],
+    "Your new treatment start date will be updated to {{treatment_start_date}}": [
+        null,
+        "Idethi yakho yokuqala yokwelashwa izobuyekezelwa ku-{{treatment_start_date}}"
+    ],
+    "Thank you. Your treatment start date has been changed to {{treatment_start_period}}": [
+        null,
+        "TNgiyabonga. Usuku lwakho lokuqala ukwelashwa selushintshelwe ku-{{treatment_start_period}}"
+    ],
+    "What info does MenConnect collect?": [
+        null,
+        "I-MenConnect iqongelela luphi ulwazi?"
+    ],
+    "Why does MenConnect need my info?": [
+        null,
+        "I-MenConnect iludingelani ulwazi lwami?"
+    ],
+    "Who can see my info?": [
+        null,
+        "Ubani ongabona ulwazi lwami?"
+    ],
+    "How long is my info kept?": [
+        null,
+        "Ulwazi lwami lugcinwa isikhathi eside kangakanani?"
+    ],
+    "Back to Menu": [
+        null,
+        "Emuva"
+    ],
+    "Depression": [
+        null,
+        "Ingcindezi"
+    ],
+    "Mental health": [
+        null,
+        "Impilo yengqondo"
+    ],
+    "Suicide": [
+        null,
+        "Ukuzibulala"
+    ],
+    "Gender based violence": [
+        null,
+        "Udlame lobulili"
+    ],
+    "Substance abuse": [
+        null,
+        "Ukudla izidakamizwa"
+    ],
+    "Aids helpline": [
+        null,
+        "Usizo lwe-AIDS"
+    ],
+    "COVID-19": [
+        null,
+        "I-COVID-19"
+    ],
+    "Adcock Ingram Depression and Anxiety Helpline can help you if you are feeling depressed. Call 0800 7080 90": [
+        null,
+        "I-Adcock Ingram Depression and Anxiety Helpline ingakusiza uma unengcindezi. Shayela ku-0800 7080 90"
+    ],
+    "Back to resources": [
+        null,
+        "Buyela ezihlokweni"
+    ],
+    "The South African Depression and Anxiety group can support you when you're feeling low. Dial 0800 4567 789 for their 24 hour helpline.": [
+        null,
+        "Iqembu le-South African Depression and Anxiety likusiza uma udikibele. Dayela u-0800 4567 789 ukuthola ucingo lwabo lwamahora angu-24."
+    ],
+    "The South African Depression and Anxiety group can support you whenyou're feeling low. Dial 0800 4567 789 for their emergency suicide helpline.": [
+        null,
+        "Iqembu le-South African Depression and Anxiety liyakweseka uma udikibele. Dayela u-0800 4567 789 ukuthola ucingo losizo lokuzibulala oluphuthumayo."
+    ],
+    "Anonymous & confidential info, counselling and referrals to survivors,witnesses and perpetrators of gender-based violence. Dial 0800 150 150.": [
+        null,
+        "Ulwazi olungavezi igama noluyimfihlo, ukwelulekwa nokuthunyelwa kwabasindile, ofakazi nababhebhezeli bodlame lobulili. Dayela 0800 150 150"
+    ],
+    "The Substance Abuse Line offers support & guidance for people addicted to drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312": [
+        null,
+        "I-Substance Abuse Line inikeza ukwesekwa nesiqondiso kubantu abadla izidakamizwa nemindeni yabo. Dayela 0800 12 13 14 noma u-32312 nge-SMS"
+    ],
+    "The National HIV and AIDs Helpline is a toll free number that you can call for anonymous and confidential advice. Call 0800 012 322 for 24 hour help.": [
+        null,
+        "I-Substance Abuse Line inikeza ukwesekwa nesiqondiso kubantu abadla izidakamizwa nemindeni yabo. Dayela 0800 12 13 14 noma u-32312 nge-SMS."
+    ],
+    "For correct & up to date info on COVID-19, save the number +2760 0123 456 and send 'hi' or call the national COVID-19 hotline on 0800 029 999.": [
+        null,
+        "Iqiniso nezakamuva nge-COVID-19, londoloza inombolo +2760 0123 456, thumela u-'hi' noma ushayele inombolo ye-COVID-19 kazwelonke ku-0800 029 999."
+    ],
+    "MenConnect needs to process your personal info to send you relevant messages. Do you agree?": [
+        null,
+        "Sisebenzisa ulwazi lwakho ukukuthumelela imiyalezo ehambisana nesigaba sohambo lwakho lwezempilo. Ulwazi lwakho lusiza ithimba lithuthukise isevisi."
+    ],
+    "Sorry, please reply with the number next to your answer. Do you agree?": [
+        null,
+        "Uxolo, ngicela uphendule ngenombolo eseduze kwempendulo yakho. Ingabe uyavuma?"
+    ],
+    "MenConnect supports men on their journey. I'll send you messages with info & tips.Do you agree to receive?": [
+        null,
+        "MenConnect supports men on their journey. I'll send you messages with info & tips.Do you agree to receive?"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?"
+    ],
+    "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up.": [
+        null,
+        "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up."
+    ],
+    "Please reply with the number that matches your answer.\n\nSelect your age group:": [
+        null,
+        "Phendula ngenombolo ehambisana nempendulo yakho.\n\nKhetha iqembu lakho lobudala:"
+    ],
+    "Please reply with the number that matches your answer, eg .1.": [
+        null,
+        "Phendula ngenombolo ehambisana nempendulo yakho., isib .1."
+    ],
+    "Today": [
+        null,
+        "Namuhla"
+    ],
+    "Last week": [
+        null,
+        "Ngeviki elidlule"
+    ],
+    "> 1 year": [
+        null,
+        "> 1 unyaka"
+    ],
+    "not positive": [
+        null,
+        "anginagciwane"
+    ],
+    "not sure": [
+        null,
+        "angiqiniseki"
+    ],
+    "Next": [
+        null,
+        "Olandelayo"
+    ],
+    "Thank you for considering MenConnect. We respect your decision. Have a lovely day.": [
+        null,
+        "Thank you for considering MenConnect. We respect your decision. Have a lovely day."
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nAre you or have you been on ARV treatment?": [
+        null,
+        "Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1.\nIngabe uthola noma wake wathola ukwelashwa ngama-ARV?"
+    ],
+    "Please reply with number closest to when you started treatment: ": [
+        null,
+        "Uyacelwa ukuthi uphendule ngenombolo esondele kakhulu lapho uqale ukwelashwa: "
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.": [
+        null,
+        "Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1."
+    ],
+    "Mostly - sometimes I forget": [
+        null,
+        "Ngokuvamile – kokunye ngiyakhohlwa"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1.\nIs your viral load undetectable?": [
+        null,
+        "Ngicela uzame futhi. Phendula ngenombolo ehambisana nempendulo yakho, isb., 1.\nIngabe i-viral load yakho ayibonakali?"
+    ],
+    "I don't know": [
+        null,
+        "Angazi"
+    ],
+    "You're done! You will get info & tips on {{msisdn}} to support you on your journey on {{channel}}. Thanks for signing up to MenConnect!": [
+        null,
+        "Usuqedile! Uzothola ulwazi namathiphu okukweseka ohambweni lwakho nge-{{channel}}. Siyabonga ngokubhalisela i-MenConnect!"
+    ],
+    "Sorry, something went wrong. We have been notified. Please try again later": [
+        null,
+        "Uxolo, kukhona okungahmabnga kahle. Sazisiwe. Sicela uzame futhi emuva kwesikhathi"
+    ],
+    "What language would you like to receive messages in?": [
+        null,
+        "What language would you like to receive messages in?"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
+    ],
+    "English": [
+        null,
+        "English"
+    ],
+    "Zulu": [
+        null,
+        "Zulu"
+    ],
+    "Sesotho": [
+        null,
+        "Sesotho"
+    ]
+}
