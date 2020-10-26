@@ -513,7 +513,7 @@ describe("state_reminders", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2020-10-24")
+      .input("2022-10-24")
       .check.interaction({
         reply:[
           "You entered 2020-10-24. " +
