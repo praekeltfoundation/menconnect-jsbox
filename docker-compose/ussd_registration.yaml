@@ -8,9 +8,11 @@ amqp_prefetch_count: 1
 app_context: "{require: function(m) { if (['moment', 'url', 'lodash', 'q', 'jed', 'vumigo_v02', 'go-jsbox-metrics-helper', '@google-cloud/bigquery', 'seed-jsbox-utils'].indexOf(m) >= 0) return require(m); return null; }, Buffer: Buffer}"
 
 rlimits:
-  RLIMIT_DATA: [-1, -1] # 64 MB
-  RLIMIT_STACK: [-1, -1] # 2 MB
-  RLIMIT_AS: [-1, -1] # 1024 MB
+  RLIMIT_DATA: [-1, -1]  # unlimited
+  RLIMIT_STACK: [-1, -1]  # unlimited
+  RLIMIT_AS: [-1, -1]  # unlimited
+  RLIMIT_CPU: [-1, -1]  # unlimited
+  RLIMIT_NOFILE: [-1, -1]  # unlimited
 
 sandbox:
   config:
