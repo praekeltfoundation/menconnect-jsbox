@@ -29,7 +29,7 @@
     "moment": "~2.22.1",
     "q": "~0.9.7",
     "seed-jsbox-utils": "^0.4.1",
-    "vumigo_v02": "~0.3"
+    "vumigo_v02": "^0.3.0"
   },
   "devDependencies": {
     "grunt": "~1.0.3",
