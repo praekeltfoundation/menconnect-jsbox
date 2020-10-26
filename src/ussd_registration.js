@@ -12,6 +12,7 @@ go.app = (function() {
   var JsonApi = vumigo.http.api.JsonApi;
   var MenuState = vumigo.states.MenuState;
   var MetricsHelper = require('go-jsbox-metrics-helper');
+  const {BigQuery} = require('@google-cloud/bigquery');
 
   var GoMenConnect = App.extend(function(self) {
     App.call(self, "state_start");
@@ -35,7 +36,28 @@ go.app = (function() {
 
       self.env = self.im.config.env;
       self.metric_prefix = [self.env, self.im.config.name].join('.');
-            
+
+      async function insertRowsAsStream(row) {
+        const bigqueryClient = new BigQuery({
+            projectId: self.im.config.services.bigquery.project_id,
+            credentials: {
+              client_email: self.im.config.services.bigquery.client_email,
+              private_key: self.im.config.services.bigquery.private_key
+            }
+        });
+        // Insert data into a table
+        await bigqueryClient
+          .dataset("menconnet_redis")
+          .table("status")
+          .insert(row);
+      }
+
+      self.im.on('state:enter', function(e) {
+        const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
+        insertRowsAsStream(row);
+        return "sent to bigquery";
+      });
+
       self.im.on('state:enter', function(e) {
           return self.im.metrics.fire.sum('enter.' + e.state.name, 1);
       });
@@ -43,10 +65,11 @@ go.app = (function() {
       var mh = new MetricsHelper(self.im);
       mh
           // Total sum of users for each state for app
-          // <env>.ussd_clinic_rapidpro.sum.unique_users last metric, 
+          // <env>.ussd_clinic_rapidpro.sum.unique_users last metric,
           // and a <env>.ussd_clinic_rapidpro.sum.unique_users.transient sum metric
-          .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.')) 
+          .add.total_unique_users([self.metric_prefix, 'sum', 'unique_users'].join('.'))
       ;
+
     };
 
     self.contact_current_channel = function(contact) {
@@ -1314,7 +1337,7 @@ go.app = (function() {
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1" +
             "\n\nWhat language would you like to receive messages in?",
-            "1. English", 
+            "1. English",
             "2. Zulu",
             "3. Sesotho"
         ),
