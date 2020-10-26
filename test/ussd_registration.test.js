@@ -1281,7 +1281,7 @@ describe("state_share", function() {
       return tester.setup.user
         .state("state_language")
         .input("3")
-        .check.user.lang("sot")
+        .check.user.lang("sot_ZA")
         .run();
     });
   });
@@ -1610,7 +1610,7 @@ describe("state_share", function() {
         .check.interaction({
           state: "state_timed_out",
           reply: [
-            "Welcome back. Please select an option:",
+            "Welcome to MenConnect. Please select an option:",
             "1. Continue signing up for messages",
             "2. Main menu"
           ].join("\n")

@@ -3,6 +3,7 @@ MAINTAINER Praekelt Foundation <dev@praekeltfoundation.org>
 
 # Install nodejs dependencies
 COPY package.json /app/package.json
+COPY config/go-app-ussd-registration.eng_ZA.json /app/
 COPY config/go-app-ussd-registration.sot_ZA.json /app/
 COPY config/go-app-ussd-registration.zul_ZA.json /app/
 WORKDIR /app

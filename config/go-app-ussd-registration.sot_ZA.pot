@@ -19,7 +19,7 @@ msgid "SMS"
 msgstr "SMS"
 
 #: ./go-app-ussd_registration.js:235
-msgid "Welcome back. Please select an option:"
+msgid "Welcome to MenConnect. Please select an option:"
 msgstr "Rea u amohela hape. Ka kopo khetha khetho:"
 
 #: ./go-app-ussd_registration.js:237
