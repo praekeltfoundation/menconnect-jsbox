@@ -24,6 +24,7 @@
     "@google-cloud/bigquery": "^5.3.0",
     "@google-cloud/common": "^0.17.0",
     "async": "^3.2.0",
+    "cjs-loader": "^0.1.0",
     "go-jsbox-metrics-helper": "^0.2.0",
     "lodash": "~4.17.11",
     "moment": "~2.22.1",
