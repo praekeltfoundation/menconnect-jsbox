@@ -233,7 +233,7 @@ go.app = (function() {
 
     self.states.add("state_timed_out", function(name, creator_opts) {
       return new MenuState(name, {
-        question: $("Welcome back. Please select an option:"),
+        question: $("Welcome to MenConnect. Please select an option:"),
         choices: [
           new Choice(creator_opts.name, $("Continue signing up for messages")),
           new Choice("state_start", $("Main menu"))
@@ -253,10 +253,15 @@ go.app = (function() {
         .get_contact({ urn: "whatsapp:" + _.trim(msisdn, "+") })
         .then(function(contact) {
           self.im.user.set_answer("contact", contact);
+          // Set the language if we have it
+          if(_.get(self.languages, _.get(contact, "language"))) {
+              return self.im.user.set_lang(contact.language);
+          }  
         })
         .then(function() {
           // Delegate to the correct state depending on group membership
           var contact = self.im.user.get_answer("contact");
+          var isactive = _.toUpper(_.get(contact, "fields.isactive")) === "TRUE";
           if (
             self.contact_in_group(
               contact,
@@ -264,7 +269,10 @@ go.app = (function() {
             )
           ) {
             return self.states.create("state_registered");
-          } else {
+          } else if (isactive){
+            return self.states.create("state_registered");
+          }
+          else {
             return self.states.create("state_message_consent");
           }
         })
@@ -1461,9 +1469,9 @@ go.app = (function() {
         ),
         accept_labels: true,
         choices: [
-          new Choice("eng", $("English")),
-          new Choice("zul", $("Zulu")),
-          new Choice("sot", $("Sesotho"))
+          new Choice("eng_ZA", $("English")),
+          new Choice("zul_ZA", $("Zulu")),
+          new Choice("sot_ZA", $("Sesotho"))
         ],
         next: 'state_age_group'
       });
