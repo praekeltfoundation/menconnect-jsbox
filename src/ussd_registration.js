@@ -1,5 +1,6 @@
 go.app = (function() {
   var _ = require("lodash");
+  //var async = require('async');
   var vumigo = require("vumigo_v02");
   var utils = require("seed-jsbox-utils").utils;
   var App = vumigo.App;
