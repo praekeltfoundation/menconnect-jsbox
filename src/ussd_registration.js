@@ -38,7 +38,6 @@ go.app = (function() {
       self.metric_prefix = [self.env, self.im.config.name].join('.');
 
       async function insertRowsAsStream(row) {
-        await self.im.log.info("about to create the bigquery client");
         const bigqueryClient = new BigQuery({
             projectId: self.im.config.services.bigquery.project_id,
             credentials: {
@@ -46,13 +45,11 @@ go.app = (function() {
               private_key: self.im.config.services.bigquery.private_key
             }
         });
-        await self.im.log.info("created the bigquery client");
         // Insert data into a table
         await bigqueryClient
           .dataset("menconnet_redis")
           .table("status")
           .insert(row);
-        await self.im.log.info("sent to BQ");
       }
 
       self.im.on('state:enter', function(e) {
@@ -1332,7 +1329,7 @@ go.app = (function() {
         error: $(
           "Please try again. Reply with the number that matches your answer, e.g. 1" +
             "\n\nWhat language would you like to receive messages in?",
-            "1. English", 
+            "1. English",
             "2. Zulu",
             "3. Sesotho"
         ),
