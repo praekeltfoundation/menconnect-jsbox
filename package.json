@@ -1,6 +1,6 @@
 {
   "name": "menconnect-jsbox",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "MenConnect register application",
   "main": "lib/app.js",
   "scripts": {
