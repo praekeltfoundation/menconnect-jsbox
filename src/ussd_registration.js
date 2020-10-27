@@ -39,6 +39,7 @@ go.app = (function() {
       self.metric_prefix = [self.env, self.im.config.name].join('.');
 
       async function insertRowsAsStream(row) {
+        self.im.log("inside the async function");
         const bigqueryClient = new BigQuery({
             projectId: self.im.config.services.bigquery.project_id,
             credentials: {
@@ -46,6 +47,7 @@ go.app = (function() {
               private_key: self.im.config.services.bigquery.private_key
             }
         });
+        self.im.log("created the big query client");
         // Insert data into a table
         await bigqueryClient
           .dataset("menconnet_redis")
@@ -53,10 +55,15 @@ go.app = (function() {
           .insert(row);
       }
 
-      self.im.on('state:enter', function(e) {
+      self.im.on('state:enter', function(e, opts) {
         const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
-        insertRowsAsStream(row);
-        return "sent to bigquery";
+        self.im.log(row);
+        self.im.log("called insert as stream");
+        return insertRowsAsStream(row)
+        .catch(function(e, opts) {
+          // Go to error state after 3 failed HTTP requests
+          self.im.log.info(e.message);
+        });
       });
 
       self.im.on('state:enter', function(e) {
@@ -131,7 +138,7 @@ go.app = (function() {
           // Set the language if we have it
           if(_.get(self.languages, _.get(contact, "language"))) {
               return self.im.user.set_lang(contact.language);
-          }  
+          }
         })
         .then(function() {
           // Delegate to the correct state depending on group membership
