@@ -19,6 +19,7 @@ sandbox:
     cls: vxsandbox.resources.config.FileConfigResource
     keys:
       config: /config/ussd_registration.json
+      translation.en: /config/go-app-ussd-registration.eng_ZA.json
       translation.eng_za: /config/go-app-ussd-registration.eng_ZA.json
       translation.zul_za: /config/go-app-ussd-registration.zul_ZA.json
       translation.sot_za: /config/go-app-ussd-registration.sot_ZA.json
