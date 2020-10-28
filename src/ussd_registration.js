@@ -292,8 +292,47 @@ go.app = (function() {
           new Choice("state_profile", $("My Profile")),
           new Choice("state_processing_info_menu", $("Processing my info")),
           new Choice("state_share", $("Share")),
-          new Choice("state_resources", $("Resources")),
-          new Choice("state_exit", $("Exit"))
+          new Choice("state_resources", $("Resources"))
+        ]
+      });
+    });
+
+    self.states.add("state_registered_zulu", function(name) {
+      return new MenuState(name, {
+        question: $(
+          "Funda kabanzi nge?"
+        ),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_hiv", $("HIV")),
+          new Choice("state_treatment", $("Amaphilisi")),
+          new Choice("state_reminders", $("Izikhumbuzo")),
+          new Choice("state_habit_plan", $("Uhlelo Lwemikhuba")),
+          new Choice("state_profile", $("Iphrofayela")),
+          new Choice("state_processing_info_menu", $("Ukucubungula imininingwane yami")),
+          new Choice("state_share", $("Ukwabelana")),
+          new Choice("state_resources", $("Izisetshenziswa"))
+        ]
+      });
+    });
+
+    self.states.add("state_registered_sotho", function(name) {
+      return new MenuState(name, {
+        question: $(
+          "O lakatsa ho shebang?"
+        ),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_hiv", $("HIV")),
+          new Choice("state_treatment", $("Kalafo")),
+          new Choice("state_reminders", $("Dikgopotso")),
+          new Choice("state_habit_plan", $("Morero wa Tlwaelo")),
+          new Choice("state_profile", $("Porofaele Ya Ka")),
+          new Choice("state_processing_info_menu", $("Ho lokisa lesedi la ka")),
+          new Choice("state_share", $("Ho arolelana")),
+          new Choice("state_resources", $("Dirisose"))
         ]
       });
     });
@@ -309,6 +348,23 @@ go.app = (function() {
           new Choice("state_viral_load", $("What is viral load?")),
           new Choice("state_low_viral_load", $("What is low viral load?")),
           new Choice("state_registered", $("Back"))
+        ]
+      });
+    });
+
+    self.add('state_hiv_zulu', function(name){
+      return new MenuState(name, {
+        question: $(
+          "Uthini umbuzo wakho?"
+        ),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_what_is_hiv", $("Yini i-HIV?")),
+          new Choice("state_hiv_body", $("I-HIV yenzani emzimbeni wami?")),
+          new Choice("state_cure", $("Likhona ikhambi?")),
+          new Choice("state_viral_load", $("Yini i-viral load?")),
+          new Choice("state_low_viral_load", $("Yini i-viral load ephansi?")),
+          new Choice("state_registered", $("Emuva"))
         ]
       });
     });
