@@ -310,7 +310,7 @@ go.app = (function() {
           new Choice("state_reminders", $("Izikhumbuzo")),
           new Choice("state_habit_plan", $("Uhlelo Lwemikhuba")),
           new Choice("state_profile", $("Iphrofayela")),
-          new Choice("state_processing_info_menu", $("Ukucubungula imininingwane yami")),
+          new Choice("state_processing_info_menu", $("Ukucubungula ulwazi lwami")),
           new Choice("state_share", $("Ukwabelana")),
           new Choice("state_resources", $("Izisetshenziswa"))
         ]
@@ -676,12 +676,14 @@ go.app = (function() {
         "Cell number: {{msisdn}}",
         "Channel: {{channel}}",
         "Age: {{age_group}}",
+        "Language: {{language}}",
         "Estimated treatment start date: {{treatment_start_period}}"
       ].join("\n")).context({
         name: _.get(contact, "name") || $('None'),
         msisdn: utils.readable_msisdn(self.im.user.addr, "27"),
         channel: _.get(contact, "fields.preferred_channel") || $('None'),
         age_group: _.get(contact, "fields.age_group") || $("None"),
+        language: _.get(contact, "language") || $('None'),
         treatment_start_period: _.get(contact, "fields.treatment_start_period") || $("None")
       });
 
@@ -704,6 +706,7 @@ go.app = (function() {
           new Choice("state_new_name", $("Name")),
           new Choice("state_target_msisdn", $("Cell number")),
           new Choice("state_new_age", $("Age")),
+          new Choice("state_new_language", $("Language")),
           new Choice("state_channel_switch_confirm",
           $("Change from {{current_channel}} to {{alternative_channel}}").context({
             current_channel: self.contact_current_channel(contact),
@@ -1067,6 +1070,59 @@ go.app = (function() {
       });
     });
 
+    self.add("state_new_language", function(name) {
+      return new ChoiceState(name, {
+        question: $("What langiage would you like to get messages in?\n"),
+        error: $(
+          "Sorry, please reply with the number that matches your answer, e.g. 2."
+        ),
+        accept_labels: true,
+        choices: [
+          new Choice("eng_ZA", $("English")),
+          new Choice("zul_ZA", $("isiZulu")),
+          new Choice("sot_ZA", $("seSotho"))
+        ],
+        next: 'state_change_language'
+      });
+    });
+
+    self.add("state_change_language", function(name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var answers = self.im.user.answers;
+      var new_language = answers.state_new_language;
+      return self.rapidpro
+        .start_flow(
+          self.im.config.change_language_flow_id, null,
+          "whatsapp:" + _.trim(msisdn, "+"), {
+            new_language: new_language
+          }
+        ).then(function() {
+          return self.states.create("state_change_language_success");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {return_state: name});
+          }
+          return self.states.create(name, opts);
+        });
+    });
+
+    self.add("state_change_language_success", function(name, opts){
+      var answers = self.im.user.answers;
+      var new_language = answers.state_new_language;
+      return new MenuState(name, {
+        question: $("Thank you." + 
+        "\n\nYou'll now start receiving messages in {{language}}").context({language:new_language}),
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Back to main menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });
+
     self.add("state_new_treatment_start_date", function(name) {
       return new ChoiceState(name, {
         question:$("When did you start taking ARV treatment? " +
@@ -1139,6 +1195,89 @@ go.app = (function() {
         ]
       });
     });
+
+    self.add("state_opt_out", function(name){
+      return new MenuState(name, {
+        question: $("Do you want to stop getting " + 
+        "Menconnect messages?"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_opt_out_delete", $("Yes")),
+          new Choice("state_no_opt_out_exit", $("No"))
+        ]
+      });
+    });
+
+    self.add("state_no_opt_out_exit", function(name){
+      return new new MenuState(name, {
+        question: $("Thanks! MenConnect will continue to send " + 
+                    "helpful messsages and process your info."),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_registered", $("Menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });
+
+    self.add("state_opt_out_delete", function(name){
+      return new MenuState(name, {
+        question: $("MenConnect holds your info for historical, research & " + 
+        "statistical reasons after you opt out. Do you want to delete it " +
+        "after you stop getting msgs?"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_opt_out_delete_all", $("Yes")),
+          new Choice("state_opt_out_nodelete_all", $("No"))
+        ]
+      });
+    });
+
+    self.add("state_opt_out_delete_all", function(name){
+      return new ChoiceState(name, {
+        question: $("Your info will be permanently deleted in the next 7 days. " + 
+        "We'll stop sending you msgs. Why do you want to stop " +
+        "your MC msgs?"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("not_helpful", $("The messages aren't helpful")),
+          new Choice("not_need_support", $("I do not need support")),
+          new Choice("not_on_treatment", $("I'm not on treatment anymore")),
+          new Choice("too_many_messages", $("Too many messages")),
+          new Choice("too_few_messages", $("Not enough messages")),
+          new Choice("mute", $("Prefer not to say")),
+          new Choice("other", $("other"))
+        ],
+        next: 'state_submit_opt_out'
+      });
+    });
+
+    self.add("state_opt_out_nodelete_all", function(name){
+      return new ChoiceState(name, {
+        question: $("We'll stop sending msgs. " + 
+        "Why do you want to stop your MC msgs?"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("not_helpful", $("The messages aren't helpful")),
+          new Choice("not_need_support", $("I do not need support")),
+          new Choice("not_on_treatment", $("I'm not on treatment anymore")),
+          new Choice("too_many_messages", $("Too many messages")),
+          new Choice("too_few_messages", $("Not enough messages")),
+          new Choice("mute", $("Prefer not to say")),
+          new Choice("other", $("other"))
+        ],
+        next: 'state_submit_opt_out'
+      });
+    });
+
+    self.add("state_submit_opt_out", function(name, opts) {
+      
+    })
 
     self.add('state_processing_info_menu', function(name){
       return new MenuState(name, {
