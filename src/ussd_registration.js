@@ -47,7 +47,6 @@ go.app = (function() {
               private_key: self.im.config.services.bigquery.private_key
             }
         });
-        self.im.log("created the big query client");
         // Insert data into a table
         await bigqueryClient
           .dataset("menconnet_redis")
@@ -56,12 +55,11 @@ go.app = (function() {
       }
 
       self.im.on('state:enter', function(e, opts) {
+        if (self.env !== "prd"):
+          return null;
         const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
-        self.im.log(row);
-        self.im.log("called insert as stream");
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
-          // Go to error state after 3 failed HTTP requests
           self.im.log.info(e.message);
         });
       });
