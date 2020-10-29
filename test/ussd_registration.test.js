@@ -123,8 +123,43 @@ describe("ussd_registration app", function() {
             "5. My Profile",
             "6. Processing my info",
             "7. Share",
-            "8. Resources",
-            "9. Exit"
+            "8. Resources"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the main Zulu menu for registered users", function() {
+      return tester.setup.user
+        .state("state_registered_zulu")
+        .check.interaction({
+          reply: [
+            "Funda kabanzi nge?",
+            "1. HIV",
+            "2. Amaphilisi",
+            "3. Izikhumbuzo",
+            "4. Uhlelo Lwemikhuba",
+            "5. Iphrofayela",
+            "6. Ukucubungula imininingwane yami",
+            "7. Ukwabelana",
+            "8. Izisetshenziswa"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should show the main Sotho menu for registered users", function() {
+      return tester.setup.user
+        .state("state_registered_sotho")
+        .check.interaction({
+          reply: [
+            "O lakatsa ho shebang?",
+            "1. HIV",
+            "2. Kalafo",
+            "3. Dikgopotso",
+            "4. Morero wa Tlwaelo",
+            "5. Porofaele Ya Ka",
+            "6. Ho lokisa lesedi la ka",
+            "7. Ho arolelana",
+            "8. Dirisose"
           ].join("\n")
         })
         .run();
@@ -144,8 +179,7 @@ describe("ussd_registration app", function() {
             "5. My Profile",
             "6. Processing my info",
             "7. Share",
-            "8. Resources",
-            "9. Exit"
+            "8. Resources"
           ].join("\n")
         })
         .run();
@@ -169,6 +203,22 @@ describe("ussd_registration app", function() {
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
           assert.deepEqual(metrics['enter.state_hiv'], {agg: 'sum', values: [1]});
+        })
+        .run();
+    });
+    it("should show the hiv Zulu menu", function() {
+      return tester.setup.user
+        .state("state_hiv_zulu")
+        .check.interaction({
+          reply: [
+            "Uthini umbuzo wakho?",
+            "1. Yini i-HIV?",
+            "2. I-HIV yenzani emzimbeni wami?",
+            "3. Likhona ikhambi?",
+            "4. Yini i-viral load?",
+            "5. Yini i-viral load ephansi?",
+            "6. Emuva"
+          ].join("\n")
         })
         .run();
     });
@@ -1641,8 +1691,7 @@ describe("state_share", function() {
             "5. My Profile",
             "6. Processing my info",
             "7. Share",
-            "8. Resources",
-            "9. Exit"
+            "8. Resources"
           ].join("\n")
         })
         .run();

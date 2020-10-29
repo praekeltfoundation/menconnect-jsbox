@@ -1,14 +1,13 @@
 {
     "": {
         "pot-creation-date": "2020-10-20 12:10:+0000",
-        "project-id-version": "",
-        "language-team": "zulu",
+        "project-id-version": "PACKAGE VERSION",
+        "language-team": "LANGUAGE <LL@li.org>",
         "language": "",
         "mime-version": "1.0",
         "content-type": "text/plain; charset=utf-8",
         "content-transfer-encoding": "8bit",
-        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-        "last-translator": "Chima"
+        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE"
     },
     "WhatsApp": [
         null,
@@ -105,6 +104,10 @@
     "What is low viral load?\nA low viral load is a result of taking treatment every day.\nEventually your viral load will be so low that it's undetectable.": [
         null,
         "Yini i-viral load ephansi?\nI-viral load ephansi idalwa wokuphuza amaphilisi nsuku zonke.\nNgokuhamba kwesikhathi i-viral load izoba phansi ingabonakali."
+    ],
+    "What language would you like to receive messages in?": [
+        null,
+        "What language would you like to receive messages in?"
     ],
     "What is your current age?\nSelect your age group:": [
         null,
@@ -213,10 +216,6 @@
     "Resources": [
         null,
         "Izisetshenziswa"
-    ],
-    "Exit": [
-        null,
-        "Phuma"
     ],
     "What is HIV?": [
         null,
@@ -408,7 +407,7 @@
     ],
     "Okay. I'll send you MenConnect messages on {{channel}}.To move back to WhatsApp, reply *WA* or dial *134*406#.": [
         null,
-        "Ngizokuthumelela imiyalezo ye-MenConnect ku-{{channel}} kusukela manje. Ukubuyela kuma-SMS, phendula ngo-SMS noma uye KUMENYU ukushintsha imininingwane yakho."
+        "Ngizokuthumelela imiyalezo ye-MenConnect ku-{{channel}} kusukela manje. Ukubuyela emuva ku-WhatsApp, phendula * WA * noma ushayele * 134 * 406 #."
     ],
     "Thanks, I'll call you {{preferred_name}}\n\nWhat do you want to do next?": [
         null,
@@ -608,7 +607,7 @@
     ],
     "The National HIV and AIDs Helpline is a toll free number that you can call for anonymous and confidential advice. Call 0800 012 322 for 24 hour help.": [
         null,
-        "I-Substance Abuse Line inikeza ukwesekwa nesiqondiso kubantu abadla izidakamizwa nemindeni yabo. Dayela 0800 12 13 14 noma u-32312 nge-SMS."
+        "I-National HIV and AIDS Helpline inombolo yamahhala ongayishayela uthole iseluleko esiyimfihlo. Shayela u-0800 012 322 ukuthola usizo amahora angu-24."
     ],
     "For correct & up to date info on COVID-19, save the number +2760 0123 456 and send 'hi' or call the national COVID-19 hotline on 0800 029 999.": [
         null,
@@ -629,6 +628,22 @@
     "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?": [
         null,
         "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?"
+    ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
+    ],
+    "English": [
+        null,
+        "English"
+    ],
+    "Zulu": [
+        null,
+        "Zulu"
+    ],
+    "Sesotho": [
+        null,
+        "Sesotho"
     ],
     "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up.": [
         null,
@@ -701,25 +716,5 @@
     "Sorry, something went wrong. We have been notified. Please try again later": [
         null,
         "Uxolo, kukhona okungahmabnga kahle. Sazisiwe. Sicela uzame futhi emuva kwesikhathi"
-    ],
-    "What language would you like to receive messages in?": [
-        null,
-        "What language would you like to receive messages in?"
-    ],
-    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
-        null,
-        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
-    ],
-    "English": [
-        null,
-        "English"
-    ],
-    "Zulu": [
-        null,
-        "Zulu"
-    ],
-    "Sesotho": [
-        null,
-        "Sesotho"
     ]
 }

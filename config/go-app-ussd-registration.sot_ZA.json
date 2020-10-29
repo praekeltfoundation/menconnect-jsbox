@@ -2,13 +2,12 @@
     "": {
         "pot-creation-date": "2020-10-20 12:10:+0000",
         "project-id-version": "PACKAGE VERSION",
-        "language-team": "sotho",
-        "language": "zu",
+        "language-team": "LANGUAGE <LL@li.org>",
+        "language": "",
         "mime-version": "1.0",
         "content-type": "text/plain; charset=utf-8",
         "content-transfer-encoding": "8bit",
-        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE",
-        "last-translator": "Chima"
+        "po-revision-date": "YEAR-MO-DA HO:MI+ZONE"
     },
     "WhatsApp": [
         null,
@@ -105,6 +104,10 @@
     "What is low viral load?\nA low viral load is a result of taking treatment every day.\nEventually your viral load will be so low that it's undetectable.": [
         null,
         "Loutu ya vaerase e tlase keng?\nLoutu e tlase ke baka la ho sebedisa kalafo kamehla.\nQetellong loutu ya vaerase e tla ba tlase hoo e sa fumaneheng."
+    ],
+    "What language would you like to receive messages in?": [
+        null,
+        "What language would you like to receive messages in?"
     ],
     "What is your current age?\nSelect your age group:": [
         null,
@@ -213,10 +216,6 @@
     "Resources": [
         null,
         "Dirisose"
-    ],
-    "Exit": [
-        null,
-        "Etswa"
     ],
     "What is HIV?": [
         null,
@@ -408,7 +407,7 @@
     ],
     "Okay. I'll send you MenConnect messages on {{channel}}.To move back to WhatsApp, reply *WA* or dial *134*406#.": [
         null,
-        "Ke tla o romela melaetsa ya MenConnect ho {{channel}} ho tloha jwale. Ho ya morao ho SMS, araba SMS kapa eya ho MENYU ho fetola dintlha tsa hao."
+        "Ke tla o romela melaetsa ya MenConnect ho {{channel}} ho tloha jwale. Ukubuyela emuva ku-WhatsApp, phendula * WA * noma ushayele * 134 * 406 #."
     ],
     "Thanks, I'll call you {{preferred_name}}\n\nWhat do you want to do next?": [
         null,
@@ -630,6 +629,22 @@
         null,
         "Please try again. Reply with the number that matches your answer, e.g. 1.\n\nDo you agree to receive messages?"
     ],
+    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
+        null,
+        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
+    ],
+    "English": [
+        null,
+        "English"
+    ],
+    "Zulu": [
+        null,
+        "Zulu"
+    ],
+    "Sesotho": [
+        null,
+        "Sesotho"
+    ],
     "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up.": [
         null,
         "No problem! If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up."
@@ -701,25 +716,5 @@
     "Sorry, something went wrong. We have been notified. Please try again later": [
         null,
         "Tsoarelo, ho bile le phoso. Re tsebisitsoe. Ka kopo leka hape hamorao"
-    ],
-    "What language would you like to receive messages in?": [
-        null,
-        "What language would you like to receive messages in?"
-    ],
-    "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?": [
-        null,
-        "Please try again. Reply with the number that matches your answer, e.g. 1\n\nWhat language would you like to receive messages in?"
-    ],
-    "English": [
-        null,
-        "English"
-    ],
-    "Zulu": [
-        null,
-        "Zulu"
-    ],
-    "Sesotho": [
-        null,
-        "Sesotho"
     ]
 }
