@@ -55,8 +55,9 @@ go.app = (function() {
       }
 
       self.im.on('state:enter', function(e, opts) {
-        if (self.env !== "prd"):
+        if (self.env !== "prd"){
           return null;
+        }
         const row = [{message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
