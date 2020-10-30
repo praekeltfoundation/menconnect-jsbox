@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-10-23 04:13:+0000\n"
+"POT-Creation-Date: 2020-10-29 10:05:+0000\n"
 "Project-Id-Version: PACKAGE VERSION\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -9,52 +9,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 
-#: ./go-app-ussd_registration.js:204 ./go-app-ussd_registration.js:215
+#: ./go-app-ussd_registration.js:210 ./go-app-ussd_registration.js:221
 msgid "WhatsApp"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:206 ./go-app-ussd_registration.js:213
+#: ./go-app-ussd_registration.js:212 ./go-app-ussd_registration.js:219
 msgid "SMS"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:236
+#: ./go-app-ussd_registration.js:242
 msgid "Welcome to MenConnect. Please select an option:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:238
+#: ./go-app-ussd_registration.js:244
 msgid "Continue signing up for messages"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:239
+#: ./go-app-ussd_registration.js:245
 msgid "Main menu"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:285
+#: ./go-app-ussd_registration.js:299
 msgid ""
 "One final question from me.\n"
 "\n"
 "My name is Mo. What's your name?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:287
+#: ./go-app-ussd_registration.js:301
 msgid "What's your question?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:289
+#: ./go-app-ussd_registration.js:303
 msgid "What do you want to know?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:291
+#: ./go-app-ussd_registration.js:305
 msgid "What would you like to do?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:293
+#: ./go-app-ussd_registration.js:307
 msgid ""
 "When is your next expected clinic date?\n"
 "Reply with the full date in the format YYYY-MM-DD"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:296
+#: ./go-app-ussd_registration.js:310
 msgid ""
 "Doing something every day is a habit.\n"
 "\n"
@@ -65,39 +65,39 @@ msgid ""
 "Give yourself time\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:302 ./go-app-ussd_registration.js:392
+#: ./go-app-ussd_registration.js:316 ./go-app-ussd_registration.js:406
 msgid "What would you like to view?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:304
+#: ./go-app-ussd_registration.js:318
 msgid "What would you like to change?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:306
+#: ./go-app-ussd_registration.js:320
 msgid "What name would you like me to call you instead?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:308
+#: ./go-app-ussd_registration.js:322
 msgid "Choose a question:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:310
+#: ./go-app-ussd_registration.js:324
 msgid ""
 "Do you want to receive an SMS that you can share with other men living with "
 "HIV?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:312
+#: ./go-app-ussd_registration.js:326
 msgid ""
 "Thank you. You will receive an SMS with info that you can share with other "
 "men living with HIV."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:314
+#: ./go-app-ussd_registration.js:328
 msgid "Select a topic:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:316
+#: ./go-app-ussd_registration.js:330
 msgid ""
 "It was great talking to you. If you ever want to know more about MenConnect "
 "and how to use it, dial *134*406#.\n"
@@ -107,290 +107,382 @@ msgid ""
 "MenConnect"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:319
+#: ./go-app-ussd_registration.js:333
 msgid ""
 "It's a virus that enters your body through blood / bodily fluids. \n"
 "It attacks your CD4 cells that protect your body against disease."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:322
+#: ./go-app-ussd_registration.js:336
 msgid ""
 "What does HIV do to my body?. \n"
 "HIV enters your body & makes more. It attacks your soldiers so you can't "
 "fight off common infections."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:326
+#: ./go-app-ussd_registration.js:340
 msgid ""
 "Is there a cure?\n"
 "There is currently no cure for HIV. But taking ARVs every day can keep you "
 "healthy."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:328
+#: ./go-app-ussd_registration.js:342
 msgid ""
 "What is viral load?\n"
 "Viral load is the amount of virus in your blood. The higher your viral "
 "load, the sicker you may be."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:330
+#: ./go-app-ussd_registration.js:344
 msgid ""
 "What is low viral load?\n"
 "A low viral load is a result of taking treatment every day.\n"
 "Eventually your viral load will be so low that it's undetectable."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:333
+#: ./go-app-ussd_registration.js:347
 msgid "What language would you like to receive messages in?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:335
+#: ./go-app-ussd_registration.js:349
 msgid ""
 "What is your current age?\n"
 "Select your age group:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:337
+#: ./go-app-ussd_registration.js:351
 msgid "When were you first diagnosed positive?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:339
+#: ./go-app-ussd_registration.js:353
 msgid ""
 "MenConnect sends you messages to help with your treatment.\n"
 "It seems like you don't need treatment.If you sent the wrong answer, dial "
 "*134*406# to restart."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:343
+#: ./go-app-ussd_registration.js:357
 msgid "Are you or have you been on ARV treatment?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:345
+#: ./go-app-ussd_registration.js:359
 msgid "When did you start taking ARV treatment?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:347
+#: ./go-app-ussd_registration.js:361
 msgid "Are you still taking your treatment?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:349
+#: ./go-app-ussd_registration.js:363
 msgid "Is your viral load undetectable?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:351
+#: ./go-app-ussd_registration.js:365
 msgid "Please try again. e.g. 1."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:353
+#: ./go-app-ussd_registration.js:367
 msgid ""
 "Taking your meds daily stops HIV from making more in your blood so that "
 "your CD4 cells can get strong again.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:356
+#: ./go-app-ussd_registration.js:370
 msgid "error"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:358
+#: ./go-app-ussd_registration.js:372
 msgid "Take your meds every day, at the same time as prescribed by your nurse\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:361
+#: ./go-app-ussd_registration.js:375
 msgid ""
 "You need to take your meds every day for the rest of your life to stay "
 "healthy.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:364
+#: ./go-app-ussd_registration.js:378
 msgid ""
 "Every person feels different after taking meds.If it's making you unwell, "
 "speak to your nurse.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:367
+#: ./go-app-ussd_registration.js:381
 msgid ""
 "It is important that you take the meds that is prescribed to you by a "
 "nurse.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:370
+#: ./go-app-ussd_registration.js:384
 msgid ""
 "You can still take the meds within 6 hrs of usual time. Don't double your "
 "dose the next day if you missed a day.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:373
+#: ./go-app-ussd_registration.js:387
 msgid ""
 "We process your info to help you on your health journey. We collect name, "
 "age, cell number, language, channel, status, clinic dates, & survey answers."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:377
+#: ./go-app-ussd_registration.js:391
 msgid ""
 "We use your personal info to send you messages that are relevant to the "
 "stage of your health journey. Your info helps the team improve the service."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:381
+#: ./go-app-ussd_registration.js:395
 msgid ""
 "Your data is protected. It's processed by MTN, Cell C, Telkom, Vodacom, "
 "Praekelt, Genesis, Jembi, Turn, WhatsApp & MenStar partners"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:384
+#: ./go-app-ussd_registration.js:398
 msgid ""
 "We hold your info while you're registered. If you opt-out, we'll use your "
 "info for historical ,research & statistical reasons with your consent."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:398
+#: ./go-app-ussd_registration.js:412 ./go-app-ussd_registration.js:432 ./go-app-ussd_registration.js:452
 msgid "HIV"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:399
+#: ./go-app-ussd_registration.js:413
 msgid "Treatment"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:400
+#: ./go-app-ussd_registration.js:414
 msgid "Reminders"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:401
+#: ./go-app-ussd_registration.js:415
 msgid "Habit Plan"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:402
+#: ./go-app-ussd_registration.js:416
 msgid "My Profile"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:403
+#: ./go-app-ussd_registration.js:417
 msgid "Processing my info"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:404
+#: ./go-app-ussd_registration.js:418
 msgid "Share"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:405
+#: ./go-app-ussd_registration.js:419
 msgid "Resources"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:406 ./go-app-ussd_registration.js:593 ./go-app-ussd_registration.js:680 ./go-app-ussd_registration.js:827 ./go-app-ussd_registration.js:858 ./go-app-ussd_registration.js:899 ./go-app-ussd_registration.js:917 ./go-app-ussd_registration.js:979 ./go-app-ussd_registration.js:1044 ./go-app-ussd_registration.js:1119 ./go-app-ussd_registration.js:1192
-msgid "Exit"
+#: ./go-app-ussd_registration.js:426
+msgid "Funda kabanzi nge?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:416
+#: ./go-app-ussd_registration.js:433
+msgid "Amaphilisi"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:434
+msgid "Izikhumbuzo"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:435
+msgid "Uhlelo Lwemikhuba"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:436
+msgid "Iphrofayela"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:437
+msgid "Ukucubungula ulwazi lwami"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:438
+msgid "Ukwabelana"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:439
+msgid "Izisetshenziswa"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:446
+msgid "O lakatsa ho shebang?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:453
+msgid "Kalafo"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:454
+msgid "Dikgopotso"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:455
+msgid "Morero wa Tlwaelo"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:456
+msgid "Porofaele Ya Ka"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:457
+msgid "Ho lokisa lesedi la ka"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:458
+msgid "Ho arolelana"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:459
+msgid "Dirisose"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:469
 msgid "What is HIV?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:417
+#: ./go-app-ussd_registration.js:470
 msgid "What does HIV do to my body?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:418
+#: ./go-app-ussd_registration.js:471
 msgid "Is there a cure?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:419
+#: ./go-app-ussd_registration.js:472
 msgid "What is viral load?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:420
+#: ./go-app-ussd_registration.js:473
 msgid "What is low viral load?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:421 ./go-app-ussd_registration.js:432 ./go-app-ussd_registration.js:443 ./go-app-ussd_registration.js:493 ./go-app-ussd_registration.js:504 ./go-app-ussd_registration.js:515 ./go-app-ussd_registration.js:526 ./go-app-ussd_registration.js:537 ./go-app-ussd_registration.js:548 ./go-app-ussd_registration.js:559 ./go-app-ussd_registration.js:642 ./go-app-ussd_registration.js:679 ./go-app-ussd_registration.js:707 ./go-app-ussd_registration.js:746 ./go-app-ussd_registration.js:767 ./go-app-ussd_registration.js:789 ./go-app-ussd_registration.js:898 ./go-app-ussd_registration.js:978 ./go-app-ussd_registration.js:1043 ./go-app-ussd_registration.js:1080 ./go-app-ussd_registration.js:1154 ./go-app-ussd_registration.js:1215 ./go-app-ussd_registration.js:1225 ./go-app-ussd_registration.js:1235 ./go-app-ussd_registration.js:1245 ./go-app-ussd_registration.js:1531
+#: ./go-app-ussd_registration.js:474 ./go-app-ussd_registration.js:502 ./go-app-ussd_registration.js:513 ./go-app-ussd_registration.js:563 ./go-app-ussd_registration.js:574 ./go-app-ussd_registration.js:585 ./go-app-ussd_registration.js:596 ./go-app-ussd_registration.js:607 ./go-app-ussd_registration.js:618 ./go-app-ussd_registration.js:629 ./go-app-ussd_registration.js:712 ./go-app-ussd_registration.js:749 ./go-app-ussd_registration.js:777 ./go-app-ussd_registration.js:818 ./go-app-ussd_registration.js:840 ./go-app-ussd_registration.js:862 ./go-app-ussd_registration.js:971 ./go-app-ussd_registration.js:1051 ./go-app-ussd_registration.js:1116 ./go-app-ussd_registration.js:1153 ./go-app-ussd_registration.js:1280 ./go-app-ussd_registration.js:1460 ./go-app-ussd_registration.js:1470 ./go-app-ussd_registration.js:1480 ./go-app-ussd_registration.js:1490 ./go-app-ussd_registration.js:1776
 msgid "Back"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:454 ./go-app-ussd_registration.js:465 ./go-app-ussd_registration.js:476
-msgid "Back to HIV questions"
+#: ./go-app-ussd_registration.js:481
+msgid "Uthini umbuzo wakho?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:486
+msgid "Yini i-HIV?"
 msgstr ""
 
 #: ./go-app-ussd_registration.js:487
-msgid "How it works?"
+msgid "I-HIV yenzani emzimbeni wami?"
 msgstr ""
 
 #: ./go-app-ussd_registration.js:488
-msgid "When to take it?"
+msgid "Likhona ikhambi?"
 msgstr ""
 
 #: ./go-app-ussd_registration.js:489
-msgid "How long to take it?"
+msgid "Yini i-viral load?"
 msgstr ""
 
 #: ./go-app-ussd_registration.js:490
-msgid "Side effects?"
+msgid "Yini i-viral load ephansi?"
 msgstr ""
 
 #: ./go-app-ussd_registration.js:491
+msgid "Emuva"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:524 ./go-app-ussd_registration.js:535 ./go-app-ussd_registration.js:546
+msgid "Back to HIV questions"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:557
+msgid "How it works?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:558
+msgid "When to take it?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:559
+msgid "How long to take it?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:560
+msgid "Side effects?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:561
 msgid "How do I get it?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:492
+#: ./go-app-ussd_registration.js:562
 msgid "Can I skip a day?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:570
+#: ./go-app-ussd_registration.js:640
 msgid "Show my next expected clinic date"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:571
+#: ./go-app-ussd_registration.js:641
 msgid "Change my next clinic date"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:572
+#: ./go-app-ussd_registration.js:642
 msgid "Plan for my clinic visit"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:573 ./go-app-ussd_registration.js:592 ./go-app-ussd_registration.js:696 ./go-app-ussd_registration.js:721 ./go-app-ussd_registration.js:916 ./go-app-ussd_registration.js:1257 ./go-app-ussd_registration.js:1303
+#: ./go-app-ussd_registration.js:643 ./go-app-ussd_registration.js:662 ./go-app-ussd_registration.js:766 ./go-app-ussd_registration.js:791 ./go-app-ussd_registration.js:989 ./go-app-ussd_registration.js:1502 ./go-app-ussd_registration.js:1548
 msgid "Back to menu"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:580
+#: ./go-app-ussd_registration.js:650
 msgid ""
 "Based on what you told me, I think your next clinic visit is "
 "{{next_clinic_visit}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:584 ./go-app-ussd_registration.js:735 ./go-app-ussd_registration.js:737 ./go-app-ussd_registration.js:738 ./go-app-ussd_registration.js:739
+#: ./go-app-ussd_registration.js:654 ./go-app-ussd_registration.js:806 ./go-app-ussd_registration.js:808 ./go-app-ussd_registration.js:809 ./go-app-ussd_registration.js:810 ./go-app-ussd_registration.js:811
 msgid "None"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:591
+#: ./go-app-ussd_registration.js:661
 msgid "Change your next clinic date"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:609
+#: ./go-app-ussd_registration.js:663 ./go-app-ussd_registration.js:750 ./go-app-ussd_registration.js:900 ./go-app-ussd_registration.js:931 ./go-app-ussd_registration.js:972 ./go-app-ussd_registration.js:990 ./go-app-ussd_registration.js:1052 ./go-app-ussd_registration.js:1117 ./go-app-ussd_registration.js:1192 ./go-app-ussd_registration.js:1245 ./go-app-ussd_registration.js:1318 ./go-app-ussd_registration.js:1344
+msgid "Exit"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:679
 msgid "Sorry, I don’t recognise that date. Please try again."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:613
+#: ./go-app-ussd_registration.js:683
 msgid ""
 "Hmm, that seems a bit far away. You should at least be going to the clinic "
 "every 2 months. Please try again."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:616
+#: ./go-app-ussd_registration.js:686
 msgid "Oops, that day has already passed. Please try again."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:635
+#: ./go-app-ussd_registration.js:705
 msgid ""
 "You entered {{clinic_date}}. I'll send you reminders of your upcoming "
 "clinic visits so that you don't forget."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:641 ./go-app-ussd_registration.js:1153
+#: ./go-app-ussd_registration.js:711 ./go-app-ussd_registration.js:1279
 msgid "Confirm"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:674
+#: ./go-app-ussd_registration.js:744
 msgid "Your next clinic visit has been changed to {{clinic_date}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:687
+#: ./go-app-ussd_registration.js:757
 msgid ""
 "Tip 1: Set a reminder in your phone\n"
 "Tip2: Tell someone you're going\n"
@@ -398,464 +490,557 @@ msgid ""
 "Tip 4: Prepare questions for your nurse"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:691
-msgid "TBC"
+#: ./go-app-ussd_registration.js:761
+msgid "Please reply with the number that matches your answer, eg .1."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:718
+#: ./go-app-ussd_registration.js:788
 msgid "See my info"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:719
+#: ./go-app-ussd_registration.js:789
 msgid "Change my info"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:720
+#: ./go-app-ussd_registration.js:790
 msgid "Opt-out"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:728
+#: ./go-app-ussd_registration.js:798
 msgid ""
 "Name: {{name}}\n"
 "Cell number: {{msisdn}}\n"
 "Channel: {{channel}}\n"
 "Age: {{age_group}}\n"
+"Language: {{language}}\n"
 "Estimated treatment start date: {{treatment_start_period}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:745
+#: ./go-app-ussd_registration.js:817
 msgid "Change info"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:758
+#: ./go-app-ussd_registration.js:830
 msgid "Name"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:759
+#: ./go-app-ussd_registration.js:831
 msgid "Cell number"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:760
+#: ./go-app-ussd_registration.js:832
 msgid "Age"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:762
+#: ./go-app-ussd_registration.js:833
+msgid "Language"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:835
 msgid "Change from {{current_channel}} to {{alternative_channel}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:766
+#: ./go-app-ussd_registration.js:839
 msgid "Treatment start date"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:784
+#: ./go-app-ussd_registration.js:857
 msgid "You entered {{name}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:788 ./go-app-ussd_registration.js:1079
+#: ./go-app-ussd_registration.js:861 ./go-app-ussd_registration.js:1152
 msgid "confirm"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:821
+#: ./go-app-ussd_registration.js:894
 msgid ""
 "Thanks. I'll call you {{name}}\n"
 "\n"
 "What would you like to do next?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:826 ./go-app-ussd_registration.js:857 ./go-app-ussd_registration.js:1118 ./go-app-ussd_registration.js:1191
+#: ./go-app-ussd_registration.js:899 ./go-app-ussd_registration.js:930 ./go-app-ussd_registration.js:1191 ./go-app-ussd_registration.js:1244 ./go-app-ussd_registration.js:1317
 msgid "Back to main menu"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:835
+#: ./go-app-ussd_registration.js:908
 msgid ""
 "Are you sure you want to get your MenConnect messages on "
 "{{alternative_channel}}?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:841 ./go-app-ussd_registration.js:997 ./go-app-ussd_registration.js:1256 ./go-app-ussd_registration.js:1420 ./go-app-ussd_registration.js:1446 ./go-app-ussd_registration.js:1584 ./go-app-ussd_registration.js:1626 ./go-app-ussd_registration.js:1643
+#: ./go-app-ussd_registration.js:914 ./go-app-ussd_registration.js:1070 ./go-app-ussd_registration.js:1330 ./go-app-ussd_registration.js:1357 ./go-app-ussd_registration.js:1501 ./go-app-ussd_registration.js:1665 ./go-app-ussd_registration.js:1691 ./go-app-ussd_registration.js:1829 ./go-app-ussd_registration.js:1871 ./go-app-ussd_registration.js:1888
 msgid "Yes"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:842 ./go-app-ussd_registration.js:1421 ./go-app-ussd_registration.js:1447 ./go-app-ussd_registration.js:1585 ./go-app-ussd_registration.js:1627 ./go-app-ussd_registration.js:1644
+#: ./go-app-ussd_registration.js:915 ./go-app-ussd_registration.js:1331 ./go-app-ussd_registration.js:1358 ./go-app-ussd_registration.js:1666 ./go-app-ussd_registration.js:1692 ./go-app-ussd_registration.js:1830 ./go-app-ussd_registration.js:1872 ./go-app-ussd_registration.js:1889
 msgid "No"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:844 ./go-app-ussd_registration.js:901 ./go-app-ussd_registration.js:981 ./go-app-ussd_registration.js:1038
+#: ./go-app-ussd_registration.js:917 ./go-app-ussd_registration.js:974 ./go-app-ussd_registration.js:1054 ./go-app-ussd_registration.js:1111
 msgid ""
 "Sorry we don't recognise that reply. Please enter the number next to your "
 "answer."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:852
+#: ./go-app-ussd_registration.js:925
 msgid ""
 "You'll keep getting your messages on {{channel}}. If you change your mind, "
 "dial *134*406#. What would you like to do?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:891
+#: ./go-app-ussd_registration.js:964
 msgid ""
 "Okay. I'll send you MenConnect messages on {{channel}}.To move back to "
 "WhatsApp, reply *WA* or dial *134*406#."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:911
+#: ./go-app-ussd_registration.js:984
 msgid ""
 "Thanks, I'll call you {{preferred_name}}\n"
 "\n"
 "What do you want to do next?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:924
+#: ./go-app-ussd_registration.js:997
 msgid ""
 "Please reply with the *new cell number* you would like to get your "
 "MenConnect messages on, e.g 0813547654"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:973
+#: ./go-app-ussd_registration.js:1046
 msgid ""
 "Sorry, the cell number you entered already gets MC msgs. To manage it, dial "
 "*134*406# from that number. What would you like to do?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:991
+#: ./go-app-ussd_registration.js:1064
 msgid ""
 "You have entered {{msisdn}}as your new MenConnect number.\n"
 "\n"
 "Is this correct?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:998
+#: ./go-app-ussd_registration.js:1071
 msgid "No, try again"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1034
+#: ./go-app-ussd_registration.js:1107
 msgid ""
 "Thanks! We sent a msg to {{msisdn}}. Follow the instructions. \n"
 "What would you like to do?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1051
+#: ./go-app-ussd_registration.js:1124
 msgid ""
 "How old are you?\n"
 "Select your age group:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1053
+#: ./go-app-ussd_registration.js:1126
 msgid "Sorry, please reply with the number that matches your answer, e.g. 1."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1058 ./go-app-ussd_registration.js:1500
+#: ./go-app-ussd_registration.js:1131 ./go-app-ussd_registration.js:1745
 msgid "<15"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1059 ./go-app-ussd_registration.js:1501
+#: ./go-app-ussd_registration.js:1132 ./go-app-ussd_registration.js:1746
 msgid "15-19"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1060 ./go-app-ussd_registration.js:1502
+#: ./go-app-ussd_registration.js:1133 ./go-app-ussd_registration.js:1747
 msgid "20-24"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1061 ./go-app-ussd_registration.js:1503
+#: ./go-app-ussd_registration.js:1134 ./go-app-ussd_registration.js:1748
 msgid "25-29"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1062 ./go-app-ussd_registration.js:1504
+#: ./go-app-ussd_registration.js:1135 ./go-app-ussd_registration.js:1749
 msgid "30-34"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1063 ./go-app-ussd_registration.js:1505
+#: ./go-app-ussd_registration.js:1136 ./go-app-ussd_registration.js:1750
 msgid "35-39"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1064 ./go-app-ussd_registration.js:1506
+#: ./go-app-ussd_registration.js:1137 ./go-app-ussd_registration.js:1751
 msgid "40-44"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1065 ./go-app-ussd_registration.js:1507
+#: ./go-app-ussd_registration.js:1138 ./go-app-ussd_registration.js:1752
 msgid "45-49"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1066 ./go-app-ussd_registration.js:1508
+#: ./go-app-ussd_registration.js:1139 ./go-app-ussd_registration.js:1753
 msgid "50+"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1075
+#: ./go-app-ussd_registration.js:1148
 msgid "Your age group will be updated to {{age}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1076
+#: ./go-app-ussd_registration.js:1149
 msgid "Please select 1 or 2"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1113
+#: ./go-app-ussd_registration.js:1186
 msgid "Thank you. Your age has been changed to {{age_group}}\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1126
+#: ./go-app-ussd_registration.js:1199
+msgid "What language would you like to get messages in?\n"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1200
+msgid "Sorry, please reply with the number that matches your answer, e.g. 2."
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1205 ./go-app-ussd_registration.js:1709
+msgid "English"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1206
+msgid "isiZulu"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1207
+msgid "seSotho"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1240
+msgid ""
+"Thank you.\n"
+"\n"
+"You'll now start receiving messages in {{language}}"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1252
 msgid "When did you start taking ARV treatment? Choose the closest option.\n"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1128
+#: ./go-app-ussd_registration.js:1254
 msgid "Please reply with number closest to when you started treatment:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1133 ./go-app-ussd_registration.js:1606
+#: ./go-app-ussd_registration.js:1259 ./go-app-ussd_registration.js:1851
 msgid "today"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1134 ./go-app-ussd_registration.js:1607
+#: ./go-app-ussd_registration.js:1260 ./go-app-ussd_registration.js:1852
 msgid "<1 week"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1135 ./go-app-ussd_registration.js:1523 ./go-app-ussd_registration.js:1608
+#: ./go-app-ussd_registration.js:1261 ./go-app-ussd_registration.js:1768 ./go-app-ussd_registration.js:1853
 msgid "<1 month"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1136 ./go-app-ussd_registration.js:1524 ./go-app-ussd_registration.js:1609
+#: ./go-app-ussd_registration.js:1262 ./go-app-ussd_registration.js:1769 ./go-app-ussd_registration.js:1854
 msgid "<3 months"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1137 ./go-app-ussd_registration.js:1525 ./go-app-ussd_registration.js:1610
+#: ./go-app-ussd_registration.js:1263 ./go-app-ussd_registration.js:1770 ./go-app-ussd_registration.js:1855
 msgid "3-6 months"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1138 ./go-app-ussd_registration.js:1526 ./go-app-ussd_registration.js:1611
+#: ./go-app-ussd_registration.js:1264 ./go-app-ussd_registration.js:1771 ./go-app-ussd_registration.js:1856
 msgid "6-12 months"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1139 ./go-app-ussd_registration.js:1612
+#: ./go-app-ussd_registration.js:1265 ./go-app-ussd_registration.js:1857
 msgid ">1 year"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1148
+#: ./go-app-ussd_registration.js:1274
 msgid "Your new treatment start date will be updated to {{treatment_start_date}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1186
+#: ./go-app-ussd_registration.js:1312
 msgid ""
 "Thank you. Your treatment start date has been changed to "
 "{{treatment_start_period}}"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1202
+#: ./go-app-ussd_registration.js:1325
+msgid "Do you want to stop getting Menconnect messages?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1338
+msgid ""
+"Thanks! MenConnect will continue to send helpful messsages and process your "
+"info."
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1343
+msgid "Menu"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1351
+msgid ""
+"MenConnect holds your info for historical, research & statistical reasons "
+"after you opt out. Do you want to delete it after you stop getting msgs?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1365
+msgid ""
+"Your info will be permanently deleted in the next 7 days. We'll stop "
+"sending you msgs. Why do you want to stop your MC msgs?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1371 ./go-app-ussd_registration.js:1387
+msgid "The messages aren't helpful"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1372 ./go-app-ussd_registration.js:1388
+msgid "I do not need support"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1373 ./go-app-ussd_registration.js:1389
+msgid "I'm not on treatment anymore"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1374 ./go-app-ussd_registration.js:1390
+msgid "Too many messages"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1375 ./go-app-ussd_registration.js:1391
+msgid "Other"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1383
+msgid "Why do you want to stop?"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1425
+msgid ""
+"Your info will be permanently deleted and you'll no longer get messages "
+"from MenConnect. \n"
+"\n"
+"You can rejoin MenConnect by dialling *134*406#"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1435
+msgid ""
+"You'll no longer receive messages from MenConnect. \n"
+"\n"
+"You can always rejoin MenConnect by dialling *134*406#"
+msgstr ""
+
+#: ./go-app-ussd_registration.js:1447
 msgid "What info does MenConnect collect?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1203
+#: ./go-app-ussd_registration.js:1448
 msgid "Why does MenConnect need my info?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1204
+#: ./go-app-ussd_registration.js:1449
 msgid "Who can see my info?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1205
+#: ./go-app-ussd_registration.js:1450
 msgid "How long is my info kept?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1286
+#: ./go-app-ussd_registration.js:1531
 msgid "Back to Menu"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1296
+#: ./go-app-ussd_registration.js:1541
 msgid "Depression"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1297
+#: ./go-app-ussd_registration.js:1542
 msgid "Mental health"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1298
+#: ./go-app-ussd_registration.js:1543
 msgid "Suicide"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1299
+#: ./go-app-ussd_registration.js:1544
 msgid "Gender based violence"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1300
+#: ./go-app-ussd_registration.js:1545
 msgid "Substance abuse"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1301
+#: ./go-app-ussd_registration.js:1546
 msgid "Aids helpline"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1302
+#: ./go-app-ussd_registration.js:1547
 msgid "COVID-19"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1310
+#: ./go-app-ussd_registration.js:1555
 msgid ""
 "Adcock Ingram Depression and Anxiety Helpline can help you if you are "
 "feeling depressed. Call 0800 7080 90"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1315 ./go-app-ussd_registration.js:1327 ./go-app-ussd_registration.js:1339 ./go-app-ussd_registration.js:1351 ./go-app-ussd_registration.js:1363 ./go-app-ussd_registration.js:1375 ./go-app-ussd_registration.js:1387
+#: ./go-app-ussd_registration.js:1560 ./go-app-ussd_registration.js:1572 ./go-app-ussd_registration.js:1584 ./go-app-ussd_registration.js:1596 ./go-app-ussd_registration.js:1608 ./go-app-ussd_registration.js:1620 ./go-app-ussd_registration.js:1632
 msgid "Back to resources"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1322
+#: ./go-app-ussd_registration.js:1567
 msgid ""
 "The South African Depression and Anxiety group can support you when you're "
 "feeling low. Dial 0800 4567 789 for their 24 hour helpline."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1334
+#: ./go-app-ussd_registration.js:1579
 msgid ""
 "The South African Depression and Anxiety group can support you whenyou're "
 "feeling low. Dial 0800 4567 789 for their emergency suicide helpline."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1346
+#: ./go-app-ussd_registration.js:1591
 msgid ""
 "Anonymous & confidential info, counselling and referrals to "
 "survivors,witnesses and perpetrators of gender-based violence. Dial 0800 "
 "150 150."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1358
+#: ./go-app-ussd_registration.js:1603
 msgid ""
 "The Substance Abuse Line offers support & guidance for people addicted to "
 "drugs and alcohol as well as their families. Dial 0800 12 13 14 or SMS 32312"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1370
+#: ./go-app-ussd_registration.js:1615
 msgid ""
 "The National HIV and AIDs Helpline is a toll free number that you can call "
 "for anonymous and confidential advice. Call 0800 012 322 for 24 hour help."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1382
+#: ./go-app-ussd_registration.js:1627
 msgid ""
 "For correct & up to date info on COVID-19, save the number +2760 0123 456 "
 "and send 'hi' or call the national COVID-19 hotline on 0800 029 999."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1412
+#: ./go-app-ussd_registration.js:1657
 msgid ""
 "MenConnect needs to process your personal info to send you relevant "
 "messages. Do you agree?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1415
+#: ./go-app-ussd_registration.js:1660
 msgid "Sorry, please reply with the number next to your answer. Do you agree?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1436
+#: ./go-app-ussd_registration.js:1681
 msgid ""
 "MenConnect supports men on their journey. I'll send you messages with info "
 "& tips.Do you agree to receive?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1440
+#: ./go-app-ussd_registration.js:1685
 msgid ""
 "Please try again. Reply with the number that matches your answer, e.g. 1.\n"
 "\n"
 "Do you agree to receive messages?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1455
+#: ./go-app-ussd_registration.js:1700
 msgid ""
 "Please try again. Reply with the number that matches your answer, e.g. 1\n"
 "\n"
 "What language would you like to receive messages in?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1464
-msgid "English"
-msgstr ""
-
-#: ./go-app-ussd_registration.js:1465
+#: ./go-app-ussd_registration.js:1710
 msgid "Zulu"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1466
+#: ./go-app-ussd_registration.js:1711
 msgid "Sesotho"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1475
+#: ./go-app-ussd_registration.js:1720
 msgid ""
 "No problem! If you change your mind and want to receive supportive messages "
 "in the future, dial *134*406# and I'll sign you up."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1485
+#: ./go-app-ussd_registration.js:1730
 msgid ""
 "Please reply with the number that matches your answer.\n"
 "\n"
 "Select your age group:"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1517
+#: ./go-app-ussd_registration.js:1762
 msgid "Please reply with the number that matches your answer, eg .1."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1521
+#: ./go-app-ussd_registration.js:1766
 msgid "Today"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1522
+#: ./go-app-ussd_registration.js:1767
 msgid "Last week"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1527
+#: ./go-app-ussd_registration.js:1772
 msgid "> 1 year"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1528
+#: ./go-app-ussd_registration.js:1773
 msgid "not positive"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1529
+#: ./go-app-ussd_registration.js:1774
 msgid "not sure"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1532
+#: ./go-app-ussd_registration.js:1777
 msgid "Next"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1557
+#: ./go-app-ussd_registration.js:1802
 msgid ""
 "Thank you for considering MenConnect. We respect your decision. Have a "
 "lovely day."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1578
+#: ./go-app-ussd_registration.js:1823
 msgid ""
 "Please try again. Reply with the number that matches your answer, e.g. 1.\n"
 "Are you or have you been on ARV treatment?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1601
+#: ./go-app-ussd_registration.js:1846
 msgid "Please reply with number closest to when you started treatment: "
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1621
+#: ./go-app-ussd_registration.js:1866
 msgid "Please try again. Reply with the number that matches your answer, e.g. 1."
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1628
+#: ./go-app-ussd_registration.js:1873
 msgid "Mostly - sometimes I forget"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1637
+#: ./go-app-ussd_registration.js:1882
 msgid ""
 "Please try again. Reply with the number that matches your answer, e.g. 1.\n"
 "Is your viral load undetectable?"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1645
+#: ./go-app-ussd_registration.js:1890
 msgid "I don't know"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1727
+#: ./go-app-ussd_registration.js:1972
 msgid ""
 "You're done! You will get info & tips on {{msisdn}} to support you on your "
 "journey on {{channel}}. Thanks for signing up to MenConnect!"
 msgstr ""
 
-#: ./go-app-ussd_registration.js:1739
+#: ./go-app-ussd_registration.js:1984
 msgid "Sorry, something went wrong. We have been notified. Please try again later"
 msgstr ""

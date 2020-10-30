@@ -34,7 +34,8 @@ describe("ussd_registration app", function() {
       sms_switch_flow_id: "sms-switch-flow-id",
       whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
       change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id",
-      send_sms_flow_id: "send-sms-flow-id"
+      send_sms_flow_id: "send-sms-flow-id",
+      optout_flow_id: "optout-flow-id"
     })
     .setup(function(api) {
       api.metrics.stores = {'test_metric_store': {}};
@@ -139,7 +140,7 @@ describe("ussd_registration app", function() {
             "3. Izikhumbuzo",
             "4. Uhlelo Lwemikhuba",
             "5. Iphrofayela",
-            "6. Ukucubungula imininingwane yami",
+            "6. Ukucubungula ulwazi lwami",
             "7. Ukwabelana",
             "8. Izisetshenziswa"
           ].join("\n")
@@ -660,6 +661,7 @@ describe("state_profile_view_info", function() {
             "Cell number: 0123456789",
             "Channel: None",
             "Age: None",
+            "Language: None",
             "Estimated treatment start date: None",
             "1. Change info",
             "2. Back"
@@ -685,6 +687,7 @@ describe("state_profile_view_info", function() {
             "Cell number: 0123456789",
             "Channel: WhatsApp",
             "Age: 15-19",
+            "Language: en",
             "Estimated treatment start date: <3 months",
             "1. Change info",
             "2. Back"

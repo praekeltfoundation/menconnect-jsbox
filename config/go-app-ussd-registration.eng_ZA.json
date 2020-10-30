@@ -1,6 +1,6 @@
 {
     "": {
-        "pot-creation-date": "2020-10-23 04:13:+0000",
+        "pot-creation-date": "2020-10-29 10:05:+0000",
         "project-id-version": "PACKAGE VERSION",
         "language-team": "LANGUAGE <LL@li.org>",
         "language": "",
@@ -217,6 +217,70 @@
         null,
         ""
     ],
+    "Funda kabanzi nge?": [
+        null,
+        ""
+    ],
+    "Amaphilisi": [
+        null,
+        ""
+    ],
+    "Izikhumbuzo": [
+        null,
+        ""
+    ],
+    "Uhlelo Lwemikhuba": [
+        null,
+        ""
+    ],
+    "Iphrofayela": [
+        null,
+        ""
+    ],
+    "Ukucubungula ulwazi lwami": [
+        null,
+        ""
+    ],
+    "Ukwabelana": [
+        null,
+        ""
+    ],
+    "Izisetshenziswa": [
+        null,
+        ""
+    ],
+    "O lakatsa ho shebang?": [
+        null,
+        ""
+    ],
+    "Kalafo": [
+        null,
+        ""
+    ],
+    "Dikgopotso": [
+        null,
+        ""
+    ],
+    "Morero wa Tlwaelo": [
+        null,
+        ""
+    ],
+    "Porofaele Ya Ka": [
+        null,
+        ""
+    ],
+    "Ho lokisa lesedi la ka": [
+        null,
+        ""
+    ],
+    "Ho arolelana": [
+        null,
+        ""
+    ],
+    "Dirisose": [
+        null,
+        ""
+    ],
     "What is HIV?": [
         null,
         ""
@@ -238,6 +302,34 @@
         ""
     ],
     "Back": [
+        null,
+        ""
+    ],
+    "Uthini umbuzo wakho?": [
+        null,
+        ""
+    ],
+    "Yini i-HIV?": [
+        null,
+        ""
+    ],
+    "I-HIV yenzani emzimbeni wami?": [
+        null,
+        ""
+    ],
+    "Likhona ikhambi?": [
+        null,
+        ""
+    ],
+    "Yini i-viral load?": [
+        null,
+        ""
+    ],
+    "Yini i-viral load ephansi?": [
+        null,
+        ""
+    ],
+    "Emuva": [
         null,
         ""
     ],
@@ -297,6 +389,10 @@
         null,
         ""
     ],
+    "Exit": [
+        null,
+        ""
+    ],
     "Sorry, I don’t recognise that date. Please try again.": [
         null,
         ""
@@ -325,7 +421,7 @@
         null,
         ""
     ],
-    "TBC": [
+    "Please reply with the number that matches your answer, eg .1.": [
         null,
         ""
     ],
@@ -341,7 +437,7 @@
         null,
         ""
     ],
-    "Name: {{name}}\nCell number: {{msisdn}}\nChannel: {{channel}}\nAge: {{age_group}}\nEstimated treatment start date: {{treatment_start_period}}": [
+    "Name: {{name}}\nCell number: {{msisdn}}\nChannel: {{channel}}\nAge: {{age_group}}\nLanguage: {{language}}\nEstimated treatment start date: {{treatment_start_period}}": [
         null,
         ""
     ],
@@ -358,6 +454,10 @@
         ""
     ],
     "Age": [
+        null,
+        ""
+    ],
+    "Language": [
         null,
         ""
     ],
@@ -489,6 +589,30 @@
         null,
         ""
     ],
+    "What language would you like to get messages in?\n": [
+        null,
+        ""
+    ],
+    "Sorry, please reply with the number that matches your answer, e.g. 2.": [
+        null,
+        ""
+    ],
+    "English": [
+        null,
+        ""
+    ],
+    "isiZulu": [
+        null,
+        ""
+    ],
+    "seSotho": [
+        null,
+        ""
+    ],
+    "Thank you.\n\nYou'll now start receiving messages in {{language}}": [
+        null,
+        ""
+    ],
     "When did you start taking ARV treatment? Choose the closest option.\n": [
         null,
         ""
@@ -530,6 +654,58 @@
         ""
     ],
     "Thank you. Your treatment start date has been changed to {{treatment_start_period}}": [
+        null,
+        ""
+    ],
+    "Do you want to stop getting Menconnect messages?": [
+        null,
+        ""
+    ],
+    "Thanks! MenConnect will continue to send helpful messsages and process your info.": [
+        null,
+        ""
+    ],
+    "Menu": [
+        null,
+        ""
+    ],
+    "MenConnect holds your info for historical, research & statistical reasons after you opt out. Do you want to delete it after you stop getting msgs?": [
+        null,
+        ""
+    ],
+    "Your info will be permanently deleted in the next 7 days. We'll stop sending you msgs. Why do you want to stop your MC msgs?": [
+        null,
+        ""
+    ],
+    "The messages aren't helpful": [
+        null,
+        ""
+    ],
+    "I do not need support": [
+        null,
+        ""
+    ],
+    "I'm not on treatment anymore": [
+        null,
+        ""
+    ],
+    "Too many messages": [
+        null,
+        ""
+    ],
+    "Other": [
+        null,
+        ""
+    ],
+    "Why do you want to stop?": [
+        null,
+        ""
+    ],
+    "Your info will be permanently deleted and you'll no longer get messages from MenConnect. \n\nYou can rejoin MenConnect by dialling *134*406#": [
+        null,
+        ""
+    ],
+    "You'll no longer receive messages from MenConnect. \n\nYou can always rejoin MenConnect by dialling *134*406#": [
         null,
         ""
     ],
@@ -633,10 +809,6 @@
         null,
         ""
     ],
-    "English": [
-        null,
-        ""
-    ],
     "Zulu": [
         null,
         ""
@@ -650,10 +822,6 @@
         ""
     ],
     "Please reply with the number that matches your answer.\n\nSelect your age group:": [
-        null,
-        ""
-    ],
-    "Please reply with the number that matches your answer, eg .1.": [
         null,
         ""
     ],
