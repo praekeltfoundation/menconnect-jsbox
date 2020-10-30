@@ -34,7 +34,8 @@ describe("ussd_registration app", function() {
       sms_switch_flow_id: "sms-switch-flow-id",
       whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
       change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id",
-      send_sms_flow_id: "send-sms-flow-id"
+      send_sms_flow_id: "send-sms-flow-id",
+      optout_flow_id: "optout-flow-id"
     })
     .setup(function(api) {
       api.metrics.stores = {'test_metric_store': {}};

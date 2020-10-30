@@ -22,10 +22,12 @@
   "homepage": "https://github.com/praekeltfoundation/menconnect-jsbox",
   "dependencies": {
     "@google-cloud/bigquery": "^5.3.0",
-    "@google-cloud/common": "^0.17.0",
+    "@google-cloud/common": "^3.4.1",
     "async": "^3.2.0",
     "cjs-loader": "^0.1.0",
+    "eslint": "^7.12.1",
     "go-jsbox-metrics-helper": "^0.2.0",
+    "jspot": "^0.3.15",
     "lodash": "^4.17.20",
     "moment": "~2.22.1",
     "q": "~0.9.7",
@@ -40,6 +42,6 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-mocha-test": "~0.13.3",
     "jshint": "^2.12.0",
-    "mocha": "~5.0.1"
+    "mocha": "^8.2.0"
   }
 }
