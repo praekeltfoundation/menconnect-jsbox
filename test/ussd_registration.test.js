@@ -642,6 +642,20 @@ describe("state_profile", function() {
       .run();
   });
 });
+describe("state_profile", function () {
+  it("should show the opt-out screen on input 3", function(){
+    return tester.setup.user
+      .state("state_opt_out")
+      .check.interaction({
+        reply: [
+          "Do you want to stop getting Menconnect messages?",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+});
 describe("state_profile_view_info", function() {
     it("should handle missing contact fields", function() {
       return tester
