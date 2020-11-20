@@ -1236,16 +1236,15 @@ go.app = (function () {
 
     self.add("state_opt_out_full_delete_reason", function (name) {
       return new ChoiceState(name, {
-        question: $("Your info will be permanently deleted in the next 7 days. " +
-          "We'll stop sending you msgs. Why do you want to stop " +
-          "your MC msgs?"),
+        question: $("Your info will be permanently deleted. " +
+          "Why do you want to stop?"),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("not_helpful", $("The messages aren't helpful")),
-          new Choice("not_need_support", $("I do not need support")),
-          new Choice("not_on_treatment", $("I'm not on treatment anymore")),
-          new Choice("too_many_messages", $("Too many messages")),
+          new Choice("not_helpful", $("Msgs aren't helpful")),
+          new Choice("not_need_support", $("Don't need support")),
+          new Choice("not_on_treatment", $("Not on treatment")),
+          new Choice("too_many_messages", $("Too many msgs")),
           new Choice("other", $("Other"))
         ],
         next: 'state_submit_opt_out'

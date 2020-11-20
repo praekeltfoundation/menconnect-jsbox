@@ -643,7 +643,7 @@ describe("state_profile", function() {
   });
 });
 describe("state_profile", function () {
-  it("should show the opt-out screen on input 3", function(){
+  it("should show the opt-out screen", function(){
     return tester.setup.user
       .state("state_opt_out")
       .check.interaction({
@@ -655,6 +655,24 @@ describe("state_profile", function () {
       })
       .run();
   });
+});
+  describe("state_opt_out_full_delete_reason", function () {
+    it("should show the opt-out full delete reason screen", function(){
+      return tester.setup.user
+        .state("state_opt_out_full_delete_reason")
+        .check.interaction({
+          reply: [
+            "Your info will be permanently deleted. " +
+            "Why do you want to stop?",
+            "1. Msgs aren't helpful",
+            "2. Don't need support",
+            "3. Not on treatment",
+            "4. Too many msgs",
+            "5. Other" 
+          ].join("\n")
+        })
+        .run();
+    });
 });
 describe("state_profile_view_info", function() {
     it("should handle missing contact fields", function() {
