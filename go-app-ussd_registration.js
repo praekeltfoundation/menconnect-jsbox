@@ -1945,7 +1945,7 @@ go.app = (function () {
         });
     });
 
-    self.add("state_trigger_rapidpro_flow", function (name, opts, mock_eid) {
+    self.add("state_trigger_rapidpro_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
