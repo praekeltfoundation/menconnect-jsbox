@@ -57,10 +57,8 @@ go.app = (function () {
         if (self.env !== "prd"){
           return null;
         }
-        var uuid = self.im.user.answers.contact.uuid;
-        var today = new Date();
-        var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-        const row = [{uuid: uuid, msisdn: msisdn, message_id: null, chat_id: null, status: e.state.name, inserted_at: today, updated_at: null, amount: 1}];
+        const today = new Date();
+        const row = [{uuid: null, msisdn: self.im.user.addr, message_id: null, chat_id: null, status: e.state.name, inserted_at: today, updated_at: null, amount: 1}];
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
           self.im.log.info(e.message);
