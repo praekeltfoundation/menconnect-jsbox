@@ -57,8 +57,7 @@ go.app = (function () {
         if (self.env !== "prd"){
           return null;
         }
-        const today = new Date();
-        const row = [{uuid: null, msisdn: self.im.user.addr, message_id: null, chat_id: null, status: e.state.name, inserted_at: today, updated_at: null, amount: 1}];
+        const row = [{uuid: null, msisdn: self.im.user.addr, message_id: null, chat_id: null, status: e.state.name, inserted_at: null, updated_at: null, amount: 1}];
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
           self.im.log.info(e.message);
