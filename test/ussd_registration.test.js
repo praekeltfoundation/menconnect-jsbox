@@ -553,7 +553,7 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2020-11-24")
+      .input("2021-01-24")
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -564,10 +564,10 @@ describe("state_reminders", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2020-11-24")
+      .input("2021-01-24")
       .check.interaction({
         reply:[
-          "You entered 2020-11-24. " +
+          "You entered 2021-01-24. " +
           "I'll send you reminders of your upcoming clinic visits " +
           "so that you don't forget.",
           "1. Confirm",
@@ -668,7 +668,7 @@ describe("state_profile", function () {
             "2. Don't need support",
             "3. Not on treatment",
             "4. Too many msgs",
-            "5. Other" 
+            "5. Other"
           ].join("\n")
         })
         .run();
