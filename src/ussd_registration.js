@@ -57,9 +57,9 @@ go.app = (function () {
         if (self.env !== "prd"){
           return null;
         }
-        var today = new Date().toLocaleString();
-        var msisdn = self.im.user.addr;
-        const row = [{uuid: null, msisdn: msisdn, message_id: null, chat_id: null, status: e.state.name, inserted_at: today, updated_at: null, amount: 1}];
+        const today = new Date().toLocaleString();
+        const msisdn = self.im.user.addr;
+        const row = [{uuid: null, msisdn: msisdn, message_id: null, chat_id: null, status: e.state.name, inserted_at: null, message_received: today, updated_at: null, amount: 1}];
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
           self.im.log.info(e.message);
