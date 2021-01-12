@@ -57,9 +57,18 @@ go.app = (function () {
         if (self.env !== "prd"){
           return null;
         }
-        const today = new Date().toLocaleString();
+        const bigquery = new BigQuery();
+        const date = new Date();
+        const d =
+          date.getFullYear() + "-" +
+          ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+          ("00" + date.getDate()).slice(-2) + " " +
+          ("00" + date.getHours()).slice(-2) + ":" +
+          ("00" + date.getMinutes()).slice(-2) + ":" +
+          ("00" + date.getSeconds()).slice(-2);
+        const datetime = bigquery.datetime(d);
         const msisdn = self.im.user.addr;
-        const row = [{uuid: null, msisdn: msisdn, message_id: null, chat_id: null, status: e.state.name, inserted_at: null, message_received: today, updated_at: null, amount: 1}];
+        const row = [{uuid: null, msisdn: msisdn, message_id: null, chat_id: null, status: e.state.name, inserted_at: datetime, message_received: null, updated_at: null, amount: 1}];
         return insertRowsAsStream(row)
         .catch(function(e, opts) {
           self.im.log.info(e.message);
