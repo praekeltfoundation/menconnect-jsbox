@@ -650,7 +650,8 @@ describe("state_profile", function () {
         reply: [
           "Do you want to stop getting Menconnect messages?",
           "1. Yes",
-          "2. No"
+          "2. No",
+          "3. I only want to get clinic visit reminders"
         ].join("\n")
       })
       .run();

@@ -1213,8 +1213,55 @@ go.app = (function () {
         accept_labels: true,
         choices: [
           new Choice("state_opt_out_partial", $("Yes")),
-          new Choice("state_no_opt_out", $("No"))
+          new Choice("state_no_opt_out", $("No")),
+          new Choice("state_reminders_optout", $("I only want to get clinic visit reminders")),
         ]
+      });
+    });
+
+    self.add('state_reminders_optout', function (name) {
+      var contact = self.im.user.answers.contact;
+      var text = $([
+        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}"
+      ].join("\n")).context({
+        next_clinic_visit:
+          _.get(contact, "fields.next_clinic_visit", $("None")),
+      });
+      return new MenuState(name, {
+        question: text,
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_submit_opt_out", $("Yes")),
+          new Choice("state_new_clinic_date_opt_out", $("No"))
+        ]
+      });
+    });
+   
+    self.add('state_new_clinic_date_opt_out', function (name) {
+      return new FreeText(name, {
+        question: get_content(name).context(),
+        check: function (content) {
+          var givendate = new Date(content);
+          var today = new Date();
+          today.setHours(0, 0, 0, 0);
+          //Set a timestamp 400 days forward. We want to reject clinic dates that are more than 400 days from today
+          var timestamp = new Date().getTime() + (400 * 24 * 60 * 60 * 1000);
+          var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+          if (!match) {
+            return $(
+              "Sorry, I don’t recognise that date. Please try again.");
+          }
+          if (givendate > timestamp) {
+            return $("Hmm, that seems a bit far away. " +
+              "You should at least be going to the clinic every 2 months. Please try again.");
+          } if (givendate < today) {
+            return $(
+              "Oops, that day has already passed. Please try again."
+            );
+          }
+        },
+        next: "state_submit_opt_out"
       });
     });
 
@@ -1282,10 +1329,14 @@ go.app = (function () {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var answers = self.im.user.answers;
       var forget = answers.state_opt_out === "state_opt_out_partial";
+      var reminder = answers.state_reminders_optout === "";
+      var clinic_date = answers.state_new_clinic_date_opt_out;
       return self.rapidpro
         .start_flow(
           self.im.config.optout_flow_id, null, "whatsapp:" + _.trim(msisdn, "+"), {
           delete_info_consent: forget ? "True" : "FALSE",
+          reminder_optout: reminder ? "True" : "FALSE",
+          clinic_date: clinic_date,
           optout_full_delete_reason: answers.state_opt_out_full_delete_reason,
           optout_partial_delete_reason: answers.state_opt_out_partial_reason
         }
