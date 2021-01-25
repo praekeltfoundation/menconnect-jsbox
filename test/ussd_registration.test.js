@@ -553,7 +553,7 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-01-24")
+      .input("2021-02-24")
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -564,10 +564,10 @@ describe("state_reminders", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-01-24")
+      .input("2021-02-24")
       .check.interaction({
         reply:[
-          "You entered 2021-01-24. " +
+          "You entered 2021-02-24. " +
           "I'll send you reminders of your upcoming clinic visits " +
           "so that you don't forget.",
           "1. Confirm",
@@ -641,6 +641,25 @@ describe("state_profile", function() {
       })
       .run();
   });
+  it("should show the opt-out screen on optout choice", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .inputs("3")
+      .check.interaction({
+        state:"state_opt_out",
+        reply: [
+          "Do you want to stop getting Menconnect messages?",
+          "1. Yes",
+          "2. No",
+          "3. I only want to get clinic visit reminders"
+        ].join("\n")
+      })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_opt_out'], {agg: 'sum', values: [1]});
+      })
+      .run();
+  });
 });
 describe("state_profile", function () {
   it("should show the opt-out screen", function(){
@@ -650,7 +669,8 @@ describe("state_profile", function () {
         reply: [
           "Do you want to stop getting Menconnect messages?",
           "1. Yes",
-          "2. No"
+          "2. No",
+          "3. I only want to get clinic visit reminders"
         ].join("\n")
       })
       .run();
@@ -673,6 +693,128 @@ describe("state_profile", function () {
         })
         .run();
     });
+});
+describe("state_submit_opt_out", function() {
+  it("should start the opt out flow with reminder-only metadata", function() {
+    return tester
+      .setup.user.state("state_delete_data_confirm")
+      .setup.user.answers({
+        state_opt_out: "state_opt_out_partial",
+        state_opt_out_partial: "state_opt_out_full_delete_reason",
+        state_opt_out_full_delete_reason: "Msgs aren't helpful",
+        state_new_clinic_date_opt_out: ""
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "optout-flow-id", 
+            null,
+            "whatsapp:27123456789",
+            {
+              "delete_info_consent":"True",
+              "reminder_optout":"False",
+              "clinic_date":"",
+              "optout_full_delete_reason":"Msgs aren't helpful",
+            }
+          )
+        );
+      })
+      .input("1")
+      .check.interaction({
+        state: "state_forget_all_success",
+        reply: [
+          "Your info will be permanently deleted and you'll no longer get messages from MenConnect. ",
+          "\nYou can rejoin MenConnect by dialling *134*406#"
+        ].join("\n")
+      })
+      .check(function(api){
+        assert.equal(api.http.requests.length, 1);
+        assert.equal(
+          api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+        );
+      })
+      .run();
+  });
+  it("should start the opt out flow with no-delete history metadata", function() {
+    return tester
+      .setup.user.state("state_delete_data_confirm")
+      .setup.user.answers({
+        state_opt_out: "state_opt_out_partial",
+        state_opt_out_partial: "state_opt_out_partial_delete_reason",
+        state_opt_out_partial_delete_reason: "Msgs aren't helpful",
+        state_new_clinic_date_opt_out: ""
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "optout-flow-id", 
+            null,
+            "whatsapp:27123456789",
+            {
+              "delete_info_consent":"False",
+              "reminder_optout":"False",
+              "clinic_date":"",
+              "optout_partial_delete_reason":"Msgs aren't helpful",
+            }
+          )
+        );
+      })
+      .input("1")
+      .check.interaction({
+        state: "state_partial_forget_success",
+        reply: [
+          "You'll no longer receive messages from MenConnect. ",
+          "\nYou can always rejoin MenConnect by dialling *134*406#"
+        ].join("\n")
+      })
+      .check(function(api){
+        assert.equal(api.http.requests.length, 1);
+        assert.equal(
+          api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+        );
+      })
+      .run();
+  });
+  it("should start a flow with correct reminder opt out metadata", function() {
+    return tester
+      .setup.user.state("state_clinic_reminder_confirm")
+      .setup.user.answers({
+        state_opt_out: "state_clinic_date_reminders_optout",
+        state_opt_out_partial: "",
+        state_opt_out_partial_delete_reason: "",
+        state_new_clinic_date_opt_out: "2021-03-25"
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "optout-flow-id", 
+            null,
+            "whatsapp:27123456789",
+            {
+              "delete_info_consent":"False",
+              "reminder_optout":"True",
+              "clinic_date":"2021-03-25",
+              "optout_partial_delete_reason":"",
+            }
+          )
+        );
+      })
+      .input("1")
+      .check.interaction({
+        state: "state_reminder_only_success",
+        reply: [
+          "Thank you!",
+          "\nI'll send you reminders of your upcoming clinic visits so you don't forget."
+        ].join("\n")
+      })
+      .check(function(api){
+        assert.equal(api.http.requests.length, 1);
+        assert.equal(
+          api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+        );
+      })
+      .run();
+  });
 });
 describe("state_profile_view_info", function() {
     it("should handle missing contact fields", function() {
