@@ -553,7 +553,7 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-01-24")
+      .input("2021-02-24")
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -564,10 +564,10 @@ describe("state_reminders", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-01-24")
+      .input("2021-02-24")
       .check.interaction({
         reply:[
-          "You entered 2021-01-24. " +
+          "You entered 2021-02-24. " +
           "I'll send you reminders of your upcoming clinic visits " +
           "so that you don't forget.",
           "1. Confirm",
@@ -638,6 +638,25 @@ describe("state_profile", function() {
           "3. Opt-out",
           "4. Back to menu"
         ].join("\n")
+      })
+      .run();
+  });
+  it("should show the opt-out screen on optout choice", function() {
+    return tester.setup.user
+      .state("state_profile")
+      .inputs("3")
+      .check.interaction({
+        state:"state_opt_out",
+        reply: [
+          "Do you want to stop getting Menconnect messages?",
+          "1. Yes",
+          "2. No",
+          "3. I only want to get clinic visit reminders"
+        ].join("\n")
+      })
+      .check(function(api){
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.state_opt_out'], {agg: 'sum', values: [1]});
       })
       .run();
   });
