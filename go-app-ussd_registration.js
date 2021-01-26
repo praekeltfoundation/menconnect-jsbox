@@ -1362,69 +1362,7 @@ go.app = (function () {
         accept_labels: true,
         choices: [
           new Choice("state_opt_out_partial", $("Yes")),
-          new Choice("state_no_opt_out", $("No")),
-          new Choice("state_clinic_date_reminders_optout", $("I only want to get clinic visit reminders")),
-        ]
-      });
-    });
-
-    self.add('state_clinic_date_reminders_optout', function (name) {
-      var contact = self.im.user.answers.contact;
-      var text = $([
-        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}"
-      ].join("\n")).context({
-        next_clinic_visit:
-          _.get(contact, "fields.next_clinic_visit", $("None")),
-      });
-      return new MenuState(name, {
-        question: text,
-        error: get_content("state_generic_error").context(),
-        accept_labels: true,
-        choices: [
-          new Choice("state_submit_opt_out", $("Yes")),
-          new Choice("state_new_clinic_date_opt_out", $("No"))
-        ]
-      });
-    });
-   
-    self.add('state_new_clinic_date_opt_out', function (name) {
-      return new FreeText(name, {
-        question: get_content(name).context(),
-        check: function (content) {
-          var givendate = new Date(content);
-          var today = new Date();
-          today.setHours(0, 0, 0, 0);
-          //Set a timestamp 400 days forward. We want to reject clinic dates that are more than 400 days from today
-          var timestamp = new Date().getTime() + (400 * 24 * 60 * 60 * 1000);
-          var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
-          if (!match) {
-            return $(
-              "Sorry, I don’t recognise that date. Please try again.");
-          }
-          if (givendate > timestamp) {
-            return $("Hmm, that seems a bit far away. " +
-              "You should at least be going to the clinic every 2 months. Please try again.");
-          } if (givendate < today) {
-            return $(
-              "Oops, that day has already passed. Please try again."
-            );
-          }
-        },
-        next: "state_clinic_reminder_confirm"
-      });
-    });
-
-    self.add("state_clinic_reminder_confirm", function(name) {
-      return new MenuState(name, {
-        question: $(
-          "We'll only send you clinic reminders. Please select Next to continue:" 
-        ),
-        error: $(
-          "Sorry we don't recognise that reply. Please enter the number next to your " +
-          "answer."
-        ),
-        choices: [
-          new Choice("state_submit_opt_out", $("Next"))
+          new Choice("state_no_opt_out", $("No"))
         ]
       });
     });
@@ -1451,7 +1389,7 @@ go.app = (function () {
         accept_labels: true,
         choices: [
           new Choice("state_opt_out_full_delete_reason", $("Yes")),
-          new Choice("state_opt_out_partial_delete_reason", $("No"))
+          new Choice("state_opt_out_partial_reason", $("No"))
         ]
       });
     });
@@ -1469,27 +1407,11 @@ go.app = (function () {
           new Choice("too_many_messages", $("Too many msgs")),
           new Choice("other", $("Other"))
         ],
-        next: 'state_delete_data_confirm'
+        next: 'state_submit_opt_out'
       });
     });
 
-    self.add("state_delete_data_confirm", function(name) {
-      return new MenuState(name, {
-        question: $(
-          "All you info will be permanently deleted. " +
-          "We'll stop sending you messages. Please select Next to continue:" 
-        ),
-        error: $(
-          "Sorry we don't recognise that reply. Please enter the number next to your " +
-          "answer."
-        ),
-        choices: [
-          new Choice("state_submit_opt_out", $("Next"))
-        ]
-      });
-    });
-
-    self.add("state_opt_out_partial_delete_reason", function (name) {
+    self.add("state_opt_out_partial_reason", function (name) {
       return new ChoiceState(name, {
         question: $("Why do you want to stop?"),
         error: get_content("state_generic_error").context(),
@@ -1501,47 +1423,24 @@ go.app = (function () {
           new Choice("too_many_messages", $("Too many messages")),
           new Choice("other", $("other"))
         ],
-        next: 'state_partial_delete_data_confirm'
-      });
-    });
-
-    self.add("state_partial_delete_data_confirm", function(name) {
-      return new MenuState(name, {
-        question: $(
-          "Your info will not be permanently deleted. " +
-          "We'll stop sending you messages. Please select Next to continue:" 
-        ),
-        error: $(
-          "Sorry we don't recognise that reply. Please enter the number next to your " +
-          "answer."
-        ),
-        choices: [
-          new Choice("state_submit_opt_out", $("Next"))
-        ]
+        next: 'state_submit_opt_out'
       });
     });
 
     self.add("state_submit_opt_out", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var answers = self.im.user.answers;
-      var forget = answers.state_opt_out === "state_opt_out_partial" && answers.state_opt_out_partial === "state_opt_out_full_delete_reason";
-      var reminder_optout = answers.state_opt_out === "state_clinic_date_reminders_optout";
-      var clinic_date = answers.state_new_clinic_date_opt_out;
+      var forget = answers.state_opt_out === "state_opt_out_partial";
       return self.rapidpro
         .start_flow(
           self.im.config.optout_flow_id, null, "whatsapp:" + _.trim(msisdn, "+"), {
-          delete_info_consent: forget ? "True" : "False",
-          reminder_optout: reminder_optout ? "True" : "False",
-          clinic_date: clinic_date,
+          delete_info_consent: forget ? "True" : "FALSE",
           optout_full_delete_reason: answers.state_opt_out_full_delete_reason,
-          optout_partial_delete_reason: answers.state_opt_out_partial_delete_reason
+          optout_partial_delete_reason: answers.state_opt_out_partial_reason
         }
         ).then(function () {
           if (forget) {
             return self.states.create("state_forget_all_success");
-          }
-          if (reminder_optout) {
-            return self.states.create("state_reminder_only_success");
           }
           return self.states.create("state_partial_forget_success");
         }).catch(function (e) {
@@ -1571,17 +1470,6 @@ go.app = (function () {
         text: $(
           "You'll no longer receive messages from MenConnect. " +
           "\n\nYou can always rejoin MenConnect by dialling *134*406#"
-        )
-      });
-    });
-
-    self.states.add("state_reminder_only_success", function (name) {
-      return new EndState(name, {
-        next: "state_start",
-        text: $(
-          "Thank you!" +
-          "\n\nI'll send you reminders of your upcoming clinic visits " +
-          "so you don't forget."
         )
       });
     });
@@ -2139,7 +2027,6 @@ go.app = (function () {
     GoMenConnect: GoMenConnect
   };
 })();
-
 /* globals api */
 
 go.init = function() {
