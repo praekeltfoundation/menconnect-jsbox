@@ -665,7 +665,6 @@ describe("state_profile", function() {
     return tester.setup.user
       .state("state_clinic_date_reminders_optout")
       .setup.user.answer("contact", {
-        name: "Estee",
         fields: {
           next_clinic_visit: "2020-12-20T15:42:05.516708+2:00"
         }
