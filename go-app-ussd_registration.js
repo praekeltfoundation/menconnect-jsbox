@@ -1374,7 +1374,7 @@ go.app = (function () {
     self.add('state_clinic_date_reminders_optout', function (name) {
       var contact = self.im.user.answers.contact;
       var text = $([
-        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}"
+        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit.split('T')[0]}}."
       ].join("\n")).context({
         next_clinic_visit:
           _.get(contact, "fields.next_clinic_visit", $("None")),

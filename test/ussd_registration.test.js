@@ -13,6 +13,7 @@ describe("ussd_registration app", function() {
     tester = new AppTester(app);
     tester.setup.config.app({
       testing_today: "2014-04-04T07:07:07",
+      clinic_date_time: "2020-12-20T15:42:05.516708+2:00",
       metric_store: 'test_metric_store',
       env: 'test',
       services: {
@@ -657,6 +658,25 @@ describe("state_profile", function() {
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
         assert.deepEqual(metrics['enter.state_opt_out'], {agg: 'sum', values: [1]});
+      })
+      .run();
+  });
+  it("should show the next clinic date with the time trimmed out", function() {
+    return tester.setup.user
+      .state("state_clinic_date_reminders_optout")
+      .setup.user.answer("contact", {
+        name: "Estee",
+        fields: {
+          next_clinic_visit: "2020-12-20T15:42:05.516708+2:00"
+        }
+      })
+      .check.interaction({
+        state:"state_clinic_date_reminders_optout",
+        reply: [
+          "Based on what you told me, I think your next clinic visit is 2020-12-20." ,
+          "1. Yes",
+          "2. No"
+        ].join("\n")
       })
       .run();
   });
