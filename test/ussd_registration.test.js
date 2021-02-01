@@ -666,13 +666,13 @@ describe("state_profile", function() {
       .state("state_clinic_date_reminders_optout")
       .setup.user.answer("contact", {
         fields: {
-          next_clinic_visit: "2020-12-20T15:42:05.516708+2:00"
+          next_clinic_visit: "2021-12-20T15:42:05.516708+2:00"
         }
       })
       .check.interaction({
         state:"state_clinic_date_reminders_optout",
         reply: [
-          "Based on what you told me, I think your next clinic visit is 2020-12-20." ,
+          "Based on what you told me, I think your next clinic visit is 2021-12-20." ,
           "1. Yes",
           "2. No"
         ].join("\n")
