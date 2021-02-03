@@ -679,6 +679,24 @@ describe("state_profile", function() {
       })
       .run();
   });
+  it("should show the next None as next clinic date if field is not retrievable", function() {
+    return tester.setup.user
+      .state("state_clinic_date_reminders_optout")
+      .setup.user.answer("contact", {
+        fields: {
+          next_clinic_visit: "None"
+        }
+      })
+      .check.interaction({
+        state:"state_clinic_date_reminders_optout",
+        reply: [
+          "Based on what you told me, I think your next clinic visit is None." ,
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
   it("should show the change clinic date screen if the user does a reminder only opt out", function() {
     return tester.setup.user
       .state("state_clinic_date_reminders_optout")
