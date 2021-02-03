@@ -1224,11 +1224,11 @@ go.app = (function () {
 
     self.add('state_clinic_date_reminders_optout', function (name) {
       var contact = self.im.user.answers.contact;
+      var next_clinic_visit_split = _.get(contact, "fields.next_clinic_visit", $("None")).toString().split('T')[0];
       var text = $([
-        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}"
+        "Based on what you told me, I think your next clinic visit is {{next_clinic_visit}}."
       ].join("\n")).context({
-        next_clinic_visit:
-          _.get(contact, "fields.next_clinic_visit", $("None")),
+        next_clinic_visit: next_clinic_visit_split
       });
       return new MenuState(name, {
         question: text,
