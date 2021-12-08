@@ -155,7 +155,6 @@ go.app = (function () {
   var moment = require("moment");
   var Choice = vumigo.states.Choice;
   var ChoiceState = vumigo.states.ChoiceState;
-  var LanguageState = vumigo.states.LanguageChoice;
   var FreeText = vumigo.states.FreeText;
   var EndState = vumigo.states.EndState;
   var JsonApi = vumigo.http.api.JsonApi;
@@ -867,7 +866,6 @@ go.app = (function () {
           new Choice("state_new_name", $("Name")),
           new Choice("state_target_msisdn", $("Cell number")),
           new Choice("state_new_age", $("Age")),
-          new Choice("state_new_language", $("Language")),
           new Choice("state_channel_switch_confirm",
             $("Change from {{current_channel}} to {{alternative_channel}}").context({
               current_channel: self.contact_current_channel(contact),
@@ -1223,59 +1221,6 @@ go.app = (function () {
         question: $("Thank you. Your age has been " +
           "changed to {{age_group}}\n").context({ age_group: age_group }),
         error: get_content("state_generic_error").context(),
-        accept_labels: true,
-        choices: [
-          new Choice("state_registered", $("Back to main menu")),
-          new Choice("state_exit", $("Exit"))
-        ]
-      });
-    });
-
-    self.add("state_new_language", function (name) {
-      return new ChoiceState(name, {
-        question: $("What language would you like to get messages in?\n"),
-        error: $(
-          "Sorry, please reply with the number that matches your answer, e.g. 2."
-        ),
-        accept_labels: true,
-        choices: [
-          new Choice("eng_ZA", $("English")),
-          new Choice("zul_ZA", $("isiZulu")),
-          new Choice("sot_ZA", $("seSotho"))
-        ],
-        next: 'state_change_language'
-      });
-    });
-
-    self.add("state_change_language", function (name, opts) {
-      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      var answers = self.im.user.answers;
-      var new_language = answers.state_new_language;
-      return self.rapidpro
-        .start_flow(
-          self.im.config.change_language_flow_id, null,
-          "whatsapp:" + _.trim(msisdn, "+"), {
-          new_language: new_language
-        }
-        ).then(function () {
-          return self.states.create("state_change_language_success");
-        }).catch(function (e) {
-          // Go to error state after 3 failed HTTP request
-          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
-          if (opts.http_error_count === 3) {
-            self.im.log.error(e.message);
-            return self.states.create("__error__", { return_state: name });
-          }
-          return self.states.create(name, opts);
-        });
-    });
-
-    self.add("state_change_language_success", function (name, opts) {
-      var answers = self.im.user.answers;
-      var new_language = answers.state_new_language;
-      return new MenuState(name, {
-        question: $("Thank you." +
-          "\n\nYou'll now start receiving messages in {{language}}").context({ language: new_language }),
         accept_labels: true,
         choices: [
           new Choice("state_registered", $("Back to main menu")),
@@ -1838,29 +1783,9 @@ go.app = (function () {
         ),
         accept_labels: true,
         choices: [
-          new Choice("state_language", $("Yes")),
+          new Choice("state_age_group", $("Yes")),
           new Choice("state_message_consent_denied", $("No"))
         ]
-      });
-    });
-
-    self.add("state_language", function (name) {
-      return new LanguageState(name, {
-        question: get_content(name).context(),
-        error: $(
-          "Please try again. Reply with the number that matches your answer, e.g. 1" +
-          "\n\nWhat language would you like to receive messages in?",
-          "1. English",
-          "2. Zulu",
-          "3. Sesotho"
-        ),
-        accept_labels: true,
-        choices: [
-          new Choice("eng_ZA", $("English")),
-          new Choice("zul_ZA", $("Zulu")),
-          new Choice("sot_ZA", $("Sesotho"))
-        ],
-        next: 'state_age_group'
       });
     });
 
@@ -2076,7 +2001,7 @@ go.app = (function () {
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
         consent: self.im.user.get_answer("state_message_consent") === "yes" ? "true" : "false",
-        language: self.im.user.get_answer("state_language"),
+        language: "eng",
         source: "USSD registration",
         timestamp: new moment.utc(self.im.config.testing_today).format(),
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),

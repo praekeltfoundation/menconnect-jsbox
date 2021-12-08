@@ -554,7 +554,7 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-02-24")
+      .input("2022-02-24")
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -565,10 +565,10 @@ describe("state_reminders", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-02-24")
+      .input("2022-02-24")
       .check.interaction({
         reply:[
-          "You entered 2021-02-24. " +
+          "You entered 2022-02-24. " +
           "I'll send you reminders of your upcoming clinic visits " +
           "so that you don't forget.",
           "1. Confirm",
@@ -717,7 +717,7 @@ describe("state_profile", function() {
   it("should show the reminder confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2021-02-24")
+      .input("2022-02-24")
       .check.user.state("state_clinic_reminder_confirm")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -728,7 +728,7 @@ describe("state_profile", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2022-06-24")
+      .input("2023-02-24")
       .check.interaction({
         reply:[
           "Hmm, that seems a bit far away. " +
@@ -1489,14 +1489,14 @@ describe("state_share", function() {
         })
         .run();
     });
-    it("should go to the language page", function() {
+    it("should go to the age group page", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("1")
-        .check.user.state("state_language")
+        .check.user.state("state_age_group")
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
+          assert.deepEqual(metrics['enter.state_age_group'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1515,22 +1515,29 @@ describe("state_share", function() {
         })
         .run();
     });
-    it("should show the language screen", function() {
+    it("should show the age group screen", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("1")
         .check.interaction({
-          state: "state_language",
+          state: "state_age_group",
             reply: [
-              "What language would you like to receive messages in?",
-              "1. English",
-              "2. Zulu",
-              "3. Sesotho"
+              "What is your current age?",
+              "Select your age group:",
+              "1. <15",
+              "2. 15-19",
+              "3. 20-24",
+              "4. 25-29",
+              "5. 30-34",
+              "6. 35-39",
+              "7. 40-44",
+              "8. 45-49",
+              "9. 50+"
           ].join("\n")
         })
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
+          assert.deepEqual(metrics['enter.state_age_group'], {agg: 'sum', values: [1]});
         })
         .run();
     });
@@ -1565,28 +1572,6 @@ describe("state_share", function() {
               "2. No"
           ].join("\n")
         })
-        .run();
-    });
-  });
-  describe("state_language", function() {
-    it("should should ask the users language", function() {
-      return tester.setup.user
-        .state("state_language")
-        .check.interaction({
-          reply: [
-            "What language would you like to receive messages in?",
-            "1. English",
-            "2. Zulu",
-            "3. Sesotho"
-          ].join("\n")
-        })
-        .run();
-    });
-    it("should change the language", function() {
-      return tester.setup.user
-        .state("state_language")
-        .input("3")
-        .check.user.lang("sot_ZA")
         .run();
     });
   });
@@ -1999,7 +1984,6 @@ describe("state_share", function() {
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answers({
           state_message_consent: "yes",
-          state_language: "eng",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
