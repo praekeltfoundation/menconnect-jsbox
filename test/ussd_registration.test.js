@@ -36,7 +36,9 @@ describe("ussd_registration app", function() {
       whatsapp_switch_flow_id: "whatsapp-switch-flow-id",
       change_next_clinic_visit_flow_id: "change-next-clinic-visit-flow-id",
       send_sms_flow_id: "send-sms-flow-id",
-      optout_flow_id: "optout-flow-id"
+      optout_flow_id: "optout-flow-id",
+      popi_consent: "12-2021",
+      popi_flow_uuid: "popi-flow-uuid"
     })
     .setup(function(api) {
       api.metrics.stores = {'test_metric_store': {}};
@@ -554,7 +556,7 @@ describe("state_reminders", function() {
   it("should show the clinic confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2021-02-24")
+      .input("2022-02-24")
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -568,11 +570,7 @@ describe("state_reminders", function() {
       .input("2021-02-24")
       .check.interaction({
         reply:[
-          "You entered 2021-02-24. " +
-          "I'll send you reminders of your upcoming clinic visits " +
-          "so that you don't forget.",
-          "1. Confirm",
-          "2. Back"
+          "Oops, that day has already passed. Please try again."
         ].join("\n")
       })
       .run();
@@ -717,7 +715,7 @@ describe("state_profile", function() {
   it("should show the reminder confirm screen on valid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2021-02-24")
+      .input("2022-02-24")
       .check.user.state("state_clinic_reminder_confirm")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -728,7 +726,7 @@ describe("state_profile", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2022-06-24")
+      .input("2023-06-24")
       .check.interaction({
         reply:[
           "Hmm, that seems a bit far away. " +
@@ -785,7 +783,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -825,7 +823,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -865,7 +863,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -1328,10 +1326,12 @@ describe("state_processing_info_menu", function() {
       .check.interaction({
         reply: [
           "Choose a question:",
-          "1. What info does MenConnect collect?",
-          "2. Why does MenConnect need my info?",
+          "1. What info is collected?",
+          "2. Why do you need my info?",
           "3. Who can see my info?",
-          "4. How long is my info kept?"
+          "4. How long is my info kept?",
+          "5. View Privacy Policy",
+          "6. Back"
         ].join("\n")
       })
       .run();
@@ -1353,6 +1353,55 @@ describe("state_processing_info_menu", function() {
   });
 });
 
+describe("POPI update for existing users", function() {
+  it("should show the popi screen", function() {
+    return tester.setup.user
+      .state("state_processing_info_menu")
+      .inputs("5")
+      .check.interaction({
+        state:"state_menconnect_popi",
+        reply: [
+          "MenConnect Keeps your personal info private & confidential. It's used with " +
+          "your consent to send you health messages. You can opt out at any time",
+          "1. Next"
+        ].join("\n")
+      })
+      .run();
+  });
+
+  it("should submit the popi consent", function() {
+    return tester
+        .setup.user.state("state_trigger_rapidpro_popi_flow")
+        .setup.user.answers({
+            state_menconnect_popi_consent: "Yes",
+            fields:{
+              popi_consent: "yes"
+            }
+        })
+        .setup(function(api) {
+            api.http.fixtures.add(
+                fixtures_rapidpro.start_flow(
+                  "popi-flow-uuid", null, "whatsapp:27123456789", {
+                    "popi_consent": "12-2021"
+                })
+            );
+        })
+        .input("1")
+        .check.interaction({
+            state: "state_menconnect_popi_consent_accept",
+            reply: [
+                "Thank you for accepting the policy."
+            ].join("\n")
+        })
+        .check(function(api) {
+            assert.equal(api.http.requests.length, 1);
+            assert.equal(
+                api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+            );
+        })
+        .run();
+  });
+});
 describe("state_share", function() {
   it("should show the share menu", function() {
     return tester.setup.user
@@ -2000,13 +2049,15 @@ describe("state_share", function() {
         .setup.user.answers({
           state_message_consent: "yes",
           state_language: "eng",
+          state_menconnect_popi_consent_new_registration: "yes",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
           state_treatment_started: "yes",
           state_treatment_start_date: "<1 month",
           state_viral_detect: "yes",
-          state_name_mo: "Jerry"
+          state_name_mo: "Jerry",
+          state_research_consent_new_registration_choice: "Yes"
         })
         .setup(function(api) {
           api.http.fixtures.add(
@@ -2023,13 +2074,15 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":7,
+                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent": "yes",
                 "treatment_initiated":"yes",
                 "treatment_start_period":"<1 month",
                 "viral_load_undetectable":"yes",
-                "name":"Jerry"
+                "name":"Jerry",
+                "research_consent": "Yes"
               }
             )
           );
@@ -2045,12 +2098,14 @@ describe("state_share", function() {
         .setup.user.answers({
           state_message_consent: "yes",
           state_language: "eng",
+          state_menconnect_popi_consent_new_registration: "yes",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_treatment_started: "yes",
           state_treatment_start_date: "<1 month",
           state_viral_detect: "yes",
-          state_name_mo: "Jerry"
+          state_name_mo: "Jerry",
+          state_research_consent_new_registration_choice: "Yes"
         })
         .setup(function(api) {
           api.http.fixtures.add(
@@ -2067,13 +2122,15 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":7,
+                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent": "No",
                 "treatment_initiated":"yes",
                 "treatment_start_period":"<1 month",
                 "viral_load_undetectable":"yes",
-                "name":"Jerry"
+                "name":"Jerry",
+                "research_consent": "Yes"
               }
             )
           );
@@ -2090,13 +2147,15 @@ describe("state_share", function() {
         .setup.user.answers({
           state_message_consent: "yes",
           state_language: "eng",
+          state_menconnect_popi_consent_new_registration: "yes",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
           state_treatment_started: "yes",
           state_treatment_start_date: "<1 month",
           state_viral_detect: "yes",
-          state_name_mo: "Jerry"
+          state_name_mo: "Jerry",
+          state_research_consent_new_registration_choice: "Yes"
         })
         .setup(function(api) {
           api.http.fixtures.add(
@@ -2113,13 +2172,15 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":1,
+                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent":"yes",
                 "treatment_initiated":"yes",
                 "treatment_start_period":"<1 month",
                 "viral_load_undetectable":"yes",
-                "name":"Jerry"
+                "name":"Jerry",
+                "research_consent": "Yes"
               },
               true
             )
@@ -2150,13 +2211,15 @@ describe("state_share", function() {
         .setup.user.answers({
           state_message_consent: "yes",
           state_language: "eng",
+          state_menconnect_popi_consent_new_registration: "yes",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
           state_treatment_started: "yes",
           state_treatment_start_date: "<1 month",
           state_viral_detect: "yes",
-          state_name_mo: "Jerry"
+          state_name_mo: "Jerry",
+          state_research_consent_new_registration_choice: "Yes"
         })
           .setup(function(api) {
             api.http.fixtures.add(
@@ -2179,21 +2242,23 @@ describe("state_share", function() {
                   "registered_by":"+27123456789",
                   "mha":6,
                   "swt":7,
+                  "popi_consent": "12-2021",
                   "age_group":"<15",
                   "status_known_period":"<3 months",
                   "treatment_adherent":"yes",
                   "treatment_initiated":"yes",
                   "treatment_start_period":"<1 month",
                   "viral_load_undetectable":"yes",
-                  "name":"Jerry"
+                  "name":"Jerry",
+                  "research_consent": "Yes"
                 }
               )
             );
           })
           // For some reason, if we start the test on state_registration_complete, it skips to state_start,
           // so we need to start it before
-          .setup.user.state("state_whatsapp_contact_check")
-          .setup.user.answer("on_whatsapp", false)
+          //.setup.user.state("state_whatsapp_contact_check")
+          .setup.user.answer("on_whatsapp", true)
           .input({ session_event: "continue" })
           .check.interaction({
             state: "state_registration_complete",
@@ -2216,6 +2281,7 @@ describe("state_share", function() {
         .setup.user.answers({
           state_message_consent: "yes",
           state_language: "eng",
+          state_menconnect_popi_consent_new_registration: "yes",
           state_age_group: "<15",
           state_status_known: "<3 months",
           state_still_on_treatment: "yes",
@@ -2223,6 +2289,7 @@ describe("state_share", function() {
           state_treatment_start_date: "<1 month",
           state_viral_detect: "yes",
           state_name_mo: "Jerry",
+          state_research_consent_new_registration_choice: "Yes",
           on_whatsapp: false
         })
           .setup(function(api) {
@@ -2246,20 +2313,21 @@ describe("state_share", function() {
                   "registered_by":"+27123456789",
                   "mha":6,
                   "swt":1,
+                  "popi_consent": "12-2021",
                   "age_group":"<15",
                   "status_known_period":"<3 months",
                   "treatment_adherent":"yes",
                   "treatment_initiated":"yes",
                   "treatment_start_period":"<1 month",
                   "viral_load_undetectable":"yes",
-                  "name":"Jerry"
+                  "name":"Jerry",
+                  "research_consent": "Yes"
                 }
               )
             );
           })
           // For some reason, if we start the test on state_registration_complete, it skips to state_start,
           // so we need to start it before
-          .setup.user.state("state_whatsapp_contact_check")
           .input({ session_event: "continue" })
           .check.interaction({
             state: "state_registration_complete",

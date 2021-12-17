@@ -1445,10 +1445,12 @@ go.app = (function () {
         question: get_content(name).context(),
         accept_labels: true,
         choices: [
-          new Choice("state_menconnect_info", $("What info does MenConnect collect?")),
-          new Choice("state_menconnect_info_need", $("Why does MenConnect need my info?")),
+          new Choice("state_menconnect_info", $("What info is collected?")),
+          new Choice("state_menconnect_info_need", $("Why do you need my info?")),
           new Choice("state_menconnect_info_visibility", $("Who can see my info?")),
-          new Choice("state_menconnect_info_duration", $("How long is my info kept?"))
+          new Choice("state_menconnect_info_duration", $("How long is my info kept?")),
+          new Choice("state_menconnect_popi", $("View Privacy Policy")),
+          new Choice("state_registered", $("Back"))
         ]
       });
     });
@@ -1490,6 +1492,164 @@ go.app = (function () {
         choices: [
           new Choice("state_processing_info_menu", $("Back"))
         ]
+      });
+    });
+
+    self.add('state_menconnect_popi', function (name) {
+      return new MenuState(name, {
+        question: $(
+          "MenConnect Keeps your personal info private & confidential. It's used with " +
+          "your consent to send you health messages. You can opt out at any time"),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_menconnect_start_popi_flow", $("Next"))
+        ]
+      });
+    });
+
+    self.add('state_menconnect_start_popi_flow', function (name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      
+      return self.rapidpro
+        .start_flow(
+          self.im.config.popi_flow_uuid,
+          null,
+          "whatsapp:" + _.trim(msisdn, "+"))
+        .then(function() {
+          return self.states.create("state_menconnect_popi_consent");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__");
+          }
+          return self.states.create("state_start", opts);
+        });
+    });
+
+    self.add('state_menconnect_popi_consent', function (name) {
+      var contact = self.im.user.get_answer("contact");
+      var popi_consent = (_.toUpper(_.get(contact, "fields.popi_consent")));
+      if (popi_consent === self.im.config.popi_consent) {
+        return self.states.create("state_menconnect_popi_consent_view");
+      }
+      return new MenuState(name, {
+        question: $(
+          "Do you agree to the MenConnect privacy policy that was just sent to you on {{current_channel}}").context({
+          current_channel: self.contact_current_channel(contact)
+      }),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_trigger_rapidpro_popi_flow", $("Yes")),
+          new Choice("state_menconnect_popi_no_consent_confirm", $("No"))
+        ]
+      });
+    });
+
+    self.add('state_menconnect_popi_consent_view', function (name) {
+      var contact = self.im.user.answers.contact;
+      return new MenuState(name, {
+        question: $(
+          "The MenConnect privacy policy was just sent to you on {{current_channel}}").context({
+          current_channel: self.contact_current_channel(contact)
+      }),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_start", $("Menu")),
+          new Choice("state_exit", $("Exit"))
+        ]
+      });
+    });
+
+    self.add('state_menconnect_popi_no_consent_confirm', function (name) {
+      return new MenuState(name, {
+        question: $("Unfortunately you may only access Menconnect if you agree to our privacy policy. " +
+                    "Would you like to change your mind and accept?"),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_trigger_rapidpro_popi_flow", $("Yes")),
+          new Choice("state_trigger_popi_optout_flow", $("No"))
+        ]
+      });
+    });
+
+    self.add("state_trigger_popi_optout_flow", function (name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
+      var data = {
+          popi_consent: popi_consent,
+      };
+      return self.rapidpro
+        .start_flow(
+          self.im.config.optout_flow_id, null, "whatsapp:" + _.trim(msisdn, "+"), data)
+          .then(function () {
+          return self.states.create("state_menconnect_popi_consent_reject");
+        }).catch(function (e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if (opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", { 
+              return_state: "state_trigger_popi_optout_flow" 
+            });
+          }
+          return self.states.create("state_trigger_popi_optout_flow", opts);
+        });
+    });
+
+    self.add('state_menconnect_popi_consent_reject', function (name) {
+      return new MenuState(name, {
+        next: "state_trigger_rapidpro_optout_flow",
+        text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
+                    "\n\nFor any medical concerns please visit the clinic." + 
+                    "\n\nStay healthy!" +
+                    "\nMo")
+      });
+    });
+
+    self.add("state_trigger_rapidpro_popi_flow", function(name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent"));
+      var popi_consent_confirm = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
+      
+      if (typeof self.im.user.get_answer("state_menconnect_popi_no_consent_confirm") === "undefined") {
+          popi_consent = (popi_consent === "YES" || popi_consent === "1") ? self.im.config.popi_consent : "false";
+      } else {
+          popi_consent = (popi_consent_confirm === "YES" || popi_consent_confirm === "1") ? self.im.config.popi_consent : "false";
+      }
+
+      var data = {
+          popi_consent: popi_consent,
+      };
+      return self.rapidpro
+          .start_flow(
+              self.im.config.popi_flow_uuid,
+              null,
+              "whatsapp:" + _.trim(msisdn, "+"), data)
+          .then(function() {
+              return self.states.create("state_menconnect_popi_consent_accept");
+          })
+          .catch(function(e) {
+              // Go to error state after 3 failed HTTP requests
+              opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+              if (opts.http_error_count === 3) {
+                  self.im.log.error(e.message);
+                  return self.states.create("__error__", {
+                      return_state: "state_trigger_rapidpro_popi_flow"
+                  });
+              }
+              return self.states.create("state_trigger_rapidpro_popi_flow", opts);
+          });
+    });
+
+    self.add('state_menconnect_popi_consent_accept', function (name) {
+      return new EndState(name, {
+        next: "state_start",
+        text: $(
+          "Thank you for accepting the policy."
+        )
       });
     });
 
@@ -1676,7 +1836,7 @@ go.app = (function () {
         "fields.messaging_consent"
       );
       if (consent === "TRUE") {
-        return self.states.create("state_age_group");
+        return self.states.create("state_whatsapp_contact_check");
       }
       return new MenuState(name, {
         question: $(
@@ -1711,8 +1871,29 @@ go.app = (function () {
           new Choice("zul_ZA", $("Zulu")),
           new Choice("sot_ZA", $("Sesotho"))
         ],
-        next: 'state_age_group'
+        next: 'state_whatsapp_contact_check'
       });
+    });
+
+    self.add("state_whatsapp_contact_check", function (name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      return self.whatsapp
+        .contact_check(msisdn, true)
+        .then(function (result) {
+          self.im.user.set_answer("on_whatsapp", result);
+          return self.states.create("state_menconnect_popi_new_registration");
+        })
+        .catch(function (e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if (opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", {
+              return_state: "state_whatsapp_contact_check"
+            });
+          }
+          return self.states.create("state_whatsapp_contact_check", opts);
+        });
     });
 
     self.add("state_message_consent_denied", function (name) {
@@ -1722,6 +1903,86 @@ go.app = (function () {
           "If you change your mind and want to receive supportive messages in the future," +
           " dial *134*406# and I'll sign you up."
         ),
+      });
+    });
+
+    self.add('state_menconnect_popi_new_registration', function (name) {
+      return new MenuState(name, {
+        question: $(
+          "MenConnect Keeps your personal info private & confidential. It's used with " +
+          "your consent to send you health messages. You can opt out at any time"),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_menconnect_start_popi_flow_new_registration", $("Next"))
+        ]
+      });
+    });
+
+    self.add('state_menconnect_start_popi_flow_new_registration', function (name, opts) {
+      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var data = {
+        on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false"
+      };
+      return self.rapidpro
+        .start_flow(
+          self.im.config.popi_flow_uuid,
+          null,
+          "whatsapp:" + _.trim(msisdn, "+"), data)
+        .then(function() {
+          return self.states.create("state_menconnect_popi_consent_new_registration");
+        }).catch(function(e) {
+          // Go to error state after 3 failed HTTP requests
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if(opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__");
+          }
+          return self.states.create("state_start", opts);
+        });
+    });
+
+    self.add('state_menconnect_popi_consent_new_registration', function (name) {
+      var channel = self.im.user.get_answer("on_whatsapp") ? "true" : "false";
+      var message_channel;
+      if(channel){
+        message_channel = "Whatsapp";
+      }
+      else{
+        message_channel = "SMS";
+      }
+      return new MenuState(name, {
+        question: $(
+          "Do you agree to the MenConnect privacy policy that was just sent to you on {{message_channel}}").context({
+            message_channel: message_channel
+      }),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_menconnect_popi_consent_accept_new_registration", $("Yes")),
+          new Choice("state_menconnect_popi_consent_reject_new_registration", $("No"))
+        ]
+      });
+    });
+
+    self.add('state_menconnect_popi_consent_reject_new_registration', function (name) {
+      return new MenuState(name, {
+        next: "state_start",
+        text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
+                    "\n\nFor any medical concerns please visit the clinic." + 
+                    "\n\nStay healthy!" +
+                    "\nMo")
+      });
+    });
+
+    self.add('state_menconnect_popi_consent_accept_new_registration', function (name) {
+      return new MenuState(name, {
+        question: $(
+          "Thank you for accepting the policy."
+        ),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_age_group", $("Next"))
+        ]
       });
     });
 
@@ -1897,49 +2158,76 @@ go.app = (function () {
     self.add('state_name_mo', function (name) {
       return new FreeText(name, {
         question: get_content(name).context(),
-        next: 'state_whatsapp_contact_check'
+        next: 'state_research_consent_new_registration'
       });
     });
 
-    self.add("state_whatsapp_contact_check", function (name, opts) {
-      var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      return self.whatsapp
-        .contact_check(msisdn, true)
-        .then(function (result) {
-          self.im.user.set_answer("on_whatsapp", result);
-          return self.states.create("state_trigger_rapidpro_flow");
-        })
-        .catch(function (e) {
-          // Go to error state after 3 failed HTTP requests
-          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
-          if (opts.http_error_count === 3) {
-            self.im.log.error(e.message);
-            return self.states.create("__error__", {
-              return_state: "state_whatsapp_contact_check"
-            });
-          }
-          return self.states.create("state_whatsapp_contact_check", opts);
-        });
+    self.add('state_research_consent_new_registration', function (name) {
+      return new MenuState(name, {
+        question: $(
+          "Your feedback can help us make MenConnect better. " +
+          "\n\nWe only contact people who agree." +
+          "\n\nIf you don't want to give feedback, you can still use MenConnect"
+        ),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_research_consent_new_registration_choice", $("Next"))
+        ]
+      });
+    });
+
+    self.add('state_research_consent_new_registration_choice', function (name) {
+      return new MenuState(name, {
+        question: $(
+          "May we message you to get your feedback on Menconnect?"
+        ),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_research_consent_accept", $("Yes")),
+          new Choice("state_research_consent_reject", $("No"))
+        ]
+      });
+    });
+
+    self.add('state_research_consent_accept', function (name) {
+      return new MenuState(name, {
+        next: "state_trigger_rapidpro_flow",
+        text: $("Thank you for your consent. Your feedback . " +
+                    "will help make MenConnect even better")
+      });
+    });
+
+    self.add('state_research_consent_reject', function (name) {
+      return new MenuState(name, {
+        next: "state_trigger_rapidpro_flow",
+        text: $("No problem, We will NOT contact you for your feedback. " +
+                    "\n\nRemember, you can keep on using MenConnect")
+      });
     });
 
     self.add("state_trigger_rapidpro_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
+      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent_new_registration")) === "YES" ? self.im.config.popi_consent : "false";
+  
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
-        consent: self.im.user.get_answer("state_message_consent") === "yes" ? "true" : "false",
+        consent: _.toUpper(self.im.user.get_answer("state_message_consent")) === "YES" ? "true" : "false",
         language: self.im.user.get_answer("state_language"),
         source: "USSD registration",
         timestamp: new moment.utc(self.im.config.testing_today).format(),
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),
         mha: 6,
         swt: self.im.user.get_answer("on_whatsapp") ? 7 : 1,
+        popi_consent: popi_consent,
         age_group: self.im.user.get_answer("state_age_group"),
         status_known_period: self.im.user.get_answer("state_status_known"),
         treatment_adherent: self.im.user.get_answer("state_still_on_treatment") || "No",
         treatment_initiated: self.im.user.get_answer("state_treatment_started"),
         treatment_start_period: self.im.user.get_answer("state_treatment_start_date"),
         viral_load_undetectable: self.im.user.get_answer("state_viral_detect"),
-        name: self.im.user.get_answer("state_name_mo")
+        name: self.im.user.get_answer("state_name_mo"),
+        research_consent: self.im.user.get_answer("state_research_consent_new_registration_choice")
       };
       return self.rapidpro
         .start_flow(
