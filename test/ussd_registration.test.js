@@ -783,7 +783,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -823,7 +823,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -863,7 +863,7 @@ describe("state_submit_opt_out", function() {
       .setup(function(api) {
         api.http.fixtures.add(
           fixtures_rapidpro.start_flow(
-            "optout-flow-id", 
+            "optout-flow-id",
             null,
             "whatsapp:27123456789",
             {
@@ -1369,17 +1369,13 @@ describe("POPI update for existing users", function() {
       .run();
   });
 
-  /********************************************************/
-  /********Failing test so commenting out for now********/
-  /********************************************************/
-
-  /*it("should submit the popi consent", function() {
+  it("should submit the popi consent", function() {
     return tester
         .setup.user.state("state_trigger_rapidpro_popi_flow")
         .setup.user.answers({
-            state_trigger_rapidpro_popi_flow: "Yes",
+            state_menconnect_popi_consent: "Yes",
             fields:{
-              popi_consent: "10-2021"
+              popi_consent: "yes"
             }
         })
         .setup(function(api) {
@@ -1394,7 +1390,7 @@ describe("POPI update for existing users", function() {
         .check.interaction({
             state: "state_menconnect_popi_consent_accept",
             reply: [
-                "You will receive messages in eng_ZA from now on."
+                "Thank you for accepting the policy."
             ].join("\n")
         })
         .check(function(api) {
@@ -1404,7 +1400,7 @@ describe("POPI update for existing users", function() {
             );
         })
         .run();
-  });*/
+  });
 });
 describe("state_share", function() {
   it("should show the share menu", function() {

@@ -1645,7 +1645,7 @@ go.app = (function () {
     });
 
     self.add('state_menconnect_popi_consent_accept', function (name) {
-      return new MenuState(name, {
+      return new EndState(name, {
         next: "state_start",
         text: $(
           "Thank you for accepting the policy."
