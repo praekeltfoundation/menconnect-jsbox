@@ -1389,7 +1389,7 @@ go.app = (function () {
         ]
       });
     });
-   
+
     self.add('state_new_clinic_date_opt_out', function (name) {
       return new FreeText(name, {
         question: get_content(name).context(),
@@ -1420,7 +1420,7 @@ go.app = (function () {
     self.add("state_clinic_reminder_confirm", function(name) {
       return new MenuState(name, {
         question: $(
-          "We'll only send you clinic reminders. Please select Next to continue:" 
+          "We'll only send you clinic reminders. Please select Next to continue:"
         ),
         error: $(
           "Sorry we don't recognise that reply. Please enter the number next to your " +
@@ -1480,7 +1480,7 @@ go.app = (function () {
       return new MenuState(name, {
         question: $(
           "All you info will be permanently deleted. " +
-          "We'll stop sending you messages. Please select Next to continue:" 
+          "We'll stop sending you messages. Please select Next to continue:"
         ),
         error: $(
           "Sorry we don't recognise that reply. Please enter the number next to your " +
@@ -1512,7 +1512,7 @@ go.app = (function () {
       return new MenuState(name, {
         question: $(
           "Your info will not be permanently deleted. " +
-          "We'll stop sending you messages. Please select Next to continue:" 
+          "We'll stop sending you messages. Please select Next to continue:"
         ),
         error: $(
           "Sorry we don't recognise that reply. Please enter the number next to your " +
@@ -1651,17 +1651,17 @@ go.app = (function () {
           "your consent to send you health messages. You can opt out at any time"),
         error: get_content("state_generic_error").context(),
         choices: [
-          new Choice("state_menconnect_start_popi_flow", $("Next"))
+          new Choice("state_trigger_send_popi_flow", $("Next"))
         ]
       });
     });
 
-    self.add('state_menconnect_start_popi_flow', function (name, opts) {
+    self.add('state_trigger_send_popi_flow', function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      
+
       return self.rapidpro
         .start_flow(
-          self.im.config.popi_flow_uuid,
+          self.im.config.popi_send_flow_uuid,
           null,
           "whatsapp:" + _.trim(msisdn, "+"))
         .then(function() {
@@ -1691,7 +1691,7 @@ go.app = (function () {
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_trigger_rapidpro_popi_flow", $("Yes")),
+          new Choice("state_trigger_popi_accept_flow", $("Yes")),
           new Choice("state_menconnect_popi_no_consent_confirm", $("No"))
         ]
       });
@@ -1718,7 +1718,7 @@ go.app = (function () {
                     "Would you like to change your mind and accept?"),
         error: get_content("state_generic_error").context(),
         choices: [
-          new Choice("state_trigger_rapidpro_popi_flow", $("Yes")),
+          new Choice("state_trigger_popi_accept_flow", $("Yes")),
           new Choice("state_trigger_popi_optout_flow", $("No"))
         ]
       });
@@ -1740,8 +1740,8 @@ go.app = (function () {
           opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
           if (opts.http_error_count === 3) {
             self.im.log.error(e.message);
-            return self.states.create("__error__", { 
-              return_state: "state_trigger_popi_optout_flow" 
+            return self.states.create("__error__", {
+              return_state: "state_trigger_popi_optout_flow"
             });
           }
           return self.states.create("state_trigger_popi_optout_flow", opts);
@@ -1752,17 +1752,17 @@ go.app = (function () {
       return new MenuState(name, {
         next: "state_trigger_rapidpro_optout_flow",
         text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
-                    "\n\nFor any medical concerns please visit the clinic." + 
+                    "\n\nFor any medical concerns please visit the clinic." +
                     "\n\nStay healthy!" +
                     "\nMo")
       });
     });
 
-    self.add("state_trigger_rapidpro_popi_flow", function(name, opts) {
+    self.add("state_trigger_popi_accept_flow", function(name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent"));
       var popi_consent_confirm = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
-      
+
       if (typeof self.im.user.get_answer("state_menconnect_popi_no_consent_confirm") === "undefined") {
           popi_consent = (popi_consent === "YES" || popi_consent === "1") ? self.im.config.popi_consent : "false";
       } else {
@@ -1774,7 +1774,7 @@ go.app = (function () {
       };
       return self.rapidpro
           .start_flow(
-              self.im.config.popi_flow_uuid,
+              self.im.config.popi_consent_flow_uuid,
               null,
               "whatsapp:" + _.trim(msisdn, "+"), data)
           .then(function() {
@@ -1786,10 +1786,10 @@ go.app = (function () {
               if (opts.http_error_count === 3) {
                   self.im.log.error(e.message);
                   return self.states.create("__error__", {
-                      return_state: "state_trigger_rapidpro_popi_flow"
+                      return_state: "state_trigger_popi_accept_flow"
                   });
               }
-              return self.states.create("state_trigger_rapidpro_popi_flow", opts);
+              return self.states.create("state_trigger_popi_accept_flow", opts);
           });
     });
 
@@ -2062,19 +2062,19 @@ go.app = (function () {
           "your consent to send you health messages. You can opt out at any time"),
         error: get_content("state_generic_error").context(),
         choices: [
-          new Choice("state_menconnect_start_popi_flow_new_registration", $("Next"))
+          new Choice("state_trigger_send_popi_flow_new_registration", $("Next"))
         ]
       });
     });
 
-    self.add('state_menconnect_start_popi_flow_new_registration', function (name, opts) {
+    self.add('state_trigger_send_popi_flow_new_registration', function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false"
       };
       return self.rapidpro
         .start_flow(
-          self.im.config.popi_flow_uuid,
+          self.im.config.popi_send_flow_uuid,
           null,
           "whatsapp:" + _.trim(msisdn, "+"), data)
         .then(function() {
@@ -2117,7 +2117,7 @@ go.app = (function () {
       return new MenuState(name, {
         next: "state_start",
         text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
-                    "\n\nFor any medical concerns please visit the clinic." + 
+                    "\n\nFor any medical concerns please visit the clinic." +
                     "\n\nStay healthy!" +
                     "\nMo")
       });
@@ -2358,7 +2358,7 @@ go.app = (function () {
     self.add("state_trigger_rapidpro_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent_new_registration")) === "YES" ? self.im.config.popi_consent : "false";
-  
+
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
         consent: _.toUpper(self.im.user.get_answer("state_message_consent")) === "YES" ? "true" : "false",

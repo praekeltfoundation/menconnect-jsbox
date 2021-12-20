@@ -38,7 +38,8 @@ describe("ussd_registration app", function() {
       send_sms_flow_id: "send-sms-flow-id",
       optout_flow_id: "optout-flow-id",
       popi_consent: "12-2021",
-      popi_flow_uuid: "popi-flow-uuid"
+      popi_consent_flow_uuid: "popi-consent-flow-uuid",
+      popi_send_flow_uuid: "popi-send-flow-uuid"
     })
     .setup(function(api) {
       api.metrics.stores = {'test_metric_store': {}};
@@ -1371,7 +1372,7 @@ describe("POPI update for existing users", function() {
 
   it("should submit the popi consent", function() {
     return tester
-        .setup.user.state("state_trigger_rapidpro_popi_flow")
+        .setup.user.state("state_trigger_popi_accept_flow")
         .setup.user.answers({
             state_menconnect_popi_consent: "Yes",
             fields:{
@@ -1381,7 +1382,7 @@ describe("POPI update for existing users", function() {
         .setup(function(api) {
             api.http.fixtures.add(
                 fixtures_rapidpro.start_flow(
-                  "popi-flow-uuid", null, "whatsapp:27123456789", {
+                  "popi-consent-flow-uuid", null, "whatsapp:27123456789", {
                     "popi_consent": "12-2021"
                 })
             );
