@@ -1382,9 +1382,8 @@ describe("POPI update for existing users", function() {
         .setup(function(api) {
             api.http.fixtures.add(
                 fixtures_rapidpro.start_flow(
-                  "popi-consent-flow-uuid", null, "whatsapp:27123456789", {
-                    "popi_consent": "12-2021"
-                })
+                  "popi-consent-flow-uuid", null, "whatsapp:27123456789"
+                )
             );
         })
         .input("1")

@@ -1760,23 +1760,11 @@ go.app = (function () {
 
     self.add("state_trigger_popi_accept_flow", function(name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent"));
-      var popi_consent_confirm = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
-
-      if (typeof self.im.user.get_answer("state_menconnect_popi_no_consent_confirm") === "undefined") {
-          popi_consent = (popi_consent === "YES" || popi_consent === "1") ? self.im.config.popi_consent : "false";
-      } else {
-          popi_consent = (popi_consent_confirm === "YES" || popi_consent_confirm === "1") ? self.im.config.popi_consent : "false";
-      }
-
-      var data = {
-          popi_consent: popi_consent,
-      };
       return self.rapidpro
           .start_flow(
               self.im.config.popi_consent_flow_uuid,
               null,
-              "whatsapp:" + _.trim(msisdn, "+"), data)
+              "whatsapp:" + _.trim(msisdn, "+"))
           .then(function() {
               return self.states.create("state_menconnect_popi_consent_accept");
           })
