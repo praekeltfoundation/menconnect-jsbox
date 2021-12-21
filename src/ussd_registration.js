@@ -1601,11 +1601,20 @@ go.app = (function () {
 
     self.add('state_menconnect_popi_consent_reject', function (name) {
       return new MenuState(name, {
-        next: "state_trigger_rapidpro_optout_flow",
-        text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
-                    "\n\nFor any medical concerns please visit the clinic." +
-                    "\n\nStay healthy!" +
-                    "\nMo")
+        question: $([
+          "I'm sorry to see you go! You can dial *134*406# to rejoin. ",
+          "",
+          "",
+          "For any medical concerns please visit the clinic.",
+          "",
+          "",
+          "Stay healthy!",
+          "",
+          "Mo"].join("\n")),
+        error: get_content("state_generic_error").context(),
+        choices: [
+          new Choice("state_trigger_rapidpro_optout_flow", $("Next"))
+        ]
       });
     });
 
@@ -1946,12 +1955,19 @@ go.app = (function () {
     });
 
     self.add('state_menconnect_popi_consent_reject_new_registration', function (name) {
-      return new MenuState(name, {
+      return new EndState(name, {
         next: "state_start",
-        text: $("I'm sorry to see you go! You can dial *134*406# to rejoin. " +
-                    "\n\nFor any medical concerns please visit the clinic." +
-                    "\n\nStay healthy!" +
-                    "\nMo")
+        text: $([
+          "I'm sorry to see you go! You can dial *134*406# to rejoin.",
+          "",
+          "",
+          "For any medical concerns please visit the clinic.",
+          "",
+          "",
+          "Stay healthy!",
+          "",
+          "Mo"
+        ].join("\n")),
       });
     });
 
@@ -2158,16 +2174,22 @@ go.app = (function () {
     });
 
     self.add('state_research_consent_new_registration_choice', function (name) {
-      return new MenuState(name, {
+      return new ChoiceState(name, {
         question: $(
           "May we message you to get your feedback on Menconnect?"
         ),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_research_consent_accept", $("Yes")),
-          new Choice("state_research_consent_reject", $("No"))
-        ]
+          new Choice(true, $("Yes")),
+          new Choice(false, $("No")),
+        ],
+        next: function (content) {
+          if (content.value) {
+            return "state_research_consent_accept";
+          }
+          return "state_research_consent_reject";
+        }
       });
     });
 

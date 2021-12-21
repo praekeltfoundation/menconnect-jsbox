@@ -1,6 +1,7 @@
 var vumigo = require("vumigo_v02");
 var AppTester = vumigo.AppTester;
 var assert = require("assert");
+const { describe } = require("eslint/lib/rule-tester/rule-tester");
 var fixtures_rapidpro = require("./fixtures_rapidpro")();
 var fixtures_whatsapp = require("./fixtures_whatsapp")();
 
@@ -1692,6 +1693,26 @@ describe("state_share", function() {
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
           assert.deepEqual(metrics['enter.state_status_known'], {agg: 'sum', values: [1]});
+        })
+        .run();
+    });
+  });
+  describe("state_menconnect_popi_consent_reject", function(){
+    it("should display the correct message", function(){
+      return tester
+        .setup.user.state("state_menconnect_popi_consent_reject")
+        .check.interaction({
+          reply: [
+            "I'm sorry to see you go! You can dial *134*406# to rejoin. ",
+            "",
+            "",
+            "For any medical concerns please visit the clinic.",
+            "",
+            "",
+            "Stay healthy!",
+            "",
+            "Mo",
+            "1. Next"].join("\n")
         })
         .run();
     });
