@@ -1712,6 +1712,21 @@ describe("state_share", function() {
         })
         .run();
     });
+    it("should display the correct message SMS", function(){
+      return tester
+        .setup.user.state("state_menconnect_popi_consent_new_registration")
+        .setup.user.answers({
+          on_whatsapp: true,
+        })
+        .check.interaction({
+          reply: [
+            "Do you agree to the MenConnect privacy policy that was just sent to you on WhatsApp",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
   });
   describe("status_known", function() {
     it("should ask the user for their status known period", function() {
@@ -2055,6 +2070,48 @@ describe("state_share", function() {
           });
           assert.equal(api.log.error.length, 1);
           assert(api.log.error[0].includes("HttpResponseError"));
+        })
+        .run();
+    });
+  });
+  describe("state_research_consent_new_registration_choice", function(){
+    it("should display the correct text", function(){
+      return tester
+        .setup.user.state("state_research_consent_new_registration_choice")
+        .check.interaction({
+          reply: [
+            "May we message you to get your feedback on Menconnect?",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to state_research_consent_accept if accepted", function(){
+      return tester
+        .setup.user.state("state_research_consent_new_registration_choice")
+        .inputs("1")
+        .check.interaction({
+          state: "state_research_consent_accept",
+          reply: [
+            "Thank you for your consent. Your feedback will help make MenConnect even better",
+            "1. Next"
+          ].join("\n")
+        })
+        .run();
+    });
+    it("should go to state_research_consent_reject if not accepted", function(){
+      return tester
+        .setup.user.state("state_research_consent_new_registration_choice")
+        .inputs("2")
+        .check.interaction({
+          state: "state_research_consent_reject",
+          reply: [
+            "No problem, We will NOT contact you for your feedback.",
+            "",
+            "Remember, you can keep on using MenConnect",
+            "1. Next"
+          ].join("\n")
         })
         .run();
     });
