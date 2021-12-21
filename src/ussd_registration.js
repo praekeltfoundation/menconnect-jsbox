@@ -2173,17 +2173,25 @@ go.app = (function () {
 
     self.add('state_research_consent_accept', function (name) {
       return new MenuState(name, {
-        next: "state_trigger_rapidpro_flow",
-        text: $("Thank you for your consent. Your feedback . " +
-                    "will help make MenConnect even better")
+        question: $("Thank you for your consent. Your feedback " +
+                    "will help make MenConnect even better"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_trigger_rapidpro_flow", $("Next"))
+        ]
       });
     });
 
     self.add('state_research_consent_reject', function (name) {
       return new MenuState(name, {
-        next: "state_trigger_rapidpro_flow",
-        text: $("No problem, We will NOT contact you for your feedback. " +
-                    "\n\nRemember, you can keep on using MenConnect")
+        question: $("No problem, We will NOT contact you for your feedback." +
+          "\n\nRemember, you can keep on using MenConnect"),
+        error: get_content("state_generic_error").context(),
+        accept_labels: true,
+        choices: [
+          new Choice("state_trigger_rapidpro_flow", $("Next"))
+        ]
       });
     });
 
