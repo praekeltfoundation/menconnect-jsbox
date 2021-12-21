@@ -1696,6 +1696,23 @@ describe("state_share", function() {
         .run();
     });
   });
+  describe("state_menconnect_popi_consent_new_registration", function(){
+    it("should display the correct message SMS", function(){
+      return tester
+        .setup.user.state("state_menconnect_popi_consent_new_registration")
+        .setup.user.answers({
+          on_whatsapp: false,
+        })
+        .check.interaction({
+          reply: [
+            "Do you agree to the MenConnect privacy policy that was just sent to you on SMS",
+            "1. Yes",
+            "2. No"
+          ].join("\n")
+        })
+        .run();
+    });
+  });
   describe("status_known", function() {
     it("should ask the user for their status known period", function() {
       return tester.setup.user
