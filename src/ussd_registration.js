@@ -1930,18 +1930,11 @@ go.app = (function () {
     });
 
     self.add('state_menconnect_popi_consent_new_registration', function (name) {
-      var channel = self.im.user.get_answer("on_whatsapp") ? "true" : "false";
-      var message_channel;
-      if(channel){
-        message_channel = "Whatsapp";
-      }
-      else{
-        message_channel = "SMS";
-      }
+      var channel = self.im.user.get_answer("on_whatsapp") ? "WhatsApp" : "SMS";
       return new MenuState(name, {
         question: $(
-          "Do you agree to the MenConnect privacy policy that was just sent to you on {{message_channel}}").context({
-            message_channel: message_channel
+          "Do you agree to the MenConnect privacy policy that was just sent to you on {{channel}}").context({
+            channel: channel
       }),
         error: get_content("state_generic_error").context(),
         accept_labels: true,
