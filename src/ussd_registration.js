@@ -1524,7 +1524,7 @@ go.app = (function () {
             self.im.log.error(e.message);
             return self.states.create("__error__");
           }
-          return self.states.create("state_start", opts);
+          return self.states.create("state_trigger_send_popi_flow", opts);
         });
     });
 
@@ -1934,7 +1934,7 @@ go.app = (function () {
             self.im.log.error(e.message);
             return self.states.create("__error__");
           }
-          return self.states.create("state_start", opts);
+          return self.states.create("state_trigger_send_popi_flow_new_registration", opts);
         });
     });
 

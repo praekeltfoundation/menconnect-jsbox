@@ -1,7 +1,7 @@
 var vumigo = require("vumigo_v02");
 var AppTester = vumigo.AppTester;
 var assert = require("assert");
-const { describe } = require("eslint/lib/rule-tester/rule-tester");
+const { describe, it } = require("eslint/lib/rule-tester/rule-tester");
 var fixtures_rapidpro = require("./fixtures_rapidpro")();
 var fixtures_whatsapp = require("./fixtures_whatsapp")();
 
@@ -1356,7 +1356,7 @@ describe("state_processing_info_menu", function() {
 });
 
 describe("POPI update for existing users", function() {
-  it("should show the popi screen", function() {
+  it("state_menconnect_popi - should show the popi screen", function() {
     return tester.setup.user
       .state("state_processing_info_menu")
       .inputs("5")
@@ -1370,7 +1370,97 @@ describe("POPI update for existing users", function() {
       })
       .run();
   });
-
+  it("state_menconnect_popi_consent - should display the correct message SMS", function(){
+    return tester
+      .setup.user.state("state_menconnect_popi_consent")
+      .setup.user.answer(
+        "contact", {
+          fields: {
+            preferred_channel: "SMS"
+          }
+        }
+      )
+      .check.interaction({
+        reply: [
+          "Do you agree to the MenConnect privacy policy that was just sent to you on SMS",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("state_menconnect_popi_consent - should display the correct message WhatsApp", function(){
+    return tester
+      .setup.user.state("state_menconnect_popi_consent")
+      .setup.user.answer(
+        "contact", {
+          fields: {
+            preferred_channel: "WhatsApp"
+          }
+        }
+      )
+      .check.interaction({
+        reply: [
+          "Do you agree to the MenConnect privacy policy that was just sent to you on WhatsApp",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("state_menconnect_popi_consent - should confirm if user says no", function(){
+    return tester
+      .setup.user.state("state_menconnect_popi_consent")
+      .input("2")
+      .check.interaction({
+        state: "state_menconnect_popi_no_consent_confirm",
+        reply: [
+          "Unfortunately you may only access Menconnect if you agree to our " +
+          "privacy policy. Would you like to change your mind and accept?",
+          "1. Yes",
+          "2. No"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("state_menconnect_popi_consent_view - should display the correct message SMS", function(){
+    return tester
+      .setup.user.state("state_menconnect_popi_consent_view")
+      .setup.user.answer(
+        "contact", {
+          fields: {
+            preferred_channel: "SMS"
+          }
+        }
+      )
+      .check.interaction({
+        reply: [
+          "The MenConnect privacy policy was just sent to you on SMS",
+          "1. Menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
+  it("state_menconnect_popi_consent_view - should display the correct message WhatsApp", function(){
+    return tester
+      .setup.user.state("state_menconnect_popi_consent_view")
+      .setup.user.answer(
+        "contact", {
+          fields: {
+            preferred_channel: "WhatsApp"
+          }
+        }
+      )
+      .check.interaction({
+        reply: [
+          "The MenConnect privacy policy was just sent to you on WhatsApp",
+          "1. Menu",
+          "2. Exit"
+        ].join("\n")
+      })
+      .run();
+  });
   it("should submit the popi consent", function() {
     return tester
         .setup.user.state("state_trigger_popi_accept_flow")
@@ -1401,6 +1491,109 @@ describe("POPI update for existing users", function() {
             );
         })
         .run();
+  });
+});
+describe("state_trigger_send_popi_flow", function(){
+  it("should start a flow with correct data", function(){
+    return tester
+        .setup.user.state("state_trigger_send_popi_flow")
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.start_flow(
+              "popi-send-flow-uuid",
+              null,
+              "whatsapp:27123456789"
+            )
+          );
+        })
+        .check.user.state("state_menconnect_popi_consent")
+        .run();
+  });
+  it("should retry HTTP call when RapidPro is down", function() {
+    return tester
+      .setup.user.state("state_trigger_send_popi_flow")
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "popi-send-flow-uuid",
+            null,
+            "whatsapp:27123456789",
+            null,
+            true
+          )
+        );
+      })
+      .check.interaction({
+        state: "__error__",
+        reply:
+          "Sorry, something went wrong. We have been notified. Please try again later"
+      })
+      .check(function(api) {
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.__error__'], {agg: 'sum', values: [1]});
+        assert.equal(api.http.requests.length, 3);
+        api.http.requests.forEach(function(request) {
+          assert.equal(request.url, "https://rapidpro/api/v2/flow_starts.json");
+        });
+        assert.equal(api.log.error.length, 1);
+        assert(api.log.error[0].includes("HttpResponseError"));
+      })
+      .run();
+  });
+});
+describe("state_trigger_send_popi_flow_new_registration", function(){
+  it("should start a flow with correct data", function(){
+    return tester
+        .setup.user.state("state_trigger_send_popi_flow_new_registration")
+        .setup.user.answers({
+          on_whatsapp: false,
+        })
+        .setup(function(api) {
+          api.http.fixtures.add(
+            fixtures_rapidpro.start_flow(
+              "popi-send-flow-uuid",
+              null,
+              "whatsapp:27123456789",
+              {on_whatsapp: "false"}
+            )
+          );
+        })
+        .check.user.state("state_menconnect_popi_consent_new_registration")
+        .run();
+  });
+  it("should retry HTTP call when RapidPro is down", function() {
+    return tester
+      .setup.user.state("state_trigger_send_popi_flow_new_registration")
+      .setup.user.answers({
+        on_whatsapp: true,
+      })
+      .setup(function(api) {
+        api.http.fixtures.add(
+          fixtures_rapidpro.start_flow(
+            "popi-send-flow-uuid",
+            null,
+            "whatsapp:27123456789",
+            {on_whatsapp: "true"},
+            true
+          )
+        );
+      })
+      .check.interaction({
+        state: "__error__",
+        reply:
+          "Sorry, something went wrong. We have been notified. Please try again later"
+      })
+      .check(function(api) {
+        var metrics = api.metrics.stores.test_metric_store;
+        assert.deepEqual(metrics['enter.__error__'], {agg: 'sum', values: [1]});
+        assert.equal(api.http.requests.length, 3);
+        api.http.requests.forEach(function(request) {
+          assert.equal(request.url, "https://rapidpro/api/v2/flow_starts.json");
+        });
+        assert.equal(api.log.error.length, 1);
+        assert(api.log.error[0].includes("HttpResponseError"));
+      })
+      .run();
   });
 });
 describe("state_share", function() {
