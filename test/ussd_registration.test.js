@@ -1423,6 +1423,65 @@ describe("POPI update for existing users", function() {
       })
       .run();
   });
+  it("state_menconnect_popi_no_consent_confirm - should start accept flow if confirmed ", function(){
+    return tester
+        .setup.user.state("state_menconnect_popi_no_consent_confirm")
+        .setup(function(api) {
+            api.http.fixtures.add(
+                fixtures_rapidpro.start_flow(
+                  "popi-consent-flow-uuid", null, "whatsapp:27123456789"
+                )
+            );
+        })
+        .input("1")
+        .check.interaction({
+            state: "state_menconnect_popi_consent_accept",
+            reply: [
+                "Thank you for accepting the policy."
+            ].join("\n")
+        })
+        .check(function(api) {
+            assert.equal(api.http.requests.length, 1);
+            assert.equal(
+                api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+            );
+        })
+        .run();
+  });
+  it("state_menconnect_popi_no_consent_confirm - should start optout flow if not confirmed ", function(){
+    return tester
+        .setup.user.state("state_menconnect_popi_no_consent_confirm")
+        .setup(function(api) {
+            api.http.fixtures.add(
+                fixtures_rapidpro.start_flow(
+                  "optout-flow-id", null, "whatsapp:27123456789"
+                )
+            );
+        })
+        .input("2")
+        .check.interaction({
+            state: "state_menconnect_popi_consent_reject",
+            reply: [
+              "I'm sorry to see you go! You can dial *134*406# to rejoin. ",
+              "",
+              "",
+              "For any medical concerns please visit the clinic.",
+              "",
+              "",
+              "Stay healthy!",
+              "",
+              "Mo"
+            ].join("\n")
+        })
+        .check(function(api) {
+            assert.equal(api.http.requests.length, 1);
+            assert.equal(
+                api.http.requests[0].url, "https://rapidpro/api/v2/flow_starts.json"
+            );
+        })
+        .check.reply.ends_session()
+        .run();
+  });
   it("state_menconnect_popi_consent_view - should display the correct message SMS", function(){
     return tester
       .setup.user.state("state_menconnect_popi_consent_view")
@@ -1628,64 +1687,21 @@ describe("state_share", function() {
         ].join("\n")
       })
       .run();
-  });
-});
-  describe("state_info_consent", function() {
-    it("should ask the user for consent to use their info", function() {
-      return tester.setup.user
-        .state("state_info_consent")
-        .input({ session_event: "continue" })
-        .check.interaction({
-          state: "state_info_consent",
-          reply: [
-            "MenConnect needs to process your personal info to send you relevant messages. Do you agree?",
-            "1. Yes",
-            "2. No"
-          ].join("\n")
-        })
-        .run();
     });
-    it("should show an error if the user replies with an incorrect choice", function() {
-      return tester.setup.user
-        .state("state_info_consent")
-        .input("foo")
-        .check.interaction({
-          state: "state_info_consent",
-          reply: [
-            "Sorry, please reply with the number next to your answer. Do you agree?",
-            "1. Yes",
-            "2. No"
-          ].join("\n")
-        })
-        .run();
-    });
-
-    it("should skip the state if they have already given info consent", function() {
-      return tester.setup.user
-        .state("state_info_consent")
-        .setup.user.answer("contact", { fields: { info_consent: "TRUE" } })
-        .input({ session_event: "continue" })
-        .check.user.state("state_message_consent")
-        .check(function(api){
-          var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_message_consent'], {agg: 'sum', values: [1]});
-        })
-        .run();
-    });
-
-    it("should ask for message consent if they agree", function() {
-      return tester.setup.user
-        .state("state_info_consent")
-        .input("1")
-        .check.user.state("state_message_consent")
-        .run();
-    });
-
-    it("should go to exit state if they don't accept ", function() {
-      return tester.setup.user
-        .state("state_info_consent")
+    it("should go back to state_registered if back to menu is selected", function(){
+      return tester
+        .setup.user.state("state_share")
         .input("2")
-        .check.user.state("state_exit")
+        .check.interaction({state: "state_registered"})
+        .run();
+    });
+  });
+  describe("state_confirm_share", function(){
+    it("should go back to state_registered", function(){
+      return tester
+        .setup.user.state("state_confirm_share")
+        .input("1")
+        .check.interaction({state: "state_registered"})
         .run();
     });
   });
@@ -1725,7 +1741,13 @@ describe("state_share", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("2")
-        .check.user.state("state_message_consent_denied")
+        .check.interaction({
+          state: "state_message_consent_denied",
+          reply: ("No problem! " +
+            "If you change your mind and want to receive supportive messages in the future," +
+            " dial *134*406# and I'll sign you up."
+          )
+        })
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
           assert.deepEqual(metrics['enter.state_message_consent_denied'], {agg: 'sum', values: [1]});
@@ -1733,32 +1755,6 @@ describe("state_share", function() {
         .run();
     });
     it("should go to the language page", function() {
-      return tester.setup.user
-        .state("state_message_consent")
-        .input("1")
-        .check.user.state("state_language")
-        .check(function(api){
-          var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
-        })
-        .run();
-    });
-  });
-  describe("state_message_consent", function() {
-    it("should show the consent screen", function() {
-      return tester.setup.user
-        .state("state_message_consent")
-        .check.interaction({
-          reply: [
-            "MenConnect supports men on their journey. I'll send you messages with info & tips." +
-            "Do you agree to receive?",
-            "1. Yes",
-            "2. No"
-          ].join("\n")
-        })
-        .run();
-    });
-    it("should show the language screen", function() {
       return tester.setup.user
         .state("state_message_consent")
         .input("1")
@@ -1774,39 +1770,6 @@ describe("state_share", function() {
         .check(function(api){
           var metrics = api.metrics.stores.test_metric_store;
           assert.deepEqual(metrics['enter.state_language'], {agg: 'sum', values: [1]});
-        })
-        .run();
-    });
-    it("should show the consent declined screen", function() {
-      return tester.setup.user
-        .state("state_message_consent")
-        .input("2")
-        .check.interaction({
-          state: "state_message_consent_denied",
-            reply: [
-              "No problem! " +
-              "If you change your mind and want to receive supportive messages in the future," +
-                " dial *134*406# and I'll sign you up."
-          ].join("\n")
-        })
-        .check(function(api){
-          var metrics = api.metrics.stores.test_metric_store;
-          assert.deepEqual(metrics['enter.state_message_consent_denied'], {agg: 'sum', values: [1]});
-        })
-        .run();
-    });
-    it("should show an error screen", function() {
-      return tester.setup.user
-        .state("state_message_consent")
-        .input("foo")
-        .check.interaction({
-          state: "state_message_consent",
-            reply: [
-              "Please try again. Reply with the number that matches your answer, e.g. 1.\n",
-              "Do you agree to receive messages?",
-              "1. Yes",
-              "2. No"
-          ].join("\n")
         })
         .run();
     });
@@ -1830,6 +1793,24 @@ describe("state_share", function() {
         .state("state_language")
         .input("3")
         .check.user.lang("sot_ZA")
+        .run();
+    });
+    it("should show the user an error on invalid input", function() {
+      return tester.setup.user
+        .state("state_language")
+        .input("foo")
+        .check.interaction({
+          state: "state_language",
+          reply: [
+            "Please try again. Reply with the number that matches your answer, e.g. 1",
+            "",
+            "",
+            "What language would you like to receive messages in?",
+            "1. English",
+            "2. Zulu",
+            "3. Sesotho"
+          ].join("\n")
+        })
         .run();
     });
   });
@@ -1890,22 +1871,16 @@ describe("state_share", function() {
         .run();
     });
   });
-  describe("state_menconnect_popi_consent_reject", function(){
-    it("should display the correct message", function(){
+  describe("state_menconnect_popi_new_registration", function(){
+    it("should inform about personal info and consent", function(){
       return tester
-        .setup.user.state("state_menconnect_popi_consent_reject")
+        .setup.user.state("state_menconnect_popi_new_registration")
         .check.interaction({
           reply: [
-            "I'm sorry to see you go! You can dial *134*406# to rejoin. ",
-            "",
-            "",
-            "For any medical concerns please visit the clinic.",
-            "",
-            "",
-            "Stay healthy!",
-            "",
-            "Mo",
-            "1. Next"].join("\n")
+            "MenConnect Keeps your personal info private & confidential. It's used with " +
+              "your consent to send you health messages. You can opt out at any time",
+            "1. Next"
+          ].join("\n")
         })
         .run();
     });
@@ -2205,7 +2180,7 @@ describe("state_share", function() {
   describe("timeout testing", function() {
     it("should go to state_timed_out", function() {
       return tester.setup.user
-        .state("state_info_consent")
+        .state("state_covid19")
         .inputs({ session_event: "close" }, { session_event: "new" })
         .check.interaction({
           state: "state_timed_out",
@@ -2362,7 +2337,6 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":7,
-                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent": "yes",
@@ -2410,7 +2384,6 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":7,
-                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent": "No",
@@ -2460,7 +2433,6 @@ describe("state_share", function() {
                 "registered_by":"+27123456789",
                 "mha":6,
                 "swt":1,
-                "popi_consent": "12-2021",
                 "age_group":"<15",
                 "status_known_period":"<3 months",
                 "treatment_adherent":"yes",
@@ -2530,7 +2502,6 @@ describe("state_share", function() {
                   "registered_by":"+27123456789",
                   "mha":6,
                   "swt":7,
-                  "popi_consent": "12-2021",
                   "age_group":"<15",
                   "status_known_period":"<3 months",
                   "treatment_adherent":"yes",
@@ -2601,7 +2572,6 @@ describe("state_share", function() {
                   "registered_by":"+27123456789",
                   "mha":6,
                   "swt":1,
-                  "popi_consent": "12-2021",
                   "age_group":"<15",
                   "status_known_period":"<3 months",
                   "treatment_adherent":"yes",

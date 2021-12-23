@@ -1726,14 +1726,13 @@ go.app = (function () {
 
     self.add("state_trigger_popi_optout_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
-      var data = {
-          popi_consent: popi_consent,
-      };
       return self.rapidpro
         .start_flow(
-          self.im.config.optout_flow_id, null, "whatsapp:" + _.trim(msisdn, "+"), data)
-          .then(function () {
+          self.im.config.optout_flow_id,
+          null,
+          "whatsapp:" + _.trim(msisdn, "+")
+        )
+        .then(function () {
           return self.states.create("state_menconnect_popi_consent_reject");
         }).catch(function (e) {
           // Go to error state after 3 failed HTTP request
@@ -1749,8 +1748,9 @@ go.app = (function () {
     });
 
     self.add('state_menconnect_popi_consent_reject', function (name) {
-      return new MenuState(name, {
-        question: $([
+      return new EndState(name, {
+        next: "state_start",
+        text: $([
           "I'm sorry to see you go! You can dial *134*406# to rejoin. ",
           "",
           "",
@@ -1759,11 +1759,7 @@ go.app = (function () {
           "",
           "Stay healthy!",
           "",
-          "Mo"].join("\n")),
-        error: get_content("state_generic_error").context(),
-        choices: [
-          new Choice("state_trigger_rapidpro_optout_flow", $("Next"))
-        ]
+          "Mo"].join("\n"))
       });
     });
 
@@ -1815,18 +1811,18 @@ go.app = (function () {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
       return self.rapidpro
         .start_flow(
-          self.im.config.send_sms_flow_id, null,
-          "whatsapp:" + _.trim(msisdn, "+")).then(function () {
-            return self.states.create("state_confirm_share");
-          }).catch(function (e) {
-            // Go to error state after 3 failed HTTP request
-            opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
-            if (opts.http_error_count === 3) {
-              self.im.log.error(e.message);
-              return self.states.create("__error__", { return_state: name });
-            }
-            return self.states.create(name, opts);
-          });
+          self.im.config.send_sms_flow_id, null, "whatsapp:" + _.trim(msisdn, "+")
+        ).then(function () {
+          return self.states.create("state_confirm_share");
+        }).catch(function (e) {
+          // Go to error state after 3 failed HTTP request
+          opts.http_error_count = _.get(opts, "http_error_count", 0) + 1;
+          if (opts.http_error_count === 3) {
+            self.im.log.error(e.message);
+            return self.states.create("__error__", { return_state: name });
+          }
+          return self.states.create(name, opts);
+        });
     });
 
     self.add("state_confirm_share", function (name) {
@@ -1835,7 +1831,7 @@ go.app = (function () {
         error: get_content("state_generic_error").context(),
         accept_labels: true,
         choices: [
-          new Choice("state_send_sms", $("Back to Menu"))
+          new Choice("state_registered", $("Back to Menu"))
         ]
       });
     });
@@ -1942,39 +1938,6 @@ go.app = (function () {
     });
 
     //New registration starts here
-    self.add('state_exit_no_consent', function (name) {
-      return new EndState(name, {
-        next: "state_start",
-        text: "No problem!" +
-          "If you change your mind and want to receive supportive messages in the future, dial *134*406# and I'll sign you up."
-      });
-    });
-
-    //We only need message consent
-    self.add("state_info_consent", function (name) {
-      // Skip this state if we already have consent
-      var consent = _.get(
-        self.im.user.get_answer("contact"),
-        "fields.info_consent"
-      );
-      if (consent === "TRUE") {
-        return self.states.create("state_message_consent");
-      }
-      return new MenuState(name, {
-        question: $(
-          "MenConnect needs to process your personal info to send you relevant messages. Do you agree?"
-        ),
-        error: $(
-          "Sorry, please reply with the number next to your answer. Do you agree?"
-        ),
-        accept_labels: true,
-        choices: [
-          new Choice("state_message_consent", $("Yes")),
-          new Choice("state_exit", $("No"))
-        ]
-      });
-    });
-
     self.add("state_message_consent", function (name) {
       // Skip this state if we already have consent
       var consent = _.get(
@@ -2004,13 +1967,12 @@ go.app = (function () {
     self.add("state_language", function (name) {
       return new LanguageState(name, {
         question: get_content(name).context(),
-        error: $(
-          "Please try again. Reply with the number that matches your answer, e.g. 1" +
-          "\n\nWhat language would you like to receive messages in?",
-          "1. English",
-          "2. Zulu",
-          "3. Sesotho"
-        ),
+        error: $([
+          "Please try again. Reply with the number that matches your answer, e.g. 1",
+          "",
+          "",
+          "What language would you like to receive messages in?"
+        ].join("\n")),
         accept_labels: true,
         choices: [
           new Choice("eng_ZA", $("English")),
@@ -2368,7 +2330,6 @@ go.app = (function () {
 
     self.add("state_trigger_rapidpro_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_consent_new_registration")) === "YES" ? self.im.config.popi_consent : "false";
 
       var data = {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
@@ -2379,7 +2340,6 @@ go.app = (function () {
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),
         mha: 6,
         swt: self.im.user.get_answer("on_whatsapp") ? 7 : 1,
-        popi_consent: popi_consent,
         age_group: self.im.user.get_answer("state_age_group"),
         status_known_period: self.im.user.get_answer("state_status_known"),
         treatment_adherent: self.im.user.get_answer("state_still_on_treatment") || "No",
