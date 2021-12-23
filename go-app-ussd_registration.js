@@ -1726,14 +1726,11 @@ go.app = (function () {
 
     self.add("state_trigger_popi_optout_flow", function (name, opts) {
       var msisdn = utils.normalize_msisdn(self.im.user.addr, "ZA");
-      // TODO: double check this but I don't thin we need it
-      // var popi_consent = _.toUpper(self.im.user.get_answer("state_menconnect_popi_no_consent_confirm"));
-      // var data = {
-      //     popi_consent: popi_consent,
-      // };
       return self.rapidpro
         .start_flow(
-          self.im.config.optout_flow_id, null, "whatsapp:" + _.trim(msisdn, "+")
+          self.im.config.optout_flow_id,
+          null,
+          "whatsapp:" + _.trim(msisdn, "+")
         )
         .then(function () {
           return self.states.create("state_menconnect_popi_consent_reject");
