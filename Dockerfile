@@ -19,4 +19,4 @@ RUN mv ./node_modules /usr/local/site-packages/vxsandbox/
 COPY go-*.js /app/
 COPY config /app/config
 
-RUN pip install raven==3.5.2
+RUN pip install raven==3.5.2 vumi-unidecode-middleware==0.0.2
