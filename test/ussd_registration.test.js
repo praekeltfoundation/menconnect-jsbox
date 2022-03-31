@@ -556,9 +556,11 @@ describe("state_reminders", function() {
       .run();
   });
   it("should show the clinic confirm screen on valid input", function() {
+    var clinic_timestamp = new Date().getTime() + (60 * 24 * 60 * 60);
+    var clinic_date_input = new Date(clinic_timestamp).toISOString().replace(/T.*/, "");
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input("2022-02-24")
+      .input(clinic_date_input)
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -715,9 +717,11 @@ describe("state_profile", function() {
       .run();
   });
   it("should show the reminder confirm screen on valid input", function() {
+    var clinic_timestamp = new Date().getTime() + (60 * 24 * 60 * 60);
+    var clinic_date_input = new Date(clinic_timestamp).toISOString().replace(/T.*/, "");
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2022-02-24")
+      .input(clinic_date_input)
       .check.user.state("state_clinic_reminder_confirm")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
