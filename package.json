@@ -1,6 +1,6 @@
 {
   "name": "menconnect-jsbox",
-  "version": "0.0.47",
+  "version": "0.0.6",
   "description": "MenConnect register application",
   "main": "lib/app.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "jspot": "^0.3.15",
     "lodash": "^4.17.20",
     "moment": "~2.22.1",
+    "package": "^1.0.1",
     "q": "~0.9.7",
     "seed-jsbox-utils": "^0.4.1",
     "vumigo_v02": "^0.3.0"
