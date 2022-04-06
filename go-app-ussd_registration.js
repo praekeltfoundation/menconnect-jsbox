@@ -709,6 +709,7 @@ go.app = (function () {
           var givendate = new Date(content);
           var today = new Date();
           today.setHours(0, 0, 0, 0);
+          var date_diff = Math.floor((givendate - today)/(24*3600*1000));
           //Set a timestamp 400 days forward. We want to reject clinic dates that are more than 400 days from today
           var timestamp = new Date().getTime() + (400 * 24 * 60 * 60 * 1000);
           var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
@@ -719,7 +720,7 @@ go.app = (function () {
           if (givendate > timestamp) {
             return $("Hmm, that seems a bit far away. " +
               "You should at least be going to the clinic every 2 months. Please try again.");
-          } if (givendate < today) {
+          } if (date_diff < -1) {
             return $(
               "Oops, that day has already passed. Please try again."
             );
@@ -1397,6 +1398,7 @@ go.app = (function () {
           var givendate = new Date(content);
           var today = new Date();
           today.setHours(0, 0, 0, 0);
+          var date_diff = Math.floor((givendate - today)/(24*3600*1000));
           //Set a timestamp 400 days forward. We want to reject clinic dates that are more than 400 days from today
           var timestamp = new Date().getTime() + (400 * 24 * 60 * 60 * 1000);
           var match = content.match(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
@@ -1407,11 +1409,12 @@ go.app = (function () {
           if (givendate > timestamp) {
             return $("Hmm, that seems a bit far away. " +
               "You should at least be going to the clinic every 2 months. Please try again.");
-          } if (givendate < today) {
+          }
+          if (date_diff < -1) {
             return $(
               "Oops, that day has already passed. Please try again."
             );
-          }
+          } 
         },
         next: "state_clinic_reminder_confirm"
       });
@@ -2335,7 +2338,7 @@ go.app = (function () {
         on_whatsapp: self.im.user.get_answer("on_whatsapp") ? "true" : "false",
         consent: _.toUpper(self.im.user.get_answer("state_message_consent")) === "YES" ? "true" : "false",
         language: self.im.user.get_answer("state_language"),
-        source: "USSD registration",
+        source: "USSD registration " + self.im.msg.to_addr,
         timestamp: new moment.utc(self.im.config.testing_today).format(),
         registered_by: utils.normalize_msisdn(self.im.user.addr, "ZA"),
         mha: 6,

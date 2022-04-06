@@ -2336,7 +2336,7 @@ describe("state_share", function() {
                 "on_whatsapp":"true",
                 "consent":"true",
                 "language": "eng",
-                "source":"USSD registration",
+                "source":"USSD registration *134*406#",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
                 "mha":6,
@@ -2354,7 +2354,7 @@ describe("state_share", function() {
           );
         })
         .setup.user.answer("on_whatsapp", true)
-        .input({ session_event: "continue" })
+        .input({ session_event: "continue", to_addr: "*134*406#" })
         .check.user.state("state_registration_complete")
         .run();
     });
@@ -2383,7 +2383,7 @@ describe("state_share", function() {
                 "on_whatsapp":"true",
                 "consent":"true",
                 "language": "eng",
-                "source":"USSD registration",
+                "source":"USSD registration *134*406#",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
                 "mha":6,
@@ -2402,7 +2402,7 @@ describe("state_share", function() {
         })
         //.setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answer("on_whatsapp", true)
-        .input({ session_event: "continue" })
+        .input({ session_event: "continue", to_addr: "*134*406#" })
         .check.user.state("state_registration_complete")
         .run();
     });
@@ -2432,7 +2432,7 @@ describe("state_share", function() {
                 "on_whatsapp":"false",
                 "consent":"true",
                 "language": "eng",
-                "source":"USSD registration",
+                "source":"USSD registration *134*406#",
                 "timestamp":"2014-04-04T07:07:07Z",
                 "registered_by":"+27123456789",
                 "mha":6,
@@ -2452,7 +2452,7 @@ describe("state_share", function() {
         })
         .setup.user.state("state_trigger_rapidpro_flow")
         .setup.user.answer("on_whatsapp", false)
-        .input({ session_event: "continue" })
+        .input({ session_event: "continue", to_addr: "*134*406#" })
         .check(function(api) {
           assert.equal(api.http.requests.length, 3);
           api.http.requests.forEach(function(request) {
@@ -2501,7 +2501,7 @@ describe("state_share", function() {
                   "on_whatsapp":"true",
                   "consent":"true",
                   "language": "eng",
-                  "source":"USSD registration",
+                  "source":"USSD registration *134*406#",
                   "timestamp":"2014-04-04T07:07:07Z",
                   "registered_by":"+27123456789",
                   "mha":6,
@@ -2522,7 +2522,7 @@ describe("state_share", function() {
           // so we need to start it before
           //.setup.user.state("state_whatsapp_contact_check")
           .setup.user.answer("on_whatsapp", true)
-          .input({ session_event: "continue" })
+          .input({ session_event: "continue" , to_addr: "*134*406#"})
           .check.interaction({
             state: "state_registration_complete",
             reply:
@@ -2571,7 +2571,7 @@ describe("state_share", function() {
                   "on_whatsapp":"false",
                   "consent":"true",
                   "language": "eng",
-                  "source":"USSD registration",
+                  "source":"USSD registration *134*406#",
                   "timestamp":"2014-04-04T07:07:07Z",
                   "registered_by":"+27123456789",
                   "mha":6,
@@ -2590,7 +2590,7 @@ describe("state_share", function() {
           })
           // For some reason, if we start the test on state_registration_complete, it skips to state_start,
           // so we need to start it before
-          .input({ session_event: "continue" })
+          .input({ session_event: "continue", to_addr: "*134*406#" })
           .check.interaction({
             state: "state_registration_complete",
             reply:
