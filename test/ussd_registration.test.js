@@ -5,6 +5,12 @@ const { describe, it } = require("eslint/lib/rule-tester/rule-tester");
 var fixtures_rapidpro = require("./fixtures_rapidpro")();
 var fixtures_whatsapp = require("./fixtures_whatsapp")();
 
+function daysFromNow(days) {
+  var milliseconds = days * 24 * 3600 * 1000;
+  var date = new Date(new Date().getTime() + milliseconds);
+  return date.toISOString().replace(/T.*/, "");
+}
+
 describe("ussd_registration app", function() {
   var app;
   var tester;
@@ -556,11 +562,9 @@ describe("state_reminders", function() {
       .run();
   });
   it("should show the clinic confirm screen on valid input", function() {
-    var clinic_timestamp = new Date().getTime() + (60 * 24 * 60 * 60);
-    var clinic_date_input = new Date(clinic_timestamp).toISOString().replace(/T.*/, "");
     return tester
       .setup.user.state("state_new_clinic_date")
-      .input(clinic_date_input)
+      .input(daysFromNow(60))
       .check.user.state("state_clinic_date_display")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -717,11 +721,9 @@ describe("state_profile", function() {
       .run();
   });
   it("should show the reminder confirm screen on valid input", function() {
-    var clinic_timestamp = new Date().getTime() + (60 * 24 * 60 * 60);
-    var clinic_date_input = new Date(clinic_timestamp).toISOString().replace(/T.*/, "");
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input(clinic_date_input)
+      .input(daysFromNow(60))
       .check.user.state("state_clinic_reminder_confirm")
       .check(function(api){
         var metrics = api.metrics.stores.test_metric_store;
@@ -732,7 +734,7 @@ describe("state_profile", function() {
   it("should return errors for invalid input", function() {
     return tester
       .setup.user.state("state_new_clinic_date_opt_out")
-      .input("2023-06-24")
+      .input(daysFromNow(2 * 365))
       .check.interaction({
         reply:[
           "Hmm, that seems a bit far away. " +
